@@ -1,0 +1,1057 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Normalizing · Slate 中文文档</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.7.3">
+        <meta name="author" content="mowangjuanzi">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="12-typescript.html" />
+    
+    
+    <link rel="prev" href="10-serializing.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Walkthroughs</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../walkthroughs/01-installing-slate.html">
+            
+                <a href="../walkthroughs/01-installing-slate.html">
+            
+                    
+                    Installing Slate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../walkthroughs/02-adding-event-handlers.html">
+            
+                <a href="../walkthroughs/02-adding-event-handlers.html">
+            
+                    
+                    Adding Event Handlers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../walkthroughs/03-defining-custom-elements.html">
+            
+                <a href="../walkthroughs/03-defining-custom-elements.html">
+            
+                    
+                    Defining Custom Elements
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../walkthroughs/04-applying-custom-formatting.html">
+            
+                <a href="../walkthroughs/04-applying-custom-formatting.html">
+            
+                    
+                    Applying Custom Formatting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../walkthroughs/05-executing-commands.html">
+            
+                <a href="../walkthroughs/05-executing-commands.html">
+            
+                    
+                    Executing Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../walkthroughs/06-saving-to-a-database.html">
+            
+                <a href="../walkthroughs/06-saving-to-a-database.html">
+            
+                    
+                    Saving to a Database
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../walkthroughs/xx-using-the-bundled-source.html">
+            
+                <a href="../walkthroughs/xx-using-the-bundled-source.html">
+            
+                    
+                    Using the Bundled Source
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Concepts</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="01-interfaces.html">
+            
+                <a href="01-interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="02-nodes.html">
+            
+                <a href="02-nodes.html">
+            
+                    
+                    Nodes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="03-locations.html">
+            
+                <a href="03-locations.html">
+            
+                    
+                    Locations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="04-transforms.html">
+            
+                <a href="04-transforms.html">
+            
+                    
+                    Transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="05-operations.html">
+            
+                <a href="05-operations.html">
+            
+                    
+                    Operations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="06-commands.html">
+            
+                <a href="06-commands.html">
+            
+                    
+                    Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="07-editor.html">
+            
+                <a href="07-editor.html">
+            
+                    
+                    Editor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="08-plugins.html">
+            
+                <a href="08-plugins.html">
+            
+                    
+                    Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="09-rendering.html">
+            
+                <a href="09-rendering.html">
+            
+                    
+                    Rendering
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="10-serializing.html">
+            
+                <a href="10-serializing.html">
+            
+                    
+                    Serializing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.11" data-path="11-normalizing.html">
+            
+                <a href="11-normalizing.html">
+            
+                    
+                    Normalizing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.12" data-path="12-typescript.html">
+            
+                <a href="12-typescript.html">
+            
+                    
+                    TypeScript
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.13" data-path="xx-migrating.html">
+            
+                <a href="xx-migrating.html">
+            
+                    
+                    Migrating
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">API</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../api/transforms.html">
+            
+                <a href="../api/transforms.html">
+            
+                    
+                    Transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../api/nodes/">
+            
+                <a href="../api/nodes/">
+            
+                    
+                    Node Types
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="../api/nodes/editor.html">
+            
+                <a href="../api/nodes/editor.html">
+            
+                    
+                    Editor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="../api/nodes/element.html">
+            
+                <a href="../api/nodes/element.html">
+            
+                    
+                    Element
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3" data-path="../api/nodes/node.html">
+            
+                <a href="../api/nodes/node.html">
+            
+                    
+                    Node
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.4" data-path="../api/nodes/node-entry.html">
+            
+                <a href="../api/nodes/node-entry.html">
+            
+                    
+                    NodeEntry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.5" data-path="../api/nodes/text.html">
+            
+                <a href="../api/nodes/text.html">
+            
+                    
+                    Text
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../api/locations/">
+            
+                <a href="../api/locations/">
+            
+                    
+                    Location Types
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="../api/locations/location.html">
+            
+                <a href="../api/locations/location.html">
+            
+                    
+                    Location
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" data-path="../api/locations/path.html">
+            
+                <a href="../api/locations/path.html">
+            
+                    
+                    Path
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.3" data-path="../api/locations/path-ref.html">
+            
+                <a href="../api/locations/path-ref.html">
+            
+                    
+                    PathRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.4" data-path="../api/locations/point.html">
+            
+                <a href="../api/locations/point.html">
+            
+                    
+                    Point
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.5" data-path="../api/locations/point-entry.html">
+            
+                <a href="../api/locations/point-entry.html">
+            
+                    
+                    PointEntry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.6" data-path="../api/locations/point-ref.html">
+            
+                <a href="../api/locations/point-ref.html">
+            
+                    
+                    PointRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.7" data-path="../api/locations/range.html">
+            
+                <a href="../api/locations/range.html">
+            
+                    
+                    Range
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.8" data-path="../api/locations/range-ref.html">
+            
+                <a href="../api/locations/range-ref.html">
+            
+                    
+                    RangeRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.9" data-path="../api/locations/span.html">
+            
+                <a href="../api/locations/span.html">
+            
+                    
+                    Span
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../api/operation.html">
+            
+                <a href="../api/operation.html">
+            
+                    
+                    Operation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="../api/scrubber.html">
+            
+                <a href="../api/scrubber.html">
+            
+                    
+                    Scrubber
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Libraries</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../libraries/slate-react.html">
+            
+                <a href="../libraries/slate-react.html">
+            
+                    
+                    Slate React
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../libraries/slate-history.html">
+            
+                <a href="../libraries/slate-history.html">
+            
+                    
+                    Slate History
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../libraries/slate-hyperscript.html">
+            
+                <a href="../libraries/slate-hyperscript.html">
+            
+                    
+                    Slate Hyperscript
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">General</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../general/resources.html">
+            
+                <a href="../general/resources.html">
+            
+                    
+                    Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../general/contributing.html">
+            
+                <a href="../general/contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../general/changelog.html">
+            
+                <a href="../general/changelog.html">
+            
+                    
+                    Changelog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../general/faq.html">
+            
+                <a href="../general/faq.html">
+            
+                    
+                    FAQ
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            本书使用 HonKit 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Normalizing</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="normalizing">Normalizing</h1>
+<p>Slate editors can edit complex, nested data structures. And for the most part this is great. But in certain cases inconsistencies in the data structure can be introduced—most often when allowing a user to paste arbitrary richtext content.</p>
+<p>&quot;Normalizing&quot; is how you can ensure that your editor&apos;s content is always of a certain shape. It&apos;s similar to &quot;validating&quot;, except instead of just determining whether the content is valid or invalid, its job is to fix the content to make it valid again.</p>
+<h2 id="built-in-constraints">Built-in Constraints</h2>
+<p>Slate editors come with a few built-in constraints out of the box. These constraints are there to make working with content <em>much</em> more predictable than standard <code>contenteditable</code>. All of the built-in logic in Slate depends on these constraints, so unfortunately you cannot omit them. They are...</p>
+<ol>
+<li><strong>All <code>Element</code> nodes must contain at least one <code>Text</code> descendant</strong> — even <a href="02-nodes.html#voids">Void Elements</a>. If an element node does not contain any children, an empty text node will be added as its only child. This constraint exists to ensure that the selection&apos;s anchor and focus points (which rely on referencing text nodes) can always be placed inside any node. With this, empty elements (or void elements) wouldn&apos;t be selectable.</li>
+<li><strong>Two adjacent texts with the same custom properties will be merged.</strong> If two adjacent text nodes have the same formatting, they&apos;re merged into a single text node with a combined text string of the two. This exists to prevent the text nodes from only ever expanding in count in the document, since both adding and removing formatting results in splitting text nodes.</li>
+<li><strong>Block nodes can only contain other blocks, or inline and text nodes.</strong> For example, a <code>paragraph</code> block cannot have another <code>paragraph</code> block element <em>and</em> a <code>link</code> inline element as children at the same time. The type of children allowed is determined by the first child, and any other non-conforming children are removed. This ensures that common richtext behaviors like &quot;splitting a block in two&quot; function consistently.</li>
+<li><strong>Inline nodes cannot be the first or last child of a parent block, nor can it be next to another inline node in the children array.</strong> If this is the case, an empty text node will be added to correct this to be in compliance with the constraint.</li>
+<li><strong>The top-level editor node can only contain block nodes.</strong> If any of the top-level children are inline or text nodes they will be removed. This ensures that there are always block nodes in the editor so that behaviors like &quot;splitting a block in two&quot; work as expected.</li>
+<li><strong>Nodes must be JSON-serializable.</strong> For example, avoid using <code>undefined</code> in your data model. This ensures that <a href="05-operations.html">operations</a> are also JSON-serializable, a property which is assumed by collaboration libraries.</li>
+<li><strong>Property values must not be <code>null</code>.</strong> Instead, you should use an optional property, e.g. <code>foo?: string</code> instead of <code>foo: string | null</code>. This limitation is due to <code>null</code> being used in <a href="05-operations.html">operations</a> to represent the absence of a property.</li>
+</ol>
+<p>These default constraints are all mandated because they make working with Slate documents <em>much</em> more predictable.</p>
+<blockquote>
+<p>🤖 Although these constraints are the best we&apos;ve come up with now, we&apos;re always looking for ways to have Slate&apos;s built-in constraints be less constraining if possible—as long as it keeps standard behaviors easy to reason about. If you come up with a way to reduce or remove a built-in constraint with a different approach, we&apos;re all ears!</p>
+</blockquote>
+<h2 id="adding-constraints">Adding Constraints</h2>
+<p>The built-in constraints are fairly generic. But you can also add your own constraints on top of the built-in ones that are specific to your domain.</p>
+<p>To do this, you extend the <code>normalizeNode</code> function on the editor. The <code>normalizeNode</code> function gets called every time an operation is applied that inserts or updates a node (or its descendants), giving you the opportunity to ensure that the changes didn&apos;t leave it in an invalid state, and correcting the node if so.</p>
+<p>For example here&apos;s a plugin that ensures <code>paragraph</code> blocks only have text or inline elements as children:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { Transforms, Element, Node } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
+
+<span class="hljs-keyword">const</span> withParagraphs = <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> { normalizeNode } = editor
+
+  editor.normalizeNode = <span class="hljs-function"><span class="hljs-params">entry</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> [node, path] = entry
+
+    <span class="hljs-comment">// If the element is a paragraph, ensure its children are valid.</span>
+    <span class="hljs-keyword">if</span> (Element.isElement(node) &amp;&amp; node.type === <span class="hljs-string">&apos;paragraph&apos;</span>) {
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [child, childPath] <span class="hljs-keyword">of</span> Node.children(editor, path)) {
+        <span class="hljs-keyword">if</span> (Element.isElement(child) &amp;&amp; !editor.isInline(child)) {
+          Transforms.unwrapNodes(editor, { <span class="hljs-attr">at</span>: childPath })
+          <span class="hljs-keyword">return</span>
+        }
+      }
+    }
+
+    <span class="hljs-comment">// Fall back to the original `normalizeNode` to enforce other constraints.</span>
+    normalizeNode(entry)
+  }
+
+  <span class="hljs-keyword">return</span> editor
+}
+</code></pre>
+<p>This example is fairly simple. Whenever <code>normalizeNode</code> gets called on a paragraph element, it loops through each of its children ensuring that none of them are block elements. And if one is a block element, it gets unwrapped, so that the block is removed and its children take its place. The node is &quot;fixed&quot;.</p>
+<p>But what if the child has nested blocks?</p>
+<h2 id="multi-pass-normalizing">Multi-pass Normalizing</h2>
+<p>One thing to understand about <code>normalizeNode</code> constraints is that they are <strong>multi-pass</strong>.</p>
+<p>If you check the example above again, you&apos;ll notice the <code>return</code> statement:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">if</span> (Element.isElement(child) &amp;&amp; !editor.isInline(child)) {
+  Transforms.unwrapNodes(editor, { <span class="hljs-attr">at</span>: childPath })
+  <span class="hljs-keyword">return</span>
+}
+</code></pre>
+<p>You might at first think this is odd, because with the <code>return</code> there, the original <code>normalizeNodes</code> will never be called, and the built-in constraints won&apos;t get a chance to run their own normalizations.</p>
+<p>But, there&apos;s a slight &quot;trick&quot; to normalizing.</p>
+<p>When you do call <code>Editor.unwrapNodes</code>, you&apos;re actually changing the content of the node that is currently being normalized. So even though you&apos;re ending the current normalization pass, by making a change to the node you&apos;re kicking off a <em>new</em> normalization pass. This results in a sort of <em>recursive</em> normalizing.</p>
+<p>This multi-pass characteristic makes it <em>much</em> easier to write normalizations, because you only ever have to worry about fixing a single issue at once, and not fixing <em>every</em> possible issue that could be putting a node in an invalid state.</p>
+<p>To see how this works in practice, let&apos;s start with this invalid document:</p>
+<pre><code class="lang-jsx">&lt;editor&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">b</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">c</span>&gt;</span>word<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span></span>
+&lt;/editor&gt;
+</code></pre>
+<p>The editor starts by running <code>normalizeNode</code> on <code>&lt;paragraph c&gt;</code>. And it is valid, because it contains only text nodes as children.</p>
+<p>But then, it moves up the tree, and runs <code>normalizeNode</code> on <code>&lt;paragraph b&gt;</code>. This paragraph is invalid, since it contains a block element (<code>&lt;paragraph c&gt;</code>). So that child block gets unwrapped, resulting in a new document of:</p>
+<pre><code class="lang-jsx">&lt;editor&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">b</span>&gt;</span>word<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span></span>
+&lt;/editor&gt;
+</code></pre>
+<p>And in performing that fix, the top-level <code>&lt;paragraph a&gt;</code> changed. It gets normalized, and it is invalid, so <code>&lt;paragraph b&gt;</code> gets unwrapped, resulting in:</p>
+<pre><code class="lang-jsx">&lt;editor&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">a</span>&gt;</span>word<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span></span>
+&lt;/editor&gt;
+</code></pre>
+<p>And now when <code>normalizeNode</code> runs, no changes are made, so the document is valid!</p>
+<blockquote>
+<p>🤖 For the most part you don&apos;t need to think about these internals. You can just know that anytime <code>normalizeNode</code> is called and you spot an invalid state, you can fix that single invalid state and trust that <code>normalizeNode</code> will be called again until the node becomes valid.</p>
+</blockquote>
+<h2 id="empty-children-early-constraint-execution">Empty Children Early Constraint Execution</h2>
+<p>One special normalization executes before all other normalizations and this can be important to keep in mind when writing your normalizers.</p>
+<p>Before any of the other normalizations can execute, Slate iterates through all <code>Element</code> nodes and makes sure they have at least one child. If it does not, an empty <code>Text</code> descendant is created.</p>
+<p>This can trip you up when you have custom handling when an <code>Element</code> has no children. For example, if a table element has no rows, you may wish to remove the table; however, this will never happen because a <code>Text</code> node would automatically be created before that normalization could run.</p>
+<h2 id="incorrect-fixes">Incorrect Fixes</h2>
+<p>One pitfall to avoid is creating an infinite normalization loop. This can happen if you check for a specific invalid structure, but then <strong>don&apos;t</strong> actually fix that structure with the change you make to the node. This results in an infinite loop because the node continues to be flagged as invalid, but it is never fixed properly.</p>
+<p>For example, consider a normalization that ensured <code>link</code> elements have a valid <code>url</code> property:</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// WARNING: this is an example of incorrect behavior!</span>
+<span class="hljs-keyword">const</span> withLinks = <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> { normalizeNode } = editor
+
+  editor.normalizeNode = <span class="hljs-function"><span class="hljs-params">entry</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> [node, path] = entry
+
+    <span class="hljs-keyword">if</span> (
+      Element.isElement(node) &amp;&amp;
+      node.type === <span class="hljs-string">&apos;link&apos;</span> &amp;&amp;
+      <span class="hljs-keyword">typeof</span> node.url !== <span class="hljs-string">&apos;string&apos;</span>
+    ) {
+      <span class="hljs-comment">// ERROR: null is not a valid value for a url</span>
+      Transforms.setNodes(editor, { <span class="hljs-attr">url</span>: <span class="hljs-literal">null</span> }, { <span class="hljs-attr">at</span>: path })
+      <span class="hljs-keyword">return</span>
+    }
+
+    normalizeNode(entry)
+  }
+
+  <span class="hljs-keyword">return</span> editor
+}
+</code></pre>
+<p>This fix is incorrectly written. It wants to ensure that all <code>link</code> elements have a <code>url</code> property string. But to fix invalid links it sets the <code>url</code> to <code>null</code>, which is still not a string!</p>
+<p>In this case you&apos;d either want to unwrap the link, removing it entirely. <em>Or</em> expand your validation to accept an &quot;empty&quot; <code>url == null</code> as well.</p>
+<h2 id="implications-for-other-code">Implications for Other Code</h2>
+<p>Sequences of Transforms may need to be wrapped in <a href="../api/nodes/editor.html#editorwithoutnormalizingeditor-editor-fn---void--void"><code>Editor.withoutNormalizing</code></a> if the node tree should <em>not</em> be normalized between Transforms.
+This is frequently the case when you <code>unwrapNodes</code> followed by <code>wrapNodes</code>.
+For example, you might write a function to change the type of a block as follows:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> LIST_TYPES = [<span class="hljs-string">&apos;numbered-list&apos;</span>, <span class="hljs-string">&apos;bulleted-list&apos;</span>]
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">changeBlockType</span>(<span class="hljs-params">editor, type</span>) </span>{
+  Editor.withoutNormalizing(editor, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">const</span> isActive = isBlockActive(editor, type)
+    <span class="hljs-keyword">const</span> isList = LIST_TYPES.includes(type)
+
+    Transforms.unwrapNodes(editor, {
+      <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span>
+        LIST_TYPES.includes(
+          !Editor.isEditor(n) &amp;&amp; SlateElement.isElement(n) &amp;&amp; n.type
+        ),
+      <span class="hljs-attr">split</span>: <span class="hljs-literal">true</span>,
+    })
+    <span class="hljs-keyword">const</span> newProperties = {
+      <span class="hljs-attr">type</span>: isActive ? <span class="hljs-string">&apos;paragraph&apos;</span> : isList ? <span class="hljs-string">&apos;list-item&apos;</span> : type,
+    }
+    Transforms.setNodes(editor, newProperties)
+
+    <span class="hljs-keyword">if</span> (!isActive &amp;&amp; isList) {
+      <span class="hljs-keyword">const</span> block = { <span class="hljs-attr">type</span>: type, <span class="hljs-attr">children</span>: [] }
+      Transforms.wrapNodes(editor, block)
+    }
+  })
+}
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="10-serializing.html" class="navigation navigation-prev " aria-label="Previous page: Serializing">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="12-typescript.html" class="navigation navigation-next " aria-label="Next page: TypeScript">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Normalizing","level":"2.11","depth":1,"next":{"title":"TypeScript","level":"2.12","depth":1,"path":"concepts/12-typescript.md","ref":"concepts/12-typescript.md","articles":[]},"previous":{"title":"Serializing","level":"2.10","depth":1,"path":"concepts/10-serializing.md","ref":"concepts/10-serializing.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/11-normalizing.md","mtime":"2022-06-07T07:05:16.145Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-07T07:05:30.558Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

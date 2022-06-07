@@ -1,0 +1,1114 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Serializing · Slate 中文文档</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.7.3">
+        <meta name="author" content="mowangjuanzi">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="11-normalizing.html" />
+    
+    
+    <link rel="prev" href="09-rendering.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Walkthroughs</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../walkthroughs/01-installing-slate.html">
+            
+                <a href="../walkthroughs/01-installing-slate.html">
+            
+                    
+                    Installing Slate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../walkthroughs/02-adding-event-handlers.html">
+            
+                <a href="../walkthroughs/02-adding-event-handlers.html">
+            
+                    
+                    Adding Event Handlers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../walkthroughs/03-defining-custom-elements.html">
+            
+                <a href="../walkthroughs/03-defining-custom-elements.html">
+            
+                    
+                    Defining Custom Elements
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../walkthroughs/04-applying-custom-formatting.html">
+            
+                <a href="../walkthroughs/04-applying-custom-formatting.html">
+            
+                    
+                    Applying Custom Formatting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../walkthroughs/05-executing-commands.html">
+            
+                <a href="../walkthroughs/05-executing-commands.html">
+            
+                    
+                    Executing Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../walkthroughs/06-saving-to-a-database.html">
+            
+                <a href="../walkthroughs/06-saving-to-a-database.html">
+            
+                    
+                    Saving to a Database
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../walkthroughs/xx-using-the-bundled-source.html">
+            
+                <a href="../walkthroughs/xx-using-the-bundled-source.html">
+            
+                    
+                    Using the Bundled Source
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Concepts</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="01-interfaces.html">
+            
+                <a href="01-interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="02-nodes.html">
+            
+                <a href="02-nodes.html">
+            
+                    
+                    Nodes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="03-locations.html">
+            
+                <a href="03-locations.html">
+            
+                    
+                    Locations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="04-transforms.html">
+            
+                <a href="04-transforms.html">
+            
+                    
+                    Transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="05-operations.html">
+            
+                <a href="05-operations.html">
+            
+                    
+                    Operations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="06-commands.html">
+            
+                <a href="06-commands.html">
+            
+                    
+                    Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="07-editor.html">
+            
+                <a href="07-editor.html">
+            
+                    
+                    Editor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="08-plugins.html">
+            
+                <a href="08-plugins.html">
+            
+                    
+                    Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="09-rendering.html">
+            
+                <a href="09-rendering.html">
+            
+                    
+                    Rendering
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.10" data-path="10-serializing.html">
+            
+                <a href="10-serializing.html">
+            
+                    
+                    Serializing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.11" data-path="11-normalizing.html">
+            
+                <a href="11-normalizing.html">
+            
+                    
+                    Normalizing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.12" data-path="12-typescript.html">
+            
+                <a href="12-typescript.html">
+            
+                    
+                    TypeScript
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.13" data-path="xx-migrating.html">
+            
+                <a href="xx-migrating.html">
+            
+                    
+                    Migrating
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">API</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../api/transforms.html">
+            
+                <a href="../api/transforms.html">
+            
+                    
+                    Transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../api/nodes/">
+            
+                <a href="../api/nodes/">
+            
+                    
+                    Node Types
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="../api/nodes/editor.html">
+            
+                <a href="../api/nodes/editor.html">
+            
+                    
+                    Editor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="../api/nodes/element.html">
+            
+                <a href="../api/nodes/element.html">
+            
+                    
+                    Element
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3" data-path="../api/nodes/node.html">
+            
+                <a href="../api/nodes/node.html">
+            
+                    
+                    Node
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.4" data-path="../api/nodes/node-entry.html">
+            
+                <a href="../api/nodes/node-entry.html">
+            
+                    
+                    NodeEntry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.5" data-path="../api/nodes/text.html">
+            
+                <a href="../api/nodes/text.html">
+            
+                    
+                    Text
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../api/locations/">
+            
+                <a href="../api/locations/">
+            
+                    
+                    Location Types
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="../api/locations/location.html">
+            
+                <a href="../api/locations/location.html">
+            
+                    
+                    Location
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" data-path="../api/locations/path.html">
+            
+                <a href="../api/locations/path.html">
+            
+                    
+                    Path
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.3" data-path="../api/locations/path-ref.html">
+            
+                <a href="../api/locations/path-ref.html">
+            
+                    
+                    PathRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.4" data-path="../api/locations/point.html">
+            
+                <a href="../api/locations/point.html">
+            
+                    
+                    Point
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.5" data-path="../api/locations/point-entry.html">
+            
+                <a href="../api/locations/point-entry.html">
+            
+                    
+                    PointEntry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.6" data-path="../api/locations/point-ref.html">
+            
+                <a href="../api/locations/point-ref.html">
+            
+                    
+                    PointRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.7" data-path="../api/locations/range.html">
+            
+                <a href="../api/locations/range.html">
+            
+                    
+                    Range
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.8" data-path="../api/locations/range-ref.html">
+            
+                <a href="../api/locations/range-ref.html">
+            
+                    
+                    RangeRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.9" data-path="../api/locations/span.html">
+            
+                <a href="../api/locations/span.html">
+            
+                    
+                    Span
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../api/operation.html">
+            
+                <a href="../api/operation.html">
+            
+                    
+                    Operation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="../api/scrubber.html">
+            
+                <a href="../api/scrubber.html">
+            
+                    
+                    Scrubber
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Libraries</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../libraries/slate-react.html">
+            
+                <a href="../libraries/slate-react.html">
+            
+                    
+                    Slate React
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../libraries/slate-history.html">
+            
+                <a href="../libraries/slate-history.html">
+            
+                    
+                    Slate History
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../libraries/slate-hyperscript.html">
+            
+                <a href="../libraries/slate-hyperscript.html">
+            
+                    
+                    Slate Hyperscript
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">General</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../general/resources.html">
+            
+                <a href="../general/resources.html">
+            
+                    
+                    Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../general/contributing.html">
+            
+                <a href="../general/contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../general/changelog.html">
+            
+                <a href="../general/changelog.html">
+            
+                    
+                    Changelog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../general/faq.html">
+            
+                <a href="../general/faq.html">
+            
+                    
+                    FAQ
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            本书使用 HonKit 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Serializing</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="serializing">Serializing</h1>
+<p>Slate&apos;s data model has been built with serialization in mind. Specifically, its text nodes are defined in a way that makes them easier to read at a glance, but also easy to serialize to common formats like HTML and Markdown.</p>
+<p>And, because Slate uses plain JSON for its data, you can write serialization logic very easily.</p>
+<h2 id="plaintext">Plaintext</h2>
+<p>For example, taking the value of an editor and returning plaintext:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { Node } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
+
+<span class="hljs-keyword">const</span> serialize = <span class="hljs-function"><span class="hljs-params">nodes</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> nodes.map(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> Node.string(n)).join(<span class="hljs-string">&apos;\n&apos;</span>)
+}
+</code></pre>
+<p>Here we&apos;re taking the children nodes of an <code>Editor</code> as a <code>nodes</code> argument, and returning a plaintext representation where each top-level node is separated by a single <code>\n</code> new line character.</p>
+<p>For an input of:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> nodes = [
+  {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
+    <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;An opening paragraph...&apos;</span> }],
+  },
+  {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;quote&apos;</span>,
+    <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;A wise quote.&apos;</span> }],
+  },
+  {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
+    <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;A closing paragraph!&apos;</span> }],
+  },
+]
+</code></pre>
+<p>You&apos;d end up with:</p>
+<pre><code class="lang-text">An opening paragraph...
+A wise quote.
+A closing paragraph!
+</code></pre>
+<p>Notice how the quote block isn&apos;t distinguishable in any way, that&apos;s because we&apos;re talking about plaintext. But you can serialize the data to anything you want—it&apos;s just JSON after all.</p>
+<h2 id="html">HTML</h2>
+<p>For example, here&apos;s a similar <code>serialize</code> function for HTML:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> escapeHtml <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;escape-html&apos;</span>
+<span class="hljs-keyword">import</span> { Text } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
+
+<span class="hljs-keyword">const</span> serialize = <span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> {
+  <span class="hljs-keyword">if</span> (Text.isText(node)) {
+    <span class="hljs-keyword">let</span> string = escapeHtml(node.text)
+    <span class="hljs-keyword">if</span> (node.bold) {
+      string = <span class="hljs-string">`&lt;strong&gt;<span class="hljs-subst">${string}</span>&lt;/strong&gt;`</span>
+    }
+    <span class="hljs-keyword">return</span> string
+  }
+
+  <span class="hljs-keyword">const</span> children = node.children.map(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> serialize(n)).join(<span class="hljs-string">&apos;&apos;</span>)
+
+  <span class="hljs-keyword">switch</span> (node.type) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;quote&apos;</span>:
+      <span class="hljs-keyword">return</span> <span class="hljs-string">`&lt;blockquote&gt;&lt;p&gt;<span class="hljs-subst">${children}</span>&lt;/p&gt;&lt;/blockquote&gt;`</span>
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;paragraph&apos;</span>:
+      <span class="hljs-keyword">return</span> <span class="hljs-string">`&lt;p&gt;<span class="hljs-subst">${children}</span>&lt;/p&gt;`</span>
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;link&apos;</span>:
+      <span class="hljs-keyword">return</span> <span class="hljs-string">`&lt;a href=&quot;<span class="hljs-subst">${escapeHtml(node.url)}</span>&quot;&gt;<span class="hljs-subst">${children}</span>&lt;/a&gt;`</span>
+    <span class="hljs-attr">default</span>:
+      <span class="hljs-keyword">return</span> children
+  }
+}
+</code></pre>
+<p>This one is a bit more aware than the plaintext serializer above. It&apos;s actually <em>recursive</em> so that it can keep iterating deeper through a node&apos;s children until it gets to the leaf text nodes. And for each node it receives, it converts it to an HTML string.</p>
+<p>It also takes a single node as input instead of an array, so if you passed in an editor like:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> editor = {
+  <span class="hljs-attr">children</span>: [
+    {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
+      <span class="hljs-attr">children</span>: [
+        { <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;An opening paragraph with a &apos;</span> },
+        {
+          <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;link&apos;</span>,
+          <span class="hljs-attr">url</span>: <span class="hljs-string">&apos;https://example.com&apos;</span>,
+          <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;link&apos;</span> }],
+        },
+        { <span class="hljs-attr">text</span>: <span class="hljs-string">&apos; in it.&apos;</span> },
+      ],
+    },
+    {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;quote&apos;</span>,
+      <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;A wise quote.&apos;</span> }],
+    },
+    {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
+      <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;A closing paragraph!&apos;</span> }],
+    },
+  ],
+  <span class="hljs-comment">// `Editor` objects also have other properties that are omitted here...</span>
+}
+</code></pre>
+<p>You&apos;d receive back (line breaks added for legibility):</p>
+<pre><code class="lang-markup">&lt;p&gt;An opening paragraph with a &lt;a href=&quot;https://example.com&quot;&gt;link&lt;/a&gt; in it.&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;A wise quote.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;A closing paragraph!&lt;/p&gt;
+</code></pre>
+<p>It&apos;s really that easy!</p>
+<h2 id="deserializing">Deserializing</h2>
+<p>Another common use case in Slate is doing the reverse—deserializing. This is when you have some arbitrary input and want to convert it into a Slate-compatible JSON structure. For example, when someone pastes HTML into your editor and you want to ensure it gets parsed with the proper formatting for your editor.</p>
+<p>Slate has a built-in helper for this: the <code>slate-hyperscript</code> package.</p>
+<p>The most common way to use <code>slate-hyperscript</code> is for writing JSX documents, for example when writing tests. You might use it like so:</p>
+<pre><code class="lang-jsx"><span class="hljs-comment">/** <span class="hljs-doctag">@jsx </span>jsx */</span>
+<span class="hljs-keyword">import</span> { jsx } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-hyperscript&apos;</span>
+
+<span class="hljs-keyword">const</span> input = (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">fragment</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">element</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;paragraph&quot;</span>&gt;</span>A line of text.<span class="hljs-tag">&lt;/<span class="hljs-name">element</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">fragment</span>&gt;</span></span>
+)
+</code></pre>
+<p>And the JSX feature of your compiler (Babel, TypeScript, etc.) would turn that <code>input</code> variable into:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> input = [
+  {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
+    <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;A line of text.&apos;</span> }],
+  },
+]
+</code></pre>
+<p>This is great for test cases, or places where you want to be able to write a lot of Slate objects in a very readable form.</p>
+<p>However! This doesn&apos;t help with deserialization.</p>
+<p>But <code>slate-hyperscript</code> isn&apos;t only for JSX. It&apos;s just a way to build <em>trees of Slate content</em>. Which happens to be exactly what you want to do when you&apos;re deserializing something like HTML.</p>
+<p>For example, here&apos;s a <code>deserialize</code> function for HTML:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { jsx } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-hyperscript&apos;</span>
+
+<span class="hljs-keyword">const</span> deserialize = <span class="hljs-function">(<span class="hljs-params">el, markAttributes = {}</span>) =&gt;</span> {
+  <span class="hljs-keyword">if</span> (el.nodeType === Node.TEXT_NODE) {
+    <span class="hljs-keyword">return</span> jsx(<span class="hljs-string">&apos;text&apos;</span>, markAttributes, el.textContent)
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (el.nodeType !== Node.ELEMENT_NODE) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
+  }
+
+  <span class="hljs-keyword">const</span> nodeAttributes = { ...markAttributes }
+
+  <span class="hljs-comment">// define attributes for text nodes</span>
+  <span class="hljs-keyword">switch</span> (el.nodeName) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;strong&apos;</span>:
+      nodeAttributes.bold = <span class="hljs-literal">true</span>
+  }
+
+  <span class="hljs-keyword">const</span> children = <span class="hljs-built_in">Array</span>.from(el.childNodes)
+    .map(<span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> deserialize(node, nodeAttributes))
+    .flat()
+
+  <span class="hljs-keyword">if</span> (children.length === <span class="hljs-number">0</span>) {
+    children.push(jsx(<span class="hljs-string">&apos;text&apos;</span>, nodeAttributes, <span class="hljs-string">&apos;&apos;</span>))
+  }
+
+  <span class="hljs-keyword">switch</span> (el.nodeName) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;BODY&apos;</span>:
+      <span class="hljs-keyword">return</span> jsx(<span class="hljs-string">&apos;fragment&apos;</span>, {}, children)
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;BR&apos;</span>:
+      <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;\n&apos;</span>
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;BLOCKQUOTE&apos;</span>:
+      <span class="hljs-keyword">return</span> jsx(<span class="hljs-string">&apos;element&apos;</span>, { <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;quote&apos;</span> }, children)
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;P&apos;</span>:
+      <span class="hljs-keyword">return</span> jsx(<span class="hljs-string">&apos;element&apos;</span>, { <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span> }, children)
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;A&apos;</span>:
+      <span class="hljs-keyword">return</span> jsx(
+        <span class="hljs-string">&apos;element&apos;</span>,
+        { <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;link&apos;</span>, <span class="hljs-attr">url</span>: el.getAttribute(<span class="hljs-string">&apos;href&apos;</span>) },
+        children
+      )
+    <span class="hljs-attr">default</span>:
+      <span class="hljs-keyword">return</span> children
+  }
+}
+</code></pre>
+<p>It takes in an <code>el</code> HTML element object and returns a Slate fragment. So if you have an HTML string, you can parse and deserialize it like so:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> html = <span class="hljs-string">&apos;...&apos;</span>
+<span class="hljs-keyword">const</span> <span class="hljs-built_in">document</span> = <span class="hljs-keyword">new</span> DOMParser().parseFromString(html, <span class="hljs-string">&apos;text/html&apos;</span>)
+deserialize(<span class="hljs-built_in">document</span>.body)
+</code></pre>
+<p>With this input:</p>
+<pre><code class="lang-markup">&lt;p&gt;An opening paragraph with a &lt;a href=&quot;https://example.com&quot;&gt;link&lt;/a&gt; in it.&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;A wise quote.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;A closing paragraph!&lt;/p&gt;
+</code></pre>
+<p>You&apos;d end up with this output:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> fragment = [
+  {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
+    <span class="hljs-attr">children</span>: [
+      { <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;An opening paragraph with a &apos;</span> },
+      {
+        <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;link&apos;</span>,
+        <span class="hljs-attr">url</span>: <span class="hljs-string">&apos;https://example.com&apos;</span>,
+        <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;link&apos;</span> }],
+      },
+      { <span class="hljs-attr">text</span>: <span class="hljs-string">&apos; in it.&apos;</span> },
+    ],
+  },
+  {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;quote&apos;</span>,
+    <span class="hljs-attr">children</span>: [
+      {
+        <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
+        <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;A wise quote.&apos;</span> }],
+      },
+    ],
+  },
+  {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
+    <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;A closing paragraph!&apos;</span> }],
+  },
+]
+</code></pre>
+<p>And just like the serializing function, you can extend it to fit your exact domain model&apos;s needs.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="09-rendering.html" class="navigation navigation-prev " aria-label="Previous page: Rendering">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="11-normalizing.html" class="navigation navigation-next " aria-label="Next page: Normalizing">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Serializing","level":"2.10","depth":1,"next":{"title":"Normalizing","level":"2.11","depth":1,"path":"concepts/11-normalizing.md","ref":"concepts/11-normalizing.md","articles":[]},"previous":{"title":"Rendering","level":"2.9","depth":1,"path":"concepts/09-rendering.md","ref":"concepts/09-rendering.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/10-serializing.md","mtime":"2022-06-07T07:05:16.145Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-07T07:05:30.558Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

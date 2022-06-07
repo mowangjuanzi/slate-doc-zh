@@ -1,0 +1,997 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Locations · Slate 中文文档</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.7.3">
+        <meta name="author" content="mowangjuanzi">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="04-transforms.html" />
+    
+    
+    <link rel="prev" href="02-nodes.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Walkthroughs</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../walkthroughs/01-installing-slate.html">
+            
+                <a href="../walkthroughs/01-installing-slate.html">
+            
+                    
+                    Installing Slate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../walkthroughs/02-adding-event-handlers.html">
+            
+                <a href="../walkthroughs/02-adding-event-handlers.html">
+            
+                    
+                    Adding Event Handlers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../walkthroughs/03-defining-custom-elements.html">
+            
+                <a href="../walkthroughs/03-defining-custom-elements.html">
+            
+                    
+                    Defining Custom Elements
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../walkthroughs/04-applying-custom-formatting.html">
+            
+                <a href="../walkthroughs/04-applying-custom-formatting.html">
+            
+                    
+                    Applying Custom Formatting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../walkthroughs/05-executing-commands.html">
+            
+                <a href="../walkthroughs/05-executing-commands.html">
+            
+                    
+                    Executing Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../walkthroughs/06-saving-to-a-database.html">
+            
+                <a href="../walkthroughs/06-saving-to-a-database.html">
+            
+                    
+                    Saving to a Database
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../walkthroughs/xx-using-the-bundled-source.html">
+            
+                <a href="../walkthroughs/xx-using-the-bundled-source.html">
+            
+                    
+                    Using the Bundled Source
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Concepts</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="01-interfaces.html">
+            
+                <a href="01-interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="02-nodes.html">
+            
+                <a href="02-nodes.html">
+            
+                    
+                    Nodes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.3" data-path="03-locations.html">
+            
+                <a href="03-locations.html">
+            
+                    
+                    Locations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="04-transforms.html">
+            
+                <a href="04-transforms.html">
+            
+                    
+                    Transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="05-operations.html">
+            
+                <a href="05-operations.html">
+            
+                    
+                    Operations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="06-commands.html">
+            
+                <a href="06-commands.html">
+            
+                    
+                    Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="07-editor.html">
+            
+                <a href="07-editor.html">
+            
+                    
+                    Editor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="08-plugins.html">
+            
+                <a href="08-plugins.html">
+            
+                    
+                    Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="09-rendering.html">
+            
+                <a href="09-rendering.html">
+            
+                    
+                    Rendering
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="10-serializing.html">
+            
+                <a href="10-serializing.html">
+            
+                    
+                    Serializing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.11" data-path="11-normalizing.html">
+            
+                <a href="11-normalizing.html">
+            
+                    
+                    Normalizing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.12" data-path="12-typescript.html">
+            
+                <a href="12-typescript.html">
+            
+                    
+                    TypeScript
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.13" data-path="xx-migrating.html">
+            
+                <a href="xx-migrating.html">
+            
+                    
+                    Migrating
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">API</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../api/transforms.html">
+            
+                <a href="../api/transforms.html">
+            
+                    
+                    Transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../api/nodes/">
+            
+                <a href="../api/nodes/">
+            
+                    
+                    Node Types
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="../api/nodes/editor.html">
+            
+                <a href="../api/nodes/editor.html">
+            
+                    
+                    Editor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="../api/nodes/element.html">
+            
+                <a href="../api/nodes/element.html">
+            
+                    
+                    Element
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3" data-path="../api/nodes/node.html">
+            
+                <a href="../api/nodes/node.html">
+            
+                    
+                    Node
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.4" data-path="../api/nodes/node-entry.html">
+            
+                <a href="../api/nodes/node-entry.html">
+            
+                    
+                    NodeEntry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.5" data-path="../api/nodes/text.html">
+            
+                <a href="../api/nodes/text.html">
+            
+                    
+                    Text
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../api/locations/">
+            
+                <a href="../api/locations/">
+            
+                    
+                    Location Types
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="../api/locations/location.html">
+            
+                <a href="../api/locations/location.html">
+            
+                    
+                    Location
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" data-path="../api/locations/path.html">
+            
+                <a href="../api/locations/path.html">
+            
+                    
+                    Path
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.3" data-path="../api/locations/path-ref.html">
+            
+                <a href="../api/locations/path-ref.html">
+            
+                    
+                    PathRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.4" data-path="../api/locations/point.html">
+            
+                <a href="../api/locations/point.html">
+            
+                    
+                    Point
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.5" data-path="../api/locations/point-entry.html">
+            
+                <a href="../api/locations/point-entry.html">
+            
+                    
+                    PointEntry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.6" data-path="../api/locations/point-ref.html">
+            
+                <a href="../api/locations/point-ref.html">
+            
+                    
+                    PointRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.7" data-path="../api/locations/range.html">
+            
+                <a href="../api/locations/range.html">
+            
+                    
+                    Range
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.8" data-path="../api/locations/range-ref.html">
+            
+                <a href="../api/locations/range-ref.html">
+            
+                    
+                    RangeRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.9" data-path="../api/locations/span.html">
+            
+                <a href="../api/locations/span.html">
+            
+                    
+                    Span
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../api/operation.html">
+            
+                <a href="../api/operation.html">
+            
+                    
+                    Operation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="../api/scrubber.html">
+            
+                <a href="../api/scrubber.html">
+            
+                    
+                    Scrubber
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Libraries</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../libraries/slate-react.html">
+            
+                <a href="../libraries/slate-react.html">
+            
+                    
+                    Slate React
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../libraries/slate-history.html">
+            
+                <a href="../libraries/slate-history.html">
+            
+                    
+                    Slate History
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../libraries/slate-hyperscript.html">
+            
+                <a href="../libraries/slate-hyperscript.html">
+            
+                    
+                    Slate Hyperscript
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">General</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../general/resources.html">
+            
+                <a href="../general/resources.html">
+            
+                    
+                    Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../general/contributing.html">
+            
+                <a href="../general/contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../general/changelog.html">
+            
+                <a href="../general/changelog.html">
+            
+                    
+                    Changelog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../general/faq.html">
+            
+                <a href="../general/faq.html">
+            
+                    
+                    FAQ
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            本书使用 HonKit 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Locations</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="locations">Locations</h1>
+<p>Locations are how you refer to specific places in the document when inserting, deleting, or doing anything else with a Slate editor. There are a few different kinds of location interfaces, each for different use cases.</p>
+<h2 id="path"><code>Path</code></h2>
+<p>Paths are the lowest-level way to refer to a location. Each path is a simple array of numbers that refers to a node in the document tree by its indexes in each of its ancestor nodes down the tree:</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> Path = <span class="hljs-built_in">number</span>[]
+</code></pre>
+<p>For example, in this document:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> editor = {
+  <span class="hljs-attr">children</span>: [
+    {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
+      <span class="hljs-attr">children</span>: [
+        {
+          <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;A line of text!&apos;</span>,
+        },
+      ],
+    },
+  ],
+}
+</code></pre>
+<p>The leaf text node would have a path of: <code>[0, 0]</code>.</p>
+<p>The Editor itself has a path of <code>[]</code>. For example, to select the whole contents of the editor, call
+<code>Transforms.select(editor, [])</code></p>
+<h2 id="point"><code>Point</code></h2>
+<p>Points are slightly more specific than paths, and contain an <code>offset</code> into a specific text node. Their interface is:</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Point {
+  <span class="hljs-attr">path</span>: Path
+  <span class="hljs-attr">offset</span>: <span class="hljs-built_in">number</span>
+}
+</code></pre>
+<p>For example, with that same document, if you wanted to refer to the very first place you could put your cursor it would be:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> start = {
+  <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
+  <span class="hljs-attr">offset</span>: <span class="hljs-number">0</span>,
+}
+</code></pre>
+<p>Or, if you wanted to refer to the end of the sentence:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> end = {
+  <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
+  <span class="hljs-attr">offset</span>: <span class="hljs-number">15</span>,
+}
+</code></pre>
+<p>It can be helpful to think of points as being &quot;cursors&quot; (or &quot;carets&quot;) of a selection.</p>
+<blockquote>
+<p>🤖 Points <em>always</em> refer to text nodes! Since they are the only ones with strings that can have cursors.</p>
+</blockquote>
+<h2 id="range"><code>Range</code></h2>
+<p>Ranges are a way to refer not just to a single point in the document, but to a wider span of content between two points. (An example of a range is when you make a selection.) Their interface is:</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Range {
+  <span class="hljs-attr">anchor</span>: Point
+  <span class="hljs-attr">focus</span>: Point
+}
+</code></pre>
+<blockquote>
+<p>🤖 The terms &quot;anchor&quot; and &quot;focus&quot; are borrowed from the DOM, see <a href="https://developer.mozilla.org/en-US/docs/Web/API/Selection/anchorNode" target="_blank">Anchor</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/Selection/focusNode" target="_blank">Focus</a>.</p>
+</blockquote>
+<p>An anchor and focus are established by a user interaction. The anchor point isn&apos;t always <em>before</em> the focus point in the document. Just like in the DOM, the ordering of an anchor and selection point depend on whether the range is backwards or forwards.</p>
+<p>Here&apos;s how Mozilla Developer Network explains it:</p>
+<blockquote>
+<p>A user may make a selection from left to right (in document order) or right to left (reverse of document order). The anchor is where the user began the selection and the focus is where the user ends the selection. If you make a selection with a desktop mouse, the anchor is placed where you pressed the mouse button and the focus is placed where you released the mouse button. Anchor and focus should not be confused with the start and end positions of a selection, since anchor can be placed before the focus or vice versa, depending on the direction you made your selection. — <a href="https://developer.mozilla.org/en-US/docs/Web/API/Selection" target="_blank"><code>Selection</code>, MDN</a></p>
+</blockquote>
+<p>One important distinction is that the anchor and focus points of ranges <strong>always reference the leaf-level text nodes</strong> in a document and never reference elements. This behavior is different than the DOM, but it simplifies working with ranges as there are fewer edge cases for you to handle.</p>
+<blockquote>
+<p>🤖 For more info, check out the <a href="../api/locations/range.html">Range API reference</a>.</p>
+</blockquote>
+<h2 id="selection">Selection</h2>
+<p>Ranges are used in many places in Slate&apos;s API when you need to refer to a span of content between two points. One of the most common though is the user&apos;s current &quot;selection&quot;.</p>
+<p>The selection is a special range that is a property of the top-level <code>Editor</code>. For example, say someone has the whole sentence currently selected:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> editor = {
+  <span class="hljs-attr">selection</span>: {
+    <span class="hljs-attr">anchor</span>: { <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>], <span class="hljs-attr">offset</span>: <span class="hljs-number">0</span> },
+    <span class="hljs-attr">focus</span>: { <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>], <span class="hljs-attr">offset</span>: <span class="hljs-number">15</span> },
+  },
+  <span class="hljs-attr">children</span>: [
+    {
+      <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
+      <span class="hljs-attr">children</span>: [
+        {
+          <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;A line of text!&apos;</span>,
+        },
+      ],
+    },
+  ],
+}
+</code></pre>
+<blockquote>
+<p>🤖 The selection concept is also borrowed from the DOM, see <a href="https://developer.mozilla.org/en-US/docs/Web/API/Selection" target="_blank"><code>Selection</code>, MDN</a>, although in a greatly-simplified form because Slate doesn&apos;t allow for multiple ranges inside a single selection, which makes things a lot easier to work with.</p>
+</blockquote>
+<p>There isn&apos;t a special <code>Selection</code> interface. It&apos;s just an object that happens to respect the more general-purpose <code>Range</code> interface instead.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="02-nodes.html" class="navigation navigation-prev " aria-label="Previous page: Nodes">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="04-transforms.html" class="navigation navigation-next " aria-label="Next page: Transforms">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Locations","level":"2.3","depth":1,"next":{"title":"Transforms","level":"2.4","depth":1,"path":"concepts/04-transforms.md","ref":"concepts/04-transforms.md","articles":[]},"previous":{"title":"Nodes","level":"2.2","depth":1,"path":"concepts/02-nodes.md","ref":"concepts/02-nodes.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/03-locations.md","mtime":"2022-06-07T07:05:16.145Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-07T07:05:30.558Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

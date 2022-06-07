@@ -1,0 +1,1020 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Transforms · Slate 中文文档</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.7.3">
+        <meta name="author" content="mowangjuanzi">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="nodes/" />
+    
+    
+    <link rel="prev" href="../concepts/xx-migrating.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Walkthroughs</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../walkthroughs/01-installing-slate.html">
+            
+                <a href="../walkthroughs/01-installing-slate.html">
+            
+                    
+                    Installing Slate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../walkthroughs/02-adding-event-handlers.html">
+            
+                <a href="../walkthroughs/02-adding-event-handlers.html">
+            
+                    
+                    Adding Event Handlers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../walkthroughs/03-defining-custom-elements.html">
+            
+                <a href="../walkthroughs/03-defining-custom-elements.html">
+            
+                    
+                    Defining Custom Elements
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../walkthroughs/04-applying-custom-formatting.html">
+            
+                <a href="../walkthroughs/04-applying-custom-formatting.html">
+            
+                    
+                    Applying Custom Formatting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../walkthroughs/05-executing-commands.html">
+            
+                <a href="../walkthroughs/05-executing-commands.html">
+            
+                    
+                    Executing Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../walkthroughs/06-saving-to-a-database.html">
+            
+                <a href="../walkthroughs/06-saving-to-a-database.html">
+            
+                    
+                    Saving to a Database
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../walkthroughs/xx-using-the-bundled-source.html">
+            
+                <a href="../walkthroughs/xx-using-the-bundled-source.html">
+            
+                    
+                    Using the Bundled Source
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Concepts</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../concepts/01-interfaces.html">
+            
+                <a href="../concepts/01-interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../concepts/02-nodes.html">
+            
+                <a href="../concepts/02-nodes.html">
+            
+                    
+                    Nodes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../concepts/03-locations.html">
+            
+                <a href="../concepts/03-locations.html">
+            
+                    
+                    Locations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../concepts/04-transforms.html">
+            
+                <a href="../concepts/04-transforms.html">
+            
+                    
+                    Transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../concepts/05-operations.html">
+            
+                <a href="../concepts/05-operations.html">
+            
+                    
+                    Operations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../concepts/06-commands.html">
+            
+                <a href="../concepts/06-commands.html">
+            
+                    
+                    Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="../concepts/07-editor.html">
+            
+                <a href="../concepts/07-editor.html">
+            
+                    
+                    Editor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../concepts/08-plugins.html">
+            
+                <a href="../concepts/08-plugins.html">
+            
+                    
+                    Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="../concepts/09-rendering.html">
+            
+                <a href="../concepts/09-rendering.html">
+            
+                    
+                    Rendering
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="../concepts/10-serializing.html">
+            
+                <a href="../concepts/10-serializing.html">
+            
+                    
+                    Serializing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.11" data-path="../concepts/11-normalizing.html">
+            
+                <a href="../concepts/11-normalizing.html">
+            
+                    
+                    Normalizing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.12" data-path="../concepts/12-typescript.html">
+            
+                <a href="../concepts/12-typescript.html">
+            
+                    
+                    TypeScript
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.13" data-path="../concepts/xx-migrating.html">
+            
+                <a href="../concepts/xx-migrating.html">
+            
+                    
+                    Migrating
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">API</li>
+        
+        
+    
+        <li class="chapter active" data-level="3.1" data-path="transforms.html">
+            
+                <a href="transforms.html">
+            
+                    
+                    Transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="nodes/">
+            
+                <a href="nodes/">
+            
+                    
+                    Node Types
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="nodes/editor.html">
+            
+                <a href="nodes/editor.html">
+            
+                    
+                    Editor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="nodes/element.html">
+            
+                <a href="nodes/element.html">
+            
+                    
+                    Element
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3" data-path="nodes/node.html">
+            
+                <a href="nodes/node.html">
+            
+                    
+                    Node
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.4" data-path="nodes/node-entry.html">
+            
+                <a href="nodes/node-entry.html">
+            
+                    
+                    NodeEntry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.5" data-path="nodes/text.html">
+            
+                <a href="nodes/text.html">
+            
+                    
+                    Text
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="locations/">
+            
+                <a href="locations/">
+            
+                    
+                    Location Types
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="locations/location.html">
+            
+                <a href="locations/location.html">
+            
+                    
+                    Location
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" data-path="locations/path.html">
+            
+                <a href="locations/path.html">
+            
+                    
+                    Path
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.3" data-path="locations/path-ref.html">
+            
+                <a href="locations/path-ref.html">
+            
+                    
+                    PathRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.4" data-path="locations/point.html">
+            
+                <a href="locations/point.html">
+            
+                    
+                    Point
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.5" data-path="locations/point-entry.html">
+            
+                <a href="locations/point-entry.html">
+            
+                    
+                    PointEntry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.6" data-path="locations/point-ref.html">
+            
+                <a href="locations/point-ref.html">
+            
+                    
+                    PointRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.7" data-path="locations/range.html">
+            
+                <a href="locations/range.html">
+            
+                    
+                    Range
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.8" data-path="locations/range-ref.html">
+            
+                <a href="locations/range-ref.html">
+            
+                    
+                    RangeRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.9" data-path="locations/span.html">
+            
+                <a href="locations/span.html">
+            
+                    
+                    Span
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="operation.html">
+            
+                <a href="operation.html">
+            
+                    
+                    Operation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="scrubber.html">
+            
+                <a href="scrubber.html">
+            
+                    
+                    Scrubber
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Libraries</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../libraries/slate-react.html">
+            
+                <a href="../libraries/slate-react.html">
+            
+                    
+                    Slate React
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../libraries/slate-history.html">
+            
+                <a href="../libraries/slate-history.html">
+            
+                    
+                    Slate History
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../libraries/slate-hyperscript.html">
+            
+                <a href="../libraries/slate-hyperscript.html">
+            
+                    
+                    Slate Hyperscript
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">General</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../general/resources.html">
+            
+                <a href="../general/resources.html">
+            
+                    
+                    Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../general/contributing.html">
+            
+                <a href="../general/contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../general/changelog.html">
+            
+                <a href="../general/changelog.html">
+            
+                    
+                    Changelog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../general/faq.html">
+            
+                <a href="../general/faq.html">
+            
+                    
+                    FAQ
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            本书使用 HonKit 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Transforms</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="transforms-api">Transforms API</h1>
+<p>Transforms are helper functions operating on the document. They can be used in defining your own commands.</p>
+<ul>
+<li><a href="transforms.html#node-options">Node options</a></li>
+<li><a href="transforms.html#static-methods">Static methods</a><ul>
+<li><a href="transforms.html#node-transforms">Node transforms</a></li>
+<li><a href="transforms.html#selection-transforms">Selection transforms</a></li>
+<li><a href="transforms.html#text-transforms">Text transforms</a></li>
+<li><a href="transforms.html#editor-transforms">Editor transforms</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="node-options">Node options</h2>
+<p>All transforms support a parameter <code>options</code>. This includes options specific to the transform, and general <code>NodeOptions</code> to specify which Nodes in the document that the transform is applied to.</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> NodeOptions {
+  at?: Location
+  match?: <span class="hljs-function">(<span class="hljs-params">node: Node, path: Location</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
+  mode?: <span class="hljs-string">&apos;highest&apos;</span> | <span class="hljs-string">&apos;lowest&apos;</span>
+  voids?: <span class="hljs-built_in">boolean</span>
+}
+</code></pre>
+<ul>
+<li><p>The <code>at</code> option selects a <a href="../concepts/03-locations.html">Location</a> in the editor. It defaults to the user&apos;s current selection. <a href="../concepts/04-transforms.html#the-at-option">Learn more about the <code>at</code> option</a></p>
+</li>
+<li><p>The <code>match</code> option filters the set of Nodes with a custom function. <a href="../concepts/04-transforms.html#the-match-option">Learn more about the <code>match</code> option</a></p>
+</li>
+<li><p>The <code>mode</code> option also filters the set of nodes.</p>
+</li>
+<li><p>When <code>voids</code> is false, <a href="nodes/editor#schema-specific-instance-methods-to-override">void Elements</a> are filtered out.</p>
+</li>
+</ul>
+<h2 id="static-methods">Static methods</h2>
+<h3 id="node-transforms">Node transforms</h3>
+<p>Transforms that operate on nodes.</p>
+<h4 id="transformsinsertfragmenteditor-editor-fragment-node-options"><code>Transforms.insertFragment(editor: Editor, fragment: Node[], options?)</code></h4>
+<p>Insert of fragment of nodes at the specified location in the document. If no location is specified, insert at the current selection.</p>
+<p>Options: <code>{at?: Location, hanging?: boolean, voids?: boolean}</code></p>
+<h4 id="transformsinsertnodeseditor-editor-nodes-node--node-options"><code>Transforms.insertNodes(editor: Editor, nodes: Node | Node[], options?)</code></h4>
+<p>Atomically inserts <code>nodes</code> at the specified location in the document. If no location is specified, inserts at the current selection. If there is no selection, inserts at the end of the document.</p>
+<p>Options supported: <code>NodeOptions &amp; {hanging?: boolean, select?: boolean}</code>.</p>
+<p>For example, to insert at the very end, without replacing the current selection and regardless of block nesting, use</p>
+<pre><code class="lang-javascript">Transforms.insertNodes(
+  editor,
+  { <span class="hljs-attr">type</span>: targetType, <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;&apos;</span> }] },
+  { <span class="hljs-attr">at</span>: [editor.children.length] }
+)
+</code></pre>
+<h4 id="transformsremovenodeseditor-editor-options"><code>Transforms.removeNodes(editor: Editor, options?)</code></h4>
+<p>Remove nodes at the specified location in the document. If no location is specified, remove the nodes in the selection.</p>
+<p>Options supported: <code>NodeOptions &amp; {hanging?: boolean}</code></p>
+<h4 id="transformsmergenodeseditor-editor-options"><code>Transforms.mergeNodes(editor: Editor, options?)</code></h4>
+<p>Merge a node at the specified location with the previous node at the same depth. If no location is specified, use the selection. Resulting empty container nodes are removed.</p>
+<p>Options supported: <code>NodeOptions &amp; {hanging?: boolean}</code></p>
+<h4 id="transformssplitnodeseditor-editor-options"><code>Transforms.splitNodes(editor: Editor, options?)</code></h4>
+<p>Split nodes at the specified location. If no location is specified, split the selection.</p>
+<p>Options supported: <code>NodeOptions &amp; {height?: number, always?: boolean}</code></p>
+<h4 id="transformswrapnodeseditor-editor-element-element-options"><code>Transforms.wrapNodes(editor: Editor, element: Element, options?)</code></h4>
+<p>Wrap nodes at the specified location in the <code>element</code> container. If no location is specified, wrap the selection.</p>
+<p>Options supported: <code>NodeOptions &amp; {split?: boolean}</code>.</p>
+<ul>
+<li><code>options.mode</code>: <code>&apos;all&apos;</code> is also supported.</li>
+<li><code>options.split</code> indicates that it&apos;s okay to split a node in order to wrap the location. For example, if <code>ipsum</code> was selected in a <code>Text</code> node with <code>lorem ipsum dolar</code>, <code>split: true</code> would wrap the word <code>ipsum</code> only, resulting in splitting the <code>Text</code> node. If <code>split: false</code>, the entire <code>Text</code> node <code>lorem ipsum dolar</code> would be wrapped.</li>
+</ul>
+<h4 id="transformsunwrapnodeseditor-editor-options"><code>Transforms.unwrapNodes(editor: Editor, options?)</code></h4>
+<p>Unwrap nodes at the specified location. If necessary, the parent node is split. If no location is specified, use the selection.</p>
+<p>Options supported: <code>NodeOptions &amp; {split?: boolean}</code>. For <code>options.mode</code>, <code>&apos;all&apos;</code> is also supported.</p>
+<h4 id="transformssetnodeseditor-editor-props-partialnode-options"><code>Transforms.setNodes(editor: Editor, props: Partial&lt;Node&gt;, options?)</code></h4>
+<p>Set properties of nodes at the specified location. If no location is specified, use the selection.</p>
+<p>Options supported: <code>NodeOptions &amp; {hanging?: boolean, split?: boolean}</code>. For <code>options.mode</code>, <code>&apos;all&apos;</code> is also supported.</p>
+<h4 id="transformsunsetnodeseditor-editor-props-string--string-options"><code>Transforms.unsetNodes(editor: Editor, props: string | string[], options?)</code></h4>
+<p>Unset properties of nodes at the specified location. If no location is specified, use the selection.</p>
+<p>Options supported: <code>NodeOptions &amp; {split?: boolean}</code>. For <code>options.mode</code>, <code>&apos;all&apos;</code> is also supported.</p>
+<h4 id="transformsliftnodeseditor-editor-options"><code>Transforms.liftNodes(editor: Editor, options?)</code></h4>
+<p>Lift nodes at the specified location upwards in the document tree. If necessary, the parent node is split. If no location is specified, use the selection.</p>
+<p>Options supported: <code>NodeOptions</code>. For <code>options.mode</code>, <code>&apos;all&apos;</code> is also supported.</p>
+<h4 id="transformsmovenodeseditor-editor-options"><code>Transforms.moveNodes(editor: Editor, options)</code></h4>
+<p>Move the nodes from an origin to a destination. A destination must be specified in the <code>options</code>. If no origin is specified, move the selection.</p>
+<p>Options supported: <code>NodeOptions &amp; {to: Path}</code>. For <code>options.mode</code>, <code>&apos;all&apos;</code> is also supported.</p>
+<h3 id="selection-transforms">Selection transforms</h3>
+<p>Transforms that operate on the document&apos;s selection.</p>
+<h4 id="transformscollapseeditor-editor-options"><code>Transforms.collapse(editor: Editor, options?)</code></h4>
+<p>Collapse the selection to a single point.</p>
+<p>Options: <code>{edge?: &apos;anchor&apos; | &apos;focus&apos; | &apos;start&apos; | &apos;end&apos;}</code></p>
+<h4 id="transformsselecteditor-editor-target-location"><code>Transforms.select(editor: Editor, target: Location)</code></h4>
+<p>Set the selection to a new value specified by <code>target</code>. When a selection already exists, this method is just a proxy for <code>setSelection</code> and will update the existing value.</p>
+<p>For example, to set the selection to the entire contents of the editor:</p>
+<pre><code class="lang-javascript">Transforms.select(editor, {
+  <span class="hljs-attr">anchor</span>: Editor.start(editor, []),
+  <span class="hljs-attr">focus</span>: Editor.end(editor, []),
+})
+</code></pre>
+<h4 id="transformsdeselecteditor-editor"><code>Transforms.deselect(editor: Editor)</code></h4>
+<p>Unset the selection.</p>
+<h4 id="transformsmoveeditor-editor-options"><code>Transforms.move(editor: Editor, options?)</code></h4>
+<p>Move the selection&apos;s point forward or backward.</p>
+<p>Options: <code>{distance?: number, unit?: &apos;offset&apos; | &apos;character&apos; | &apos;word&apos; | &apos;line&apos;, reverse?: boolean, edge?: &apos;anchor&apos; | &apos;focus&apos; | &apos;start&apos; | &apos;end&apos;}</code></p>
+<h4 id="transformssetpointeditor-editor-props-partialpoint-options"><code>Transforms.setPoint(editor: Editor, props: Partial&lt;Point&gt;, options?)</code></h4>
+<p>Set new properties on one of the selection&apos;s points.</p>
+<p>Options: <code>{edge?: &apos;anchor&apos; | &apos;focus&apos; | &apos;start&apos; | &apos;end&apos;}</code></p>
+<h4 id="transformssetselectioneditor-editor-props-partialrange"><code>Transforms.setSelection(editor: Editor, props: Partial&lt;Range&gt;)</code></h4>
+<p>Set new properties on an active selection. Since the value is a <code>Partial&lt;Range&gt;</code>, this method can only handle updates to an existing selection. If there is no active selection the operation will be void. Use <code>select</code> if you&apos;d like to create a selection when there is none.</p>
+<h3 id="text-transforms">Text transforms</h3>
+<p>Transforms that operate on text.</p>
+<h4 id="transformsdeleteeditor-editor-options"><code>Transforms.delete(editor: Editor, options?)</code></h4>
+<p>Delete text in the document.</p>
+<p>Options: <code>{at?: Location, distance?: number, unit?: &apos;character&apos; | &apos;word&apos; | &apos;line&apos; | &apos;block&apos;, reverse?: boolean, hanging?: boolean, voids?: boolean}</code></p>
+<h4 id="transformsinserttexteditor-editor-text-string-options"><code>Transforms.insertText(editor: Editor, text: string, options?)</code></h4>
+<p>Insert a string of text at the specified location in the document. If no location is specified, insert at the current selection.</p>
+<p>Options: <code>{at?: Location, voids?: boolean}</code></p>
+<h3 id="editor-transforms">Editor transforms</h3>
+<h4 id="transformstransformeditor-editor-transform-transform"><code>Transforms.transform(editor: Editor, transform: Transform)</code></h4>
+<p>Transform the <code>editor</code> by an <code>operation</code>.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../concepts/xx-migrating.html" class="navigation navigation-prev " aria-label="Previous page: Migrating">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="nodes/" class="navigation navigation-next " aria-label="Next page: Node Types">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Transforms","level":"3.1","depth":1,"next":{"title":"Node Types","level":"3.2","depth":1,"path":"api/nodes/README.md","ref":"api/nodes/README.md","articles":[{"title":"Editor","level":"3.2.1","depth":2,"path":"api/nodes/editor.md","ref":"api/nodes/editor.md","articles":[]},{"title":"Element","level":"3.2.2","depth":2,"path":"api/nodes/element.md","ref":"api/nodes/element.md","articles":[]},{"title":"Node","level":"3.2.3","depth":2,"path":"api/nodes/node.md","ref":"api/nodes/node.md","articles":[]},{"title":"NodeEntry","level":"3.2.4","depth":2,"path":"api/nodes/node-entry.md","ref":"api/nodes/node-entry.md","articles":[]},{"title":"Text","level":"3.2.5","depth":2,"path":"api/nodes/text.md","ref":"api/nodes/text.md","articles":[]}]},"previous":{"title":"Migrating","level":"2.13","depth":1,"path":"concepts/xx-migrating.md","ref":"concepts/xx-migrating.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/transforms.md","mtime":"2022-06-07T07:05:16.145Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-07T07:05:30.558Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

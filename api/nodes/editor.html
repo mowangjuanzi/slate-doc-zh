@@ -1,0 +1,1198 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Editor · Slate 中文文档</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.7.3">
+        <meta name="author" content="mowangjuanzi">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="element.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Walkthroughs</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../walkthroughs/01-installing-slate.html">
+            
+                <a href="../../walkthroughs/01-installing-slate.html">
+            
+                    
+                    Installing Slate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../walkthroughs/02-adding-event-handlers.html">
+            
+                <a href="../../walkthroughs/02-adding-event-handlers.html">
+            
+                    
+                    Adding Event Handlers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../walkthroughs/03-defining-custom-elements.html">
+            
+                <a href="../../walkthroughs/03-defining-custom-elements.html">
+            
+                    
+                    Defining Custom Elements
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../walkthroughs/04-applying-custom-formatting.html">
+            
+                <a href="../../walkthroughs/04-applying-custom-formatting.html">
+            
+                    
+                    Applying Custom Formatting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../../walkthroughs/05-executing-commands.html">
+            
+                <a href="../../walkthroughs/05-executing-commands.html">
+            
+                    
+                    Executing Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../../walkthroughs/06-saving-to-a-database.html">
+            
+                <a href="../../walkthroughs/06-saving-to-a-database.html">
+            
+                    
+                    Saving to a Database
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../../walkthroughs/xx-using-the-bundled-source.html">
+            
+                <a href="../../walkthroughs/xx-using-the-bundled-source.html">
+            
+                    
+                    Using the Bundled Source
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Concepts</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../../concepts/01-interfaces.html">
+            
+                <a href="../../concepts/01-interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../../concepts/02-nodes.html">
+            
+                <a href="../../concepts/02-nodes.html">
+            
+                    
+                    Nodes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../../concepts/03-locations.html">
+            
+                <a href="../../concepts/03-locations.html">
+            
+                    
+                    Locations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../../concepts/04-transforms.html">
+            
+                <a href="../../concepts/04-transforms.html">
+            
+                    
+                    Transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../../concepts/05-operations.html">
+            
+                <a href="../../concepts/05-operations.html">
+            
+                    
+                    Operations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../../concepts/06-commands.html">
+            
+                <a href="../../concepts/06-commands.html">
+            
+                    
+                    Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="../../concepts/07-editor.html">
+            
+                <a href="../../concepts/07-editor.html">
+            
+                    
+                    Editor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../../concepts/08-plugins.html">
+            
+                <a href="../../concepts/08-plugins.html">
+            
+                    
+                    Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="../../concepts/09-rendering.html">
+            
+                <a href="../../concepts/09-rendering.html">
+            
+                    
+                    Rendering
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="../../concepts/10-serializing.html">
+            
+                <a href="../../concepts/10-serializing.html">
+            
+                    
+                    Serializing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.11" data-path="../../concepts/11-normalizing.html">
+            
+                <a href="../../concepts/11-normalizing.html">
+            
+                    
+                    Normalizing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.12" data-path="../../concepts/12-typescript.html">
+            
+                <a href="../../concepts/12-typescript.html">
+            
+                    
+                    TypeScript
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.13" data-path="../../concepts/xx-migrating.html">
+            
+                <a href="../../concepts/xx-migrating.html">
+            
+                    
+                    Migrating
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">API</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../transforms.html">
+            
+                <a href="../transforms.html">
+            
+                    
+                    Transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Node Types
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="3.2.1" data-path="editor.html">
+            
+                <a href="editor.html">
+            
+                    
+                    Editor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="element.html">
+            
+                <a href="element.html">
+            
+                    
+                    Element
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3" data-path="node.html">
+            
+                <a href="node.html">
+            
+                    
+                    Node
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.4" data-path="node-entry.html">
+            
+                <a href="node-entry.html">
+            
+                    
+                    NodeEntry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.5" data-path="text.html">
+            
+                <a href="text.html">
+            
+                    
+                    Text
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../locations/">
+            
+                <a href="../locations/">
+            
+                    
+                    Location Types
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="../locations/location.html">
+            
+                <a href="../locations/location.html">
+            
+                    
+                    Location
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" data-path="../locations/path.html">
+            
+                <a href="../locations/path.html">
+            
+                    
+                    Path
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.3" data-path="../locations/path-ref.html">
+            
+                <a href="../locations/path-ref.html">
+            
+                    
+                    PathRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.4" data-path="../locations/point.html">
+            
+                <a href="../locations/point.html">
+            
+                    
+                    Point
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.5" data-path="../locations/point-entry.html">
+            
+                <a href="../locations/point-entry.html">
+            
+                    
+                    PointEntry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.6" data-path="../locations/point-ref.html">
+            
+                <a href="../locations/point-ref.html">
+            
+                    
+                    PointRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.7" data-path="../locations/range.html">
+            
+                <a href="../locations/range.html">
+            
+                    
+                    Range
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.8" data-path="../locations/range-ref.html">
+            
+                <a href="../locations/range-ref.html">
+            
+                    
+                    RangeRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.9" data-path="../locations/span.html">
+            
+                <a href="../locations/span.html">
+            
+                    
+                    Span
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../operation.html">
+            
+                <a href="../operation.html">
+            
+                    
+                    Operation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="../scrubber.html">
+            
+                <a href="../scrubber.html">
+            
+                    
+                    Scrubber
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Libraries</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../../libraries/slate-react.html">
+            
+                <a href="../../libraries/slate-react.html">
+            
+                    
+                    Slate React
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../../libraries/slate-history.html">
+            
+                <a href="../../libraries/slate-history.html">
+            
+                    
+                    Slate History
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../../libraries/slate-hyperscript.html">
+            
+                <a href="../../libraries/slate-hyperscript.html">
+            
+                    
+                    Slate Hyperscript
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">General</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../../general/resources.html">
+            
+                <a href="../../general/resources.html">
+            
+                    
+                    Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../../general/contributing.html">
+            
+                <a href="../../general/contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../../general/changelog.html">
+            
+                <a href="../../general/changelog.html">
+            
+                    
+                    Changelog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../../general/faq.html">
+            
+                <a href="../../general/faq.html">
+            
+                    
+                    FAQ
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            本书使用 HonKit 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Editor</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="editor-api">Editor API</h1>
+<p>The <code>Editor</code> object stores all the state of a Slate editor. It can be extended by <a href="../../concepts/08-plugins.html">plugins</a> to add helpers and implement new behaviors. It&apos;s a type of <code>Node</code> and its path is <code>[]</code>.</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Editor {
+  <span class="hljs-attr">children</span>: Node[]
+  <span class="hljs-attr">selection</span>: Range | <span class="hljs-literal">null</span>
+  <span class="hljs-attr">operations</span>: Operation[]
+  <span class="hljs-attr">marks</span>: Omit&lt;Text, <span class="hljs-string">&apos;text&apos;</span>&gt; | <span class="hljs-literal">null</span>
+
+  <span class="hljs-comment">// Schema-specific node behaviors.</span>
+  <span class="hljs-attr">isInline</span>: <span class="hljs-function">(<span class="hljs-params">element: Element</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
+  <span class="hljs-attr">isVoid</span>: <span class="hljs-function">(<span class="hljs-params">element: Element</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
+  <span class="hljs-attr">normalizeNode</span>: <span class="hljs-function">(<span class="hljs-params">entry: NodeEntry</span>) =&gt;</span> <span class="hljs-built_in">void</span>
+  <span class="hljs-attr">onChange</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">void</span>
+
+  <span class="hljs-comment">// Overrideable core actions.</span>
+  <span class="hljs-attr">addMark</span>: <span class="hljs-function">(<span class="hljs-params">key: <span class="hljs-built_in">string</span>, value: <span class="hljs-built_in">any</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>
+  <span class="hljs-attr">apply</span>: <span class="hljs-function">(<span class="hljs-params">operation: Operation</span>) =&gt;</span> <span class="hljs-built_in">void</span>
+  <span class="hljs-attr">deleteBackward</span>: <span class="hljs-function">(<span class="hljs-params">unit: <span class="hljs-string">&apos;character&apos;</span> | <span class="hljs-string">&apos;word&apos;</span> | <span class="hljs-string">&apos;line&apos;</span> | <span class="hljs-string">&apos;block&apos;</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>
+  <span class="hljs-attr">deleteForward</span>: <span class="hljs-function">(<span class="hljs-params">unit: <span class="hljs-string">&apos;character&apos;</span> | <span class="hljs-string">&apos;word&apos;</span> | <span class="hljs-string">&apos;line&apos;</span> | <span class="hljs-string">&apos;block&apos;</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>
+  <span class="hljs-attr">deleteFragment</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">void</span>
+  <span class="hljs-attr">insertBreak</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">void</span>
+  <span class="hljs-attr">insertFragment</span>: <span class="hljs-function">(<span class="hljs-params">fragment: Node[]</span>) =&gt;</span> <span class="hljs-built_in">void</span>
+  <span class="hljs-attr">insertNode</span>: <span class="hljs-function">(<span class="hljs-params">node: Node</span>) =&gt;</span> <span class="hljs-built_in">void</span>
+  <span class="hljs-attr">insertText</span>: <span class="hljs-function">(<span class="hljs-params">text: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>
+  <span class="hljs-attr">removeMark</span>: <span class="hljs-function">(<span class="hljs-params">key: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>
+}
+</code></pre>
+<ul>
+<li><a href="editor.html#instantiation-methods">Instantiation methods</a></li>
+<li><a href="editor.html#static-methods">Static methods</a><ul>
+<li><a href="editor.html#retrieval-methods">Retrieval methods</a></li>
+<li><a href="editor.html#manipulation-methods">Manipulation methods</a></li>
+<li><a href="editor.html#check-methods">Check methods</a></li>
+<li><a href="editor.html#normalization-methods">Normalization methods</a></li>
+<li><a href="editor.html#ref-methods">Ref methods</a></li>
+</ul>
+</li>
+<li><a href="editor.html#instance-methods">Instance methods</a><ul>
+<li><a href="editor.html#schema-specific-instance-methods-to-override">Schema-specific methods to override</a></li>
+<li><a href="editor.html#element-type-methods">Element Type Methods</a></li>
+<li><a href="editor.html#normalize-method">Normalize Method</a></li>
+<li><a href="editor.html#callback-method">Callback Method</a></li>
+<li><a href="editor.html#mark-methods">Mark Methods</a></li>
+<li><a href="editor.html#getfragment-method">getFragment Method</a></li>
+<li><a href="editor.html#delete-methods">Delete Methods</a></li>
+<li><a href="editor.html#insert-methods">Insert Methods</a></li>
+<li><a href="editor.html#operation-handling-method">Operation Handling Method</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="instantiation-methods">Instantiation methods</h2>
+<h4 id="createeditor--editor"><code>createEditor() =&gt; Editor</code></h4>
+<p>Note: This method is imported directly from Slate and is not part of the Editor object.</p>
+<p>Creates a new, empty <code>Editor</code> object.</p>
+<h2 id="static-methods">Static methods</h2>
+<h3 id="retrieval-methods">Retrieval methods</h3>
+<h4 id="editorabovet-extends-ancestoreditor-editor-options--nodeentryt--undefined"><code>Editor.above&lt;T extends Ancestor&gt;(editor: Editor, options?) =&gt; NodeEntry&lt;T&gt; | undefined</code></h4>
+<p>Get the matching ancestor above a location in the document.</p>
+<p>Options:</p>
+<ul>
+<li><code>at?: Location = editor.selection</code>: Where to start at which is <code>editor.selection</code> by default.</li>
+<li><code>match?: NodeMatch = () =&gt; true</code>: Narrow the match</li>
+<li><code>mode?: &apos;highest&apos; | &apos;lowest&apos; = &apos;lowest&apos;</code>: If <code>lowest</code> (default), returns the lowest matching ancestor. If <code>highest</code>, returns the highest matching ancestor.</li>
+<li><code>voids?: boolean = false</code>: When <code>false</code> ignore void objects.</li>
+</ul>
+<h4 id="editoraftereditor-editor-at-location-options--point--undefined"><code>Editor.after(editor: Editor, at: Location, options?) =&gt; Point | undefined</code></h4>
+<p>Get the point after a location.</p>
+<p>If there is no point after the location (e.g. we are at the bottom of the document) returns <code>undefined</code>.</p>
+<p>Options: <code>{distance?: number, unit?: &apos;offset&apos; | &apos;character&apos; | &apos;word&apos; | &apos;line&apos; | &apos;block&apos;, voids?: boolean}</code></p>
+<h4 id="editorbeforeeditor-editor-at-location-options--point--undefined"><code>Editor.before(editor: Editor, at: Location, options?) =&gt; Point | undefined</code></h4>
+<p>Get the point before a location.</p>
+<p>If there is no point before the location (e.g. we are at the top of the document) returns <code>undefined</code>.</p>
+<p>Options: <code>{distance?: number, unit?: &apos;offset&apos; | &apos;character&apos; | &apos;word&apos; | &apos;line&apos; | &apos;block&apos;, voids?: boolean}</code></p>
+<h4 id="editoredgeseditor-editor-at-location--point-point"><code>Editor.edges(editor: Editor, at: Location) =&gt; [Point, Point]</code></h4>
+<p>Get the start and end points of a location.</p>
+<h4 id="editorendeditor-editor-at-location--point"><code>Editor.end(editor: Editor, at: Location) =&gt; Point</code></h4>
+<p>Get the end point of a location.</p>
+<h4 id="editorfirsteditor-editor-at-location--nodeentry"><code>Editor.first(editor: Editor, at: Location) =&gt; NodeEntry</code></h4>
+<p>Get the first node at a location.</p>
+<h4 id="editorfragmenteditor-editor-at-location--descendant"><code>Editor.fragment(editor: Editor, at: Location) =&gt; Descendant[]</code></h4>
+<p>Get the fragment at a location.</p>
+<h4 id="editorlasteditor-editor-at-location--nodeentry"><code>Editor.last(editor: Editor, at: Location) =&gt; NodeEntry</code></h4>
+<p>Get the last node at a location.</p>
+<h4 id="editorleafeditor-editor-at-location-options--nodeentry"><code>Editor.leaf(editor: Editor, at: Location, options?) =&gt; NodeEntry</code></h4>
+<p>Get the leaf text node at a location.</p>
+<p>Options: <code>{depth?: number, edge?: &apos;start&apos; | &apos;end&apos;}</code></p>
+<h4 id="editorlevelst-extends-nodeeditor-editor-options--generatornodeentryt-void-undefined"><code>Editor.levels&lt;T extends Node&gt;(editor: Editor, options?) =&gt; Generator&lt;NodeEntry&lt;T&gt;, void, undefined&gt;</code></h4>
+<p>Iterate through all of the levels at a location.</p>
+<p>Options: <code>{at?: Location, match?: NodeMatch, reverse?: boolean, voids?: boolean}</code></p>
+<h4 id="editormarkseditor-editor--omittext-text--null"><code>Editor.marks(editor: Editor) =&gt; Omit&lt;Text, &apos;text&apos;&gt; | null</code></h4>
+<p>Get the marks that would be added to text at the current selection.</p>
+<h4 id="editornextt-extends-descendanteditor-editor-options--nodeentryt--undefined"><code>Editor.next&lt;T extends Descendant&gt;(editor: Editor, options?) =&gt; NodeEntry&lt;T&gt; | undefined</code></h4>
+<p>Get the matching node in the branch of the document after a location.</p>
+<p>Note: If you are looking for the next Point, and not the next Node, you are probably looking for the method <code>Editor.after</code></p>
+<p>Options: <code>{at?: Location, match?: NodeMatch, mode?: &apos;all&apos; | &apos;highest&apos; | &apos;lowest&apos;, voids?: boolean}</code></p>
+<h4 id="editornodeeditor-editor-at-location-options--nodeentry"><code>Editor.node(editor: Editor, at: Location, options?) =&gt; NodeEntry</code></h4>
+<p>Get the node at a location.</p>
+<p>Options: <code>depth?: number, edge?: &apos;start&apos; | &apos;end&apos;</code></p>
+<h4 id="editornodest-extends-nodeeditor-editor-options--generatornodeentryt-void-undefined"><code>Editor.nodes&lt;T extends Node&gt;(editor: Editor, options?) =&gt; Generator&lt;NodeEntry&lt;T&gt;, void, undefined&gt;</code></h4>
+<p>At any given <code>Location</code> or <code>Span</code> in the editor provided by <code>at</code> (default is the current selection), the method returns a Generator of <code>NodeEntry</code> objects that represent the nodes that include <code>at</code>. At the top of the hierarchy is the <code>Editor</code> object itself.</p>
+<p>Options: <code>{at?: Location | Span, match?: NodeMatch, mode?: &apos;all&apos; | &apos;highest&apos; | &apos;lowest&apos;, universal?: boolean, reverse?: boolean, voids?: boolean}</code></p>
+<p><code>options.match</code>: Provide a value to the <code>match?</code> option to limit the <code>NodeEntry</code> objects that are returned.</p>
+<p><code>options.mode</code>:</p>
+<ul>
+<li><code>&apos;all&apos;</code> (default): Return all matching nodes</li>
+<li><code>&apos;highest&apos;</code>: in a hierarchy of nodes, only return the highest level matching nodes</li>
+<li><code>&apos;lowest&apos;</code>: in a hierarchy of nodes, only return the lowest level matching nodes</li>
+</ul>
+<h4 id="editorparenteditor-editor-at-location-options--nodeentryancestor"><code>Editor.parent(editor: Editor, at: Location, options?) =&gt; NodeEntry&lt;Ancestor&gt;</code></h4>
+<p>Get the parent node of a location.</p>
+<p>Options: <code>{depth?: number, edge?: &apos;start&apos; | &apos;end&apos;}</code></p>
+<h4 id="editorpatheditor-editor-at-location-options--path"><code>Editor.path(editor: Editor, at: Location, options?) =&gt; Path</code></h4>
+<p>Get the path of a location.</p>
+<p>Options: <code>{depth?: number, edge?: &apos;start&apos; | &apos;end&apos;}</code></p>
+<h4 id="editorpointeditor-editor-at-location-options--point"><code>Editor.point(editor: Editor, at: Location, options?) =&gt; Point</code></h4>
+<p>Get the start or end point of a location.</p>
+<p>Options: <code>{edge?: &apos;start&apos; | &apos;end&apos;}</code></p>
+<h4 id="editorpositionseditor-editor-options--generatorpoint-void-undefined"><code>Editor.positions(editor: Editor, options?) =&gt; Generator&lt;Point, void, undefined&gt;</code></h4>
+<p>Iterate through all of the positions in the document where a <code>Point</code> can be placed. The first <code>Point</code> returns is always the starting point followed by the next <code>Point</code> as determined by the <code>unit</code> option.</p>
+<p>Read <code>options.unit</code> to see how this method iterates through positions.</p>
+<p>Note: By default void nodes are treated as a single point and iteration will not happen inside their content unless you pass in true for the voids option, then iteration will occur.</p>
+<p>Options:</p>
+<ul>
+<li><code>at?: Location = editor.selection</code>: The <code>Location</code> in which to iterate the positions of.</li>
+<li><code>unit?: &apos;offset&apos; | &apos;character&apos; | &apos;word&apos; | &apos;line&apos; | &apos;block&apos; = &apos;offset&apos;</code>:<ul>
+<li><code>offset</code>: Moves to the next offset <code>Point</code>. It will include the <code>Point</code> at the end of a <code>Text</code> object and then move onto the first <code>Point</code> (at the 0th offset) of the next <code>Text</code> object. This may be counter-intuitive because the end of a <code>Text</code> and the beginning of the next <code>Text</code> might be thought of as the same position.</li>
+<li><code>character</code>: Moves to the next <code>character</code> but is not always the next <code>index</code> in the string. This is because Unicode encodings may require multiple bytes to create one character. Unlike <code>offset</code>, <code>character</code> will not count the end of a <code>Text</code> and the beginning of the next <code>Text</code> as separate positions to return. Warning: The character offsets for Unicode characters does not appear to be reliable in some cases like a Smiley Emoji will be identified as 2 characters.</li>
+<li><code>word</code>: Moves to the position immediately after the next <code>word</code>. In <code>reverse</code> mode, moves to the position immediately before the previous <code>word</code>.</li>
+<li><code>line</code> | <code>block</code>: Starts at the beginning position and then the position at the end of the block. Then starts at the beginning of the next block and then the end of the next block.</li>
+</ul>
+</li>
+<li><code>reverse?: boolean = false</code>: When <code>true</code> returns the positions in reverse order. In the case of the <code>unit</code> being <code>word</code>, the actual returned positions are different (i.e. we will get the start of a word in reverse instead of the end).</li>
+<li><code>voids?: boolean = false</code>: When <code>true</code> include void Nodes.</li>
+</ul>
+<h4 id="editorprevioust-extends-nodeeditor-editor-options--nodeentryt--undefined"><code>Editor.previous&lt;T extends Node&gt;(editor: Editor, options?) =&gt; NodeEntry&lt;T&gt; | undefined</code></h4>
+<p>Get the matching node in the branch of the document before a location.</p>
+<p>Note: If you are looking for the previous Point, and not the previous Node, you are probably looking for the method <code>Editor.before</code></p>
+<p>Options: <code>{at?: Location, match?: NodeMatch, mode?: &apos;all&apos; | &apos;highest&apos; | &apos;lowest&apos;, voids?: boolean}</code></p>
+<h4 id="editorrangeeditor-editor-at-location-to-location--range"><code>Editor.range(editor: Editor, at: Location, to?: Location) =&gt; Range</code></h4>
+<p>Get a range of a location.</p>
+<h4 id="editorstarteditor-editor-at-location--point"><code>Editor.start(editor: Editor, at: Location) =&gt; Point</code></h4>
+<p>Get the start point of a location.</p>
+<h4 id="editorstringeditor-editor-at-location-options--string"><code>Editor.string(editor: Editor, at: Location, options?) =&gt; string</code></h4>
+<p>Get the text string content of a location.</p>
+<p>Note: by default the text of void nodes is considered to be an empty string, regardless of content, unless you pass in true for the voids option</p>
+<p>Options: : <code>{voids?: boolean}</code></p>
+<h4 id="editorvoideditor-editor-options--nodeentryelement--undefined"><code>Editor.void(editor: Editor, options?) =&gt; NodeEntry&lt;Element&gt; | undefined</code></h4>
+<p>Match a void node in the current branch of the editor.</p>
+<p>Options: <code>{at?: Location, mode?: &apos;highest&apos; | &apos;lowest&apos;, voids?: boolean}</code></p>
+<h3 id="manipulation-methods">Manipulation methods</h3>
+<h4 id="editoraddmarkeditor-editor-key-string-value-any--void"><code>Editor.addMark(editor: Editor, key: string, value: any) =&gt; void</code></h4>
+<p>Add a custom property to the leaf text nodes in the current selection.</p>
+<p>If the selection is currently collapsed, the marks will be added to the <code>editor.marks</code> property instead, and applied when text is inserted next.</p>
+<h4 id="editordeletebackwardeditor-editor-options--void"><code>Editor.deleteBackward(editor: Editor, options?) =&gt; void</code></h4>
+<p>Delete content in the editor backward from the current selection.</p>
+<p>Options: <code>{unit?: &apos;character&apos; | &apos;word&apos; | &apos;line&apos; | &apos;block&apos;}</code></p>
+<h4 id="editordeleteforwardeditor-editor-options--void"><code>Editor.deleteForward(editor: Editor, options?) =&gt; void</code></h4>
+<p>Delete content in the editor forward from the current selection.</p>
+<p>Options: <code>{unit?: &apos;character&apos; | &apos;word&apos; | &apos;line&apos; | &apos;block&apos;}</code></p>
+<h4 id="editordeletefragmenteditor-editor--void"><code>Editor.deleteFragment(editor: Editor) =&gt; void</code></h4>
+<p>Delete the content in the current selection.</p>
+<h4 id="editorinsertbreakeditor-editor--void"><code>Editor.insertBreak(editor: Editor) =&gt; void</code></h4>
+<p>Insert a block break at the current selection.</p>
+<h4 id="editorinsertfragmenteditor-editor-fragment-node--void"><code>Editor.insertFragment(editor: Editor, fragment: Node[]) =&gt; void</code></h4>
+<p>Inserts a fragment <em>at the current selection</em>.</p>
+<p>If the selection is currently expanded, it will be deleted first. To atomically insert nodes (including at the very beginning or end), use <a href="../transforms.html#transformsinsertnodeseditor-editor-nodes-node--node-options">Transforms.insertNodes</a>.</p>
+<h4 id="editorinsertnodeeditor-editor-node-node--void"><code>Editor.insertNode(editor: Editor, node: Node) =&gt; void</code></h4>
+<p>Inserts a node <em>at the current selection</em>.</p>
+<p>If the selection is currently expanded, it will be deleted first. To atomically insert a node (including at the very beginning or end), use <a href="../transforms.html#transformsinsertnodeseditor-editor-nodes-node--node-options">Transforms.insertNodes</a>.</p>
+<h4 id="editorinserttexteditor-editor-text-string--void"><code>Editor.insertText(editor: Editor, text: string) =&gt; void</code></h4>
+<p>Inserts text <em>at the current selection</em>.</p>
+<p>If the selection is currently expanded, it will be deleted first.</p>
+<h4 id="editorremovemarkeditor-editor-key-string--void"><code>Editor.removeMark(editor: Editor, key: string) =&gt; void</code></h4>
+<p>Remove a custom property from all of the leaf text nodes in the current selection.</p>
+<p>If the selection is currently collapsed, the removal will be stored on <code>editor.marks</code> and applied to the text inserted next.</p>
+<h4 id="editorunhangrangeeditor-editor-range-range-options--range"><code>Editor.unhangRange(editor: Editor, range: Range, options?) =&gt; Range</code></h4>
+<p>Convert a range into a non-hanging one.</p>
+<p>A &quot;hanging&quot; range is one created by the browser&apos;s &quot;triple-click&quot; selection behavior. When triple-clicking a block, the browser selects from the start of that block to the start of the <em>next</em> block. The range thus &quot;hangs over&quot; into the next block. If <code>unhangRange</code> is given such a range, it moves the end backwards until it&apos;s in a non-empty text node that precedes the hanging block.</p>
+<p>Note that <code>unhangRange</code> is designed for the specific purpose of fixing triple-clicked blocks, and therefore currently has a number of caveats:</p>
+<ul>
+<li>It does not modify the start of the range; only the end. For example, it does not &quot;unhang&quot; a selection that starts at the end of a previous block.</li>
+<li>It only does anything if the start block is fully selected. For example, it does not handle ranges created by double-clicking the end of a paragraph (which browsers treat by selecting from the end of that paragraph to the start of the next).</li>
+</ul>
+<p>Options:</p>
+<ul>
+<li><code>voids?: boolean = false</code>: Allow placing the end of the selection in a void node.</li>
+</ul>
+<h3 id="check-methods">Check methods</h3>
+<h4 id="editorhasblockseditor-editor-element-element--boolean"><code>Editor.hasBlocks(editor: Editor, element: Element) =&gt; boolean</code></h4>
+<p>Check if a node has block children.</p>
+<h4 id="editorhasinlineseditor-editor-element-element--boolean"><code>Editor.hasInlines(editor: Editor, element: Element) =&gt; boolean</code></h4>
+<p>Check if a node has inline and text children.</p>
+<h4 id="editorhastextseditor-editor-element-element--boolean"><code>Editor.hasTexts(editor: Editor, element: Element) =&gt; boolean</code></h4>
+<p>Check if a node has text children.</p>
+<h4 id="editorisblockeditor-editor-value-any--value-is-element"><code>Editor.isBlock(editor: Editor, value: any) =&gt; value is Element</code></h4>
+<p>Check if a value is a block <code>Element</code> object.</p>
+<h4 id="editoriseditorvalue-any--value-is-editor"><code>Editor.isEditor(value: any) =&gt; value is Editor</code></h4>
+<p>Check if a value is an <code>Editor</code> object.</p>
+<h4 id="editorisendeditor-editor-point-point-at-location--boolean"><code>Editor.isEnd(editor: Editor, point: Point, at: Location) =&gt; boolean</code></h4>
+<p>Check if a point is the end point of a location.</p>
+<h4 id="editorisedgeeditor-editor-point-point-at-location--boolean"><code>Editor.isEdge(editor: Editor, point: Point, at: Location) =&gt; boolean</code></h4>
+<p>Check if a point is an edge of a location.</p>
+<h4 id="editorisemptyeditor-editor-element-element--boolean"><code>Editor.isEmpty(editor: Editor, element: Element) =&gt; boolean</code></h4>
+<p>Check if an element is empty, accounting for void nodes.</p>
+<h4 id="editorisinlineeditor-editor-value-any--value-is-element"><code>Editor.isInline(editor: Editor, value: any) =&gt; value is Element</code></h4>
+<p>Check if a value is an inline <code>Element</code> object.</p>
+<h4 id="editorisnormalizingeditor-editor--boolean"><code>Editor.isNormalizing(editor: Editor) =&gt; boolean</code></h4>
+<p>Check if the editor is currently normalizing after each operation.</p>
+<h4 id="editorisstarteditor-editor-point-point-at-location--boolean"><code>Editor.isStart(editor: Editor, point: Point, at: Location) =&gt; boolean</code></h4>
+<p>Check if a point is the start point of a location.</p>
+<h4 id="editorisvoideditor-editor-value-any--value-is-element"><code>Editor.isVoid(editor: Editor, value: any) =&gt; value is Element</code></h4>
+<p>Check if a value is a void <code>Element</code> object.</p>
+<h3 id="normalization-methods">Normalization methods</h3>
+<h4 id="editornormalizeeditor-editor-options--void"><code>Editor.normalize(editor: Editor, options?) =&gt; void</code></h4>
+<p>Normalize any dirty objects in the editor.</p>
+<p>Options: <code>{force?: boolean}</code></p>
+<h4 id="editorwithoutnormalizingeditor-editor-fn---void--void"><code>Editor.withoutNormalizing(editor: Editor, fn: () =&gt; void) =&gt; void</code></h4>
+<p>Call a function, deferring normalization until after it completes.
+See <a href="11-normalizing.md#implications-for-other-code">Normalization - Implications for Other Code</a>;</p>
+<h3 id="ref-methods">Ref Methods</h3>
+<h4 id="editorpathrefeditor-editor-path-path-options--pathref"><code>Editor.pathRef(editor: Editor, path: Path, options?) =&gt; PathRef</code></h4>
+<p>Create a mutable ref for a <code>Path</code> object, which will stay in sync as new operations are applied to the editor.</p>
+<p>Options: <code>{affinity?: &apos;backward&apos; | &apos;forward&apos; | null}</code></p>
+<h4 id="editorpathrefseditor-editor--setpathref"><code>Editor.pathRefs(editor: Editor) =&gt; Set&lt;PathRef&gt;</code></h4>
+<p>Get the set of currently tracked path refs of the editor.</p>
+<h4 id="editorpointrefeditor-editor-point-point-options--pointref"><code>Editor.pointRef(editor: Editor, point: Point, options?) =&gt; PointRef</code></h4>
+<p>Create a mutable ref for a <code>Point</code> object, which will stay in sync as new operations are applied to the editor.</p>
+<p>Options: <code>{affinity?: &apos;backward&apos; | &apos;forward&apos; | null}</code></p>
+<h4 id="editorpointrefseditor-editor--setpointref"><code>Editor.pointRefs(editor: Editor) =&gt; Set&lt;PointRef&gt;</code></h4>
+<p>Get the set of currently tracked point refs of the editor.</p>
+<h4 id="editorrangerefeditor-editor-range-range-options--rangeref"><code>Editor.rangeRef(editor: Editor, range: Range, options?) =&gt; RangeRef</code></h4>
+<p>Create a mutable ref for a <code>Range</code> object, which will stay in sync as new operations are applied to the editor.</p>
+<p>Options: <code>{affinity?: &apos;backward&apos; | &apos;forward&apos; | &apos;outward&apos; | &apos;inward&apos; | null}</code></p>
+<h4 id="editorrangerefseditor-editor--setrangeref"><code>Editor.rangeRefs(editor: Editor) =&gt; Set&lt;RangeRef&gt;</code></h4>
+<p>Get the set of currently tracked range refs of the editor.</p>
+<h2 id="instance-methods">Instance Methods</h2>
+<h3 id="schema-specific-instance-methods-to-override">Schema-specific instance methods to override</h3>
+<p>Replace these methods to modify the original behavior of the editor when building <a href="../../concepts/08-plugins.html">Plugins</a>. When modifying behavior, call the original method when appropriate. For example, a plugin that marks image nodes as &quot;void&quot;:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> withImages = <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> { isVoid } = editor
+
+  editor.isVoid = <span class="hljs-function"><span class="hljs-params">element</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> element.type === <span class="hljs-string">&apos;image&apos;</span> ? <span class="hljs-literal">true</span> : isVoid(element)
+  }
+
+  <span class="hljs-keyword">return</span> editor
+}
+</code></pre>
+<h3 id="element-type-methods">Element type methods</h3>
+<p>Use these methods so that Slate can identify certain elements as <a href="../../concepts/02-nodes.html#blocks-vs-inlines">inlines</a> or <a href="../../concepts/02-nodes.html#voids">voids</a>.</p>
+<h4 id="isinlineelement-element--boolean"><code>isInline(element: Element) =&gt; boolean</code></h4>
+<p>Check if a value is an inline <code>Element</code> object.</p>
+<h4 id="isvoidelement-element--boolean"><code>isVoid(element: Element) =&gt; boolean</code></h4>
+<p>Check if a value is a void <code>Element</code> object.</p>
+<h3 id="normalize-method">Normalize method</h3>
+<h4 id="normalizenodeentry-nodeentry--void"><code>normalizeNode(entry: NodeEntry) =&gt; void</code></h4>
+<p><a href="../../concepts/11-normalizing.html">Normalize</a> a Node according to the schema.</p>
+<h3 id="callback-method">Callback method</h3>
+<h4 id="onchange--void"><code>onChange() =&gt; void</code></h4>
+<p>Called when there is a change in the editor.</p>
+<h3 id="mark-methods">Mark methods</h3>
+<h4 id="addmarkkey-string-value-any--void"><code>addMark(key: string, value: any) =&gt; void</code></h4>
+<p>Add a custom property to the leaf text nodes in the current selection. If the selection is currently collapsed, the marks will be added to the <code>editor.marks</code> property instead, and applied when text is inserted next.</p>
+<h4 id="removemarkkey-string--void"><code>removeMark(key: string) =&gt; void</code></h4>
+<p>Remove a custom property from the leaf text nodes in the current selection.</p>
+<h3 id="getfragment-method">getFragment method</h3>
+<h4 id="getfragment--descendant"><code>getFragment() =&gt; Descendant</code></h4>
+<p>Returns the fragment at the current selection. Used when cutting or copying, as an example, to get the fragment at the current selection.</p>
+<h3 id="delete-methods">Delete methods</h3>
+<p>When a user presses backspace or delete, it invokes the method based on the selection. For example, if the selection is expanded over some text and the user presses the backspace key, <code>deleteFragment</code> will be called but if the selecttion is collapsed, <code>deleteBackward</code> will be called.</p>
+<h4 id="deletebackwardoptions-unit-character--word--line--block--void"><code>deleteBackward(options?: {unit?: &apos;character&apos; | &apos;word&apos; | &apos;line&apos; | &apos;block&apos;}) =&gt; void</code></h4>
+<p>Delete content in the editor backward from the current selection.</p>
+<h4 id="deleteforwardoptions-unit-character--word--line--block--void"><code>deleteForward(options?: {unit?: &apos;character&apos; | &apos;word&apos; | &apos;line&apos; | &apos;block&apos;}) =&gt; void</code></h4>
+<p>Delete content in the editor forward from the current selection.</p>
+<h4 id="deletefragment--void"><code>deleteFragment() =&gt; void</code></h4>
+<p>Delete the content of the current selection.</p>
+<h3 id="insert-methods">Insert methods</h3>
+<h4 id="insertfragmentfragment-node--void"><code>insertFragment(fragment: Node[]) =&gt; void</code></h4>
+<p>Insert a fragment at the current selection. If the selection is currently expanded, delete it first.</p>
+<h4 id="insertbreak--void"><code>insertBreak() =&gt; void</code></h4>
+<p>Insert a block break at the current selection. If the selection is currently expanded, delete it first.</p>
+<h4 id="insertsoftbreak--void"><code>insertSoftBreak() =&gt; void</code></h4>
+<p>Insert a soft break at the current selection. If the selection is currently expanded, delete it first.</p>
+<h4 id="insertnodenode-node--void"><code>insertNode(node: Node) =&gt; void</code></h4>
+<p>Insert a node at the current selection. If the selection is currently expanded, delete it first.</p>
+<h4 id="inserttexttext-string--void"><code>insertText(text: string) =&gt; void</code></h4>
+<p>Insert text at the current selection. If the selection is currently expanded, delete it first.</p>
+<h3 id="operation-handling-method">Operation handling method</h3>
+<h4 id="applyoperation-operation--void"><code>apply(operation: Operation) =&gt; void</code></h4>
+<p>Apply an operation in the editor.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Node Types">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="element.html" class="navigation navigation-next " aria-label="Next page: Element">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Editor","level":"3.2.1","depth":2,"next":{"title":"Element","level":"3.2.2","depth":2,"path":"api/nodes/element.md","ref":"api/nodes/element.md","articles":[]},"previous":{"title":"Node Types","level":"3.2","depth":1,"path":"api/nodes/README.md","ref":"api/nodes/README.md","articles":[{"title":"Editor","level":"3.2.1","depth":2,"path":"api/nodes/editor.md","ref":"api/nodes/editor.md","articles":[]},{"title":"Element","level":"3.2.2","depth":2,"path":"api/nodes/element.md","ref":"api/nodes/element.md","articles":[]},{"title":"Node","level":"3.2.3","depth":2,"path":"api/nodes/node.md","ref":"api/nodes/node.md","articles":[]},{"title":"NodeEntry","level":"3.2.4","depth":2,"path":"api/nodes/node-entry.md","ref":"api/nodes/node-entry.md","articles":[]},{"title":"Text","level":"3.2.5","depth":2,"path":"api/nodes/text.md","ref":"api/nodes/text.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/nodes/editor.md","mtime":"2022-06-07T07:05:16.145Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-07T07:05:30.558Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

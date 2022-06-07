@@ -1,0 +1,1014 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <title>TypeScript · Slate 中文文档</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.7.3">
+        <meta name="author" content="mowangjuanzi">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="xx-migrating.html" />
+    
+    
+    <link rel="prev" href="11-normalizing.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Walkthroughs</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../walkthroughs/01-installing-slate.html">
+            
+                <a href="../walkthroughs/01-installing-slate.html">
+            
+                    
+                    Installing Slate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../walkthroughs/02-adding-event-handlers.html">
+            
+                <a href="../walkthroughs/02-adding-event-handlers.html">
+            
+                    
+                    Adding Event Handlers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../walkthroughs/03-defining-custom-elements.html">
+            
+                <a href="../walkthroughs/03-defining-custom-elements.html">
+            
+                    
+                    Defining Custom Elements
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../walkthroughs/04-applying-custom-formatting.html">
+            
+                <a href="../walkthroughs/04-applying-custom-formatting.html">
+            
+                    
+                    Applying Custom Formatting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../walkthroughs/05-executing-commands.html">
+            
+                <a href="../walkthroughs/05-executing-commands.html">
+            
+                    
+                    Executing Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../walkthroughs/06-saving-to-a-database.html">
+            
+                <a href="../walkthroughs/06-saving-to-a-database.html">
+            
+                    
+                    Saving to a Database
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../walkthroughs/xx-using-the-bundled-source.html">
+            
+                <a href="../walkthroughs/xx-using-the-bundled-source.html">
+            
+                    
+                    Using the Bundled Source
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Concepts</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="01-interfaces.html">
+            
+                <a href="01-interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="02-nodes.html">
+            
+                <a href="02-nodes.html">
+            
+                    
+                    Nodes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="03-locations.html">
+            
+                <a href="03-locations.html">
+            
+                    
+                    Locations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="04-transforms.html">
+            
+                <a href="04-transforms.html">
+            
+                    
+                    Transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="05-operations.html">
+            
+                <a href="05-operations.html">
+            
+                    
+                    Operations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="06-commands.html">
+            
+                <a href="06-commands.html">
+            
+                    
+                    Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="07-editor.html">
+            
+                <a href="07-editor.html">
+            
+                    
+                    Editor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="08-plugins.html">
+            
+                <a href="08-plugins.html">
+            
+                    
+                    Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="09-rendering.html">
+            
+                <a href="09-rendering.html">
+            
+                    
+                    Rendering
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="10-serializing.html">
+            
+                <a href="10-serializing.html">
+            
+                    
+                    Serializing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.11" data-path="11-normalizing.html">
+            
+                <a href="11-normalizing.html">
+            
+                    
+                    Normalizing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.12" data-path="12-typescript.html">
+            
+                <a href="12-typescript.html">
+            
+                    
+                    TypeScript
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.13" data-path="xx-migrating.html">
+            
+                <a href="xx-migrating.html">
+            
+                    
+                    Migrating
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">API</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../api/transforms.html">
+            
+                <a href="../api/transforms.html">
+            
+                    
+                    Transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../api/nodes/">
+            
+                <a href="../api/nodes/">
+            
+                    
+                    Node Types
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="../api/nodes/editor.html">
+            
+                <a href="../api/nodes/editor.html">
+            
+                    
+                    Editor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="../api/nodes/element.html">
+            
+                <a href="../api/nodes/element.html">
+            
+                    
+                    Element
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3" data-path="../api/nodes/node.html">
+            
+                <a href="../api/nodes/node.html">
+            
+                    
+                    Node
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.4" data-path="../api/nodes/node-entry.html">
+            
+                <a href="../api/nodes/node-entry.html">
+            
+                    
+                    NodeEntry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.5" data-path="../api/nodes/text.html">
+            
+                <a href="../api/nodes/text.html">
+            
+                    
+                    Text
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../api/locations/">
+            
+                <a href="../api/locations/">
+            
+                    
+                    Location Types
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="../api/locations/location.html">
+            
+                <a href="../api/locations/location.html">
+            
+                    
+                    Location
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" data-path="../api/locations/path.html">
+            
+                <a href="../api/locations/path.html">
+            
+                    
+                    Path
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.3" data-path="../api/locations/path-ref.html">
+            
+                <a href="../api/locations/path-ref.html">
+            
+                    
+                    PathRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.4" data-path="../api/locations/point.html">
+            
+                <a href="../api/locations/point.html">
+            
+                    
+                    Point
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.5" data-path="../api/locations/point-entry.html">
+            
+                <a href="../api/locations/point-entry.html">
+            
+                    
+                    PointEntry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.6" data-path="../api/locations/point-ref.html">
+            
+                <a href="../api/locations/point-ref.html">
+            
+                    
+                    PointRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.7" data-path="../api/locations/range.html">
+            
+                <a href="../api/locations/range.html">
+            
+                    
+                    Range
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.8" data-path="../api/locations/range-ref.html">
+            
+                <a href="../api/locations/range-ref.html">
+            
+                    
+                    RangeRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.9" data-path="../api/locations/span.html">
+            
+                <a href="../api/locations/span.html">
+            
+                    
+                    Span
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../api/operation.html">
+            
+                <a href="../api/operation.html">
+            
+                    
+                    Operation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="../api/scrubber.html">
+            
+                <a href="../api/scrubber.html">
+            
+                    
+                    Scrubber
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Libraries</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../libraries/slate-react.html">
+            
+                <a href="../libraries/slate-react.html">
+            
+                    
+                    Slate React
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../libraries/slate-history.html">
+            
+                <a href="../libraries/slate-history.html">
+            
+                    
+                    Slate History
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../libraries/slate-hyperscript.html">
+            
+                <a href="../libraries/slate-hyperscript.html">
+            
+                    
+                    Slate Hyperscript
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">General</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../general/resources.html">
+            
+                <a href="../general/resources.html">
+            
+                    
+                    Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../general/contributing.html">
+            
+                <a href="../general/contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../general/changelog.html">
+            
+                <a href="../general/changelog.html">
+            
+                    
+                    Changelog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../general/faq.html">
+            
+                <a href="../general/faq.html">
+            
+                    
+                    FAQ
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            本书使用 HonKit 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >TypeScript</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="using-typescript">Using TypeScript</h1>
+<p>Slate supports typing of one Slate document model (ie. one set of custom <code>Editor</code>, <code>Element</code> and <code>Text</code> types). If you need to support more than one document model, see the section Multiple Document Models.</p>
+<p><strong>Warning:</strong> You must define <code>CustomTypes</code>, annotate <code>useState</code>, and annotate the editor&apos;s initial state when using TypeScript or Slate will display typing errors.</p>
+<h2 id="migrating-from-047x">Migrating from 0.47.x</h2>
+<p>When migrating from 0.47.x, read the guide below first. Also keep in mind these common migration issues:</p>
+<ul>
+<li>When referring to <code>node.type</code>, you may see the error <code>Property &apos;type&apos; does not exist on type &apos;Node&apos;</code>. To fix this, you need to add code like <code>Element.isElement(node) &amp;&amp; node.type === &apos;paragraph&apos;</code>. This is necessary because a <code>Node</code> can be an <code>Element</code> or <code>Text</code> and <code>Text</code> does not have a <code>type</code> property.</li>
+<li>Be careful when you define the CustomType for <code>Editor</code>. Make sure to define the CustomType for <code>Editor</code> as <code>BaseEditor &amp; ...</code>. It should not be <code>Editor &amp; ...</code></li>
+</ul>
+<h2 id="defining-editor-element-and-text-types">Defining <code>Editor</code>, <code>Element</code> and <code>Text</code> Types</h2>
+<p>To define a custom <code>Element</code> or <code>Text</code> type, extend the <code>CustomTypes</code> interface in the <code>slate</code> module like this.</p>
+<pre><code class="lang-typescript"><span class="hljs-comment">// This example is for an Editor with `ReactEditor` and `HistoryEditor`</span>
+<span class="hljs-keyword">import</span> { BaseEditor } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
+<span class="hljs-keyword">import</span> { ReactEditor } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-react&apos;</span>
+<span class="hljs-keyword">import</span> { HistoryEditor } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-history&apos;</span>
+
+<span class="hljs-keyword">type</span> CustomElement = { <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>; children: CustomText[] }
+<span class="hljs-keyword">type</span> CustomText = { <span class="hljs-attr">text</span>: <span class="hljs-built_in">string</span>; bold?: <span class="hljs-literal">true</span> }
+
+<span class="hljs-keyword">declare</span> <span class="hljs-built_in">module</span> <span class="hljs-string">&apos;slate&apos;</span> {
+  <span class="hljs-keyword">interface</span> CustomTypes {
+    <span class="hljs-attr">Editor</span>: BaseEditor &amp; ReactEditor &amp; HistoryEditor
+    <span class="hljs-attr">Element</span>: CustomElement
+    <span class="hljs-attr">Text</span>: CustomText
+  }
+}
+</code></pre>
+<h2 id="annotations-in-the-editor">Annotations in the Editor</h2>
+<p>Annotate the editor&apos;s initial value w/ <code>Descendant[]</code>.</p>
+<pre><code class="lang-tsx"><span class="hljs-keyword">import</span> React, { useMemo, useState } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
+<span class="hljs-keyword">import</span> { createEditor, Descendant } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
+<span class="hljs-keyword">import</span> { Slate, Editable, withReact } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-react&apos;</span>
+
+<span class="hljs-keyword">const</span> initialValue: Descendant[] = [
+  {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
+    <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;A line of text in a paragraph.&apos;</span> }],
+  },
+]
+
+<span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">const</span> editor = useMemo(<span class="hljs-function">() =&gt;</span> withReact(createEditor()), [])
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Editable</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Slate</span>&gt;</span></span>
+  )
+}
+</code></pre>
+<h2 id="best-practices-for-element-and-text-types">Best Practices for <code>Element</code> and <code>Text</code> Types</h2>
+<p>While you can define types directly in the <code>CustomTypes</code> interface, best practice is to define and export each type separately so that you can reference individual types like a <code>ParagraphElement</code>.</p>
+<p>Using best practices, the custom types might look something like:</p>
+<pre><code class="lang-typescript"><span class="hljs-comment">// This example is for an Editor with `ReactEditor` and `HistoryEditor`</span>
+<span class="hljs-keyword">import</span> { BaseEditor } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
+<span class="hljs-keyword">import</span> { ReactEditor } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-react&apos;</span>
+<span class="hljs-keyword">import</span> { HistoryEditor } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-history&apos;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> CustomEditor = BaseEditor &amp; ReactEditor &amp; HistoryEditor
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> ParagraphElement = {
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>
+  <span class="hljs-attr">children</span>: CustomText[]
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> HeadingElement = {
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;heading&apos;</span>
+  <span class="hljs-attr">level</span>: <span class="hljs-built_in">number</span>
+  <span class="hljs-attr">children</span>: CustomText[]
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> CustomElement = ParagraphElement | HeadingElement
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> FormattedText = { <span class="hljs-attr">text</span>: <span class="hljs-built_in">string</span>; bold?: <span class="hljs-literal">true</span> }
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> CustomText = FormattedText
+
+<span class="hljs-keyword">declare</span> <span class="hljs-built_in">module</span> <span class="hljs-string">&apos;slate&apos;</span> {
+  <span class="hljs-keyword">interface</span> CustomTypes {
+    <span class="hljs-attr">Editor</span>: CustomEditor
+    <span class="hljs-attr">Element</span>: CustomElement
+    <span class="hljs-attr">Text</span>: CustomText
+  }
+}
+</code></pre>
+<p>In this example, <code>CustomText</code> is equal to <code>FormattedText</code> but in a real editor, there can be more types of text like text in a code block which may not allow formatting for example.</p>
+<h2 id="why-is-the-type-definition-unusual">Why Is The Type Definition Unusual</h2>
+<p>Because it gets asked often, this section explains why Slate&apos;s type definition is atypical.</p>
+<p>Slate needs to support a feature called type discrimination which is available when using union types (e.g. <code>ParagraphElement | HeadingElement</code>). This allows a user to narrow a type. If presented with code like <code>if (node.type === &apos;paragraph&apos;) { ... }</code> the inside of the block, will narrow the type of node to <code>ParagraphElement</code>.</p>
+<p>Slate also needs a way to allow developers to get their custom types into Slate. This is done through declaration merging which is a feature of an <code>interface</code>.</p>
+<p>Slate combines a union type and an interface in order to use both features.</p>
+<p>For more information see <a href="https://github.com/ianstormtaylor/slate/issues/3725" target="_blank">Proposal: Add Custom TypeScript Types to Slate</a></p>
+<h2 id="multiple-document-models">Multiple Document Models</h2>
+<p>At the moment, Slate supports types for a single document model at a time. For example, it cannot support two different Rich Text Editor with different document schemas.</p>
+<p>Slate&apos;s TypeScript support was designed this way because typing for one document schema was better than none. The goal is to eventually support typing for multiple editor definitions and there is currently an in progress PR built by the creator of Slate.</p>
+<p>One workaround for supporting multiple document models is to create each editor in a separate package and then import them. This hasn&apos;t been tested but should work.</p>
+<h2 id="extending-other-types">Extending Other Types</h2>
+<p>Currently there is also support for extending other types but these haven&apos;t been tested as thoroughly as the ones documented above:</p>
+<ul>
+<li><code>Selection</code></li>
+<li><code>Range</code></li>
+<li><code>Point</code></li>
+</ul>
+<p>Feel free to extend these types but extending these types should be considered experimental. Please report bugs on GitHub issues.</p>
+<h2 id="typescript-examples">TypeScript Examples</h2>
+<p>For some examples of how to use types, see <code>packages/slate-react/src/custom-types.ts</code> in the slate repository.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="11-normalizing.html" class="navigation navigation-prev " aria-label="Previous page: Normalizing">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="xx-migrating.html" class="navigation navigation-next " aria-label="Next page: Migrating">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"TypeScript","level":"2.12","depth":1,"next":{"title":"Migrating","level":"2.13","depth":1,"path":"concepts/xx-migrating.md","ref":"concepts/xx-migrating.md","articles":[]},"previous":{"title":"Normalizing","level":"2.11","depth":1,"path":"concepts/11-normalizing.md","ref":"concepts/11-normalizing.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/12-typescript.md","mtime":"2022-06-07T07:05:16.145Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-07T07:05:30.558Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

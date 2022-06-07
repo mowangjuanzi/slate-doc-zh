@@ -1,0 +1,1027 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Slate React · Slate 中文文档</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.7.3">
+        <meta name="author" content="mowangjuanzi">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="slate-history.html" />
+    
+    
+    <link rel="prev" href="../api/scrubber.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Walkthroughs</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../walkthroughs/01-installing-slate.html">
+            
+                <a href="../walkthroughs/01-installing-slate.html">
+            
+                    
+                    Installing Slate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../walkthroughs/02-adding-event-handlers.html">
+            
+                <a href="../walkthroughs/02-adding-event-handlers.html">
+            
+                    
+                    Adding Event Handlers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../walkthroughs/03-defining-custom-elements.html">
+            
+                <a href="../walkthroughs/03-defining-custom-elements.html">
+            
+                    
+                    Defining Custom Elements
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../walkthroughs/04-applying-custom-formatting.html">
+            
+                <a href="../walkthroughs/04-applying-custom-formatting.html">
+            
+                    
+                    Applying Custom Formatting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../walkthroughs/05-executing-commands.html">
+            
+                <a href="../walkthroughs/05-executing-commands.html">
+            
+                    
+                    Executing Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../walkthroughs/06-saving-to-a-database.html">
+            
+                <a href="../walkthroughs/06-saving-to-a-database.html">
+            
+                    
+                    Saving to a Database
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../walkthroughs/xx-using-the-bundled-source.html">
+            
+                <a href="../walkthroughs/xx-using-the-bundled-source.html">
+            
+                    
+                    Using the Bundled Source
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Concepts</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../concepts/01-interfaces.html">
+            
+                <a href="../concepts/01-interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../concepts/02-nodes.html">
+            
+                <a href="../concepts/02-nodes.html">
+            
+                    
+                    Nodes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../concepts/03-locations.html">
+            
+                <a href="../concepts/03-locations.html">
+            
+                    
+                    Locations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../concepts/04-transforms.html">
+            
+                <a href="../concepts/04-transforms.html">
+            
+                    
+                    Transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../concepts/05-operations.html">
+            
+                <a href="../concepts/05-operations.html">
+            
+                    
+                    Operations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../concepts/06-commands.html">
+            
+                <a href="../concepts/06-commands.html">
+            
+                    
+                    Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="../concepts/07-editor.html">
+            
+                <a href="../concepts/07-editor.html">
+            
+                    
+                    Editor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../concepts/08-plugins.html">
+            
+                <a href="../concepts/08-plugins.html">
+            
+                    
+                    Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="../concepts/09-rendering.html">
+            
+                <a href="../concepts/09-rendering.html">
+            
+                    
+                    Rendering
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="../concepts/10-serializing.html">
+            
+                <a href="../concepts/10-serializing.html">
+            
+                    
+                    Serializing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.11" data-path="../concepts/11-normalizing.html">
+            
+                <a href="../concepts/11-normalizing.html">
+            
+                    
+                    Normalizing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.12" data-path="../concepts/12-typescript.html">
+            
+                <a href="../concepts/12-typescript.html">
+            
+                    
+                    TypeScript
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.13" data-path="../concepts/xx-migrating.html">
+            
+                <a href="../concepts/xx-migrating.html">
+            
+                    
+                    Migrating
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">API</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../api/transforms.html">
+            
+                <a href="../api/transforms.html">
+            
+                    
+                    Transforms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../api/nodes/">
+            
+                <a href="../api/nodes/">
+            
+                    
+                    Node Types
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="../api/nodes/editor.html">
+            
+                <a href="../api/nodes/editor.html">
+            
+                    
+                    Editor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="../api/nodes/element.html">
+            
+                <a href="../api/nodes/element.html">
+            
+                    
+                    Element
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.3" data-path="../api/nodes/node.html">
+            
+                <a href="../api/nodes/node.html">
+            
+                    
+                    Node
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.4" data-path="../api/nodes/node-entry.html">
+            
+                <a href="../api/nodes/node-entry.html">
+            
+                    
+                    NodeEntry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.5" data-path="../api/nodes/text.html">
+            
+                <a href="../api/nodes/text.html">
+            
+                    
+                    Text
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../api/locations/">
+            
+                <a href="../api/locations/">
+            
+                    
+                    Location Types
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="../api/locations/location.html">
+            
+                <a href="../api/locations/location.html">
+            
+                    
+                    Location
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" data-path="../api/locations/path.html">
+            
+                <a href="../api/locations/path.html">
+            
+                    
+                    Path
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.3" data-path="../api/locations/path-ref.html">
+            
+                <a href="../api/locations/path-ref.html">
+            
+                    
+                    PathRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.4" data-path="../api/locations/point.html">
+            
+                <a href="../api/locations/point.html">
+            
+                    
+                    Point
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.5" data-path="../api/locations/point-entry.html">
+            
+                <a href="../api/locations/point-entry.html">
+            
+                    
+                    PointEntry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.6" data-path="../api/locations/point-ref.html">
+            
+                <a href="../api/locations/point-ref.html">
+            
+                    
+                    PointRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.7" data-path="../api/locations/range.html">
+            
+                <a href="../api/locations/range.html">
+            
+                    
+                    Range
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.8" data-path="../api/locations/range-ref.html">
+            
+                <a href="../api/locations/range-ref.html">
+            
+                    
+                    RangeRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.9" data-path="../api/locations/span.html">
+            
+                <a href="../api/locations/span.html">
+            
+                    
+                    Span
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../api/operation.html">
+            
+                <a href="../api/operation.html">
+            
+                    
+                    Operation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="../api/scrubber.html">
+            
+                <a href="../api/scrubber.html">
+            
+                    
+                    Scrubber
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Libraries</li>
+        
+        
+    
+        <li class="chapter active" data-level="4.1" data-path="slate-react.html">
+            
+                <a href="slate-react.html">
+            
+                    
+                    Slate React
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="slate-history.html">
+            
+                <a href="slate-history.html">
+            
+                    
+                    Slate History
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="slate-hyperscript.html">
+            
+                <a href="slate-hyperscript.html">
+            
+                    
+                    Slate Hyperscript
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">General</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../general/resources.html">
+            
+                <a href="../general/resources.html">
+            
+                    
+                    Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../general/contributing.html">
+            
+                <a href="../general/contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../general/changelog.html">
+            
+                <a href="../general/changelog.html">
+            
+                    
+                    Changelog
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../general/faq.html">
+            
+                <a href="../general/faq.html">
+            
+                    
+                    FAQ
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            本书使用 HonKit 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Slate React</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="slate-react">Slate React</h1>
+<p>This sub-library contains the React-specific logic for Slate.</p>
+<h2 id="components">Components</h2>
+<p>React components for rendering Slate editors</p>
+<h3 id="renderelementprops"><code>RenderElementProps</code></h3>
+<p><code>RenderElementProps</code> are passed to the <code>renderElement</code> handler.</p>
+<h3 id="renderleafprops"><code>RenderLeafProps</code></h3>
+<p><code>RenderLeafProps</code> are passed to the <code>renderLeaf</code> handler.</p>
+<h3 id="editable"><code>Editable</code></h3>
+<p>The main Slate editor.</p>
+<h4 id="event-handling">Event Handling</h4>
+<p>By default, the <code>Editable</code> component comes with a set of event handlers that handle typical rich-text editing behaviors (for example, it implements its own <code>onCopy</code>, <code>onPaste</code>, <code>onDrop</code>, and <code>onKeyDown</code> handlers).</p>
+<p>In some cases you may want to extend or override Slate&apos;s default behavior, which can be done by passing your own event handler(s) to the <code>Editable</code> component.</p>
+<p>Your custom event handler can control whether or not Slate should execute its own event handling for a given event after your handler runs depending on the return value of your event handler as described below.</p>
+<pre><code class="lang-jsx"><span class="hljs-keyword">import</span> {Editable} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-react&apos;</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyEditor</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> onClick = <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> {
+    <span class="hljs-comment">// Implement custom event logic...</span>
+
+    <span class="hljs-comment">// When no value is returned, Slate will execute its own event handler when</span>
+    <span class="hljs-comment">// neither isDefaultPrevented nor isPropagationStopped was set on the event</span>
+  };
+
+  <span class="hljs-keyword">const</span> onDrop = <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> {
+    <span class="hljs-comment">// Implement custom event logic...</span>
+
+    <span class="hljs-comment">// No matter the state of the event, treat it as being handled by returning</span>
+    <span class="hljs-comment">// true here, Slate will skip its own event handler</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  };
+
+  <span class="hljs-keyword">const</span> onDragStart = <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> {
+    <span class="hljs-comment">// Implement custom event logic...</span>
+
+    <span class="hljs-comment">// No matter the status of the event, treat event as *not* being handled by</span>
+    <span class="hljs-comment">// returning false, Slate will execute its own event handler afterward</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  };
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Editable</span>
+      <span class="hljs-attr">onClick</span>=<span class="hljs-string">{onClick}</span>
+      <span class="hljs-attr">onDrop</span>=<span class="hljs-string">{onDrop}</span>
+      <span class="hljs-attr">onDragStart</span>=<span class="hljs-string">{onDragStart}</span>
+      {/*<span class="hljs-attr">...</span>*/}
+    /&gt;</span></span>
+  )
+}
+</code></pre>
+<h3 id="defaultelementprops-renderelementprops"><code>DefaultElement(props: RenderElementProps)</code></h3>
+<p>The default element renderer.</p>
+<h3 id="defaultleafprops-renderleafprops"><code>DefaultLeaf(props: RenderLeafProps)</code></h3>
+<p>The default custom leaf renderer.</p>
+<h3 id="slateeditor-reacteditor-value-node-children-reactreactnode-onchange-value-node--void-key-string-any"><code>Slate(editor: ReactEditor, value: Node[], children: React.ReactNode, onChange: (value: Node[]) =&gt; void, [key: string]: any)</code></h3>
+<p>A wrapper around the provider to handle <code>onChange</code> events, because the editor is a mutable singleton so it won&apos;t ever register as &quot;changed&quot; otherwise.</p>
+<h2 id="hooks">Hooks</h2>
+<p>React hooks for Slate editors</p>
+<h3 id="usefocused"><code>useFocused</code></h3>
+<p>Get the current <code>focused</code> state of the editor.</p>
+<h3 id="usereadonly"><code>useReadOnly</code></h3>
+<p>Get the current <code>readOnly</code> state of the editor.</p>
+<h3 id="useselected"><code>useSelected</code></h3>
+<p>Get the current <code>selected</code> state of an element.</p>
+<h3 id="useslate"><code>useSlate</code></h3>
+<p>Get the current editor object from the React context. Re-renders the context whenever changes occur in the editor.</p>
+<h3 id="useslatestatic"><code>useSlateStatic</code></h3>
+<p>Get the current editor object from the React context. A version of useSlate that does not re-render the context. Previously called <code>useEditor</code>.</p>
+<h2 id="reacteditor">ReactEditor</h2>
+<p>A React and DOM-specific version of the <code>Editor</code> interface. All about translating between the DOM and Slate.</p>
+<h3 id="iscomposingeditor-reacteditor"><code>isComposing(editor: ReactEditor)</code></h3>
+<p>Check if the user is currently composing inside the editor.</p>
+<h3 id="findkeyeditor-reacteditor-node-node"><code>findKey(editor: ReactEditor, node: Node)</code></h3>
+<p>Find a key for a Slate node.</p>
+<h3 id="findpatheditor-reacteditor-node-node"><code>findPath(editor: ReactEditor, node: Node)</code></h3>
+<p>Find the path of Slate node.</p>
+<h3 id="isfocusededitor-reacteditor"><code>isFocused(editor: ReactEditor)</code></h3>
+<p>Check if the editor is focused.</p>
+<h3 id="isreadonlyeditor-reacteditor"><code>isReadOnly(editor: ReactEditor)</code></h3>
+<p>Check if the editor is in read-only mode.</p>
+<h3 id="blureditor-reacteditor"><code>blur(editor: ReactEditor)</code></h3>
+<p>Blur the editor.</p>
+<h3 id="focuseditor-reacteditor"><code>focus(editor: ReactEditor)</code></h3>
+<p>Focus the editor.</p>
+<h3 id="deselecteditor-reacteditor"><code>deselect(editor: ReactEditor)</code></h3>
+<p>Deselect the editor.</p>
+<h3 id="hasdomnodeeditor-reacteditor-target-domnode-options--editable-boolean---"><code>hasDOMNode(editor: ReactEditor, target: DOMNode, options: { editable?: boolean } = {})</code></h3>
+<p>Check if a DOM node is within the editor.</p>
+<h3 id="insertdataeditor-reacteditor-data-datatransfer"><code>insertData(editor: ReactEditor, data: DataTransfer)</code></h3>
+<p>Insert data from a <code>DataTransfer</code> into the editor. This is a proxy method to call in this order <code>insertFragmentData(editor: ReactEditor, data: DataTransfer)</code> and then <code>insertTextData(editor: ReactEditor, data: DataTransfer)</code>.</p>
+<h3 id="insertfragmentdataeditor-reacteditor-data-datatransfer"><code>insertFragmentData(editor: ReactEditor, data: DataTransfer)</code></h3>
+<p>Insert fragment data from a <code>DataTransfer</code> into the editor. Returns true if some content has been effectively inserted.</p>
+<h3 id="inserttextdataeditor-reacteditor-data-datatransfer"><code>insertTextData(editor: ReactEditor, data: DataTransfer)</code></h3>
+<p>Insert text data from a <code>DataTransfer</code> into the editor. Returns true if some content has been effectively inserted.</p>
+<h3 id="setfragmentdataeditor-reacteditor-data-datatransfer-originevent-drag--copy--cut"><code>setFragmentData(editor: ReactEditor, data: DataTransfer, originEvent?: &apos;drag&apos; | &apos;copy&apos; | &apos;cut&apos;)</code></h3>
+<p>Sets data from the currently selected fragment on a <code>DataTransfer</code>.</p>
+<h3 id="todomnodeeditor-reacteditor-node-node"><code>toDOMNode(editor: ReactEditor, node: Node)</code></h3>
+<p>Find the native DOM element from a Slate node.</p>
+<h3 id="todompointeditor-reacteditor-point-point"><code>toDOMPoint(editor: ReactEditor, point: Point)</code></h3>
+<p>Find a native DOM selection point from a Slate point.</p>
+<h3 id="todomrangeeditor-reacteditor-range-range"><code>toDOMRange(editor: ReactEditor, range: Range)</code></h3>
+<p>Find a native DOM range from a Slate <code>range</code>.</p>
+<h3 id="toslatenodeeditor-reacteditor-domnode-domnode"><code>toSlateNode(editor: ReactEditor, domNode: DOMNode)</code></h3>
+<p>Find a Slate node from a native DOM <code>element</code>.</p>
+<h3 id="findeventrangeeditor-reacteditor-event-any"><code>findEventRange(editor: ReactEditor, event: any)</code></h3>
+<p>Get the target range from a DOM <code>event</code>.</p>
+<h3 id="toslatepointeditor-reacteditor-dompoint-dompoint"><code>toSlatePoint(editor: ReactEditor, domPoint: DOMPoint)</code></h3>
+<p>Find a Slate point from a DOM selection&apos;s <code>domNode</code> and <code>domOffset</code>.</p>
+<h3 id="toslaterangeeditor-reacteditor-domrange-domrange--domstaticrange--domselection-options--exactmatch-boolean---"><code>toSlateRange(editor: ReactEditor, domRange: DOMRange | DOMStaticRange | DOMSelection, options?: { exactMatch?: boolean } = {})</code></h3>
+<p>Find a Slate range from a DOM range or selection.</p>
+<h2 id="plugins">Plugins</h2>
+<p>React-specific plugins for Slate editors</p>
+<h3 id="withreacteditor-editor"><code>withReact(editor: Editor)</code></h3>
+<p>Adds React and DOM specific behaviors to the editor.</p>
+<p>When used with <code>withHistory</code>, <code>withReact</code> should be applied outside. For example:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> editor = useMemo(<span class="hljs-function">() =&gt;</span> withReact(withHistory(createEditor())), [])
+</code></pre>
+<h2 id="utils">Utils</h2>
+<p>Private convenience modules</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../api/scrubber.html" class="navigation navigation-prev " aria-label="Previous page: Scrubber">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="slate-history.html" class="navigation navigation-next " aria-label="Next page: Slate History">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Slate React","level":"4.1","depth":1,"next":{"title":"Slate History","level":"4.2","depth":1,"path":"libraries/slate-history.md","ref":"libraries/slate-history.md","articles":[]},"previous":{"title":"Scrubber","level":"3.5","depth":1,"path":"api/scrubber.md","ref":"api/scrubber.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"libraries/slate-react.md","mtime":"2022-06-07T07:05:16.153Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-07T07:05:30.558Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
