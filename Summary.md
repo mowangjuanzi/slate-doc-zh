@@ -2,9 +2,9 @@
 
 - [简介](Introduction.md)
 
-## Walkthroughs
+## 演示
 
-- [Installing Slate](walkthroughs/01-installing-slate.md)
+- [安装 Slate](walkthroughs/01-installing-slate.md)
 - [Adding Event Handlers](walkthroughs/02-adding-event-handlers.md)
 - [Defining Custom Elements](walkthroughs/03-defining-custom-elements.md)
 - [Applying Custom Formatting](walkthroughs/04-applying-custom-formatting.md)

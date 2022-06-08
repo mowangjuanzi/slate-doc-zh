@@ -1,56 +1,56 @@
-# Installing Slate
+# 安装 Slate
 
-Slate is a monorepo divided up into multiple npm packages, so to install it you do:
+Slate 是分为多个 npm 包的单一代码库，所以你需要使用如下方式安装它：
 
 ```text
 yarn add slate slate-react
 ```
 
-You'll also need to be sure to install Slate's peer dependencies:
+你也需要确保安装 Slate 同级依赖：
 
 ```text
 yarn add react react-dom
 ```
 
-_Note, if you'd rather use a pre-bundled version of Slate, you can `yarn add slate` and retrieve the bundled `dist/slate.js` file! Check out the_ [_Using the Bundled Source_](xx-using-the-bundled-source.md) _guide for more information._
+_注意，如果你更愿意使用预编译的 Slate，你可以 `yarn add slate` 并检索已编译的 `dist/slate.js` 文件！查看[使用已编译源](xx-using-the-bundled-source.md)教程获取更多信息。_
 
-Once you've installed Slate, you'll need to import it.
+一旦你安装了 Slate，你需要导入它。
 
 ```jsx
-// Import React dependencies.
+// 导入 React 依赖。
 import React, { useState } from 'react'
-// Import the Slate editor factory.
+// 导入 Slate 编辑器工厂。
 import { createEditor } from 'slate'
 
-// Import the Slate components and React plugin.
+// 导入 Slate 组件和 React 插件。
 import { Slate, Editable, withReact } from 'slate-react'
 ```
 
-Before we use those imports, let's start with an empty `<App>` component:
+在我们导入之前，让我们先从空 `<App>` 组件开始：
 
 ```jsx
-// Define our app...
+// 定义 app 。。。
 const App = () => {
   return null
 }
 ```
 
-The next step is to create a new `Editor` object. We want the editor to be stable across renders, so we use the `useState` hook [without a setter](https://github.com/ianstormtaylor/slate/pull/3925#issuecomment-781179930):
+下一步是创建一个新的 `Editor` 对象。我们希望编辑器在渲染过程中保持稳定，因此我们使用 `useState` 钩子[而不是 setter](https://github.com/ianstormtaylor/slate/pull/3925#issuecomment-781179930)：
 
 ```jsx
 const App = () => {
-  // Create a Slate editor object that won't change across renders.
+  // 创建一个不会随着渲染而改变的 Slate 编辑器对象。
   const [editor] = useState(() => withReact(createEditor()))
   return null
 }
 ```
 
-Of course we haven't rendered anything, so you won't see any changes.
+当然我们没有渲染任何东西，所以你不会看到任何改变。
 
-> If you are using TypeScript, you will also need to extend the `Editor` with `ReactEditor` and add annotations as per the documentation on [TypeScript](../concepts/12-typescript.md). The example below also includes the custom types required for the rest of this example.
+> 如果使用 TypeScript，还需要使用 `ReactEditor` 扩展 `Editor` 并根据 [TypeScript](../concepts/12-typescript.md) 的文档添加注解。下面的示例还包括此示例剩余部分所需要的自定义类型。
 
 ```typescript
-// TypeScript users only add this code
+// 仅 TypeScript 用户添加此代码
 import { BaseEditor, Descendant } from 'slate'
 import { ReactEditor } from 'slate-react'
 
@@ -66,29 +66,29 @@ declare module 'slate' {
 }
 ```
 
-Next up is to render a `<Slate>` context provider.
+接下来渲染 `<Slate>` 内容提供者。
 
-The provider component keeps track of your Slate editor, its plugins, its value, its selection, and any changes that occur. It **must** be rendered above any `<Editable>` components. But it can also provide the editor state to other components like toolbars, menus, etc. using the `useSlate` hook.
+提供者组件会保持对 Slate 编辑器、插件、值、选择以及发生任何更改的追踪。它**必须**在 `<Editable>` 组件上渲染。但是它也可以使用 `useSlate` 钩子将编辑器状态提供给工具栏、菜单等其它组件。
 
 ```jsx
 const initialValue = []
 
 const App = () => {
   const [editor] = useState(() => withReact(createEditor()))
-  // Render the Slate context.
+  // 渲染 Slate 上下文。
   return <Slate editor={editor} value={initialValue} />
 }
 ```
 
-You can think of the `<Slate>` component as providing a context to every component underneath it.
+你可以将 `<Slate>` 组件为下面的每个组件提供上下文。
 
-> Slate Provider's "value" prop is only used as initial state for editor.children. If your code relies on replacing editor.children you should do so by replacing it directly instead of relying on the "value" prop to do this for you. See [Slate PR 4540](https://github.com/ianstormtaylor/slate/pull/4540) for a more in-depth discussion.
+> Slate 提供者的 “value” prop 仅用作 editor.children 的初始状态。如果你的代码依赖替换 editor.children 你应该直接替换它，而不是依赖 “value” prop 去执行此操作。有关更深入的讨论请参阅 [Slate PR 4540](https://github.com/ianstormtaylor/slate/pull/4540)。
 
-This is a slightly different mental model than things like `<input>` or `<textarea>`, because richtext documents are more complex. You'll often want to include toolbars, or live previews, or other complex components next to your editable content.
+这与 `<input>` 或 `<textarea>` 之类的心智模型略有不同，因为富文本文档更加复杂。你通常希望在可编辑内容旁边包含工具栏，实时预览或者其它复杂组件。
 
-By having a shared context, those other components can execute commands, query the editor's state, etc.
+通过共享上下文，其他组件可以执行命令，查询编辑器状态等。
 
-Okay, so the next step is to render the `<Editable>` component itself:
+好，下一步是渲染 `<Editable>` 组件：
 
 ```jsx
 const initialValue = []
@@ -96,7 +96,7 @@ const initialValue = []
 const App = () => {
   const [editor] = useState(() => withReact(createEditor()))
   return (
-    // Add the editable component inside the context.
+    // 在上下文中添加可编辑组件。
     <Slate editor={editor} value={initialValue}>
       <Editable />
     </Slate>
@@ -104,14 +104,14 @@ const App = () => {
 }
 ```
 
-The `<Editable>` component acts like `contenteditable`. Anywhere you render it will render an editable richtext document for the nearest editor context.
+`<Editable>` 组件的作用类似于 `contenteditable`。在任何地方渲染都会为最近的编辑器上下文渲染一个可编辑的富文本文档。
 
-There's only one last step. So far we've been using an empty `[]` array as the initial value of the editor, so it has no content. Let's fix that by defining an initial value.
+只剩一步。到目前为止我们一直使用空的 `[]` 数组作为编辑器的初始值，所以没有内容。通过定义初始化值可以解决这个问题。
 
-The value is just plain JSON. Here's one containing a single paragraph block with some text in it:
+值仅是普通的 JSON。这是包含一些文本的单个段落块：
 
 ```jsx
-// Add the initial value.
+// 添加初始化值。
 const initialValue = [
   {
     type: 'paragraph',
@@ -130,6 +130,6 @@ const App = () => {
 }
 ```
 
-There you have it!
+明白了吧！
 
-That's the most basic example of Slate. If you render that onto the page, you should see a paragraph with the text `A line of text in a paragraph.` And when you type, you should see the text change!
+这是 Slate 最基本的例子。如果将其渲染到页面上，将会看到带有文本 `A line of text in a paragraph.` 的段落，当你输入时，你会看到文本发生了变化！

@@ -6,17 +6,17 @@
 
 Slate 可以构建丰富直观的编辑器，像 [Medium](https://medium.com/)、[Dropbox Paper](https://www.dropbox.com/paper)、[Google Docs](https://www.google.com/docs/about/) —— 这些正成为网络应用程序的中流砥柱 —— 不会让代码库陷入复杂。
 
-因为它的所有逻辑都是用一系列插件实现的，所以他可以做到你永远_不会_被“核心”限制。你可以想象它是基于 [React](https://facebook.github.io/react/) `contenteditable` 的可拔插实现。它的灵感来自于 [Draft.js](https://facebook.github.io/draft-js/)、[Prosemirror](http://prosemirror.net/)、[Quill](http://quilljs.com/) 等库.
+因为它的所有逻辑都是用一系列插件实现的，所以无论_是否_是“核心”都不会受到限制。你可以想象它是基于 [React](https://facebook.github.io/react/) `contenteditable` 的可拔插实现。它的灵感来自于 [Draft.js](https://facebook.github.io/draft-js/)、[Prosemirror](http://prosemirror.net/)、[Quill](http://quilljs.com/) 等库.
 
-> 🤖 **Slate 目前处于测试阶段**. 核心 API 现在可以使用，但你也可以为高级用例提交 PR 修复。一些 API 没有“最终确定”且会随着时间的推移找到更好的方案后进行(破坏性)更新。
+> 🤖 **Slate 目前处于测试阶段**。核心 API 现在可以使用，但你也可以为高级用例 PR 修复。一些 API 没有“最终确定”且会随着时间的推移找到更好的方案后进行（破坏性）更新。
 
 ## 为什么？
 
-为什么创建 Slate？ 嗯。。。_\(注意：本节有[作者](https://github.com/ianstormtaylor)的一些意见！\)_
+为什么创建 Slate？ 嗯。。。_（注意：本节有[作者](https://github.com/ianstormtaylor)的一些意见！）_
 
 在创建 Slate 之前，我尝试了很多富文本类库 —— [**Draft.js**](https://facebook.github.io/draft-js/)、[**Prosemirror**](http://prosemirror.net/)、[**Quill**](http://quilljs.com/)等。我发现简单的示例运行起来很容易，一旦你尝试构建像 [Medium](https://medium.com/)、[Dropbox Paper](https://www.dropbox.com/paper)、[Google Docs](https://www.google.com/docs/about/)，你就会遇到更深层次的问题。。。
 
-- **编辑器的"模式"是硬编码的，难以修改。**像是粗体斜体是开箱即用的，但是评论，嵌入，甚至更多特定领域需要的呢？
+- **编辑器的“模式”是硬编码的，难以修改。**像是粗体斜体是开箱即用的，但是评论，嵌入，甚至更多特定领域需要的呢？
 - **以编程的方式转换文档非常复杂。**作为用户编写可能会奏效，但是对构建高级行为至关重要的程序化更改是不必要的复杂。
 - **似乎是后来才想到序列化为 HTML、Markdown等。**像是将文档转换为 HTML 或者 Markdown 这种简单的事情都需要编写大量的模板代码，这似乎是非常常见的用例。
 - **重新做视图层似乎效率低下且受到限制。**大部分编辑器都使用了自己的视图，而不是使用像 React 这样现有的技术，所以你必须学习一个新的有“问题”的全新系统。
@@ -32,7 +32,7 @@ Slate 可以构建丰富直观的编辑器，像 [Medium](https://medium.com/)�
 
 ## 原则
 
-Slate 尝试解决“[为什么？](Introduction.md#为什么？)” 提出的问题。有几个原则：
+Slate 尝试解决“[为什么？](Introduction.md#为什么？)”提出的问题。有几个原则：
 
 1. **插件是一等公民。**Slate 最重要的部分是插件是一等公民。这意味着你_完全_可以自定义编辑体验，构建像 Medium 或 Dropbox 一样复杂的编辑器，而无需猜测类库的呈现。
 2. **无模式核心。**Slate 的核心逻辑对要编写的数据模式几乎没有假设，这意味着当你需要编写复杂用例时，不会被任何库中的任何假设阻碍。
@@ -77,11 +77,11 @@ Slate 尝试解决“[为什么？](Introduction.md#为什么？)” 提出的�
 
 也有将文档翻译成其他语言：
 
-- [英文](https://github.com/ianstormtaylor/slate/tree/main/docs)【译者注：这里我改成了英文原版地址】
+- [中文](https://github.com/mowangjuanzi/slate-doc-zh)【译者注：厚脸皮贴上本项目，修复请向此项目 PR】
 
 如果你正在维护翻译，请随时在此提交 PR！
 
-## 贡献!
+## 贡献！
 
 超级欢迎所有贡献！请查看[贡献说明](general/contributing.md)获取更多信息！
 
