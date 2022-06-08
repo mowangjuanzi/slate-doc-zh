@@ -3,7 +3,7 @@
 <html lang="zh-hans" >
     <head>
         <meta charset="UTF-8">
-        <title>Adding Event Handlers · Slate 中文文档</title>
+        <title>添加事件处理程序 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.7.3">
@@ -126,7 +126,7 @@
                 <a href="02-adding-event-handlers.html">
             
                     
-                    Adding Event Handlers
+                    添加事件处理程序
             
                 </a>
             
@@ -776,7 +776,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Adding Event Handlers</a>
+        <a href=".." >添加事件处理程序</a>
     </h1>
 </div>
 
@@ -791,11 +791,14 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="adding-event-handlers">Adding Event Handlers</h1>
-<p>Okay, so you&apos;ve got Slate installed and rendered on the page, and when you type in it, you can see the changes reflected. But you want to do more than just type a plaintext string.</p>
-<p>What makes Slate great is how easy it is to customize. Just like other React components you&apos;re used to, Slate allows you to pass in handlers that are triggered on certain events.</p>
-<p>Let&apos;s use the <code>onKeyDown</code> handler to change the editor&apos;s content when we press a key.</p>
-<p>Here&apos;s our app from earlier:</p>
+                                <h1 id="添加事件处理程序">添加事件处理程序</h1>
+<blockquote>
+<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/02-adding-event-handlers.md" target="_blank">9892cf0ffbd741cc2880d1f0bd0d7c1b36145bbd</a></p>
+</blockquote>
+<p>好，已经安装了 Slate 并在页面呈现，当输入时，会看到变化。但是需要做的不仅仅是输入纯文本字符串。</p>
+<p>Slate 之所以如此出色是因为它易于定制。就像使用其它 React 组件一样，当某些事件触发的时候，Slate 允许传递处理程序。</p>
+<p>当按下一个键的时候，使用 <code>onKeyDown</code> 处理程序来更改编辑器的内容。</p>
+<p>这是之前的应用程序：</p>
 <pre><code class="lang-jsx"><span class="hljs-keyword">const</span> initialValue = [
   {
     <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
@@ -813,7 +816,7 @@
   )
 }
 </code></pre>
-<p>Now we add an <code>onKeyDown</code> handler:</p>
+<p>现在添加 <code>onKeyDown</code> 处理程序：</p>
 <pre><code class="lang-jsx"><span class="hljs-keyword">const</span> initialValue = [
   {
     <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
@@ -827,7 +830,7 @@
   <span class="hljs-keyword">return</span> (
     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">Editable</span>
-        // <span class="hljs-attr">Define</span> <span class="hljs-attr">a</span> <span class="hljs-attr">new</span> <span class="hljs-attr">handler</span> <span class="hljs-attr">which</span> <span class="hljs-attr">prints</span> <span class="hljs-attr">the</span> <span class="hljs-attr">key</span> <span class="hljs-attr">that</span> <span class="hljs-attr">was</span> <span class="hljs-attr">pressed.</span>
+        // 定义新的处理程序打印按下的键。
         <span class="hljs-attr">onKeyDown</span>=<span class="hljs-string">{event</span> =&gt;</span> {
           console.log(event.key)
         }}
@@ -836,9 +839,9 @@
   )
 }
 </code></pre>
-<p>Cool, now when a key is pressed in the editor, its corresponding keycode is logged in the console.</p>
-<p>Now we want to make it actually change the content. For the purposes of our example, let&apos;s implement turning all ampersand, <code>&amp;</code>, keystrokes into the word <code>and</code> upon being typed.</p>
-<p>Our <code>onKeyDown</code> handler might look like this:</p>
+<p>棒，现在当在编辑器中按下一个键时，其对应的建码会纪录在控制台中。</p>
+<p>现在想让它真正的转变内容。出于示例的目的，实现为所有按下的 <code>&amp;</code> 键转换为单词 <code>and</code>。</p>
+<p><code>onKeyDown</code> 处理程序可能如下所示：</p>
 <pre><code class="lang-jsx"><span class="hljs-keyword">const</span> initialValue = [
   {
     <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
@@ -854,9 +857,9 @@
       <span class="hljs-tag">&lt;<span class="hljs-name">Editable</span>
         <span class="hljs-attr">onKeyDown</span>=<span class="hljs-string">{event</span> =&gt;</span> {
           if (event.key === &apos;&amp;&apos;) {
-            // Prevent the ampersand character from being inserted.
+            // 防止插入 &amp; 字符。
             event.preventDefault()
-            // Execute the `insertText` method when the event occurs.
+            // 事件发生时执行 `insertText` 方法。
             editor.insertText(&apos;and&apos;)
           }
         }}
@@ -865,8 +868,8 @@
   )
 }
 </code></pre>
-<p>With that added, try typing <code>&amp;</code>, and you should see it suddenly become <code>and</code> instead!</p>
-<p>This offers a sense of what can be done with Slate&apos;s event handlers. Each one will be called with the <code>event</code> object, and you can use your <code>editor</code> to perform commands in response. Simple!</p>
+<p>添加后，尝试输入 <code>&amp;</code>，会发现它突然变成了 <code>and</code>！</p>
+<p>这提示了使用 Slate 事件处理程序可以做什么的意义。每个都将调用 <code>event</code> 对象，你可以使用 <code>editor</code> 执行命令作为响应。是不是挺简单！</p>
 
                                 
                                 </section>
@@ -910,7 +913,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Adding Event Handlers","level":"2.2","depth":1,"next":{"title":"Defining Custom Elements","level":"2.3","depth":1,"path":"walkthroughs/03-defining-custom-elements.md","ref":"walkthroughs/03-defining-custom-elements.md","articles":[]},"previous":{"title":"安装 Slate","level":"2.1","depth":1,"path":"walkthroughs/01-installing-slate.md","ref":"walkthroughs/01-installing-slate.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/02-adding-event-handlers.md","mtime":"2022-06-08T07:27:27.537Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-08T07:27:32.467Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"添加事件处理程序","level":"2.2","depth":1,"next":{"title":"Defining Custom Elements","level":"2.3","depth":1,"path":"walkthroughs/03-defining-custom-elements.md","ref":"walkthroughs/03-defining-custom-elements.md","articles":[]},"previous":{"title":"安装 Slate","level":"2.1","depth":1,"path":"walkthroughs/01-installing-slate.md","ref":"walkthroughs/01-installing-slate.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/02-adding-event-handlers.md","mtime":"2022-06-08T09:49:12.481Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-08T09:49:19.054Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
