@@ -3,7 +3,7 @@
 <html lang="zh-hans" >
     <head>
         <meta charset="UTF-8">
-        <title>Installing Slate · Slate 中文文档</title>
+        <title>安装 Slate · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.7.3">
@@ -104,7 +104,7 @@
 
     
         
-        <li class="header">Walkthroughs</li>
+        <li class="header">演示</li>
         
         
     
@@ -113,7 +113,7 @@
                 <a href="01-installing-slate.html">
             
                     
-                    Installing Slate
+                    安装 Slate
             
                 </a>
             
@@ -776,7 +776,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Installing Slate</a>
+        <a href=".." >安装 Slate</a>
     </h1>
 </div>
 
@@ -791,41 +791,41 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="installing-slate">Installing Slate</h1>
-<p>Slate is a monorepo divided up into multiple npm packages, so to install it you do:</p>
+                                <h1 id="安装-slate">安装 Slate</h1>
+<p>Slate 是分为多个 npm 包的单一代码库，所以你需要使用如下方式安装它：</p>
 <pre><code class="lang-text">yarn add slate slate-react
 </code></pre>
-<p>You&apos;ll also need to be sure to install Slate&apos;s peer dependencies:</p>
+<p>你也需要确保安装 Slate 同级依赖：</p>
 <pre><code class="lang-text">yarn add react react-dom
 </code></pre>
-<p><em>Note, if you&apos;d rather use a pre-bundled version of Slate, you can <code>yarn add slate</code> and retrieve the bundled <code>dist/slate.js</code> file! Check out the</em> <a href="xx-using-the-bundled-source.html"><em>Using the Bundled Source</em></a> <em>guide for more information.</em></p>
-<p>Once you&apos;ve installed Slate, you&apos;ll need to import it.</p>
-<pre><code class="lang-jsx"><span class="hljs-comment">// Import React dependencies.</span>
+<p><em>注意，如果你更愿意使用预编译的 Slate，你可以 <code>yarn add slate</code> 并检索已编译的 <code>dist/slate.js</code> 文件！查看<a href="xx-using-the-bundled-source.html">使用已编译源</a>教程获取更多信息。</em></p>
+<p>一旦你安装了 Slate，你需要导入它。</p>
+<pre><code class="lang-jsx"><span class="hljs-comment">// 导入 React 依赖。</span>
 <span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
-<span class="hljs-comment">// Import the Slate editor factory.</span>
+<span class="hljs-comment">// 导入 Slate 编辑器工厂。</span>
 <span class="hljs-keyword">import</span> { createEditor } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 
-<span class="hljs-comment">// Import the Slate components and React plugin.</span>
+<span class="hljs-comment">// 导入 Slate 组件和 React 插件。</span>
 <span class="hljs-keyword">import</span> { Slate, Editable, withReact } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-react&apos;</span>
 </code></pre>
-<p>Before we use those imports, let&apos;s start with an empty <code>&lt;App&gt;</code> component:</p>
-<pre><code class="lang-jsx"><span class="hljs-comment">// Define our app...</span>
+<p>在我们导入之前，让我们先从空 <code>&lt;App&gt;</code> 组件开始：</p>
+<pre><code class="lang-jsx"><span class="hljs-comment">// 定义 app 。。。</span>
 <span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
   <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
 }
 </code></pre>
-<p>The next step is to create a new <code>Editor</code> object. We want the editor to be stable across renders, so we use the <code>useState</code> hook <a href="https://github.com/ianstormtaylor/slate/pull/3925#issuecomment-781179930" target="_blank">without a setter</a>:</p>
+<p>下一步是创建一个新的 <code>Editor</code> 对象。我们希望编辑器在渲染过程中保持稳定，因此我们使用 <code>useState</code> 钩子<a href="https://github.com/ianstormtaylor/slate/pull/3925#issuecomment-781179930" target="_blank">而不是 setter</a>：</p>
 <pre><code class="lang-jsx"><span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-comment">// Create a Slate editor object that won&apos;t change across renders.</span>
+  <span class="hljs-comment">// 创建一个不会随着渲染而改变的 Slate 编辑器对象。</span>
   <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
   <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
 }
 </code></pre>
-<p>Of course we haven&apos;t rendered anything, so you won&apos;t see any changes.</p>
+<p>当然我们没有渲染任何东西，所以你不会看到任何改变。</p>
 <blockquote>
-<p>If you are using TypeScript, you will also need to extend the <code>Editor</code> with <code>ReactEditor</code> and add annotations as per the documentation on <a href="../concepts/12-typescript.html">TypeScript</a>. The example below also includes the custom types required for the rest of this example.</p>
+<p>如果使用 TypeScript，还需要使用 <code>ReactEditor</code> 扩展 <code>Editor</code> 并根据 <a href="../concepts/12-typescript.html">TypeScript</a> 的文档添加注解。下面的示例还包括此示例剩余部分所需要的自定义类型。</p>
 </blockquote>
-<pre><code class="lang-typescript"><span class="hljs-comment">// TypeScript users only add this code</span>
+<pre><code class="lang-typescript"><span class="hljs-comment">// 仅 TypeScript 用户添加此代码</span>
 <span class="hljs-keyword">import</span> { BaseEditor, Descendant } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 <span class="hljs-keyword">import</span> { ReactEditor } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-react&apos;</span>
 
@@ -840,39 +840,39 @@
   }
 }
 </code></pre>
-<p>Next up is to render a <code>&lt;Slate&gt;</code> context provider.</p>
-<p>The provider component keeps track of your Slate editor, its plugins, its value, its selection, and any changes that occur. It <strong>must</strong> be rendered above any <code>&lt;Editable&gt;</code> components. But it can also provide the editor state to other components like toolbars, menus, etc. using the <code>useSlate</code> hook.</p>
+<p>接下来渲染 <code>&lt;Slate&gt;</code> 内容提供者。</p>
+<p>提供者组件会保持对 Slate 编辑器、插件、值、选择以及发生任何更改的追踪。它<strong>必须</strong>在 <code>&lt;Editable&gt;</code> 组件上渲染。但是它也可以使用 <code>useSlate</code> 钩子将编辑器状态提供给工具栏、菜单等其它组件。</p>
 <pre><code class="lang-jsx"><span class="hljs-keyword">const</span> initialValue = []
 
 <span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
   <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
-  <span class="hljs-comment">// Render the Slate context.</span>
+  <span class="hljs-comment">// 渲染 Slate 上下文。</span>
   <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span> /&gt;</span></span>
 }
 </code></pre>
-<p>You can think of the <code>&lt;Slate&gt;</code> component as providing a context to every component underneath it.</p>
+<p>你可以将 <code>&lt;Slate&gt;</code> 组件为下面的每个组件提供上下文。</p>
 <blockquote>
-<p>Slate Provider&apos;s &quot;value&quot; prop is only used as initial state for editor.children. If your code relies on replacing editor.children you should do so by replacing it directly instead of relying on the &quot;value&quot; prop to do this for you. See <a href="https://github.com/ianstormtaylor/slate/pull/4540" target="_blank">Slate PR 4540</a> for a more in-depth discussion.</p>
+<p>Slate 提供者的 “value” prop 仅用作 editor.children 的初始状态。如果你的代码依赖替换 editor.children 你应该直接替换它，而不是依赖 “value” prop 去执行此操作。有关更深入的讨论请参阅 <a href="https://github.com/ianstormtaylor/slate/pull/4540" target="_blank">Slate PR 4540</a>。</p>
 </blockquote>
-<p>This is a slightly different mental model than things like <code>&lt;input&gt;</code> or <code>&lt;textarea&gt;</code>, because richtext documents are more complex. You&apos;ll often want to include toolbars, or live previews, or other complex components next to your editable content.</p>
-<p>By having a shared context, those other components can execute commands, query the editor&apos;s state, etc.</p>
-<p>Okay, so the next step is to render the <code>&lt;Editable&gt;</code> component itself:</p>
+<p>这与 <code>&lt;input&gt;</code> 或 <code>&lt;textarea&gt;</code> 之类的心智模型略有不同，因为富文本文档更加复杂。你通常希望在可编辑内容旁边包含工具栏，实时预览或者其它复杂组件。</p>
+<p>通过共享上下文，其他组件可以执行命令，查询编辑器状态等。</p>
+<p>好，下一步是渲染 <code>&lt;Editable&gt;</code> 组件：</p>
 <pre><code class="lang-jsx"><span class="hljs-keyword">const</span> initialValue = []
 
 <span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
   <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
   <span class="hljs-keyword">return</span> (
-    <span class="hljs-comment">// Add the editable component inside the context.</span>
+    <span class="hljs-comment">// 在上下文中添加可编辑组件。</span>
     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">Editable</span> /&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">Slate</span>&gt;</span></span>
   )
 }
 </code></pre>
-<p>The <code>&lt;Editable&gt;</code> component acts like <code>contenteditable</code>. Anywhere you render it will render an editable richtext document for the nearest editor context.</p>
-<p>There&apos;s only one last step. So far we&apos;ve been using an empty <code>[]</code> array as the initial value of the editor, so it has no content. Let&apos;s fix that by defining an initial value.</p>
-<p>The value is just plain JSON. Here&apos;s one containing a single paragraph block with some text in it:</p>
-<pre><code class="lang-jsx"><span class="hljs-comment">// Add the initial value.</span>
+<p><code>&lt;Editable&gt;</code> 组件的作用类似于 <code>contenteditable</code>。在任何地方渲染都会为最近的编辑器上下文渲染一个可编辑的富文本文档。</p>
+<p>只剩一步。到目前为止我们一直使用空的 <code>[]</code> 数组作为编辑器的初始值，所以没有内容。通过定义初始化值可以解决这个问题。</p>
+<p>值仅是普通的 JSON。这是包含一些文本的单个段落块：</p>
+<pre><code class="lang-jsx"><span class="hljs-comment">// 添加初始化值。</span>
 <span class="hljs-keyword">const</span> initialValue = [
   {
     <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
@@ -890,8 +890,8 @@
   )
 }
 </code></pre>
-<p>There you have it!</p>
-<p>That&apos;s the most basic example of Slate. If you render that onto the page, you should see a paragraph with the text <code>A line of text in a paragraph.</code> And when you type, you should see the text change!</p>
+<p>明白了吧！</p>
+<p>这是 Slate 最基本的例子。如果将其渲染到页面上，将会看到带有文本 <code>A line of text in a paragraph.</code> 的段落，当你输入时，你会看到文本发生了变化！</p>
 
                                 
                                 </section>
@@ -935,7 +935,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installing Slate","level":"2.1","depth":1,"next":{"title":"Adding Event Handlers","level":"2.2","depth":1,"path":"walkthroughs/02-adding-event-handlers.md","ref":"walkthroughs/02-adding-event-handlers.md","articles":[]},"previous":{"title":"简介","level":"1.1","depth":1,"path":"Introduction.md","ref":"Introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/01-installing-slate.md","mtime":"2022-06-08T03:30:07.517Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-08T03:30:17.384Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"安装 Slate","level":"2.1","depth":1,"next":{"title":"Adding Event Handlers","level":"2.2","depth":1,"path":"walkthroughs/02-adding-event-handlers.md","ref":"walkthroughs/02-adding-event-handlers.md","articles":[]},"previous":{"title":"简介","level":"1.1","depth":1,"path":"Introduction.md","ref":"Introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/01-installing-slate.md","mtime":"2022-06-08T07:27:27.533Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-08T07:27:32.467Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

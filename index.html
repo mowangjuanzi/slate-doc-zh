@@ -102,7 +102,7 @@
 
     
         
-        <li class="header">Walkthroughs</li>
+        <li class="header">演示</li>
         
         
     
@@ -111,7 +111,7 @@
                 <a href="walkthroughs/01-installing-slate.html">
             
                     
-                    Installing Slate
+                    安装 Slate
             
                 </a>
             
@@ -795,15 +795,15 @@
 </blockquote>
 <p><a href="http://slatejs.org" target="_blank">Slate</a> 是<em>完全</em>可定制的框架，用于构建富文本编辑器。</p>
 <p>Slate 可以构建丰富直观的编辑器，像 <a href="https://medium.com/" target="_blank">Medium</a>、<a href="https://www.dropbox.com/paper" target="_blank">Dropbox Paper</a>、<a href="https://www.google.com/docs/about/" target="_blank">Google Docs</a> —— 这些正成为网络应用程序的中流砥柱 —— 不会让代码库陷入复杂。</p>
-<p>因为它的所有逻辑都是用一系列插件实现的，所以他可以做到你永远<em>不会</em>被“核心”限制。你可以想象它是基于 <a href="https://facebook.github.io/react/" target="_blank">React</a> <code>contenteditable</code> 的可拔插实现。它的灵感来自于 <a href="https://facebook.github.io/draft-js/" target="_blank">Draft.js</a>、<a href="http://prosemirror.net/" target="_blank">Prosemirror</a>、<a href="http://quilljs.com/" target="_blank">Quill</a> 等库.</p>
+<p>因为它的所有逻辑都是用一系列插件实现的，所以无论<em>是否</em>是“核心”都不会受到限制。你可以想象它是基于 <a href="https://facebook.github.io/react/" target="_blank">React</a> <code>contenteditable</code> 的可拔插实现。它的灵感来自于 <a href="https://facebook.github.io/draft-js/" target="_blank">Draft.js</a>、<a href="http://prosemirror.net/" target="_blank">Prosemirror</a>、<a href="http://quilljs.com/" target="_blank">Quill</a> 等库.</p>
 <blockquote>
-<p>🤖 <strong>Slate 目前处于测试阶段</strong>. 核心 API 现在可以使用，但你也可以为高级用例提交 PR 修复。一些 API 没有“最终确定”且会随着时间的推移找到更好的方案后进行(破坏性)更新。</p>
+<p>🤖 <strong>Slate 目前处于测试阶段</strong>。核心 API 现在可以使用，但你也可以为高级用例 PR 修复。一些 API 没有“最终确定”且会随着时间的推移找到更好的方案后进行（破坏性）更新。</p>
 </blockquote>
 <h2 id="为什么？">为什么？</h2>
-<p>为什么创建 Slate？ 嗯。。。<em>(注意：本节有<a href="https://github.com/ianstormtaylor" target="_blank">作者</a>的一些意见！)</em></p>
+<p>为什么创建 Slate？ 嗯。。。<em>（注意：本节有<a href="https://github.com/ianstormtaylor" target="_blank">作者</a>的一些意见！）</em></p>
 <p>在创建 Slate 之前，我尝试了很多富文本类库 —— <a href="https://facebook.github.io/draft-js/" target="_blank"><strong>Draft.js</strong></a>、<a href="http://prosemirror.net/" target="_blank"><strong>Prosemirror</strong></a>、<a href="http://quilljs.com/" target="_blank"><strong>Quill</strong></a>等。我发现简单的示例运行起来很容易，一旦你尝试构建像 <a href="https://medium.com/" target="_blank">Medium</a>、<a href="https://www.dropbox.com/paper" target="_blank">Dropbox Paper</a>、<a href="https://www.google.com/docs/about/" target="_blank">Google Docs</a>，你就会遇到更深层次的问题。。。</p>
 <ul>
-<li><strong>编辑器的&quot;模式&quot;是硬编码的，难以修改。</strong>像是粗体斜体是开箱即用的，但是评论，嵌入，甚至更多特定领域需要的呢？</li>
+<li><strong>编辑器的“模式”是硬编码的，难以修改。</strong>像是粗体斜体是开箱即用的，但是评论，嵌入，甚至更多特定领域需要的呢？</li>
 <li><strong>以编程的方式转换文档非常复杂。</strong>作为用户编写可能会奏效，但是对构建高级行为至关重要的程序化更改是不必要的复杂。</li>
 <li><strong>似乎是后来才想到序列化为 HTML、Markdown等。</strong>像是将文档转换为 HTML 或者 Markdown 这种简单的事情都需要编写大量的模板代码，这似乎是非常常见的用例。</li>
 <li><strong>重新做视图层似乎效率低下且受到限制。</strong>大部分编辑器都使用了自己的视图，而不是使用像 React 这样现有的技术，所以你必须学习一个新的有“问题”的全新系统。</li>
@@ -815,7 +815,7 @@
 <p>如果听起来很熟悉，你可能会喜欢 Slate。</p>
 <p>这让我想到了如何 Slate 如何解决这些问题。。。</p>
 <h2 id="原则">原则</h2>
-<p>Slate 尝试解决“<a href="./#为什么？">为什么？</a>” 提出的问题。有几个原则：</p>
+<p>Slate 尝试解决“<a href="./#为什么？">为什么？</a>”提出的问题。有几个原则：</p>
 <ol>
 <li><strong>插件是一等公民。</strong>Slate 最重要的部分是插件是一等公民。这意味着你<em>完全</em>可以自定义编辑体验，构建像 Medium 或 Dropbox 一样复杂的编辑器，而无需猜测类库的呈现。</li>
 <li><strong>无模式核心。</strong>Slate 的核心逻辑对要编写的数据模式几乎没有假设，这意味着当你需要编写复杂用例时，不会被任何库中的任何假设阻碍。</li>
@@ -853,10 +853,10 @@
 <p>如果还不够，你可以随时<a href="https://github.com/ianstormtaylor/slate/tree/master/packages" target="_blank">阅读源码</a>，它包含了大量注释。</p>
 <p>也有将文档翻译成其他语言：</p>
 <ul>
-<li><a href="https://github.com/ianstormtaylor/slate/tree/main/docs" target="_blank">英文</a>【译者注：这里我改成了英文原版地址】</li>
+<li><a href="https://github.com/mowangjuanzi/slate-doc-zh" target="_blank">中文</a>【译者注：厚脸皮贴上本项目，修复请向此项目 PR】</li>
 </ul>
 <p>如果你正在维护翻译，请随时在此提交 PR！</p>
-<h2 id="贡献">贡献!</h2>
+<h2 id="贡献！">贡献！</h2>
 <p>超级欢迎所有贡献！请查看<a href="general/contributing.html">贡献说明</a>获取更多信息！</p>
 <p>Slate 是 <a href="https://github.com/ianstormtaylor/slate/tree/f6bfe034d707693488c38da77537fd36cb8856cf/License.md" target="_blank">MIT 许可</a>。</p>
 
@@ -887,7 +887,7 @@
             
                 
                 
-                <a href="walkthroughs/01-installing-slate.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Installing Slate">
+                <a href="walkthroughs/01-installing-slate.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 安装 Slate">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -898,7 +898,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"简介","level":"1.1","depth":1,"next":{"title":"Installing Slate","level":"2.1","depth":1,"path":"walkthroughs/01-installing-slate.md","ref":"walkthroughs/01-installing-slate.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"Introduction.md","mtime":"2022-06-08T03:30:07.505Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-08T03:30:17.384Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"简介","level":"1.1","depth":1,"next":{"title":"安装 Slate","level":"2.1","depth":1,"path":"walkthroughs/01-installing-slate.md","ref":"walkthroughs/01-installing-slate.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"Introduction.md","mtime":"2022-06-08T07:27:27.525Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-08T07:27:32.467Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
