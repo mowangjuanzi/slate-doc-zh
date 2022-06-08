@@ -1,12 +1,14 @@
-# Adding Event Handlers
+# 添加事件处理程序
 
-Okay, so you've got Slate installed and rendered on the page, and when you type in it, you can see the changes reflected. But you want to do more than just type a plaintext string.
+> Commit ID: [9892cf0ffbd741cc2880d1f0bd0d7c1b36145bbd](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/02-adding-event-handlers.md)
 
-What makes Slate great is how easy it is to customize. Just like other React components you're used to, Slate allows you to pass in handlers that are triggered on certain events.
+好，已经安装了 Slate 并在页面呈现，当输入时，会看到变化。但是需要做的不仅仅是输入纯文本字符串。
 
-Let's use the `onKeyDown` handler to change the editor's content when we press a key.
+Slate 之所以如此出色是因为它易于定制。就像使用其它 React 组件一样，当某些事件触发的时候，Slate 允许传递处理程序。
 
-Here's our app from earlier:
+当按下一个键的时候，使用 `onKeyDown` 处理程序来更改编辑器的内容。
+
+这是之前的应用程序：
 
 ```jsx
 const initialValue = [
@@ -27,7 +29,7 @@ const App = () => {
 }
 ```
 
-Now we add an `onKeyDown` handler:
+现在添加 `onKeyDown` 处理程序：
 
 ```jsx
 const initialValue = [
@@ -43,7 +45,7 @@ const App = () => {
   return (
     <Slate editor={editor} value={initialValue}>
       <Editable
-        // Define a new handler which prints the key that was pressed.
+        // 定义新的处理程序打印按下的键。
         onKeyDown={event => {
           console.log(event.key)
         }}
@@ -53,11 +55,11 @@ const App = () => {
 }
 ```
 
-Cool, now when a key is pressed in the editor, its corresponding keycode is logged in the console.
+棒，现在当在编辑器中按下一个键时，其对应的建码会纪录在控制台中。
 
-Now we want to make it actually change the content. For the purposes of our example, let's implement turning all ampersand, `&`, keystrokes into the word `and` upon being typed.
+现在想让它真正的转变内容。出于示例的目的，实现为所有按下的 `&` 键转换为单词 `and`。
 
-Our `onKeyDown` handler might look like this:
+`onKeyDown` 处理程序可能如下所示：
 
 ```jsx
 const initialValue = [
@@ -75,9 +77,9 @@ const App = () => {
       <Editable
         onKeyDown={event => {
           if (event.key === '&') {
-            // Prevent the ampersand character from being inserted.
+            // 防止插入 & 字符。
             event.preventDefault()
-            // Execute the `insertText` method when the event occurs.
+            // 事件发生时执行 `insertText` 方法。
             editor.insertText('and')
           }
         }}
@@ -87,6 +89,6 @@ const App = () => {
 }
 ```
 
-With that added, try typing `&`, and you should see it suddenly become `and` instead!
+添加后，尝试输入 `&`，会发现它突然变成了 `and`！
 
-This offers a sense of what can be done with Slate's event handlers. Each one will be called with the `event` object, and you can use your `editor` to perform commands in response. Simple!
+这提示了使用 Slate 事件处理程序可以做什么的意义。每个都将调用 `event` 对象，你可以使用 `editor` 执行命令作为响应。是不是挺简单！
