@@ -1,10 +1,12 @@
-# Defining Custom Elements
+# 定义自定义元素
 
-In our previous example, we started with a paragraph, but we never actually told Slate anything about the `paragraph` block type. We just let it use its internal default renderer, which uses a plain old `<div>`.
+> Commit ID: [9892cf0ffbd741cc2880d1f0bd0d7c1b36145bbd](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/03-defining-custom-elements.md)
 
-But that's not all you can do. Slate lets you define any type of custom blocks you want, like block quotes, code blocks, list items, etc.
+在之前的示例中，我从段落开始，但是我们并未真正告诉过 Slate 任何关于段落块类型的信息。我们只是让他使用它的内部默认渲染器，一个普通的老式 `<div>`。
 
-We'll show you how. Let's start with our app from earlier:
+但这不是你全部能做的。Slate 允许定义任何自定义块类型，像引用、代码块、列表项等等。
+
+我们会告诉你怎么做。让我们从之前的应用开始：
 
 ```jsx
 const initialValue = [
@@ -32,14 +34,14 @@ const App = () => {
 }
 ```
 
-Now let's add "code blocks" to our editor.
+现在我们添加 “代码块” 到编辑器中。
 
-The problem is, code blocks won't just be rendered as a plain paragraph, they'll need to be rendered differently. To make that happen, we need to define a "renderer" for `code` element nodes.
+有个问题，就是代码块不能仅仅使用普通的段落去渲染，而且他们还需要以不同的方式渲染。为了实现这一点，需要为 `code` 元素节点定义个“渲染器”。
 
-Element renderers are just simple React components, like so:
+元素渲染器只是简单的 React 组件，如下所示：
 
 ```jsx
-// Define a React component renderer for our code blocks.
+// 为代码块定义 React 组件渲染器。
 const CodeElement = props => {
   return (
     <pre {...props.attributes}>
@@ -49,7 +51,7 @@ const CodeElement = props => {
 }
 ```
 
-Easy enough.
+很容易。
 
 See the `props.attributes` reference? Slate passes attributes that should be rendered on the top-most element of your blocks, so that you don't have to build them up yourself. You **must** mix the attributes into your component.
 

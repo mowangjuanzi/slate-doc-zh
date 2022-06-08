@@ -6,7 +6,7 @@
 
 - [安装 Slate](walkthroughs/01-installing-slate.md)
 - [添加事件处理程序](walkthroughs/02-adding-event-handlers.md)
-- [Defining Custom Elements](walkthroughs/03-defining-custom-elements.md)
+- [定义自定义元素](walkthroughs/03-defining-custom-elements.md)
 - [Applying Custom Formatting](walkthroughs/04-applying-custom-formatting.md)
 - [Executing Commands](walkthroughs/05-executing-commands.md)
 - [Saving to a Database](walkthroughs/06-saving-to-a-database.md)
