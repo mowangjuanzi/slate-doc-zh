@@ -2,11 +2,11 @@
 
 > Commit ID: [9892cf0ffbd741cc2880d1f0bd0d7c1b36145bbd](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/03-defining-custom-elements.md)
 
-在之前的示例中，我从段落开始，但是我们并未真正告诉过 Slate 任何关于段落块类型的信息。我们只是让他使用它的内部默认渲染器，一个普通的老式 `<div>`。
+在之前的示例中，在之前的段落中，但是并未真正告诉过 Slate 任何关于段落块类型的信息。只是让其使用内部默认渲染器，一个普通的老式 `<div>`。
 
-但这不是你全部能做的。Slate 允许定义任何自定义块类型，像引用、代码块、列表项等等。
+但是能做的不仅仅是这些。Slate 允许定义任何自定义块类型，像引用、代码块、列表项等等。
 
-我们会告诉你怎么做。让我们从之前的应用开始：
+下面会介绍如何做。先从之前的应用开始吧：
 
 ```jsx
 const initialValue = [
@@ -34,9 +34,9 @@ const App = () => {
 }
 ```
 
-现在我们添加 “代码块” 到编辑器中。
+现在添加 “代码块” 到编辑器中。
 
-有个问题，就是代码块不能仅仅使用普通的段落去渲染，而且他们还需要以不同的方式渲染。为了实现这一点，需要为 `code` 元素节点定义个“渲染器”。
+有个问题，就是代码块不能只使用普通的段落去渲染，还需要以不同的方式渲染。为了实现这一点，需要为 `code` 元素节点定义个“渲染器”。
 
 元素渲染器只是简单的 React 组件，如下所示：
 
@@ -51,11 +51,11 @@ const CodeElement = props => {
 }
 ```
 
-很容易吧。
+是不是很容易。
 
-看到 `props.attributes` 引用了吗？Slate 传递应该在块的最上层元素上渲染的属性，所以你不必自己构建它们。你**必须**组合属性到组件中。
+看到 `props.attributes` 引用了吗？Slate 传递应该在块的最上层元素上渲染的属性，所以不必自己构建它们。**必须**将属性组合到组件中。
 
-看到 `props.children` 引用了吧? Slate 会自动渲染块下面的所有子元素，然后像是其它 React 组件一样通过 `props.children` 传递。这样就不必费心渲染正确的文本节点或者类似的东西。你**必须**将组件中的子元素作为最低叶子进行渲染。
+看到 `props.children` 引用了吧? Slate 会自动渲染块下面的所有子元素，然后像是其它 React 组件一样通过 `props.children` 传递。这样就不必费心渲染正确的文本节点或者类似的东西。**必须**将组件中的子元素作为最低叶子进行渲染。
 
 这是 “default” 元素组件：
 
@@ -65,7 +65,7 @@ const DefaultElement = props => {
 }
 ```
 
-现在，让我们添加渲染器到 `Editor`：
+现在，添加渲染器到 `Editor`：
 
 ```jsx
 const initialValue = [
@@ -78,8 +78,8 @@ const initialValue = [
 const App = () => {
   const editor = useMemo(() => withReact(createEditor()), [])
 
-  // 基于传递给 `props` 的元素定义渲染函数。 We use
-  // 我们在这里使用 `useCallback` 记住函数以供后续渲染。
+  // 基于传递给 `props` 的元素定义渲染函数。
+  // 在这里使用 `useCallback` 记住函数以供后续渲染。
   const renderElement = useCallback(props => {
     switch (props.element.type) {
       case 'code':
@@ -177,9 +177,9 @@ const DefaultElement = props => {
 }
 ```
 
-现在，如果按下 <kbd>Ctrl</kbd> + <kbd>`</kbd>，现在光标所在的块会变成代码块！神奇！
+现在，如果按下 <kbd>Ctrl</kbd> + <kbd>`</kbd>，现在光标所在的块会变成代码块！神奇吧！
 
-但是我们忘记了一件事。当再次点击 <kbd>Ctrl</kbd> + <kbd>`</kbd> 时，应该将代码块改回段落。为此，需要添加逻辑来根据当前选择的块时候是代码块来更改我们设置的类型：
+但是忘记了一件事。就是当再次点击 <kbd>Ctrl</kbd> + <kbd>`</kbd> 时，应该将代码块改回段落。为此，需要添加逻辑来根据当前选择的块是否是代码块来更改设置的类型：
 
 ```jsx
 const initialValue = [
@@ -226,4 +226,4 @@ const App = () => {
 }
 ```
 
-明白了吧！如果你在代码块中按 <kbd>Ctrl</kbd> + <kbd>`</kbd>，应该要变回段落！
+明白了吧！如果代码块中按 <kbd>Ctrl</kbd> + <kbd>`</kbd>，应该要变回段落！
