@@ -1,10 +1,12 @@
-# Defining Custom Elements
+# 定义自定义元素
 
-In our previous example, we started with a paragraph, but we never actually told Slate anything about the `paragraph` block type. We just let it use its internal default renderer, which uses a plain old `<div>`.
+> Commit ID: [9892cf0ffbd741cc2880d1f0bd0d7c1b36145bbd](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/03-defining-custom-elements.md)
 
-But that's not all you can do. Slate lets you define any type of custom blocks you want, like block quotes, code blocks, list items, etc.
+在之前的示例中，在之前的段落中，但是并未真正告诉过 Slate 任何关于段落块类型的信息。只是让其使用内部默认渲染器，一个普通的老式 `<div>`。
 
-We'll show you how. Let's start with our app from earlier:
+但是能做的不仅仅是这些。Slate 允许定义任何自定义块类型，像引用、代码块、列表项等等。
+
+下面会介绍如何做。先从之前的应用开始吧：
 
 ```jsx
 const initialValue = [
@@ -32,14 +34,14 @@ const App = () => {
 }
 ```
 
-Now let's add "code blocks" to our editor.
+现在添加 “代码块” 到编辑器中。
 
-The problem is, code blocks won't just be rendered as a plain paragraph, they'll need to be rendered differently. To make that happen, we need to define a "renderer" for `code` element nodes.
+有个问题，就是代码块不能只使用普通的段落去渲染，还需要以不同的方式渲染。为了实现这一点，需要为 `code` 元素节点定义个“渲染器”。
 
-Element renderers are just simple React components, like so:
+元素渲染器只是简单的 React 组件，如下所示：
 
 ```jsx
-// Define a React component renderer for our code blocks.
+// 为代码块定义 React 组件渲染器。
 const CodeElement = props => {
   return (
     <pre {...props.attributes}>
@@ -49,13 +51,13 @@ const CodeElement = props => {
 }
 ```
 
-Easy enough.
+是不是很容易。
 
-See the `props.attributes` reference? Slate passes attributes that should be rendered on the top-most element of your blocks, so that you don't have to build them up yourself. You **must** mix the attributes into your component.
+看到 `props.attributes` 引用了吗？Slate 传递应该在块的最上层元素上渲染的属性，所以不必自己构建它们。**必须**将属性组合到组件中。
 
-And see that `props.children` reference? Slate will automatically render all of the children of a block for you, and then pass them to you just like any other React component would, via `props.children`. That way you don't have to muck around with rendering the proper text nodes or anything like that. You **must** render the children as the lowest leaf in your component.
+看到 `props.children` 引用了吧? Slate 会自动渲染块下面的所有子元素，然后像是其它 React 组件一样通过 `props.children` 传递。这样就不必费心渲染正确的文本节点或者类似的东西。**必须**将组件中的子元素作为最低叶子进行渲染。
 
-And here's a component for the "default" elements:
+这是 “default” 元素组件：
 
 ```jsx
 const DefaultElement = props => {
@@ -63,7 +65,7 @@ const DefaultElement = props => {
 }
 ```
 
-Now, let's add that renderer to our `Editor`:
+现在，添加渲染器到 `Editor`：
 
 ```jsx
 const initialValue = [
@@ -76,8 +78,8 @@ const initialValue = [
 const App = () => {
   const editor = useMemo(() => withReact(createEditor()), [])
 
-  // Define a rendering function based on the element passed to `props`. We use
-  // `useCallback` here to memoize the function for subsequent renders.
+  // 基于传递给 `props` 的元素定义渲染函数。
+  // 在这里使用 `useCallback` 记住函数以供后续渲染。
   const renderElement = useCallback(props => {
     switch (props.element.type) {
       case 'code':
@@ -90,7 +92,7 @@ const App = () => {
   return (
     <Slate editor={editor} value={initialValue}>
       <Editable
-        // Pass in the `renderElement` function.
+        // 传入 `renderElement` 函数。
         renderElement={renderElement}
         onKeyDown={event => {
           if (event.key === '&') {
@@ -116,10 +118,10 @@ const DefaultElement = props => {
 }
 ```
 
-Okay, but now we'll need a way for the user to actually turn a block into a code block. So let's change our `onKeyDown` function to add a ``Ctrl-``` shortcut that does just that:
+好，但现在需要一种方式让用户真正的将块转化为代码块。所以改变 `onKeyDown` 函数，添加 <kbd>Ctrl</kbd> + <kbd>`</kbd> 快捷键来做这件事：
 
 ```jsx
-// Import the `Editor` and `Transforms` helpers from Slate.
+// 从 Slate 导入 `Editor` 和 `Transforms` 助手。
 import { Editor, Transforms } from 'slate'
 
 const initialValue = [
@@ -147,9 +149,9 @@ const App = () => {
         renderElement={renderElement}
         onKeyDown={event => {
           if (event.key === '`' && event.ctrlKey) {
-            // Prevent the "`" from being inserted by default.
+            // 默认防止插入 “`”。
             event.preventDefault()
-            // Otherwise, set the currently selected blocks type to "code".
+            // 否则，将当前已选块类型设置为 “code”。
             Transforms.setNodes(
               editor,
               { type: 'code' },
@@ -175,9 +177,9 @@ const DefaultElement = props => {
 }
 ```
 
-Now, if you press ``Ctrl-``` the block your cursor is in should turn into a code block! Magic!
+现在，如果按下 <kbd>Ctrl</kbd> + <kbd>`</kbd>，现在光标所在的块会变成代码块！神奇吧！
 
-But we forgot one thing. When you hit ``Ctrl-``` again, it should change the code block back into a paragraph. To do that, we'll need to add a bit of logic to change the type we set based on whether any of the currently selected blocks are already a code block:
+但是忘记了一件事。就是当再次点击 <kbd>Ctrl</kbd> + <kbd>`</kbd> 时，应该将代码块改回段落。为此，需要添加逻辑来根据当前选择的块是否是代码块来更改设置的类型：
 
 ```jsx
 const initialValue = [
@@ -206,11 +208,11 @@ const App = () => {
         onKeyDown={event => {
           if (event.key === '`' && event.ctrlKey) {
             event.preventDefault()
-            // Determine whether any of the currently selected blocks are code blocks.
+            // 确认当前已选的块是代码块。
             const [match] = Editor.nodes(editor, {
               match: n => n.type === 'code',
             })
-            // Toggle the block type depending on whether there's already a match.
+            // 根据时候已经匹配切换块类型。
             Transforms.setNodes(
               editor,
               { type: match ? 'paragraph' : 'code' },
@@ -224,4 +226,4 @@ const App = () => {
 }
 ```
 
-And there you have it! If you press ``Ctrl-``` while inside a code block, it should turn back into a paragraph!
+明白了吧！如果代码块中按 <kbd>Ctrl</kbd> + <kbd>`</kbd>，应该要变回段落！
