@@ -3,7 +3,7 @@
 <html lang="zh-hans" >
     <head>
         <meta charset="UTF-8">
-        <title>Saving to a Database · Slate 中文文档</title>
+        <title>保存到数据库 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.7.3">
@@ -180,7 +180,7 @@
                 <a href="06-saving-to-a-database.html">
             
                     
-                    Saving to a Database
+                    保存到数据库
             
                 </a>
             
@@ -778,7 +778,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Saving to a Database</a>
+        <a href=".." >保存到数据库</a>
     </h1>
 </div>
 
@@ -793,10 +793,13 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="saving-to-a-database">Saving to a Database</h1>
-<p>Now that you&apos;ve learned the basics of how to add functionality to the Slate editor, you might be wondering how you&apos;d go about saving the content you&apos;ve been editing, such that you can come back to your app later and have it load.</p>
-<p>In this guide, we&apos;ll show you how to add logic to save your Slate content to a database for storage and retrieval later.</p>
-<p>Let&apos;s start with a basic editor:</p>
+                                <h1 id="保存到数据库">保存到数据库</h1>
+<blockquote>
+<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/06-saving-to-a-database.md" target="_blank">acdc5c3417e30ec50ff2499394205246ccb70ca7</a></p>
+</blockquote>
+<p>现在已经学习了如何向 Slate 编辑器添加功能的基础知识，那如何保存正在编辑的内容，以便稍后回到应用程序后还能继续加载呢。</p>
+<p>在本教程中，将展示如何添加逻辑以便将 Slate 内容保存到数据库中存储,并且以后可以检索。</p>
+<p>先从基础的编辑器开始：</p>
 <pre><code class="lang-jsx"><span class="hljs-keyword">const</span> initialValue = [
   {
     <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
@@ -814,9 +817,9 @@
   )
 }
 </code></pre>
-<p>That will render a basic Slate editor on your page, and when you type things will change. But if you refresh the page, everything will be reverted back to its original value—nothing saves!</p>
-<p>What we need to do is save the changes you make somewhere. For this example, we&apos;ll just be using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank">Local Storage</a>, but it will give you an idea for where you&apos;d need to add your own database hooks.</p>
-<p>So, in our <code>onChange</code> handler, we need to save the <code>value</code> if anything besides the selection was changed:</p>
+<p>在页面上渲染一个基础的编辑器且当输入内容时会发生改变。但是如果刷新页面，一切都会恢复到最开始的样子 —— 没有保存任何内容！</p>
+<p>这里需要做的是将更改保存到一个地方。在本示例中，虽然只是使用<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank">Local Storage</a>（<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage" target="_blank">本地存储</a>），但是会了解需要在哪里添加数据库钩子。</p>
+<p>所以在 <code>onChange</code> 处理程序中需要添加在除了 <code>set_selection</code> 之外的内容更改时保存 <code>value</code>：</p>
 <pre><code class="lang-jsx"><span class="hljs-keyword">const</span> initialValue = [
   {
     <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
@@ -836,7 +839,7 @@
           op =&gt; &apos;set_selection&apos; !== op.type
         )
         if (isAstChange) {
-          // Save the value to Local Storage.
+          // 保存值到本地存储。
           const content = JSON.stringify(value)
           localStorage.setItem(&apos;content&apos;, content)
         }
@@ -847,11 +850,11 @@
   )
 }
 </code></pre>
-<p>Now whenever you edit the page, if you look in Local Storage, you should see the <code>content</code> value changing.</p>
-<p>But... if you refresh the page, everything is still reset. That&apos;s because we need to make sure the initial value is pulled from that same Local Storage location, like so:</p>
+<p>现在每当编辑页面，如果查看本地存储，应该会看到 <code>content</code> 值发生变化。</p>
+<p>但。。。如果刷新页面，一切都会重置。这是因为需要确保从同一个本地存储位置拉取初始值，如下所示：</p>
 <pre><code class="lang-jsx"><span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
   <span class="hljs-keyword">const</span> editor = useMemo(<span class="hljs-function">() =&gt;</span> withReact(createEditor()), [])
-  <span class="hljs-comment">// Update the initial content to be pulled from Local Storage if it exists.</span>
+  <span class="hljs-comment">// 如果存在，则从本地存储拉取初始化内容。</span>
   <span class="hljs-keyword">const</span> initialValue = useMemo(
     <span class="hljs-function">() =&gt;</span>
       <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-built_in">localStorage</span>.getItem(<span class="hljs-string">&apos;content&apos;</span>)) || [
@@ -872,7 +875,7 @@
           op =&gt; &apos;set_selection&apos; !== op.type
         )
         if (isAstChange) {
-          // Save the value to Local Storage.
+          // 保存值到本地存储。
           const content = JSON.stringify(value)
           localStorage.setItem(&apos;content&apos;, content)
         }
@@ -883,26 +886,26 @@
   )
 }
 </code></pre>
-<p>Now you should be able to save changes across refreshes!</p>
-<p>Success—you&apos;ve got JSON in your database.</p>
-<p>But what if you want something other than JSON? Well, you&apos;d need to serialize your value differently. For example, if you want to save your content as plain text instead of JSON, we can write some logic to serialize and deserialize plain text values:</p>
-<pre><code class="lang-jsx"><span class="hljs-comment">// Import the `Node` helper interface from Slate.</span>
+<p>现在应该在刷新时保存更改了！</p>
+<p>成功 —— 在数据库中已包含 JSON。</p>
+<p>但是如果你想要 JSON 意外的东西呢？是的，需要用不同的方式序列化值。例如将内容保存为纯文本而不是 JSON，可以编写一些序列化和反序列化纯文本值：</p>
+<pre><code class="lang-jsx"><span class="hljs-comment">// 从 Slate 中导入 `Node` 助手接口。</span>
 <span class="hljs-keyword">import</span> { Node } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 
-<span class="hljs-comment">// Define a serializing function that takes a value and returns a string.</span>
+<span class="hljs-comment">// 定义接受值并返回字符串的序列化函数。</span>
 <span class="hljs-keyword">const</span> serialize = <span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
   <span class="hljs-keyword">return</span> (
     value
-      <span class="hljs-comment">// Return the string content of each paragraph in the value&apos;s children.</span>
+      <span class="hljs-comment">// 在值的子项中返回每个段落的字符串内容。</span>
       .map(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> Node.string(n))
-      <span class="hljs-comment">// Join them all with line breaks denoting paragraphs.</span>
+      <span class="hljs-comment">// 用表示段落的换行符将其串联起来。</span>
       .join(<span class="hljs-string">&apos;\n&apos;</span>)
   )
 }
 
-<span class="hljs-comment">// Define a deserializing function that takes a string and returns a value.</span>
+<span class="hljs-comment">// 定义接受字符串返回值的反序列化函数。</span>
 <span class="hljs-keyword">const</span> deserialize = <span class="hljs-function"><span class="hljs-params">string</span> =&gt;</span> {
-  <span class="hljs-comment">// Return a value array of children derived by splitting the string.</span>
+  <span class="hljs-comment">// 通过拆分字符串提取子级值数组。</span>
   <span class="hljs-keyword">return</span> string.split(<span class="hljs-string">&apos;\n&apos;</span>).map(<span class="hljs-function"><span class="hljs-params">line</span> =&gt;</span> {
     <span class="hljs-keyword">return</span> {
       <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: line }],
@@ -912,7 +915,7 @@
 
 <span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
   <span class="hljs-keyword">const</span> editor = useMemo(<span class="hljs-function">() =&gt;</span> withReact(createEditor()), [])
-  <span class="hljs-comment">// Use our deserializing function to read the data from Local Storage.</span>
+  <span class="hljs-comment">// 使用反序列化函数从本地存储中读取数据。</span>
   <span class="hljs-keyword">const</span> initialValue = useMemo(
     deserialize(<span class="hljs-built_in">localStorage</span>.getItem(<span class="hljs-string">&apos;content&apos;</span>)) || <span class="hljs-string">&apos;&apos;</span>,
     []
@@ -927,7 +930,7 @@
           op =&gt; &apos;set_selection&apos; !== op.type
         )
         if (isAstChange) {
-          // Serialize the value and save the string value to Local Storage.
+          // 序列化值并将字符串保存到本地存储。
           localStorage.setItem(&apos;content&apos;, serialize(value))
         }
       }}
@@ -937,15 +940,15 @@
   )
 }
 </code></pre>
-<p>That works! Now you&apos;re working with plain text.</p>
-<p>You can emulate this strategy for any format you like. You can serialize to HTML, to Markdown, or even to your own custom JSON format that is tailored to your use case.</p>
+<p>棒！现在正在使用纯文本。</p>
+<p>可以对喜欢的格式模仿此策略。可以序列化为 HTML、 Markdown 或者为案例量身定制的自定义 JSON 格式。</p>
 <blockquote>
-<p>🤖 Note that even though you <em>can</em> serialize your content however you like, there are tradeoffs. The serialization process has a cost itself, and certain formats may be harder to work with than others. In general we recommend writing your own format only if your use case has a specific need for it. Otherwise, you&apos;re often better leaving the data in the format Slate uses.</p>
+<p>🤖 注意，即使<em>可以</em>按照个人喜好序列化内容，也要权衡取舍。序列化过程有成本，某些格式可能会比其他格式更难处理。一般来说，仅建议案例有特殊需求时才编写自己的格式。否则，最好将数据保存为 Slate 使用的格式。</p>
 </blockquote>
-<p>If you want to update the editor&apos;s content in response to events from outside of slate, you need to change the children property directly. The simplest way is to replace the value of editor.children <code>editor.children = newValue</code> and trigger a re-rendering (e.g. by calling <code>editor.onChange()</code> in the example above). Alternatively, you can use slate&apos;s internal operations to transform the value, for example:</p>
+<p>如果你想更新编辑器的内容时响应 Slate 之外的事件，需要直接修改 children 属性。最简单的方式是替换 editor.children 的值 <code>editor.children = newValue</code> 并触发重新渲染（例如，在上面的示例中调用 <code>editor.onChange()</code>）。或者，可以使用 Slate 内部操作来转换值，例如：</p>
 <pre><code class="lang-javascript">  <span class="hljs-comment">/**
-  * resetNodes resets the value of the editor.
-  * It should be noted that passing the `at` parameter may cause a &quot;Cannot resolve a DOM point from Slate point&quot; error.
+  * resetNodes 重置编辑器的值。
+  * 需要注意的是，传递 `at` 参数可能会导致 “Cannot resolve a DOM point from Slate point” 错误。
   */</span>
   resetNodes&lt;T <span class="hljs-keyword">extends</span> Node&gt;(
     editor: Editor,
@@ -1016,7 +1019,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Saving to a Database","level":"2.6","depth":1,"next":{"title":"Using the Bundled Source","level":"2.7","depth":1,"path":"walkthroughs/xx-using-the-bundled-source.md","ref":"walkthroughs/xx-using-the-bundled-source.md","articles":[]},"previous":{"title":"执行命令","level":"2.5","depth":1,"path":"walkthroughs/05-executing-commands.md","ref":"walkthroughs/05-executing-commands.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/06-saving-to-a-database.md","mtime":"2022-06-10T05:52:31.010Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-10T05:52:35.420Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"保存到数据库","level":"2.6","depth":1,"next":{"title":"Using the Bundled Source","level":"2.7","depth":1,"path":"walkthroughs/xx-using-the-bundled-source.md","ref":"walkthroughs/xx-using-the-bundled-source.md","articles":[]},"previous":{"title":"执行命令","level":"2.5","depth":1,"path":"walkthroughs/05-executing-commands.md","ref":"walkthroughs/05-executing-commands.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/06-saving-to-a-database.md","mtime":"2022-06-10T16:14:08.544Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-10T16:14:14.214Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
