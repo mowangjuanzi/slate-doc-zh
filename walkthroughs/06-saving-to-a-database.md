@@ -1,10 +1,10 @@
-# Saving to a Database
+# 保存到数据库
 
-Now that you've learned the basics of how to add functionality to the Slate editor, you might be wondering how you'd go about saving the content you've been editing, such that you can come back to your app later and have it load.
+现在已经学习了如何向 Slate 编辑器添加功能的基础知识，那如何保存正在编辑的内容，以便稍后回到应用程序后还能继续加载呢。
 
-In this guide, we'll show you how to add logic to save your Slate content to a database for storage and retrieval later.
+在本教程中，将展示如何添加逻辑以便将 Slate 内容保存到数据库中存储并以后可以检索。
 
-Let's start with a basic editor:
+先从基础的编辑器开始：
 
 ```jsx
 const initialValue = [
@@ -25,11 +25,11 @@ const App = () => {
 }
 ```
 
-That will render a basic Slate editor on your page, and when you type things will change. But if you refresh the page, everything will be reverted back to its original value—nothing saves!
+在页面上会渲染一个基础的编辑器且当输入内容时会发生改变。但是如果刷新页面，一切都会恢复到最开始的样子 —— 没有保存任何内容！
 
-What we need to do is save the changes you make somewhere. For this example, we'll just be using [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), but it will give you an idea for where you'd need to add your own database hooks.
+这里需要做的是将更改保存到一个地方。在本示例中，只会使用[Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)（[本地存储](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage)），但是会了解需要在哪里添加数据库钩子。
 
-So, in our `onChange` handler, we need to save the `value` if anything besides the selection was changed:
+所以在 `onChange` 处理程序中需要添加在除了 `set_selection` 之外的内容更改时保存 `value`：
 
 ```jsx
 const initialValue = [
@@ -51,7 +51,7 @@ const App = () => {
           op => 'set_selection' !== op.type
         )
         if (isAstChange) {
-          // Save the value to Local Storage.
+          // 保存值到本地存储。
           const content = JSON.stringify(value)
           localStorage.setItem('content', content)
         }
@@ -63,14 +63,14 @@ const App = () => {
 }
 ```
 
-Now whenever you edit the page, if you look in Local Storage, you should see the `content` value changing.
+现在每当编辑页面，如果查看本地存储，应该会看到 `content` 值发生变化。
 
-But... if you refresh the page, everything is still reset. That's because we need to make sure the initial value is pulled from that same Local Storage location, like so:
+但。。。如果刷新页面，一切都会重置。这是因为需要确保从同一个本地存储位置拉取初始值，如下所示：
 
 ```jsx
 const App = () => {
   const editor = useMemo(() => withReact(createEditor()), [])
-  // Update the initial content to be pulled from Local Storage if it exists.
+  // 如果存在，则从本地存储拉取初始化内容。
   const initialValue = useMemo(
     () =>
       JSON.parse(localStorage.getItem('content')) || [
@@ -91,7 +91,7 @@ const App = () => {
           op => 'set_selection' !== op.type
         )
         if (isAstChange) {
-          // Save the value to Local Storage.
+          // 保存值到本地存储。
           const content = JSON.stringify(value)
           localStorage.setItem('content', content)
         }
@@ -103,30 +103,30 @@ const App = () => {
 }
 ```
 
-Now you should be able to save changes across refreshes!
+现在应该在刷新时保存更改了！
 
-Success—you've got JSON in your database.
+成功 —— 在数据库中已包含 JSON。
 
-But what if you want something other than JSON? Well, you'd need to serialize your value differently. For example, if you want to save your content as plain text instead of JSON, we can write some logic to serialize and deserialize plain text values:
+但是如果你想要 JSON 意外的东西呢？是的，需要用不同的方式序列化值。例如将内容保存为纯文本而不是 JSON，可以编写一些序列化和反序列化纯文本值：
 
 ```jsx
-// Import the `Node` helper interface from Slate.
+// 从 Slate 中导入 `Node` 助手接口。
 import { Node } from 'slate'
 
-// Define a serializing function that takes a value and returns a string.
+// 定义接受值并返回字符串的序列化函数。
 const serialize = value => {
   return (
     value
-      // Return the string content of each paragraph in the value's children.
+      // 在值的子项中返回每个段落的字符串内容。
       .map(n => Node.string(n))
-      // Join them all with line breaks denoting paragraphs.
+      // 用表示段落的换行符将其串联起来。
       .join('\n')
   )
 }
 
-// Define a deserializing function that takes a string and returns a value.
+// 定义接受字符串返回值的反序列化函数。
 const deserialize = string => {
-  // Return a value array of children derived by splitting the string.
+  // 通过拆分字符串提取子级值数组。
   return string.split('\n').map(line => {
     return {
       children: [{ text: line }],
@@ -136,7 +136,7 @@ const deserialize = string => {
 
 const App = () => {
   const editor = useMemo(() => withReact(createEditor()), [])
-  // Use our deserializing function to read the data from Local Storage.
+  // 使用反序列化函数从本地存储中读取数据。
   const initialValue = useMemo(
     deserialize(localStorage.getItem('content')) || '',
     []
@@ -151,7 +151,7 @@ const App = () => {
           op => 'set_selection' !== op.type
         )
         if (isAstChange) {
-          // Serialize the value and save the string value to Local Storage.
+          // 序列化值并将字符串保存到本地存储。
           localStorage.setItem('content', serialize(value))
         }
       }}
@@ -162,18 +162,18 @@ const App = () => {
 }
 ```
 
-That works! Now you're working with plain text.
+棒！现在正在使用纯文本。
 
-You can emulate this strategy for any format you like. You can serialize to HTML, to Markdown, or even to your own custom JSON format that is tailored to your use case.
+可以对喜欢的格式模仿此策略。可以序列化为 HTML、 Markdown 或者为用例量身定制的自定义 JSON 格式。
 
-> 🤖 Note that even though you _can_ serialize your content however you like, there are tradeoffs. The serialization process has a cost itself, and certain formats may be harder to work with than others. In general we recommend writing your own format only if your use case has a specific need for it. Otherwise, you're often better leaving the data in the format Slate uses.
+> 🤖 注意，即使_可以_按照个人喜好序列化内容，也要权衡取舍。序列化过程有成本，某些格式可能会比其他格式更难处理。一般来说，仅建议用例有特殊需求时才编写自己的格式。否则，最好将数据保存为 Slate 使用的格式。
 
-If you want to update the editor's content in response to events from outside of slate, you need to change the children property directly. The simplest way is to replace the value of editor.children `editor.children = newValue` and trigger a re-rendering (e.g. by calling `editor.onChange()` in the example above). Alternatively, you can use slate's internal operations to transform the value, for example:
+如果你想更新编辑器的内容以响应 Slate 之外的事件，需要直接修改 children 属性。最简单的方式是替换 editor.children 的值 `editor.children = newValue` 并触发重新渲染（例如，在上面的示例中调用 `editor.onChange()`）。或者，可以使用 Slate 内部操作来转换值，例如：
 
 ```javascript
   /**
-  * resetNodes resets the value of the editor.
-  * It should be noted that passing the `at` parameter may cause a "Cannot resolve a DOM point from Slate point" error.
+  * resetNodes 重置编辑器的值。
+  * 需要注意的是，传递 `at` 参数可能会导致 “Cannot resolve a DOM point from Slate point” 错误。
   */
   resetNodes<T extends Node>(
     editor: Editor,
