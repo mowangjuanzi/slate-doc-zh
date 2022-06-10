@@ -3,7 +3,7 @@
 <html lang="zh-hans" >
     <head>
         <meta charset="UTF-8">
-        <title>Executing Commands · Slate 中文文档</title>
+        <title>执行命令 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.7.3">
@@ -167,7 +167,7 @@
                 <a href="05-executing-commands.html">
             
                     
-                    Executing Commands
+                    执行命令
             
                 </a>
             
@@ -778,7 +778,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Executing Commands</a>
+        <a href=".." >执行命令</a>
     </h1>
 </div>
 
@@ -793,12 +793,15 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="executing-commands">Executing Commands</h1>
-<p>Up until now, everything we&apos;ve learned has been about how to write one-off logic for your specific Slate editor. But one of the most powerful things about Slate is that it lets you model your specific rich text &quot;domain&quot; however you&apos;d like, and write less one-off code.</p>
-<p>In the previous guides we&apos;ve written some useful code to handle formatting code blocks and bold marks. And we&apos;ve hooked up the <code>onKeyDown</code> handler to invoke that code. But we&apos;ve always done it using the built-in <code>Editor</code> helpers directly, instead of using &quot;commands&quot;.</p>
-<p>Slate lets you augment the built-in <code>editor</code> object to handle your own custom rich text commands. And you can even use pre-packaged &quot;plugins&quot; which add a given set of functionality.</p>
-<p>Let&apos;s see how this works.</p>
-<p>We&apos;ll start with our app from earlier:</p>
+                                <h1 id="执行命令">执行命令</h1>
+<blockquote>
+<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/05-executing-commands.md" target="_blank">9892cf0ffbd741cc2880d1f0bd0d7c1b36145bbd</a></p>
+</blockquote>
+<p>直到现在，我们学到的都是为特定编辑器编写一次性逻辑。但是 Slate 最强大的功能是可以根据个人喜好对富文本编辑器“域”进行建模，并减少一次性代码的编写。</p>
+<p>在之前的教程中，编写了一些有用的代码来处理格式化代码块以及粗体标记。通过添加 <code>onKeyDown</code> 处理程序来调用代码。但这都是使用内置 <code>Editor</code> 助手来实现，而不是使用“命令”。</p>
+<p>Slate 允许扩充 <code>editor</code> 对象以处理自定义富文本命令。甚至可以使用预打包的“插件”来添加一组指定功能。</p>
+<p>下面看看如何操作。</p>
+<p>先从之前的应用开始：</p>
 <pre><code class="lang-jsx"><span class="hljs-keyword">const</span> initialValue = [
   {
     <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
@@ -862,9 +865,9 @@
   )
 }
 </code></pre>
-<p>It has the concept of &quot;code blocks&quot; and &quot;bold formatting&quot;. But these things are all defined in one-off cases inside the <code>onKeyDown</code> handler. If you wanted to reuse that logic elsewhere you&apos;d need to extract it.</p>
-<p>We can instead implement these domain-specific concepts by creating custom helper functions:</p>
-<pre><code class="lang-jsx"><span class="hljs-comment">// Define our own custom set of helpers.</span>
+<p>它具有“代码块”和“粗体格式”的概念。但这些东西都是在 <code>onKeyDown</code> 处理程序中一次性定义的。如果想在其它地方复用该逻辑，需要对其进行提取。</p>
+<p>可以通过创建自定义助手函数来实现这些特定领域的概念：</p>
+<pre><code class="lang-jsx"><span class="hljs-comment">// 定义一组自定义助手。</span>
 <span class="hljs-keyword">const</span> CustomEditor = {
   <span class="hljs-function"><span class="hljs-title">isBoldMarkActive</span>(<span class="hljs-params">editor</span>)</span> {
     <span class="hljs-keyword">const</span> [match] = Editor.nodes(editor, {
@@ -935,7 +938,7 @@
             return
           }
 
-          // Replace the `onKeyDown` logic with our new commands.
+          // 使用新命令替换 `onKeyDown` 逻辑。
           switch (event.key) {
             case &apos;`&apos;: {
               event.preventDefault()
@@ -955,7 +958,7 @@
   )
 }
 </code></pre>
-<p>Now our commands are clearly defined and you can invoke them from anywhere we have access to our <code>editor</code> object. For example, from hypothetical toolbar buttons:</p>
+<p>现在命令已经明确定义，可以从任何可以访问 <code>editor</code> 对象的地方调用它们。比如，从工具栏按钮：</p>
 <pre><code class="lang-jsx"><span class="hljs-keyword">const</span> initialValue = [
   {
     <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
@@ -980,7 +983,7 @@
   }, [])
 
   <span class="hljs-keyword">return</span> (
-    <span class="hljs-comment">// Add a toolbar with buttons that call the same methods.</span>
+    <span class="hljs-comment">// 添加工具栏，带有调用相同方法的按钮。</span>
     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">button</span>
@@ -1028,8 +1031,8 @@
   )
 }
 </code></pre>
-<p>That&apos;s the benefit of extracting the logic.</p>
-<p>And there you have it! We just added a ton of functionality to the editor with very little work. And we can keep all of our command logic tested and isolated in a single place, making the code easier to maintain.</p>
+<p>这就是提取逻辑的好处。</p>
+<p>这很简单！只是使用了很小的工作量在编辑器中添加了大量的功能。可以将命令逻辑在一个地方测试和隔离，使代码更易于维护。</p>
 
                                 
                                 </section>
@@ -1073,7 +1076,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Executing Commands","level":"2.5","depth":1,"next":{"title":"Saving to a Database","level":"2.6","depth":1,"path":"walkthroughs/06-saving-to-a-database.md","ref":"walkthroughs/06-saving-to-a-database.md","articles":[]},"previous":{"title":"应用自定义格式","level":"2.4","depth":1,"path":"walkthroughs/04-applying-custom-formatting.md","ref":"walkthroughs/04-applying-custom-formatting.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/05-executing-commands.md","mtime":"2022-06-10T04:22:14.777Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-10T04:22:18.961Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"执行命令","level":"2.5","depth":1,"next":{"title":"Saving to a Database","level":"2.6","depth":1,"path":"walkthroughs/06-saving-to-a-database.md","ref":"walkthroughs/06-saving-to-a-database.md","articles":[]},"previous":{"title":"应用自定义格式","level":"2.4","depth":1,"path":"walkthroughs/04-applying-custom-formatting.md","ref":"walkthroughs/04-applying-custom-formatting.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/05-executing-commands.md","mtime":"2022-06-10T05:52:31.010Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-10T05:52:35.420Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
