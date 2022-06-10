@@ -10,7 +10,7 @@
 - [应用自定义格式](walkthroughs/04-applying-custom-formatting.md)
 - [执行命令](walkthroughs/05-executing-commands.md)
 - [Saving to a Database](walkthroughs/06-saving-to-a-database.md)
-- [使用已编译源](walkthroughs/xx-using-the-bundled-source.md)
+- [使用已打包源](walkthroughs/xx-using-the-bundled-source.md)
 
 ## Concepts
 

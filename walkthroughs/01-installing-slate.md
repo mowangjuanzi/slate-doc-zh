@@ -14,7 +14,7 @@ yarn add slate slate-react
 yarn add react react-dom
 ```
 
-_注意，如果你更愿意使用预编译的 Slate，你可以 `yarn add slate` 并检索已编译的 `dist/slate.js` 文件！查看[使用已编译源](xx-using-the-bundled-source.md)教程获取更多信息。_
+_注意，如果你更愿意使用预打包的 Slate，你可以 `yarn add slate` 并检索已打包的 `dist/slate.js` 文件！查看[使用已打包源](xx-using-the-bundled-source.md)教程获取更多信息。_
 
 一旦你安装了 Slate，你需要导入它。
 
