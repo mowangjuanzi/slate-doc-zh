@@ -3,7 +3,7 @@
 <html lang="zh-hans" >
     <head>
         <meta charset="UTF-8">
-        <title>Using the Bundled Source · Slate 中文文档</title>
+        <title>使用已打包源 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.7.3">
@@ -193,7 +193,7 @@
                 <a href="xx-using-the-bundled-source.html">
             
                     
-                    Using the Bundled Source
+                    使用已打包源
             
                 </a>
             
@@ -778,7 +778,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Using the Bundled Source</a>
+        <a href=".." >使用已打包源</a>
     </h1>
 </div>
 
@@ -793,37 +793,40 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="using-the-bundled-source">Using the Bundled Source</h1>
-<p>For most folks, you&apos;ll want to install Slate via <code>npm</code>, in which case you can follow the regular <a href="01-installing-slate.html">Installing Slate</a> guide.</p>
-<p>But, if you&apos;d rather install Slate by simply adding a <code>&lt;script&gt;</code> tag to your application, this guide will help you. To make the &quot;bundled&quot; use case simpler, each version of Slate ships with a bundled source file called <code>slate.js</code>.</p>
-<p>To get a copy of <code>slate.js</code>, download the version of slate you want from npm:</p>
+                                <h1 id="使用已打包源">使用已打包源</h1>
+<blockquote>
+<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/xx-using-the-bundled-source.md" target="_blank">a47c35cd953ea6f67cd8c4670a36a8beaee0d9fc</a></p>
+</blockquote>
+<p>对大部分人来说，会希望通过 <code>npm</code> 安装 Slate，在这种情况下，可以按照常规<a href="01-installing-slate.html">安装 Slate</a>的教程去操作。</p>
+<p>但是，如果希望通过简单的添加 <code>&lt;script&gt;</code> 标记来安装 Slate 到应用程序，那么本教程会有帮助。为了使“已打包”用例更简单的使用，每个版本的 Slate 都附带一个叫做 <code>slate.js</code> 的已打包源代码的文件。</p>
+<p>要获取 <code>slate.js</code> 的副本，请从 npm 下载所需的 Slate 版本：</p>
 <pre><code class="lang-text">npm install slate@latest
 </code></pre>
-<p>And then look in the <code>node_modules</code> folder for the bundled <code>slate.js</code> file:</p>
+<p>然后在 <code>node_modules</code> 文件夹中查找已打包的 <code>slate.js</code> 文件：</p>
 <pre><code class="lang-text">node_modules/
   slate/
     dist/
       slate.js
       slate.min.js
 </code></pre>
-<p>A minified version called <code>slate.min.js</code> is also included for convenience.</p>
-<p>Before you can add <code>slate.js</code> to your page, you need to bring your own copy of <code>react</code>, <code>react-dom</code> and <code>react-dom-server</code>, like so:</p>
-<pre><code class="lang-markup">&lt;script src=&quot;./vendor/react.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;./vendor/react-dom.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;./vendor/react-dom-server.js&quot;&gt;&lt;/script&gt;
+<p>为了方便起见，还包括一个压缩版本 <code>slate.min.js</code>。</p>
+<p>在添加 <code>slate.js</code> 到页面之前，需要添加 <code>react</code>, <code>react-dom</code> 和 <code>react-dom-server</code> 副本，如下所示：</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./vendor/react.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./vendor/react-dom.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./vendor/react-dom-server.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<p>This ensures that Slate isn&apos;t bundling its own copy of React, which would greatly increase the file size of your application.</p>
-<p>Then you can add <code>slate.js</code> after those includes:</p>
-<pre><code class="lang-markup">&lt;script src=&quot;./vendor/slate.js&quot;&gt;&lt;/script&gt;
+<p>这确保 Slate 不会打包 React 副本，因为这会大大增加应用程序的文件大小。</p>
+<p>然后你可以在添加这些之后继续添加 <code>slate.js</code>：</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./vendor/slate.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<p>To make things easier, for quick prototyping, you can also use the <a href="https://unpkg.com/#/" target="_blank"><code>unpkg.com</code></a> delivery network that makes working with bundled npm modules easier. In that case, your includes would look like:</p>
-<pre><code class="lang-markup">&lt;script src=&quot;https://unpkg.com/react/umd/react.production.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/react-dom/umd/react-dom.production.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/react-dom/umd/react-dom-server.browser.production.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/slate/dist/slate.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/slate-react/dist/slate-react.js&quot;&gt;&lt;/script&gt;
+<p>为了更容易以及快速原型开发，也可以使用 <a href="https://unpkg.com/#/" target="_blank"><code>unpkg.com</code></a> 分发网络，可以更容易的使用已打包的 npm 模块：</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/react/umd/react.production.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/react-dom/umd/react-dom.production.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/react-dom/umd/react-dom-server.browser.production.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/slate/dist/slate.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/slate-react/dist/slate-react.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<p>That&apos;s it, you&apos;re ready to go!</p>
+<p>就是这些，即可准备运行！</p>
 
                                 
                                 </section>
@@ -867,7 +870,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Using the Bundled Source","level":"2.7","depth":1,"next":{"title":"Interfaces","level":"3.1","depth":1,"path":"concepts/01-interfaces.md","ref":"concepts/01-interfaces.md","articles":[]},"previous":{"title":"保存到数据库","level":"2.6","depth":1,"path":"walkthroughs/06-saving-to-a-database.md","ref":"walkthroughs/06-saving-to-a-database.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/xx-using-the-bundled-source.md","mtime":"2022-06-10T16:14:08.544Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-10T16:14:14.214Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"使用已打包源","level":"2.7","depth":1,"next":{"title":"Interfaces","level":"3.1","depth":1,"path":"concepts/01-interfaces.md","ref":"concepts/01-interfaces.md","articles":[]},"previous":{"title":"保存到数据库","level":"2.6","depth":1,"path":"walkthroughs/06-saving-to-a-database.md","ref":"walkthroughs/06-saving-to-a-database.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/xx-using-the-bundled-source.md","mtime":"2022-06-10T16:19:28.834Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-10T16:19:34.417Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
