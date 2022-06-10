@@ -8,7 +8,7 @@
 - [添加事件处理程序](walkthroughs/02-adding-event-handlers.md)
 - [定义自定义元素](walkthroughs/03-defining-custom-elements.md)
 - [应用自定义格式](walkthroughs/04-applying-custom-formatting.md)
-- [Executing Commands](walkthroughs/05-executing-commands.md)
+- [执行命令](walkthroughs/05-executing-commands.md)
 - [Saving to a Database](walkthroughs/06-saving-to-a-database.md)
 - [Using the Bundled Source](walkthroughs/xx-using-the-bundled-source.md)
 
