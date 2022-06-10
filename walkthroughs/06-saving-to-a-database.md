@@ -1,5 +1,7 @@
 # 保存到数据库
 
+> Commit ID: [acdc5c3417e30ec50ff2499394205246ccb70ca7](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/06-saving-to-a-database.md)
+
 现在已经学习了如何向 Slate 编辑器添加功能的基础知识，那如何保存正在编辑的内容，以便稍后回到应用程序后还能继续加载呢。
 
 在本教程中，将展示如何添加逻辑以便将 Slate 内容保存到数据库中存储并以后可以检索。
