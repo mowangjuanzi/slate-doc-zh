@@ -1,12 +1,12 @@
-# Nodes
+# 节点
 
-The most important types are the `Node` objects:
+最重要的类型是 `Node` 对象：
 
-- A root-level `Editor` node that contains the entire document's content.
-- Container `Element` nodes that have semantic meaning in your domain.
-- And leaf-level `Text` nodes which contain the document's text.
+- 包含整个文档内容的根级 `Editor` 节点。
+- 在域中有语义的容器 `Element` 节点。
+- 包含文档文本的叶级 `Text` 节点。
 
-These three interfaces are combined to form a tree—just like the DOM. For example, here's a simple plaintext value:
+这三个接口组合在一起形成一棵树 —— 就像 DOM 一样。例如：这是一个简单的纯文本值：
 
 ```javascript
 const editor = {
@@ -20,24 +20,24 @@ const editor = {
       ],
     },
   ],
-  // ...the editor has other properties too.
+  // ...编辑器也有其它属性。
 }
 ```
 
-Mirroring the DOM as much as possible is one of Slate's principles. People use the DOM to represent documents with rich text-like structures all the time. Mirroring the DOM helps make the library familiar for new users, and it lets us reuse battle-tested patterns without having to reinvent them ourselves.
+Slate 的原则之一是就可能多的镜像 DOM。人们一直使用 DOM 来表示具有类富文本结构的文档。镜像 DOM 有助于新用户熟悉该类库，并且能够重用经过实战考验的模式，而无需自我发明。
 
-> 🤖 The following content on Mozilla's Developer Network may help you learn more about the corresponding DOM concepts:
+> 🤖 火狐开发者网络上有下列内容可以更好的学习相应的 DOM 概念：
 >
-> - [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document)
-> - [Block Elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements)
-> - [Inline elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements)
-> - [Text elements](https://developer.mozilla.org/en-US/docs/Web/API/Text)
+> - [文档](https://developer.mozilla.org/en-US/docs/Web/API/Document)
+> - [块级元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements)
+> - [行内元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements)
+> - [文本元素](https://developer.mozilla.org/en-US/docs/Web/API/Text)
 
-A Slate document is a nested and recursive structure. In a document, elements can have children nodes—all of which may have children nodes without limit. The nested and recursive structure enables you to model simple behaviors such as user mentions and hashtags or complex behaviors such as tables and figures with captions.
+Slate 文档是嵌套递归结构。在文档中，元素有子节点 —— 所有的子节点数量没有限制。嵌套和递归结构能够对简单（比如用户提及或者话题标签）或者复杂（比如表格和带标题的数字）的行为进行建模。
 
 ## `Editor`
 
-The top-level node in a Slate document is the `Editor` itself. It encapsulates all of the rich text "content" of the document. Its interface is:
+Slate 的顶级节点是 `Editor` 本身。它概括了文档的所有富文本 “content”。它的接口是：
 
 ```typescript
 interface Editor {
@@ -46,11 +46,11 @@ interface Editor {
 }
 ```
 
-We'll cover its functionality later, but the important part as far as nodes are concerned is its `children` property which contains a tree of `Node` objects.
+稍后会介绍它的功能，但对节点而言重要的是包含 `Node` 对象树的 `children` 属性。
 
 ## `Element`
 
-Elements make up the middle layers of a rich text document. They are the nodes that are custom to your domain. Their interface is:
+元素构成了富文本文档的中间层。它们是域自定义节点。接口是：
 
 ```typescript
 interface Element {
@@ -58,7 +58,7 @@ interface Element {
 }
 ```
 
-You can define custom elements for any type of content you want. For example, you might have paragraphs and quotes in your data model which are differentiated by a `type` property:
+可以为所需的任何类型的内容自定义元素。例如，在数据模型可以通过 `type` 属性来区分段落还是引用：
 
 ```javascript
 const paragraph = {
@@ -72,7 +72,7 @@ const quote = {
 }
 ```
 
-It's important to note that you can use _any_ custom properties you want. The `type` property in that example isn't something Slate knows or cares about. If you were defining your own "link" nodes, you might have a `url` property:
+请务必注意，元素可使用_任何_所需的自定义属性。该示例中，Slate 不会知道或者关心 `type` 属性。如果正在定义 "link" 节点，可能需要有 `url` 属性：
 
 ```javascript
 const link = {
@@ -82,7 +82,7 @@ const link = {
 }
 ```
 
-Or maybe you want to give all of your nodes an ID property:
+或者想给所有的节点添加一个 ID 属性：
 
 ```javascript
 const paragraph = {
@@ -92,35 +92,35 @@ const paragraph = {
 }
 ```
 
-All that matters is that elements always have a `children` property.
+重要的是元素都会有 `children` 属性。
 
-## Blocks vs. Inlines
+## 块级与行内
 
-Depending on your use case, you might want to define another behavior for `Element` nodes which determines their editing "flow".
+根据用例，可能想为 `Element` 节点定义另外一种行为来确定编排“顺序”。
 
-All elements default to being "block" elements. They each appear separated by vertical space, and they never run into each other.
+所有的元素默认都是“block” 元素。每个都被垂直空间分割开且不会重叠。
 
-But in certain cases, like for links, you might want to make them "inline" flowing elements instead. That way they live at the same level as text nodes, and flow.
+但在某些情况下，像是链接，可能会将其设为“内联”连续元素。这样它们就可以跟文本节点相同且连续。
 
-> 🤖 This is a concept borrowed from the DOM's behavior, see [Block Elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements) and [Inline Elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements).
+> 🤖 这是从 DOM 行为中借用的概念，参阅[块级元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements)和[内联元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements)。
 
-You can define which nodes are treated as inline nodes by overriding the `editor.isInline` function. \(By default it always returns `false`.\) Note that inline nodes cannot be the first or last child of a parent block, nor can they be next to another inline node in the `children` array. Slate will automatically space these with `{ text: '' }` children by default with [`normalizeNode`](11-normalizing.md#built-in-constraints).
+可以通过覆盖 `editor.isInline` 函数来定义那些节点视为行内节点。（默认总返回 `false`。）注意行内节点不能是父级块的第一个或者最后一个子节点，也不能与 `children` 数组中的另外一个内联节点相邻。Slate 将使用 [`normalizeNode`](11-normalizing.md#built-in-constraints) 自动将 `{ text: '' }` 子级分隔开。
 
-Elements can either contain block elements or inline elements intermingled with text nodes as children. But elements **cannot** contain some children that are blocks and some that are inlined.
+元素可以包含块级元素或者混合文本节点的内联元素作为子元素。但元素的子元素**不能**是一部分块元素，一部分是行内元素。
 
-## Voids
+## 空元素
 
-Similar to blocks and inlines, there is another element-specific behavior you can define depending on your use case: their "void"-ness.
+类似块级和行内，可以根据用例定义另外一种特定于元素的行为：它们的 "void" .
 
-Elements default to being non-void, meaning that their children are fully editable as text. But in some cases, like for images, you want to ensure that Slate doesn't treat their content as editable text, but instead as a black box.
+元素默认非空，这意味着他们的子元素完全可以作为文本编辑。但在某些情况下，例如图像，会希望确保 Slate 不会将其内容视为可编辑文本，而是视为黑箱子。
 
-> 🤖 This is a concept borrowed from the HTML spec, see [Void Elements](https://www.w3.org/TR/2011/WD-html-markup-20110405/syntax.html#void-element).
+> 🤖 这是从 HTML 规范中借用的概念，参阅 [Void Elements](https://www.w3.org/TR/2011/WD-html-markup-20110405/syntax.html#void-element).
 
-You can define which elements are treated as void by overriding the `editor.isVoid` function. \(By default it always returns `false`.\) See [Rendering Void Elements](../api/nodes/element.md#rendering-void-elements) for implementation details.
+可以通过覆盖 `editor.isVoid` 函数来定义哪些元素被视为无效元素。（默认总返回 `false`。）参阅[渲染 Void 元素](../api/nodes/element.md#rendering-void-elements) 获取更多细节。
 
 ## `Text`
 
-Text nodes are the lowest-level nodes in the tree, containing the text content of the document, along with any formatting. Their interface is:
+文本节点是树中最低级节点，包含文档的文本内容以及任何格式。接口是：
 
 ```typescript
 interface Text {
@@ -128,7 +128,7 @@ interface Text {
 }
 ```
 
-For example, a string of bold text:
+例如，粗体格式文本：
 
 ```javascript
 const text = {
@@ -137,5 +137,5 @@ const text = {
 }
 ```
 
-Text nodes too can contain any custom properties you want, and that's how you implement custom formatting like **bold**, _italic_, `code`, etc.
-These custom properties are sometimes called [marks](../api/nodes/editor.md#mark-methods).
+文本节点也可以包含任何自定义属性，这就是实现类似 **粗体**, _斜体_, `代码` 等自定义格式的意义。
+这些自定义属性有时候称为[标记](../api/nodes/editor.md#mark-methods)。
