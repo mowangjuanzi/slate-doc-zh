@@ -12,9 +12,9 @@
 - [保存到数据库](walkthroughs/06-saving-to-a-database.md)
 - [使用已打包源](walkthroughs/xx-using-the-bundled-source.md)
 
-## Concepts
+## 概念
 
-- [Interfaces](concepts/01-interfaces.md)
+- [接口](concepts/01-interfaces.md)
 - [Nodes](concepts/02-nodes.md)
 - [Locations](concepts/03-locations.md)
 - [Transforms](concepts/04-transforms.md)
