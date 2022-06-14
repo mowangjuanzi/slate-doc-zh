@@ -15,7 +15,7 @@
 ## 概念
 
 - [接口](concepts/01-interfaces.md)
-- [Nodes](concepts/02-nodes.md)
+- [节点](concepts/02-nodes.md)
 - [Locations](concepts/03-locations.md)
 - [Transforms](concepts/04-transforms.md)
 - [Operations](concepts/05-operations.md)
