@@ -54,7 +54,7 @@ Slate 尝试解决“[为什么？](Introduction.md#为什么？)”提出的问
 - [**富文本**](https://www.slatejs.org/examples/richtext) —— 展示你期望从基础编辑器中获得的行为。
 - [**Markdown 预览**](https://www.slatejs.org/examples/markdown-preview) — 展示如何为类 Markdown 结构体添加快捷键行处理程序。
 - [**内联**](https://www.slatejs.org/examples/inlines) —— 展示如何使用关联数据在内联节点文本换行。
-- [**图像**](https://www.slatejs.org/examples/images) —— 展示如何使用 void（无文本）节点添加图片。
+- [**图像**](https://www.slatejs.org/examples/images) —— 展示如何使用 void（无文本）节点添加图像。
 - [**悬停工具栏**](https://www.slatejs.org/examples/hovering-toolbar) —— 展示如何实现上下文悬停菜单。
 - [**表格**](https://www.slatejs.org/examples/tables) —— 展示如何嵌套块以渲染更多高级组件。
 - [**粘贴 HTML**](https://www.slatejs.org/examples/paste-html) —— 展示如何使用 HTML 序列化程序处理粘贴的 HTML。
