@@ -1,6 +1,6 @@
-# Interfaces
+# 接口
 
-Slate works with pure JSON objects. All it requires is that those JSON objects conform to certain interfaces. For example, a text node in Slate must obey the `Text` interface:
+Slate 使用纯 JSON 对象。要求那些 JSON 对象符合某些接口。例如，Slate 中的文本节点必须遵循 `Text` 接口：
 
 ```typescript
 interface Text {
@@ -8,15 +8,15 @@ interface Text {
 }
 ```
 
-Which means it must have a `text` property with a string of content.
+这意味着它必须带有字符串内容 `text` 属性。
 
-But **any** other custom properties are also allowed, and completely up to you. This lets you tailor your data to your specific domain and use case, adding whatever formatting logic you'd like, without Slate getting in the way.
+但也允许其它**任何**自定义属性，这完全取决于开发人员。可以定制数据到特定领域或者用例中，并添加想要任何格式逻辑，而不会被 Slate 阻碍。
 
 This interface-based approach separates Slate from most other rich text editors which require you to work with their hand-rolled "model" classes and makes it much easier to reason about. It also means that it avoids startup time penalties related to "initializing" the data model.
 
-## Custom Properties
+## 自定义属性
 
-To take another example, the `Element` node interface in Slate is:
+据个例子， Slate 中的 `Element` 节点接口是：
 
 ```typescript
 interface Element {
@@ -49,7 +49,7 @@ The `type` and `url` properties are your custom API. Slate sees that they exist,
 
 When getting started with Slate, it's important to understand all of the interfaces it defines. There are a handful of interfaces that are discussed in each of the guides.
 
-## Helper Functions
+## 助手函数
 
 In addition to the typing information, each interface in Slate also exposes a series of helper functions that make them easier to work with.
 
@@ -81,7 +81,7 @@ if (Range.isCollapsed(range)) {
 
 There are many helper functions available for all common use cases when working with different interfaces. When getting started it helps to read through all of them so you can often simplify complex logic into just a handful of lines of code.
 
-## Custom Helpers
+## 自定义助手
 
 In addition to the built-in helper functions, you might want to define your custom helper functions and expose them on your custom namespaces.
 
