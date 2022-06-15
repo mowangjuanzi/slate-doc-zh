@@ -3,7 +3,7 @@
 <html lang="zh-hans" >
     <head>
         <meta charset="UTF-8">
-        <title>Locations · Slate 中文文档</title>
+        <title>位置 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.7.3">
@@ -239,7 +239,7 @@
                 <a href="03-locations.html">
             
                     
-                    Locations
+                    位置
             
                 </a>
             
@@ -778,7 +778,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Locations</a>
+        <a href=".." >位置</a>
     </h1>
 </div>
 
@@ -793,13 +793,13 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="locations">Locations</h1>
-<p>Locations are how you refer to specific places in the document when inserting, deleting, or doing anything else with a Slate editor. There are a few different kinds of location interfaces, each for different use cases.</p>
+                                <h1 id="位置">位置</h1>
+<p>位置是在 Slate 编辑器中插入、删除、执行任何操作时引用文档中的特定位置的方式。有几种不同类型的位置接口用于不同的用例。</p>
 <h2 id="path"><code>Path</code></h2>
-<p>Paths are the lowest-level way to refer to a location. Each path is a simple array of numbers that refers to a node in the document tree by its indexes in each of its ancestor nodes down the tree:</p>
+<p>路径是位置引用最低层方式。每个路径都是简单的数字数组，通过文档树中的每个祖先节点的索引来引用节点：</p>
 <pre><code class="lang-typescript"><span class="hljs-keyword">type</span> Path = <span class="hljs-built_in">number</span>[]
 </code></pre>
-<p>For example, in this document:</p>
+<p>例如，在文档中：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> editor = {
   <span class="hljs-attr">children</span>: [
     {
@@ -813,54 +813,53 @@
   ],
 }
 </code></pre>
-<p>The leaf text node would have a path of: <code>[0, 0]</code>.</p>
-<p>The Editor itself has a path of <code>[]</code>. For example, to select the whole contents of the editor, call
-<code>Transforms.select(editor, [])</code></p>
+<p>文本节点的叶子的路径是： <code>[0, 0]</code>。</p>
+<p>编辑器本身的路径是 <code>[]</code>。例如，调用 <code>Transforms.select(editor, [])</code> 选择编辑器的全部内容。</p>
 <h2 id="point"><code>Point</code></h2>
-<p>Points are slightly more specific than paths, and contain an <code>offset</code> into a specific text node. Their interface is:</p>
+<p>点比路径更加具体，且包含特定文本的 <code>offset</code>。接口是：</p>
 <pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Point {
   <span class="hljs-attr">path</span>: Path
   <span class="hljs-attr">offset</span>: <span class="hljs-built_in">number</span>
 }
 </code></pre>
-<p>For example, with that same document, if you wanted to refer to the very first place you could put your cursor it would be:</p>
+<p>例如，对于同一个文档，如果想引用第一个位置，可以将光标放在：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> start = {
   <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
   <span class="hljs-attr">offset</span>: <span class="hljs-number">0</span>,
 }
 </code></pre>
-<p>Or, if you wanted to refer to the end of the sentence:</p>
+<p>或者想引用句子的结尾：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> end = {
   <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
   <span class="hljs-attr">offset</span>: <span class="hljs-number">15</span>,
 }
 </code></pre>
-<p>It can be helpful to think of points as being &quot;cursors&quot; (or &quot;carets&quot;) of a selection.</p>
+<p>将点视为“光标”（“插入符号”）可能会有所帮助。</p>
 <blockquote>
-<p>🤖 Points <em>always</em> refer to text nodes! Since they are the only ones with strings that can have cursors.</p>
+<p>🤖 点<em>总是</em>指的是文本节点！因为它们是唯一有光标的字符串。</p>
 </blockquote>
 <h2 id="range"><code>Range</code></h2>
-<p>Ranges are a way to refer not just to a single point in the document, but to a wider span of content between two points. (An example of a range is when you make a selection.) Their interface is:</p>
+<p>范围不仅仅可以引用文档中的单个点，还可以引用两个点之间更广泛的内容。（范围的例子是选区。）接口是：</p>
 <pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Range {
   <span class="hljs-attr">anchor</span>: Point
   <span class="hljs-attr">focus</span>: Point
 }
 </code></pre>
 <blockquote>
-<p>🤖 The terms &quot;anchor&quot; and &quot;focus&quot; are borrowed from the DOM, see <a href="https://developer.mozilla.org/en-US/docs/Web/API/Selection/anchorNode" target="_blank">Anchor</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/Selection/focusNode" target="_blank">Focus</a>.</p>
+<p>🤖 术语“锚点”（anchor）和“焦点”（focus）是从 DOM 中借用的，参阅<a href="https://developer.mozilla.org/en-US/docs/Web/API/Selection/anchorNode" target="_blank">锚点</a>和<a href="https://developer.mozilla.org/en-US/docs/Web/API/Selection/focusNode" target="_blank">焦点</a>。</p>
 </blockquote>
-<p>An anchor and focus are established by a user interaction. The anchor point isn&apos;t always <em>before</em> the focus point in the document. Just like in the DOM, the ordering of an anchor and selection point depend on whether the range is backwards or forwards.</p>
-<p>Here&apos;s how Mozilla Developer Network explains it:</p>
+<p>锚点和焦点是通过用户交互确定的。在文档中锚点不总是在焦点<em>之前</em>。就像在 DOM 中，锚点和焦点的顺序取决于范围是向后还是向前。</p>
+<p>以下是火狐开发者网络的解释：</p>
 <blockquote>
-<p>A user may make a selection from left to right (in document order) or right to left (reverse of document order). The anchor is where the user began the selection and the focus is where the user ends the selection. If you make a selection with a desktop mouse, the anchor is placed where you pressed the mouse button and the focus is placed where you released the mouse button. Anchor and focus should not be confused with the start and end positions of a selection, since anchor can be placed before the focus or vice versa, depending on the direction you made your selection. — <a href="https://developer.mozilla.org/en-US/docs/Web/API/Selection" target="_blank"><code>Selection</code>, MDN</a></p>
+<p>用户可能从左到右（与文档方向相同）选择文本或从右到左（与文档方向相反）选择文本。锚点指向用户开始选择的地方，而焦点指向用户结束选择的地方。如果使用鼠标选择文本的话，锚点就指向按下鼠标键的地方，而焦点就指向松开鼠标键的地方。锚点和焦点的概念不能与选区的起始位置和终止位置混淆，因为锚点指向的位置可能在焦点指向的位置的前面，也可能在焦点指向位置的后面，这取决于选择文本时鼠标移动的方向（也就是按下鼠标键和松开鼠标键的位置）。 —— <a href="https://developer.mozilla.org/en-US/docs/Web/API/Selection" target="_blank"><code>Selection</code>, MDN</a></p>
 </blockquote>
-<p>One important distinction is that the anchor and focus points of ranges <strong>always reference the leaf-level text nodes</strong> in a document and never reference elements. This behavior is different than the DOM, but it simplifies working with ranges as there are fewer edge cases for you to handle.</p>
+<p>一个重要的区别是在文档中范围的锚点和焦点<strong>始终引用文本节点叶子</strong>且绝不引用元素。此行为与 DOM 不同，但简化了使用范围，且需要处理的边缘情况更少。</p>
 <blockquote>
-<p>🤖 For more info, check out the <a href="../api/locations/range.html">Range API reference</a>.</p>
+<p>🤖 参考<a href="../api/locations/range.html">范围 API 参考</a>获取更多信息。</p>
 </blockquote>
-<h2 id="selection">Selection</h2>
-<p>Ranges are used in many places in Slate&apos;s API when you need to refer to a span of content between two points. One of the most common though is the user&apos;s current &quot;selection&quot;.</p>
-<p>The selection is a special range that is a property of the top-level <code>Editor</code>. For example, say someone has the whole sentence currently selected:</p>
+<h2 id="选区">选区</h2>
+<p>当需要引用两点之间的内容范围时，Slate API 的中很多地方都使用了范围。最常见的例子是用户的当前“选区”。</p>
+<p>选区是一个特殊范围，是顶级 <code>Editor</code> 的属性。例如，假设当前选择了整个句子：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> editor = {
   <span class="hljs-attr">selection</span>: {
     <span class="hljs-attr">anchor</span>: { <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>], <span class="hljs-attr">offset</span>: <span class="hljs-number">0</span> },
@@ -879,9 +878,9 @@
 }
 </code></pre>
 <blockquote>
-<p>🤖 The selection concept is also borrowed from the DOM, see <a href="https://developer.mozilla.org/en-US/docs/Web/API/Selection" target="_blank"><code>Selection</code>, MDN</a>, although in a greatly-simplified form because Slate doesn&apos;t allow for multiple ranges inside a single selection, which makes things a lot easier to work with.</p>
+<p>🤖 选区概念也是从 DOM 中借用的，参阅 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Selection" target="_blank"><code>Selection</code>, MDN</a>, 尽管形式非常简化，因为 Slate 不允许在单个选区中包含多个范围，但也使得易于使用。</p>
 </blockquote>
-<p>There isn&apos;t a special <code>Selection</code> interface. It&apos;s just an object that happens to respect the more general-purpose <code>Range</code> interface instead.</p>
+<p>没有特定的 <code>Selection</code> 接口。它只是正好遵循了更通用的 <code>Range</code> 接口。</p>
 
                                 
                                 </section>
@@ -925,7 +924,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Locations","level":"3.3","depth":1,"next":{"title":"Transforms","level":"3.4","depth":1,"path":"concepts/04-transforms.md","ref":"concepts/04-transforms.md","articles":[]},"previous":{"title":"节点","level":"3.2","depth":1,"path":"concepts/02-nodes.md","ref":"concepts/02-nodes.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/03-locations.md","mtime":"2022-06-14T12:04:34.394Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-14T12:04:40.017Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"位置","level":"3.3","depth":1,"next":{"title":"Transforms","level":"3.4","depth":1,"path":"concepts/04-transforms.md","ref":"concepts/04-transforms.md","articles":[]},"previous":{"title":"节点","level":"3.2","depth":1,"path":"concepts/02-nodes.md","ref":"concepts/02-nodes.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/03-locations.md","mtime":"2022-06-15T14:13:26.654Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-15T14:13:32.182Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
