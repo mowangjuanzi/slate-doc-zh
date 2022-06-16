@@ -3,7 +3,7 @@
 <html lang="zh-hans" >
     <head>
         <meta charset="UTF-8">
-        <title>Operations · Slate 中文文档</title>
+        <title>操作 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.7.3">
@@ -265,7 +265,7 @@
                 <a href="05-operations.html">
             
                     
-                    Operations
+                    操作
             
                 </a>
             
@@ -778,7 +778,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Operations</a>
+        <a href=".." >操作</a>
     </h1>
 </div>
 
@@ -793,9 +793,12 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="operations">Operations</h1>
-<p>Operations are the granular, low-level actions that occur while invoking transforms. A single transform could result in many low-level operations being applied to the editor.</p>
-<p>Slate&apos;s core defines all of the possible operations that can occur on a richtext document. For example:</p>
+                                <h1 id="操作">操作</h1>
+<blockquote>
+<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/05-operations.md" target="_blank">f183bde599133e1e6ce3549e1f3055e936246b8e</a></p>
+</blockquote>
+<p>操作是调用转换时发生的细粒度，低层次操作。单个转换可能会导致多个低层次操作应用于编辑器。</p>
+<p>Slate 的核心定义了所有可能可以在富文本文档上发生的操作。例如：</p>
 <pre><code class="lang-javascript">editor.apply({
   <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;insert_text&apos;</span>,
   <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
@@ -821,9 +824,9 @@ editor.apply({
   },
 })
 </code></pre>
-<p>Under the covers Slate converts complex transforms into the low-level operations and applies them to the editor automatically. So you rarely have to think about operations unless you&apos;re implementing collaborative editing.</p>
+<p>在底层，Slate 将复杂的转换变为低级操作并自动应用于编辑器中。因此，除非正在实现协同编辑，否则很少需要考虑操作。</p>
 <blockquote>
-<p>🤖 Slate&apos;s editing behaviors being defined as operations is what makes things like collaborative editing possible, because each change is easily define-able, apply-able, compose-able and even undo-able!</p>
+<p>🤖 Slate 的编辑行为定义为操作，这使得协同编辑称为可能，因为每个更改都可以很轻易的定义，应用，组合甚至撤销！</p>
 </blockquote>
 
                                 
@@ -868,7 +871,7 @@ editor.apply({
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Operations","level":"3.5","depth":1,"next":{"title":"Commands","level":"3.6","depth":1,"path":"concepts/06-commands.md","ref":"concepts/06-commands.md","articles":[]},"previous":{"title":"转换","level":"3.4","depth":1,"path":"concepts/04-transforms.md","ref":"concepts/04-transforms.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/05-operations.md","mtime":"2022-06-16T19:28:19.644Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-16T19:28:25.185Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"操作","level":"3.5","depth":1,"next":{"title":"Commands","level":"3.6","depth":1,"path":"concepts/06-commands.md","ref":"concepts/06-commands.md","articles":[]},"previous":{"title":"转换","level":"3.4","depth":1,"path":"concepts/04-transforms.md","ref":"concepts/04-transforms.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/05-operations.md","mtime":"2022-06-16T19:48:15.195Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-16T19:48:19.841Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
