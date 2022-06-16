@@ -1,5 +1,7 @@
 # 位置
 
+> Commit ID: [7d9d25e1790c6557e6ff2072f79f7904736aec65](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/03-locations.md)
+
 位置是在 Slate 编辑器中插入、删除、执行任何操作时引用文档中的特定位置的方式。有几种不同类型的位置接口用于不同的用例。
 
 ## `Path`

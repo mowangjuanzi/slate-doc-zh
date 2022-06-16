@@ -1,5 +1,7 @@
 # 节点
 
+> Commit ID: [2b94e178749829ce47cc9de4ce06603af37b3760](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/02-nodes.md)
+
 最重要的类型是 `Node` 对象：
 
 - 包含整个文档内容的根级 `Editor` 节点。
