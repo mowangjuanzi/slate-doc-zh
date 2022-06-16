@@ -1,8 +1,10 @@
-# Operations
+# 操作
 
-Operations are the granular, low-level actions that occur while invoking transforms. A single transform could result in many low-level operations being applied to the editor.
+> Commit ID: [f183bde599133e1e6ce3549e1f3055e936246b8e](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/05-operations.md)
 
-Slate's core defines all of the possible operations that can occur on a richtext document. For example:
+操作是调用转换时发生的细粒度，低层次操作。单个转换可能会导致多个低层次操作应用于编辑器。
+
+Slate 的核心定义了所有可能可以在富文本文档上发生的操作。例如：
 
 ```javascript
 editor.apply({
@@ -31,6 +33,6 @@ editor.apply({
 })
 ```
 
-Under the covers Slate converts complex transforms into the low-level operations and applies them to the editor automatically. So you rarely have to think about operations unless you're implementing collaborative editing.
+在底层，Slate 将复杂的转换变为低级操作并自动应用于编辑器中。因此，除非正在实现协同编辑，否则很少需要考虑操作。
 
-> 🤖 Slate's editing behaviors being defined as operations is what makes things like collaborative editing possible, because each change is easily define-able, apply-able, compose-able and even undo-able!
+> 🤖 Slate 的编辑行为定义为操作，这使得协同编辑称为可能，因为每个更改都可以很轻易的定义，应用，组合甚至撤销！
