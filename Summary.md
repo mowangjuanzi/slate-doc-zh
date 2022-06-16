@@ -16,7 +16,7 @@
 
 - [接口](concepts/01-interfaces.md)
 - [节点](concepts/02-nodes.md)
-- [Locations](concepts/03-locations.md)
+- [位置](concepts/03-locations.md)
 - [转换](concepts/04-transforms.md)
 - [Operations](concepts/05-operations.md)
 - [Commands](concepts/06-commands.md)
