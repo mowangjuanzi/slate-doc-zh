@@ -1,10 +1,12 @@
-# Commands
+# 命令
 
-While editing richtext content, your users will be doing things like inserting text, deleting text, splitting paragraphs, adding formatting, etc. Under the cover these edits are expressed using transforms and operations. But at a high level we talk about them as "commands".
+> Commit ID: [f183bde599133e1e6ce3549e1f3055e936246b8e](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/06-commands.md)
 
-Commands are the high-level actions that represent a specific intent of the user. They are represented as helper functions on the `Editor` interface. A handful of helpers are included in core for common richtext behaviors, but you are encouraged to write your own that model your specific domain.
+在编辑富文本内容时，用户会执行插入文本，删除文本，拆分段落，添加格式等操作，在底层，这些编辑使用转换和操作来表达。但是在高层级上，称之为“命令”。
 
-For example, here are some of the built-in commands:
+命令是代表用户特定意图的高级操作。在 `Editor` 接口上表示为助手函数。 少量常用富文本行为助手包含在核心中，但鼓励编写自己的助手来为特定域建模。
+
+例如，以下是一些内置命令：
 
 ```javascript
 Editor.insertText(editor, 'A new string of text to be inserted.')
@@ -14,17 +16,17 @@ Editor.deleteBackward(editor, { unit: 'word' })
 Editor.insertBreak(editor)
 ```
 
-But you can \(and will!\) also define your own custom commands that model your domain. For example, you might want to define a `formatQuote` command, or an `insertImage` command, or a `toggleBold` command depending on what types of content you allow.
+但是可以（将会）定义自定义命令来对域建模。例如，对允许的内容类型定义 `formatQuote` 命令或者`insertImage` 命令或者 `toggleBold` 命令。
 
-Commands always describe an action to be taken as if the **user** was performing the action. For that reason, they never need to define a location to perform the command, because they always act on the user's current selection.
+命令总是要描述要采取的行为，就像**用户**正在执行该操作一样。因此不需要定义执行命令的位置，因为总是根据用户的当前选区操作。
 
-> 🤖 The concept of commands is loosely based on the DOM's built-in [`execCommand`](https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand) APIs. However Slate defines its own simpler \(and extendable!\) version of the API, because the DOM's version is too opinionated and inconsistent.
+> 🤖 命令的概念大致上是基于 DOM 内置的 [`execCommand`](https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand) API。然后 Slate 定义的 API 更简单（可扩展），因为 DOM 的版本太过固执且前后不一。
 
-Under the covers, Slate takes care of converting each command into a set of low-level "operations" that are applied to produce a new value. This is what makes collaborative editing implementations possible. But you don't have to worry about that, because it happens automatically.
+在底层，Slate 负责将每个命令转化为一组低级“操作”，用于产生新值。这就是能让协作编辑称为可能的原因。但是也不需要担心，因为它是自动发生的。
 
-## Custom Commands
+## 自定义命令
 
-When defining custom commands, you can create your own namespace:
+当穿件自定义命令时，可以创建自己的命名空间：
 
 ```javascript
 const MyEditor = {
@@ -36,14 +38,14 @@ const MyEditor = {
 }
 ```
 
-When writing your own commands, you'll often make use of the `Transforms` helpers that ship with Slate.
+当编写命令时，会经常使用 Slate 的 `Transforms` 助手。
 
-## Transforms
+## 转换
 
-Transforms are a specific set of helpers that allow you to perform a wide variety of specific changes to the document, for example:
+转换是一组特定的助手，允许对文档执行各种特定的更改，例如：
 
 ```javascript
-// Set a "bold" format on all of the text nodes in a range.
+// 在范围内的所有文本节点设置“粗体”格式。
 Transforms.setNodes(
   editor,
   { bold: true },
@@ -65,10 +67,10 @@ Transforms.wrapNodes(
   }
 )
 
-// Insert new text to replace the text in a node at a specific path.
+// 在指定路径插入新文本以替换节点中的文本。
 Transforms.insertText(editor, 'A new string of text.', { at: path })
 
-// ...there are many more transforms!
+// ...还有更多的转换！
 ```
 
-The transform helpers are designed to be composed together. So you might use a handful of them for each command.
+转换助手设计为组合在一起。所以可以回每个命令使用其中的几个。

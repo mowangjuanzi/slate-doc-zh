@@ -19,7 +19,7 @@
 - [位置](concepts/03-locations.md)
 - [转换](concepts/04-transforms.md)
 - [操作](concepts/05-operations.md)
-- [Commands](concepts/06-commands.md)
+- [命令](concepts/06-commands.md)
 - [Editor](concepts/07-editor.md)
 - [Plugins](concepts/08-plugins.md)
 - [Rendering](concepts/09-rendering.md)
