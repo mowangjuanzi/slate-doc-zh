@@ -291,7 +291,7 @@
                 <a href="../concepts/07-editor.html">
             
                     
-                    Editor
+                    编辑器
             
                 </a>
             
@@ -860,7 +860,7 @@
 <p>Slate 提供者的 “value” prop 仅用作 editor.children 的初始状态。如果你的代码依赖替换 editor.children 你应该直接替换它，而不是依赖 “value” prop 去执行此操作。有关更深入的讨论请参阅 <a href="https://github.com/ianstormtaylor/slate/pull/4540" target="_blank">Slate PR 4540</a>。</p>
 </blockquote>
 <p>这与 <code>&lt;input&gt;</code> 或 <code>&lt;textarea&gt;</code> 之类的心智模型略有不同，因为富文本文档更加复杂。你通常希望在可编辑内容旁边包含工具栏，实时预览或者其它复杂组件。</p>
-<p>通过共享上下文，其他组件可以执行命令，查询编辑器状态等。</p>
+<p>通过共享上下文，其它组件可以执行命令，查询编辑器状态等。</p>
 <p>好，下一步是渲染 <code>&lt;Editable&gt;</code> 组件：</p>
 <pre><code class="lang-jsx"><span class="hljs-keyword">const</span> initialValue = []
 
@@ -940,7 +940,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"安装 Slate","level":"2.1","depth":1,"next":{"title":"添加事件处理程序","level":"2.2","depth":1,"path":"walkthroughs/02-adding-event-handlers.md","ref":"walkthroughs/02-adding-event-handlers.md","articles":[]},"previous":{"title":"简介","level":"1.1","depth":1,"path":"Introduction.md","ref":"Introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/01-installing-slate.md","mtime":"2022-06-17T07:12:09.951Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-17T07:12:14.559Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"安装 Slate","level":"2.1","depth":1,"next":{"title":"添加事件处理程序","level":"2.2","depth":1,"path":"walkthroughs/02-adding-event-handlers.md","ref":"walkthroughs/02-adding-event-handlers.md","articles":[]},"previous":{"title":"简介","level":"1.1","depth":1,"path":"Introduction.md","ref":"Introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/01-installing-slate.md","mtime":"2022-06-20T05:43:39.274Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-20T05:43:44.978Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

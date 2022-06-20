@@ -3,7 +3,7 @@
 <html lang="zh-hans" >
     <head>
         <meta charset="UTF-8">
-        <title>Editor · Slate 中文文档</title>
+        <title>编辑器 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.7.3">
@@ -291,7 +291,7 @@
                 <a href="07-editor.html">
             
                     
-                    Editor
+                    编辑器
             
                 </a>
             
@@ -778,7 +778,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Editor</a>
+        <a href=".." >编辑器</a>
     </h1>
 </div>
 
@@ -793,20 +793,20 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="editor">Editor</h1>
-<p>All of the behaviors, content and state of a Slate editor is rolled up into a single, top-level <code>Editor</code> object. It has an interface of:</p>
+                                <h1 id="编辑器">编辑器</h1>
+<p>Slate 编辑器的所有行为、内容、状态都汇总到单个顶级 <code>Editor</code> 对象。接口是：</p>
 <pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Editor {
-  <span class="hljs-comment">// Current editor state</span>
+  <span class="hljs-comment">// 当前编辑器状态</span>
   <span class="hljs-attr">children</span>: Node[]
   <span class="hljs-attr">selection</span>: Range | <span class="hljs-literal">null</span>
   <span class="hljs-attr">operations</span>: Operation[]
   <span class="hljs-attr">marks</span>: Omit&lt;Text, <span class="hljs-string">&apos;text&apos;</span>&gt; | <span class="hljs-literal">null</span>
-  <span class="hljs-comment">// Schema-specific node behaviors.</span>
+  <span class="hljs-comment">// 特定模式的节点行为。</span>
   <span class="hljs-attr">isInline</span>: <span class="hljs-function">(<span class="hljs-params">element: Element</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
   <span class="hljs-attr">isVoid</span>: <span class="hljs-function">(<span class="hljs-params">element: Element</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
   <span class="hljs-attr">normalizeNode</span>: <span class="hljs-function">(<span class="hljs-params">entry: NodeEntry</span>) =&gt;</span> <span class="hljs-built_in">void</span>
   <span class="hljs-attr">onChange</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">void</span>
-  <span class="hljs-comment">// Overrideable core actions.</span>
+  <span class="hljs-comment">// 可重写的核心操作。</span>
   <span class="hljs-attr">addMark</span>: <span class="hljs-function">(<span class="hljs-params">key: <span class="hljs-built_in">string</span>, value: <span class="hljs-built_in">any</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>
   <span class="hljs-attr">apply</span>: <span class="hljs-function">(<span class="hljs-params">operation: Operation</span>) =&gt;</span> <span class="hljs-built_in">void</span>
   <span class="hljs-attr">deleteBackward</span>: <span class="hljs-function">(<span class="hljs-params">unit: <span class="hljs-string">&apos;character&apos;</span> | <span class="hljs-string">&apos;word&apos;</span> | <span class="hljs-string">&apos;line&apos;</span> | <span class="hljs-string">&apos;block&apos;</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>
@@ -820,23 +820,22 @@
   <span class="hljs-attr">removeMark</span>: <span class="hljs-function">(<span class="hljs-params">key: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>
 }
 </code></pre>
-<p>It is slightly more complex than the others, because it contains all of the top-level functions that define your custom, domain-specific behaviors.</p>
-<p>The <code>children</code> property contains the document tree of nodes that make up the editor&apos;s content.</p>
-<p>The <code>selection</code> property contains the user&apos;s current selection, if any.
-Don&apos;t set it directly; use <a href="04-transforms#selection-transforms">Transforms.select</a></p>
-<p>The <code>operations</code> property contains all of the operations that have been applied since the last &quot;change&quot; was flushed. (Since Slate batches operations up into ticks of the event loop.)</p>
-<p>The <code>marks</code> property stores formatting to be applied when the editor inserts text. If <code>marks</code> is <code>null</code>, the formatting will be taken from the current selection.
-Don&apos;t set it directly; use <code>Editor.addMark</code> and <code>Editor.removeMark</code>.</p>
-<h2 id="overriding-behaviors">Overriding Behaviors</h2>
-<p>In previous guides we&apos;ve already hinted at this, but you can override any of the behaviors of an editor by overriding its function properties.</p>
-<p>For example, if you want to define link elements that are inline nodes:</p>
+<p>它比其它的稍微复杂一些，因为包含所有的顶级函数，比如定义的自定义函数以及特定领域的行为。</p>
+<p><code>children</code> 属性包含构成编辑器内容的节点的文档树。</p>
+<p><code>selection</code> 属性包含用户当前的选区（如果存在）。不要直接设置，使用 <a href="04-transforms#selection-transforms">Transforms.select</a>。</p>
+<p><code>operations</code> 属性包含了自上次“更改”刷新以来已应用的所有操作（因为 Slate 将批次操作加入到事件循环的 tick 中。）</p>
+<p><code>marks</code> 属性保存了当编辑器插入文本时要应用的格式，如果 <code>marks</code> 是 <code>null</code>，格式从当前选区获取。
+不能直接赋值，使用 <code>Editor.addMark</code> 和 <code>Editor.removeMark</code> 设置该值。</p>
+<h2 id="重写行为">重写行为</h2>
+<p>在之前的教程中，已经暗示过，通过重写它的函数属性来重写编辑器的任何行为。</p>
+<p>例如，如果你想在行内节点定义链接元素：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { isInline } = editor
 
 editor.isInline = <span class="hljs-function"><span class="hljs-params">element</span> =&gt;</span> {
   <span class="hljs-keyword">return</span> element.type === <span class="hljs-string">&apos;link&apos;</span> ? <span class="hljs-literal">true</span> : isInline(element)
 }
 </code></pre>
-<p>Or maybe you want to override the <code>insertText</code> behavior to &quot;linkify&quot; URLs:</p>
+<p>或者想重写 <code>insertText</code> 行为来“链接” URL：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { insertText } = editor
 
 editor.insertText = <span class="hljs-function"><span class="hljs-params">text</span> =&gt;</span> {
@@ -848,7 +847,7 @@ editor.insertText = <span class="hljs-function"><span class="hljs-params">text</
   insertText(text)
 }
 </code></pre>
-<p>Or you can even define custom &quot;normalizations&quot; that take place to ensure that links obey certain constraints:</p>
+<p>或者甚至想要定义自定义“标准化”，确保链接遵从某些约束：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { normalizeNode } = editor
 
 editor.normalizeNode = <span class="hljs-function"><span class="hljs-params">entry</span> =&gt;</span> {
@@ -862,31 +861,31 @@ editor.normalizeNode = <span class="hljs-function"><span class="hljs-params">ent
   normalizeNode(entry)
 }
 </code></pre>
-<p>Whenever you override behaviors, be sure to call the existing functions as a fallback mechanism for the default behavior. Unless you really do want to completely remove the default behaviors (which is rarely a good idea).</p>
+<p>每当真的要覆盖行为时，请务必调用现有函数作为默认行为的后备机制。除非真的想要完全删除默认行为（这并不是好主意）。</p>
 <blockquote>
-<p>🤖 For more info, check out the <a href="../api/nodes/editor.html#schema-specific-instance-methods-to-override">Editor Instance Methods to Override API Reference</a></p>
+<p>🤖 请查看 <a href="../api/nodes/editor.html#schema-specific-instance-methods-to-override">编辑器实例化方法覆盖 API 参考</a>获取更多信息</p>
 </blockquote>
-<h2 id="helper-functions">Helper Functions</h2>
-<p>The <code>Editor</code> interface, like all Slate interfaces, exposes helper functions that are useful when implementing certain behaviors. There are many, many editor-related helpers. For example:</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// Get the start point of a specific node at path.</span>
+<h2 id="助手函数">助手函数</h2>
+<p>与所有 Slate 接口一样， <code>Editor</code> 接口公开了在实现某些行为时有用的助手函数。有很多编辑器相关的助手。例如：</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// 在路径中获取指定节点的起点。</span>
 <span class="hljs-keyword">const</span> point = Editor.start(editor, [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>])
 
-<span class="hljs-comment">// Get the fragment (a slice of the document) at a range.</span>
+<span class="hljs-comment">// 在范围中获取片段（文档的一部分）。</span>
 <span class="hljs-keyword">const</span> fragment = Editor.fragment(editor, range)
 </code></pre>
-<p>There are also many iterator-based helpers, for example:</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// Iterate over every node in a range.</span>
+<p>还有很多基于迭代器的助手，例如：</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// 遍历范围内的每个节点。</span>
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [node, path] <span class="hljs-keyword">of</span> Editor.nodes(editor, { <span class="hljs-attr">at</span>: range })) {
   <span class="hljs-comment">// ...</span>
 }
 
-<span class="hljs-comment">// Iterate over every point in every text node in the current selection.</span>
+<span class="hljs-comment">// 迭代当前选区文本节点中的每个点。</span>
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> point <span class="hljs-keyword">of</span> Editor.positions(editor)) {
   <span class="hljs-comment">// ...</span>
 }
 </code></pre>
 <blockquote>
-<p>🤖 For more info, check out the <a href="../api/nodes/editor.html#static-methods">Editor Static Methods API Reference</a></p>
+<p>🤖 查看<a href="../api/nodes/editor.html#static-methods">编辑器静态方法 API 参考</a>获取更多信息</p>
 </blockquote>
 
                                 
@@ -931,7 +930,7 @@ editor.normalizeNode = <span class="hljs-function"><span class="hljs-params">ent
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Editor","level":"3.7","depth":1,"next":{"title":"Plugins","level":"3.8","depth":1,"path":"concepts/08-plugins.md","ref":"concepts/08-plugins.md","articles":[]},"previous":{"title":"命令","level":"3.6","depth":1,"path":"concepts/06-commands.md","ref":"concepts/06-commands.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/07-editor.md","mtime":"2022-06-17T07:12:09.943Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-17T07:12:14.559Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"编辑器","level":"3.7","depth":1,"next":{"title":"Plugins","level":"3.8","depth":1,"path":"concepts/08-plugins.md","ref":"concepts/08-plugins.md","articles":[]},"previous":{"title":"命令","level":"3.6","depth":1,"path":"concepts/06-commands.md","ref":"concepts/06-commands.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/07-editor.md","mtime":"2022-06-20T05:43:39.262Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-20T05:43:44.978Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
