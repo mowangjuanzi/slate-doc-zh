@@ -32,7 +32,7 @@ const editor = withImages(createEditor())
 
 ## 助手函数
 
-除了插件函数之外，还想公开与插件一起使用的助手函数。例如：
+除了插件函数之外，还可以公开与插件一起使用的助手函数。例如：
 
 ```javascript
 import { Editor, Element } from 'slate'
