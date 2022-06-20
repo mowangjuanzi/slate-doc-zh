@@ -22,7 +22,7 @@
 - [命令](concepts/06-commands.md)
 - [编辑器](concepts/07-editor.md)
 - [插件](concepts/08-plugins.md)
-- [Rendering](concepts/09-rendering.md)
+- [渲染](concepts/09-rendering.md)
 - [Serializing](concepts/10-serializing.md)
 - [Normalizing](concepts/11-normalizing.md)
 - [TypeScript](concepts/12-typescript.md)
