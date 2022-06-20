@@ -1,20 +1,20 @@
-# Editor
+# 编辑器
 
-All of the behaviors, content and state of a Slate editor is rolled up into a single, top-level `Editor` object. It has an interface of:
+Slate 编辑器的所有行为、内容、状态都汇总到单个顶级 `Editor` 对象。接口是：
 
 ```typescript
 interface Editor {
-  // Current editor state
+  // 当前编辑器状态
   children: Node[]
   selection: Range | null
   operations: Operation[]
   marks: Omit<Text, 'text'> | null
-  // Schema-specific node behaviors.
+  // 特定模式的节点行为。
   isInline: (element: Element) => boolean
   isVoid: (element: Element) => boolean
   normalizeNode: (entry: NodeEntry) => void
   onChange: () => void
-  // Overrideable core actions.
+  // 可重写的核心操作。
   addMark: (key: string, value: any) => void
   apply: (operation: Operation) => void
   deleteBackward: (unit: 'character' | 'word' | 'line' | 'block') => void
@@ -29,23 +29,22 @@ interface Editor {
 }
 ```
 
-It is slightly more complex than the others, because it contains all of the top-level functions that define your custom, domain-specific behaviors.
+它比其它的稍微复杂一些，因为包含所有的顶级函数，比如定义的自定义函数以及特定领域的行为。
 
-The `children` property contains the document tree of nodes that make up the editor's content.
+`children` 属性包含构成编辑器内容的节点的文档树。
 
-The `selection` property contains the user's current selection, if any.
-Don't set it directly; use [Transforms.select](04-transforms#selection-transforms)
+`selection` 属性包含用户当前的选区（如果存在）。不要直接设置，使用 [Transforms.select](04-transforms#selection-transforms)。
 
-The `operations` property contains all of the operations that have been applied since the last "change" was flushed. \(Since Slate batches operations up into ticks of the event loop.\)
+`operations` 属性包含了自上次“更改”刷新以来已应用的所有操作（因为 Slate 将批次操作加入到事件循环的 tick 中。）
 
-The `marks` property stores formatting to be applied when the editor inserts text. If `marks` is `null`, the formatting will be taken from the current selection.
-Don't set it directly; use `Editor.addMark` and `Editor.removeMark`.
+`marks` 属性保存了当编辑器插入文本时要应用的格式，如果 `marks` 是 `null`，格式从当前选区获取。
+不能直接赋值，使用 `Editor.addMark` 和 `Editor.removeMark` 设置该值。
 
-## Overriding Behaviors
+## 重写行为
 
-In previous guides we've already hinted at this, but you can override any of the behaviors of an editor by overriding its function properties.
+在之前的教程中，已经暗示过，通过重写它的函数属性来重写编辑器的任何行为。
 
-For example, if you want to define link elements that are inline nodes:
+例如，如果你想在行内节点定义链接元素：
 
 ```javascript
 const { isInline } = editor
@@ -55,7 +54,7 @@ editor.isInline = element => {
 }
 ```
 
-Or maybe you want to override the `insertText` behavior to "linkify" URLs:
+或者想重写 `insertText` 行为来“链接” URL：
 
 ```javascript
 const { insertText } = editor
@@ -70,7 +69,7 @@ editor.insertText = text => {
 }
 ```
 
-Or you can even define custom "normalizations" that take place to ensure that links obey certain constraints:
+或者甚至想要定义自定义“标准化”，确保链接遵从某些约束：
 
 ```javascript
 const { normalizeNode } = editor
@@ -87,34 +86,34 @@ editor.normalizeNode = entry => {
 }
 ```
 
-Whenever you override behaviors, be sure to call the existing functions as a fallback mechanism for the default behavior. Unless you really do want to completely remove the default behaviors \(which is rarely a good idea\).
+每当真的要覆盖行为时，请务必调用现有函数作为默认行为的后备机制。除非真的想要完全删除默认行为（这并不是好主意）。
 
-> 🤖 For more info, check out the [Editor Instance Methods to Override API Reference](../api/nodes/editor.md#schema-specific-instance-methods-to-override)
+> 🤖 请查看 [编辑器实例化方法覆盖 API 参考](../api/nodes/editor.md#schema-specific-instance-methods-to-override)获取更多信息
 
-## Helper Functions
+## 助手函数
 
-The `Editor` interface, like all Slate interfaces, exposes helper functions that are useful when implementing certain behaviors. There are many, many editor-related helpers. For example:
+与所有 Slate 接口一样， `Editor` 接口公开了在实现某些行为时有用的助手函数。有很多编辑器相关的助手。例如：
 
 ```javascript
-// Get the start point of a specific node at path.
+// 在路径中获取指定节点的起点。
 const point = Editor.start(editor, [0, 0])
 
-// Get the fragment (a slice of the document) at a range.
+// 在范围中获取片段（文档的一部分）。
 const fragment = Editor.fragment(editor, range)
 ```
 
-There are also many iterator-based helpers, for example:
+还有很多基于迭代器的助手，例如：
 
 ```javascript
-// Iterate over every node in a range.
+// 遍历范围内的每个节点。
 for (const [node, path] of Editor.nodes(editor, { at: range })) {
   // ...
 }
 
-// Iterate over every point in every text node in the current selection.
+// 迭代当前选区文本节点中的每个点。
 for (const point of Editor.positions(editor)) {
   // ...
 }
 ```
 
-> 🤖 For more info, check out the [Editor Static Methods API Reference](../api/nodes/editor.md#static-methods)
+> 🤖 查看[编辑器静态方法 API 参考](../api/nodes/editor.md#static-methods)获取更多信息
