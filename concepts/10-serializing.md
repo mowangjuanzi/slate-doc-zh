@@ -1,4 +1,4 @@
-# Serializing
+# 序列化
 
 Slate's data model has been built with serialization in mind. Specifically, its text nodes are defined in a way that makes them easier to read at a glance, but also easy to serialize to common formats like HTML and Markdown.
 
