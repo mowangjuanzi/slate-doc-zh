@@ -21,7 +21,7 @@
 - [操作](concepts/05-operations.md)
 - [命令](concepts/06-commands.md)
 - [编辑器](concepts/07-editor.md)
-- [Plugins](concepts/08-plugins.md)
+- [插件](concepts/08-plugins.md)
 - [Rendering](concepts/09-rendering.md)
 - [Serializing](concepts/10-serializing.md)
 - [Normalizing](concepts/11-normalizing.md)
