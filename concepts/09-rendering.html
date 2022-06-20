@@ -3,7 +3,7 @@
 <html lang="zh-hans" >
     <head>
         <meta charset="UTF-8">
-        <title>Rendering · Slate 中文文档</title>
+        <title>渲染 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.7.3">
@@ -317,7 +317,7 @@
                 <a href="09-rendering.html">
             
                     
-                    Rendering
+                    渲染
             
                 </a>
             
@@ -778,7 +778,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Rendering</a>
+        <a href=".." >渲染</a>
     </h1>
 </div>
 
@@ -793,11 +793,14 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="rendering">Rendering</h1>
-<p>One of the best parts of Slate is that it&apos;s built with React, so it fits right into your existing application. It doesn&apos;t re-invent its own view layer that you have to learn. It tries to keep everything as React-y as possible.</p>
-<p>To that end, Slate gives you control over the rendering behavior of your custom nodes and properties in your richtext domain.</p>
-<p>You can define these behaviors by passing &quot;render props&quot; to the top-level <code>&lt;Editable&gt;</code> component.</p>
-<p>For example if you wanted to render custom element components, you&apos;d pass in the <code>renderElement</code> prop:</p>
+                                <h1 id="渲染">渲染</h1>
+<blockquote>
+<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/08-rendering.md" target="_blank">f183bde599133e1e6ce3549e1f3055e936246b8e</a></p>
+</blockquote>
+<p>Slate 使用 React 构建是最好的部分，因此适用现有的应用程序。不会重新发明需要学习的视图层。尽可能的保持 React。</p>
+<p>为此，Slate 允许控制富文本域中自定义节点和属性的渲染行为。</p>
+<p>可以通过将“渲染 props” 传递给顶级 <code>&lt;Editable&gt;</code> 组件定义行为。</p>
+<p>例如，想要渲染自定义元素组件，可以传递 <code>renderElement</code> prop：</p>
 <pre><code class="lang-jsx"><span class="hljs-keyword">import</span> { createEditor } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 <span class="hljs-keyword">import</span> { Slate, Editable, withReact } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-react&apos;</span>
 
@@ -826,9 +829,9 @@
 }
 </code></pre>
 <blockquote>
-<p>🤖 Be sure to mix in <code>props.attributes</code> and render <code>props.children</code> in your custom components! The attributes must be added to the top-level DOM element inside the component, as they are required for Slate&apos;s DOM helper functions to work. And the children are the actual text content of your document which Slate manages for you automatically.</p>
+<p>🤖 请务必在自定义组件中同时使用 <code>props.attributes</code> 和 <code>props.children</code> 渲染！attributes 必须添加到组件内的顶级 DOM 元素，因为这是 Slate DOM 助手函数运行所必需的。children 是 Slate 自动管理的文档的实际文本内容。</p>
 </blockquote>
-<p>You don&apos;t have to use simple HTML elements, you can use your own custom React components too:</p>
+<p>不必使用简单的 HTML 元素，也可以使用自定义 React 组件：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> renderElement = useCallback(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
   <span class="hljs-keyword">switch</span> (props.element.type) {
     <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;quote&apos;</span>:
@@ -840,9 +843,9 @@
   }
 }, [])
 </code></pre>
-<h2 id="leaves">Leaves</h2>
-<p>When text-level formatting is rendered, the characters are grouped into &quot;leaves&quot; of text that each contain the same formatting applied to them.</p>
-<p>To customize the rendering of each leaf, you use a custom <code>renderLeaf</code> prop:</p>
+<h2 id="叶子">叶子</h2>
+<p>当渲染文本级别格式时，字符被分为文本的“叶子”，每个文本都包含相同的格式。</p>
+<p>要自定义每个叶子的渲染，使用自定义 <code>renderLeaf</code> prop：</p>
 <pre><code class="lang-jsx"><span class="hljs-keyword">const</span> renderLeaf = useCallback(<span class="hljs-function">(<span class="hljs-params">{ attributes, children, leaf }</span>) =&gt;</span> {
   <span class="hljs-keyword">return</span> (
     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>
@@ -857,27 +860,27 @@
   )
 }, [])
 </code></pre>
-<p>Notice though how we&apos;ve handled it slightly differently than <code>renderElement</code>. Since text formatting tends to be fairly simple, we&apos;ve opted to ditch the <code>switch</code> statement and just toggle on/off a few styles instead. (But there&apos;s nothing preventing you from using custom components if you&apos;d like!)</p>
-<p>One disadvantage of text-level formatting is that you cannot guarantee that any given format is &quot;contiguous&quot;—meaning that it stays as a single leaf. This limitation with respect to leaves is similar to the DOM, where this is invalid:</p>
-<pre><code class="lang-markup">&lt;em&gt;t&lt;strong&gt;e&lt;/em&gt;x&lt;/strong&gt;t
+<p>请注意，尽管我们处理的方式跟 <code>renderElement</code> 略有不同。由于文本格式往往非常简单，所以选择放弃 <code>switch</code> 语句而只开关一些样式。（但是如果愿意的话，没有什么能阻拦使用自定义组件）。</p>
+<p>文本级别格式的一个缺点就是不能保证任何指定的格式都是“连续的” —— 意味着将保持单个叶子。这种叶子限制类似 DOM，但这是无效的：</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>t<span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>e<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>t
 </code></pre>
-<p>Because the elements in the above example do not properly close themselves they are invalid. Instead, you would write the above HTML as follows:</p>
-<pre><code class="lang-markup">&lt;em&gt;t&lt;/em&gt;&lt;strong&gt;&lt;em&gt;e&lt;/em&gt;x&lt;/strong&gt;t
+<p>因为上面的元素没有正确的关闭，所以无效，但是可以按照如下方式编写上述 HTML：</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>t<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>e<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span>x<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>t
 </code></pre>
-<p>If you happened to add another overlapping section of <code>&lt;strike&gt;</code> to that text, you might have to rearrange the closing tags yet again. Rendering leaves in Slate is similar—you can&apos;t guarantee that even though a word has one type of formatting applied to it that that leaf will be contiguous, because it depends on how it overlaps with other formatting.</p>
-<p>Of course, this leaf stuff sounds pretty complex. But, you do not have to think about it much, as long as you use text-level formatting and element-level formatting for their intended purposes:</p>
+<p>如果碰巧在文本中添加了另外一个 <code>&lt;strike&gt;</code> 重叠部分，则必须重新排列结束标记。在 Slate 中渲染叶子是相似的 —— 不能保证即使一个单词应用了一个格式，叶子还是连续的，因为这取决于与其它格式重叠。</p>
+<p>当然，叶子这个东西听起来很复杂。但是不必考虑太多，只要将文本级别格式与元素级别格式用于其预期目的即可：</p>
 <ul>
-<li>Text properties are for <strong>non-contiguous</strong>, character-level formatting.</li>
-<li>Element properties are for <strong>contiguous</strong>, semantic elements in the document.</li>
+<li>文本属性用于<strong>不连续的</strong>的字符级格式。</li>
+<li>元素属性用于文档中<strong>连续的</strong>语义元素。</li>
 </ul>
-<h2 id="decorations">Decorations</h2>
-<p>Decorations are another type of text-level formatting. They are similar to regular old custom properties, except each one applies to a <code>Range</code> of the document instead of being associated with a given text node.</p>
-<p>However, decorations are computed at <strong>render-time</strong> based on the content itself. This is helpful for dynamic formatting like syntax highlighting or search keywords, where changes to the content (or some external data) has the potential to change the formatting.</p>
-<p>Decorations are different from Marks in that they are not stored on editor state.</p>
-<h2 id="toolbars-menus-overlays-and-more">Toolbars, Menus, Overlays, and more!</h2>
-<p>In addition to controlling the rendering of nodes inside Slate, you can also retrieve the current editor context from inside other components using the <code>useSlate</code> hook.</p>
-<p>That way other components can execute commands, query the editor state, or anything else.</p>
-<p>A common use case for this is rendering a toolbar with formatting buttons that are highlighted based on the current selection:</p>
+<h2 id="装饰">装饰</h2>
+<p>装饰是另外一种文本级格式。类似于常规的就自定义属性，区别适用于文档的 Range，而不是与指定文本节点相关联。</p>
+<p>然而，装饰是在<strong>渲染时</strong>根据内容本身计算的。这对于语法高亮或者关键词搜索等动态格式很有帮助，对内容（或者外部内容）的更改可能会更改格式。</p>
+<p>装饰与 Mark 的不同点是它们不在编辑器状态中存储。</p>
+<h2 id="工具栏、菜单、浮层等等！">工具栏、菜单、浮层等等！</h2>
+<p>除了在 Slate 中控制节点的渲染，还可以使用 <code>useSlate</code> hook 从其它组件中检索当前编辑器上下文。</p>
+<p>这样其它组件可以执行命令，查询编辑器状态或者其它任何事情。</p>
+<p>一个常见的用例是渲染带有格式化按钮的工具栏，这些根据当前选区高亮显示：</p>
 <pre><code class="lang-jsx"><span class="hljs-keyword">const</span> MyEditor = <span class="hljs-function">() =&gt;</span> {
   <span class="hljs-keyword">const</span> editor = useMemo(<span class="hljs-function">() =&gt;</span> withReact(createEditor()), [])
   <span class="hljs-keyword">return</span> (
@@ -898,7 +901,7 @@
   )
 }
 </code></pre>
-<p>Because the <code>&lt;Toolbar&gt;</code> uses the <code>useSlate</code> hook to retrieve the context, it will re-render whenever the editor changes, so that the active state of the buttons stays in sync.</p>
+<p>因为 <code>&lt;Toolbar&gt;</code> 使用 <code>useSlate</code> hook 检索上下文，所以会在编辑器更改时重新渲染，以便按钮的状态保持同步。</p>
 
                                 
                                 </section>
@@ -942,7 +945,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Rendering","level":"3.9","depth":1,"next":{"title":"Serializing","level":"3.10","depth":1,"path":"concepts/10-serializing.md","ref":"concepts/10-serializing.md","articles":[]},"previous":{"title":"插件","level":"3.8","depth":1,"path":"concepts/08-plugins.md","ref":"concepts/08-plugins.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/09-rendering.md","mtime":"2022-06-20T07:09:29.303Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-20T07:09:35.337Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"渲染","level":"3.9","depth":1,"next":{"title":"Serializing","level":"3.10","depth":1,"path":"concepts/10-serializing.md","ref":"concepts/10-serializing.md","articles":[]},"previous":{"title":"插件","level":"3.8","depth":1,"path":"concepts/08-plugins.md","ref":"concepts/08-plugins.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/09-rendering.md","mtime":"2022-06-20T11:01:56.081Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-20T11:02:01.521Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
