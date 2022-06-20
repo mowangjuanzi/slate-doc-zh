@@ -3,7 +3,7 @@
 <html lang="zh-hans" >
     <head>
         <meta charset="UTF-8">
-        <title>Plugins · Slate 中文文档</title>
+        <title>插件 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.7.3">
@@ -304,7 +304,7 @@
                 <a href="08-plugins.html">
             
                     
-                    Plugins
+                    插件
             
                 </a>
             
@@ -778,7 +778,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Plugins</a>
+        <a href=".." >插件</a>
     </h1>
 </div>
 
@@ -793,10 +793,13 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="plugins">Plugins</h1>
-<p>You&apos;ve already seen how the behaviors of Slate editors can be overridden. These overrides can also be packaged up into &quot;plugins&quot; to be reused, tested and shared. This is one of the most powerful aspects of Slate&apos;s architecture.</p>
-<p>A plugin is simply a function that takes an <code>Editor</code> object and returns it after it has augmented it in some way.</p>
-<p>For example, a plugin that marks image nodes as &quot;void&quot;:</p>
+                                <h1 id="插件">插件</h1>
+<blockquote>
+<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/08-plugins.md" target="_blank">f183bde599133e1e6ce3549e1f3055e936246b8e</a></p>
+</blockquote>
+<p>已经了解如何重写 Slate 编辑器的行为。这些重写可以打包为“插件”，以便复用，测试和共享。这是 Slate 架构中最强大的方面之一。</p>
+<p>插件仅仅是函数，接受一个 <code>Editor</code> 对象，以某种方式增强并返回。</p>
+<p>例如，标记图像节点为 “void”：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> withImages = <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
   <span class="hljs-keyword">const</span> { isVoid } = editor
 
@@ -807,14 +810,14 @@
   <span class="hljs-keyword">return</span> editor
 }
 </code></pre>
-<p>And then to use the plugin, simply:</p>
+<p>然后使用插件，只需：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { createEditor } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 
 <span class="hljs-keyword">const</span> editor = withImages(createEditor())
 </code></pre>
-<p>This plugin composition model makes Slate extremely easy to extend!</p>
-<h2 id="helper-functions">Helper Functions</h2>
-<p>In addition to the plugin functions, you might want to expose helper functions that are used alongside your plugins. For example:</p>
+<p>插件组合模型使得 Slate 非常容易扩展！</p>
+<h2 id="助手函数">助手函数</h2>
+<p>除了插件函数之外，还可以公开与插件一起使用的助手函数。例如：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { Editor, Element } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 
 <span class="hljs-keyword">const</span> MyEditor = {
@@ -832,7 +835,7 @@
   },
 }
 </code></pre>
-<p>Then you can use <code>MyEditor</code> and <code>MyElement</code> everywhere and have access to all your helpers in one place.</p>
+<p>然后就可以在任何地方使用 <code>MyEditor</code> 和 <code>MyElement</code>，并且在一个地方访问所有助手。</p>
 
                                 
                                 </section>
@@ -876,7 +879,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Plugins","level":"3.8","depth":1,"next":{"title":"Rendering","level":"3.9","depth":1,"path":"concepts/09-rendering.md","ref":"concepts/09-rendering.md","articles":[]},"previous":{"title":"编辑器","level":"3.7","depth":1,"path":"concepts/07-editor.md","ref":"concepts/07-editor.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/08-plugins.md","mtime":"2022-06-20T05:43:39.262Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-20T05:43:44.978Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"插件","level":"3.8","depth":1,"next":{"title":"Rendering","level":"3.9","depth":1,"path":"concepts/09-rendering.md","ref":"concepts/09-rendering.md","articles":[]},"previous":{"title":"编辑器","level":"3.7","depth":1,"path":"concepts/07-editor.md","ref":"concepts/07-editor.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/08-plugins.md","mtime":"2022-06-20T07:09:29.303Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-20T07:09:35.337Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
