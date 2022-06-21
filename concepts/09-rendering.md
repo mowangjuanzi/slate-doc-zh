@@ -1,6 +1,6 @@
 # 渲染
 
-> Commit ID: [f183bde599133e1e6ce3549e1f3055e936246b8e](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/08-rendering.md)
+> Commit ID: [f183bde599133e1e6ce3549e1f3055e936246b8e](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/09-rendering.md)
 
 Slate 使用 React 构建是最好的部分，因此适用现有的应用程序。不会重新发明需要学习的视图层。尽可能的保持 React。
 
