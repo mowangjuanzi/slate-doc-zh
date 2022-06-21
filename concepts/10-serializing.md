@@ -1,12 +1,14 @@
-# Serializing
+# 序列化
 
-Slate's data model has been built with serialization in mind. Specifically, its text nodes are defined in a way that makes them easier to read at a glance, but also easy to serialize to common formats like HTML and Markdown.
+> Commit ID: [d460bb42f053e1fcd98966b63b1e843e21eae8b7](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/10-serializing.md)
 
-And, because Slate uses plain JSON for its data, you can write serialization logic very easily.
+Slate 的数据模型在构建时就考虑了序列化。准确的说，文本节点的定义方式使其一目了然，但也易于序列化为 HTML 和 Markdown 等常见格式。
 
-## Plaintext
+而且，Slate 使用 JSON 作为数据，可以非常轻松的编写序列化逻辑。
 
-For example, taking the value of an editor and returning plaintext:
+## 纯文本
+
+例如，获取编辑器的值并返回纯文本：
 
 ```javascript
 import { Node } from 'slate'
@@ -16,9 +18,9 @@ const serialize = nodes => {
 }
 ```
 
-Here we're taking the children nodes of an `Editor` as a `nodes` argument, and returning a plaintext representation where each top-level node is separated by a single `\n` new line character.
+这里将 `Editor` 的子节点作为 `nodes` 参数并返回纯文本表示，其中每个顶级节点都使用单个 `\n` 换行符分隔。
 
-For an input of:
+对以下输入：
 
 ```javascript
 const nodes = [
@@ -37,7 +39,7 @@ const nodes = [
 ]
 ```
 
-You'd end up with:
+将会得到：
 
 ```text
 An opening paragraph...
@@ -45,11 +47,11 @@ A wise quote.
 A closing paragraph!
 ```
 
-Notice how the quote block isn't distinguishable in any way, that's because we're talking about plaintext. But you can serialize the data to anything you want—it's just JSON after all.
+注意引用无法用任何方式区分，这是因为我们讨论的是纯文本。但是可以将数据序列化为想要的格式 —— 毕竟它只是 JSON。
 
 ## HTML
 
-For example, here's a similar `serialize` function for HTML:
+例如，这是差不多的 HTML `serialize` 函数：
 
 ```javascript
 import escapeHtml from 'escape-html'
@@ -79,9 +81,9 @@ const serialize = node => {
 }
 ```
 
-This one is a bit more aware than the plaintext serializer above. It's actually _recursive_ so that it can keep iterating deeper through a node's children until it gets to the leaf text nodes. And for each node it receives, it converts it to an HTML string.
+这个比上面的纯文本序列化器更加清楚一些。实际上它是_递归_，这样能保证深入遍历节点中的子节点，一直到文本叶子节点。对于接收到的每个节点，都会转化为 HTML 字符串。
 
-It also takes a single node as input instead of an array, so if you passed in an editor like:
+还会将单个节点用作输入而不是数组，所以如果像是这样传递进编辑器：
 
 ```javascript
 const editor = {
@@ -107,11 +109,11 @@ const editor = {
       children: [{ text: 'A closing paragraph!' }],
     },
   ],
-  // `Editor` objects also have other properties that are omitted here...
+  // `Editor` 对象还具有省略的其它属性。。。
 }
 ```
 
-You'd receive back \(line breaks added for legibility\):
+接到的结果是（添加换行符增加可读性）：
 
 ```markup
 <p>An opening paragraph with a <a href="https://example.com">link</a> in it.</p>
@@ -119,15 +121,15 @@ You'd receive back \(line breaks added for legibility\):
 <p>A closing paragraph!</p>
 ```
 
-It's really that easy!
+就是这么简单！
 
-## Deserializing
+## 反序列化
 
-Another common use case in Slate is doing the reverse—deserializing. This is when you have some arbitrary input and want to convert it into a Slate-compatible JSON structure. For example, when someone pastes HTML into your editor and you want to ensure it gets parsed with the proper formatting for your editor.
+Slate 中的另一个常见用例是反序列化。这一些任意输入需要转化为兼容 Slate 的 JSON 结构时。例如当粘贴 HTML 到编辑器，希望确保使用合适的编辑器格式对其进行解析。
 
-Slate has a built-in helper for this: the `slate-hyperscript` package.
+Slate 有一个内置助手： `slate-hyperscript` 包。
 
-The most common way to use `slate-hyperscript` is for writing JSX documents, for example when writing tests. You might use it like so:
+使用 `slate-hyperscript` 最常见的方式是编写 JSX 文档，例如编写当编写测试时。你可以这么使用它：
 
 ```jsx
 /** @jsx jsx */
@@ -140,7 +142,7 @@ const input = (
 )
 ```
 
-And the JSX feature of your compiler \(Babel, TypeScript, etc.\) would turn that `input` variable into:
+并且编译器（Babel、TypeScript等）的  JSX 功能会将 `input` 变量转换为：
 
 ```javascript
 const input = [
@@ -151,13 +153,13 @@ const input = [
 ]
 ```
 
-This is great for test cases, or places where you want to be able to write a lot of Slate objects in a very readable form.
+这对于编写测试用例或者希望以易读的方式编写大量 Slate 对象的地方特别有用。
 
-However! This doesn't help with deserialization.
+然而！这对于反序列化没有帮助。
 
-But `slate-hyperscript` isn't only for JSX. It's just a way to build _trees of Slate content_. Which happens to be exactly what you want to do when you're deserializing something like HTML.
+但是 `slate-hyperscript` 不仅仅适用于 JSX。它只是构建 _Slate 内容树_的一种方式。当反序列化 HTML 之类的内容时，这正是想要做的。
 
-For example, here's a `deserialize` function for HTML:
+例如，下面是 HTML 的 `deserialize` 函数：
 
 ```javascript
 import { jsx } from 'slate-hyperscript'
@@ -171,7 +173,7 @@ const deserialize = (el, markAttributes = {}) => {
 
   const nodeAttributes = { ...markAttributes }
 
-  // define attributes for text nodes
+  // 为文本节点定义属性
   switch (el.nodeName) {
     case 'strong':
       nodeAttributes.bold = true
@@ -206,7 +208,7 @@ const deserialize = (el, markAttributes = {}) => {
 }
 ```
 
-It takes in an `el` HTML element object and returns a Slate fragment. So if you have an HTML string, you can parse and deserialize it like so:
+它接受 `el` HTML 元素对象并返回 Slate 片段。如果对于 HTML 字符串，可以像这样对其解析和反序列化：
 
 ```javascript
 const html = '...'
@@ -214,15 +216,15 @@ const document = new DOMParser().parseFromString(html, 'text/html')
 deserialize(document.body)
 ```
 
-With this input:
+使用此输入：
 
-```markup
+```html
 <p>An opening paragraph with a <a href="https://example.com">link</a> in it.</p>
 <blockquote><p>A wise quote.</p></blockquote>
 <p>A closing paragraph!</p>
 ```
 
-You'd end up with this output:
+得到的输出：
 
 ```javascript
 const fragment = [
@@ -254,4 +256,4 @@ const fragment = [
 ]
 ```
 
-And just like the serializing function, you can extend it to fit your exact domain model's needs.
+就像是序列化函数一样，可以对其扩展以适应精确域模型的需求。
