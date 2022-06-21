@@ -3,7 +3,7 @@
 <html lang="zh-hans" >
     <head>
         <meta charset="UTF-8">
-        <title>Serializing · Slate 中文文档</title>
+        <title>序列化 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.7.3">
@@ -330,7 +330,7 @@
                 <a href="10-serializing.html">
             
                     
-                    Serializing
+                    序列化
             
                 </a>
             
@@ -778,7 +778,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Serializing</a>
+        <a href=".." >序列化</a>
     </h1>
 </div>
 
@@ -793,19 +793,22 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="serializing">Serializing</h1>
-<p>Slate&apos;s data model has been built with serialization in mind. Specifically, its text nodes are defined in a way that makes them easier to read at a glance, but also easy to serialize to common formats like HTML and Markdown.</p>
-<p>And, because Slate uses plain JSON for its data, you can write serialization logic very easily.</p>
-<h2 id="plaintext">Plaintext</h2>
-<p>For example, taking the value of an editor and returning plaintext:</p>
+                                <h1 id="序列化">序列化</h1>
+<blockquote>
+<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/10-serializing.md" target="_blank">d460bb42f053e1fcd98966b63b1e843e21eae8b7</a></p>
+</blockquote>
+<p>Slate 的数据模型在构建时就考虑了序列化。准确的说，文本节点的定义方式使其一目了然，但也易于序列化为 HTML 和 Markdown 等常见格式。</p>
+<p>而且，Slate 使用 JSON 作为数据，可以非常轻松的编写序列化逻辑。</p>
+<h2 id="纯文本">纯文本</h2>
+<p>例如，获取编辑器的值并返回纯文本：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { Node } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 
 <span class="hljs-keyword">const</span> serialize = <span class="hljs-function"><span class="hljs-params">nodes</span> =&gt;</span> {
   <span class="hljs-keyword">return</span> nodes.map(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> Node.string(n)).join(<span class="hljs-string">&apos;\n&apos;</span>)
 }
 </code></pre>
-<p>Here we&apos;re taking the children nodes of an <code>Editor</code> as a <code>nodes</code> argument, and returning a plaintext representation where each top-level node is separated by a single <code>\n</code> new line character.</p>
-<p>For an input of:</p>
+<p>这里将 <code>Editor</code> 的子节点作为 <code>nodes</code> 参数并返回纯文本表示，其中每个顶级节点都使用单个 <code>\n</code> 换行符分隔。</p>
+<p>对以下输入：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> nodes = [
   {
     <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
@@ -821,14 +824,14 @@
   },
 ]
 </code></pre>
-<p>You&apos;d end up with:</p>
+<p>将会得到：</p>
 <pre><code class="lang-text">An opening paragraph...
 A wise quote.
 A closing paragraph!
 </code></pre>
-<p>Notice how the quote block isn&apos;t distinguishable in any way, that&apos;s because we&apos;re talking about plaintext. But you can serialize the data to anything you want—it&apos;s just JSON after all.</p>
+<p>注意引用无法用任何方式区分，这是因为我们讨论的是纯文本。但是可以将数据序列化为想要的格式 —— 毕竟它只是 JSON。</p>
 <h2 id="html">HTML</h2>
-<p>For example, here&apos;s a similar <code>serialize</code> function for HTML:</p>
+<p>例如，这是差不多的 HTML <code>serialize</code> 函数：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">import</span> escapeHtml <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;escape-html&apos;</span>
 <span class="hljs-keyword">import</span> { Text } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 
@@ -855,8 +858,8 @@ A closing paragraph!
   }
 }
 </code></pre>
-<p>This one is a bit more aware than the plaintext serializer above. It&apos;s actually <em>recursive</em> so that it can keep iterating deeper through a node&apos;s children until it gets to the leaf text nodes. And for each node it receives, it converts it to an HTML string.</p>
-<p>It also takes a single node as input instead of an array, so if you passed in an editor like:</p>
+<p>这个比上面的纯文本序列化器更加清楚一些。实际上它是<em>递归</em>，这样能保证深入遍历节点中的子节点，一直到文本叶子节点。对于接收到的每个节点，都会转化为 HTML 字符串。</p>
+<p>还会将单个节点用作输入而不是数组，所以如果像是这样传递进编辑器：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> editor = {
   <span class="hljs-attr">children</span>: [
     {
@@ -880,19 +883,19 @@ A closing paragraph!
       <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;A closing paragraph!&apos;</span> }],
     },
   ],
-  <span class="hljs-comment">// `Editor` objects also have other properties that are omitted here...</span>
+  <span class="hljs-comment">// `Editor` 对象还具有省略的其它属性。。。</span>
 }
 </code></pre>
-<p>You&apos;d receive back (line breaks added for legibility):</p>
+<p>接到的结果是（添加换行符增加可读性）：</p>
 <pre><code class="lang-markup">&lt;p&gt;An opening paragraph with a &lt;a href=&quot;https://example.com&quot;&gt;link&lt;/a&gt; in it.&lt;/p&gt;
 &lt;blockquote&gt;&lt;p&gt;A wise quote.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;A closing paragraph!&lt;/p&gt;
 </code></pre>
-<p>It&apos;s really that easy!</p>
-<h2 id="deserializing">Deserializing</h2>
-<p>Another common use case in Slate is doing the reverse—deserializing. This is when you have some arbitrary input and want to convert it into a Slate-compatible JSON structure. For example, when someone pastes HTML into your editor and you want to ensure it gets parsed with the proper formatting for your editor.</p>
-<p>Slate has a built-in helper for this: the <code>slate-hyperscript</code> package.</p>
-<p>The most common way to use <code>slate-hyperscript</code> is for writing JSX documents, for example when writing tests. You might use it like so:</p>
+<p>就是这么简单！</p>
+<h2 id="反序列化">反序列化</h2>
+<p>Slate 中的另一个常见用例是反序列化。这一些任意输入需要转化为兼容 Slate 的 JSON 结构时。例如当粘贴 HTML 到编辑器，希望确保使用合适的编辑器格式对其进行解析。</p>
+<p>Slate 有一个内置助手： <code>slate-hyperscript</code> 包。</p>
+<p>使用 <code>slate-hyperscript</code> 最常见的方式是编写 JSX 文档，例如编写当编写测试时。你可以这么使用它：</p>
 <pre><code class="lang-jsx"><span class="hljs-comment">/** <span class="hljs-doctag">@jsx </span>jsx */</span>
 <span class="hljs-keyword">import</span> { jsx } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-hyperscript&apos;</span>
 
@@ -902,7 +905,7 @@ A closing paragraph!
   <span class="hljs-tag">&lt;/<span class="hljs-name">fragment</span>&gt;</span></span>
 )
 </code></pre>
-<p>And the JSX feature of your compiler (Babel, TypeScript, etc.) would turn that <code>input</code> variable into:</p>
+<p>并且编译器（Babel、TypeScript等）的  JSX 功能会将 <code>input</code> 变量转换为：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> input = [
   {
     <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
@@ -910,10 +913,10 @@ A closing paragraph!
   },
 ]
 </code></pre>
-<p>This is great for test cases, or places where you want to be able to write a lot of Slate objects in a very readable form.</p>
-<p>However! This doesn&apos;t help with deserialization.</p>
-<p>But <code>slate-hyperscript</code> isn&apos;t only for JSX. It&apos;s just a way to build <em>trees of Slate content</em>. Which happens to be exactly what you want to do when you&apos;re deserializing something like HTML.</p>
-<p>For example, here&apos;s a <code>deserialize</code> function for HTML:</p>
+<p>这对于编写测试用例或者希望以易读的方式编写大量 Slate 对象的地方特别有用。</p>
+<p>然而！这对于反序列化没有帮助。</p>
+<p>但是 <code>slate-hyperscript</code> 不仅仅适用于 JSX。它只是构建 <em>Slate 内容树</em>的一种方式。当反序列化 HTML 之类的内容时，这正是想要做的。</p>
+<p>例如，下面是 HTML 的 <code>deserialize</code> 函数：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { jsx } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-hyperscript&apos;</span>
 
 <span class="hljs-keyword">const</span> deserialize = <span class="hljs-function">(<span class="hljs-params">el, markAttributes = {}</span>) =&gt;</span> {
@@ -925,7 +928,7 @@ A closing paragraph!
 
   <span class="hljs-keyword">const</span> nodeAttributes = { ...markAttributes }
 
-  <span class="hljs-comment">// define attributes for text nodes</span>
+  <span class="hljs-comment">// 为文本节点定义属性</span>
   <span class="hljs-keyword">switch</span> (el.nodeName) {
     <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;strong&apos;</span>:
       nodeAttributes.bold = <span class="hljs-literal">true</span>
@@ -959,17 +962,17 @@ A closing paragraph!
   }
 }
 </code></pre>
-<p>It takes in an <code>el</code> HTML element object and returns a Slate fragment. So if you have an HTML string, you can parse and deserialize it like so:</p>
+<p>它接受 <code>el</code> HTML 元素对象并返回 Slate 片段。如果对于 HTML 字符串，可以像这样对其解析和反序列化：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> html = <span class="hljs-string">&apos;...&apos;</span>
 <span class="hljs-keyword">const</span> <span class="hljs-built_in">document</span> = <span class="hljs-keyword">new</span> DOMParser().parseFromString(html, <span class="hljs-string">&apos;text/html&apos;</span>)
 deserialize(<span class="hljs-built_in">document</span>.body)
 </code></pre>
-<p>With this input:</p>
-<pre><code class="lang-markup">&lt;p&gt;An opening paragraph with a &lt;a href=&quot;https://example.com&quot;&gt;link&lt;/a&gt; in it.&lt;/p&gt;
-&lt;blockquote&gt;&lt;p&gt;A wise quote.&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;A closing paragraph!&lt;/p&gt;
+<p>使用此输入：</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>An opening paragraph with a <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://example.com&quot;</span>&gt;</span>link<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> in it.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">blockquote</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>A wise quote.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">blockquote</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>A closing paragraph!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 </code></pre>
-<p>You&apos;d end up with this output:</p>
+<p>得到的输出：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> fragment = [
   {
     <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
@@ -998,7 +1001,7 @@ deserialize(<span class="hljs-built_in">document</span>.body)
   },
 ]
 </code></pre>
-<p>And just like the serializing function, you can extend it to fit your exact domain model&apos;s needs.</p>
+<p>就像是序列化函数一样，可以对其扩展以适应精确域模型的需求。</p>
 
                                 
                                 </section>
@@ -1042,7 +1045,7 @@ deserialize(<span class="hljs-built_in">document</span>.body)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Serializing","level":"3.10","depth":1,"next":{"title":"Normalizing","level":"3.11","depth":1,"path":"concepts/11-normalizing.md","ref":"concepts/11-normalizing.md","articles":[]},"previous":{"title":"渲染","level":"3.9","depth":1,"path":"concepts/09-rendering.md","ref":"concepts/09-rendering.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/10-serializing.md","mtime":"2022-06-20T11:01:56.081Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-20T11:02:01.521Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"序列化","level":"3.10","depth":1,"next":{"title":"Normalizing","level":"3.11","depth":1,"path":"concepts/11-normalizing.md","ref":"concepts/11-normalizing.md","articles":[]},"previous":{"title":"渲染","level":"3.9","depth":1,"path":"concepts/09-rendering.md","ref":"concepts/09-rendering.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/10-serializing.md","mtime":"2022-06-21T04:15:47.413Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-21T04:15:53.246Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
