@@ -131,7 +131,7 @@ if (Element.isElement(child) && !editor.isInline(child)) {
 例如，确保 `link` 元素具有有效 `url` 的标准化：
 
 ```javascript
-// WARNING: 这是一个不正确行为的示例！
+// WARNING：这是一个不正确行为的示例！
 const withLinks = editor => {
   const { normalizeNode } = editor
 
@@ -143,7 +143,7 @@ const withLinks = editor => {
       node.type === 'link' &&
       typeof node.url !== 'string'
     ) {
-      // ERROR: 对 url 来说 null 不是有效值
+      // ERROR：对 url 来说 null 不是有效值
       Transforms.setNodes(editor, { url: null }, { at: path })
       return
     }
@@ -155,15 +155,14 @@ const withLinks = editor => {
 }
 ```
 
-此修复程序编写错误。它希望确保所有 `link` 元素都有 `url` 属性字符串。 But to fix invalid links it sets the `url` to `null`, which is still not a string!
+此修复程序编写错误。它希望确保所有 `link` 元素都有 `url` 属性字符串。但是要修复无效链接，会将 `url` 设置为 `null`，这仍然不是字符串！
 
-In this case you'd either want to unwrap the link, removing it entirely. _Or_ expand your validation to accept an "empty" `url == null` as well.
+在这种情况下，可能想要解包链接，将其完全删除。_或者_扩展验证（`url == null`）以接受“空”链接 。
 
 ## 对其它代码的影响
 
-Sequences of Transforms may need to be wrapped in [`Editor.withoutNormalizing`](../api/nodes/editor.md#editorwithoutnormalizingeditor-editor-fn---void--void) if the node tree should _not_ be normalized between Transforms.
-This is frequently the case when you `unwrapNodes` followed by `wrapNodes`.
-For example, you might write a function to change the type of a block as follows:
+如果节点树_不_应在转换之间规范化，则转换序列可能需要包装在 [`Editor.withoutNormalizing`](../api/nodes/editor.md#editorwithoutnormalizingeditor-editor-fn---void--void) 中。
+当 `unwrapNodes` 后跟 `wrapNodes` 时，通常会出现这种情况。例如，可以编写汉书来改变块的类型，如下所示：
 
 ```javascript
 const LIST_TYPES = ['numbered-list', 'bulleted-list']
