@@ -24,7 +24,7 @@
 - [插件](concepts/08-plugins.md)
 - [渲染](concepts/09-rendering.md)
 - [序列化](concepts/10-serializing.md)
-- [Normalizing](concepts/11-normalizing.md)
+- [标准化](concepts/11-normalizing.md)
 - [TypeScript](concepts/12-typescript.md)
 - [Migrating](concepts/xx-migrating.md)
 
