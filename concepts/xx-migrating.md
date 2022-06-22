@@ -26,17 +26,17 @@ Slate 从早期版本迁移到 `0.50.x` 版本并不是一项简单的任务。�
 
 ### 概念更少
 
-接口和命令的数量已减少。 之前 `Selection`, `Annotation` 和 `Decoration` 都曾经是单独的类。 Now they are simply objects that implement the `Range` interface. Previously `Block` and `Inline` were separate; now they are objects that implement the `Element` interface. Previously there was a `Document` and `Value`, but now the top-level `Editor` contains the children nodes of the document itself.
+接口和命令的数量已减少。 之前 `Selection`, `Annotation` 和 `Decoration` 曾经都是单独的类。现在它们只是实现 `Range` 接口的对象。之前 `Block` 和 `Inline` 是分开的；现在它们是实现 `Element` 接口的对象。之前是 `Document` 和 `Value`，但现在顶级 `Editor` 包含文档本身的子节点。
 
-命令的数量也减少了. Previously we had commands for every type of input, like `insertText`, `insertTextAtRange`, `insertTextAtPath`. These have been merged into a smaller set of more customizable commands, eg. `insertText` which can take `at: Path | Range | Point`.
+命令的数量也减少了。之前对每种类型都有命令，比如 `insertText`、`insertTextAtRange`、`insertTextAtPath`。这些已经合并到一组更小的可定制的命令中，例如 `insertText` 可以在 `at: Path | Range | Point` 中使用。
 
 ### 包更少
 
-为了降低维护负担，并且 Slate 核心包的抽象和 API 使事情更加容易，包的数量已经减少。 Things like `slate-plain-serializer`, `slate-base64-serializer`, etc. have been removed and can be implemented in userland easily if needed. Even the `slate-html-deserializer` can now be implemented in userland \(in ~10 LOC leveraging `slate-hyperscript`\). And internal packages like `slate-dev-environment`, `slate-dev-test-utils`, etc. are no longer exposed because they are implementation details.
+为了降低维护负担，并且 Slate 核心包的抽象和 API 使事情更加容易，包的数量已经减少。像 `slate-plain-serializer`、`slate-base64-serializer`等等。已被删除，如果需要可以在用户层轻松实现。甚至 `slate-html-deserializer` 现在也可以在用户层实现（在 ~10 LOC 中利用 `slate-hyperscript`）。以及像 `slate-dev-environment`、`slate-dev-test-utils`等等内部包不再公开，因为它们是实现细节。
 
 ### 命令
 
-引入了新的“命令”概念。 \(The old "commands" are now called "transforms".\) This new concept expresses the semantic intent of a user editing the document. And they allow for the right abstraction to tap into user behaviors—for example to change what happens when a user presses enter, or backspace, etc. Instead of using `keydown` events you should likely override command behaviors instead.
+引入了新的“命令”概念。（旧“命令”现在成为“转化”。） This new concept expresses the semantic intent of a user editing the document. And they allow for the right abstraction to tap into user behaviors—for example to change what happens when a user presses enter, or backspace, etc. Instead of using `keydown` events you should likely override command behaviors instead.
 
 命令通过调用 `editor.*` 核心函数触发。 And they travel through a middleware-like stack, but built from composed functions. Any plugin can override the behaviors to augment an editor.
 
