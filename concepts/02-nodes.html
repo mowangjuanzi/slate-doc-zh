@@ -343,7 +343,7 @@
                 <a href="11-normalizing.html">
             
                     
-                    Normalizing
+                    标准化
             
                 </a>
             
@@ -878,8 +878,8 @@
 </blockquote>
 <p>可以通过覆盖 <code>editor.isInline</code> 函数来定义那些节点视为行内节点。（默认总返回 <code>false</code>。）注意行内节点不能是父级块的第一个或者最后一个子节点，也不能与 <code>children</code> 数组中的另外一个内联节点相邻。Slate 将使用 <a href="11-normalizing.html#built-in-constraints"><code>normalizeNode</code></a> 自动将 <code>{ text: &apos;&apos; }</code> 子级分隔开。</p>
 <p>元素可以包含块级元素或者混合文本节点的内联元素作为子元素。但元素的子元素<strong>不能</strong>是一部分块级元素，一部分是行内元素。</p>
-<h2 id="空元素">空元素</h2>
-<p>类似块级和行内，可以根据用例定义另外一种特定于元素的行为：它们的 &quot;void&quot; .</p>
+<h2 id="voids">Voids</h2>
+<p>类似块级和行内，可以根据用例定义另外一种特定于元素的行为：它们的 &quot;void&quot; 。</p>
 <p>元素默认非空，这意味着其子元素完全可以作为文本编辑。但在某些情况下，例如图像，会希望确保 Slate 不会将其内容视为可编辑文本，而是视为黑箱子。</p>
 <blockquote>
 <p>🤖 这是从 HTML 规范中借用的概念，参阅 <a href="https://www.w3.org/TR/2011/WD-html-markup-20110405/syntax.html#void-element" target="_blank">Void Elements</a>.</p>
@@ -942,7 +942,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"节点","level":"3.2","depth":1,"next":{"title":"位置","level":"3.3","depth":1,"path":"concepts/03-locations.md","ref":"concepts/03-locations.md","articles":[]},"previous":{"title":"接口","level":"3.1","depth":1,"path":"concepts/01-interfaces.md","ref":"concepts/01-interfaces.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/02-nodes.md","mtime":"2022-06-21T04:15:47.413Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-21T04:15:53.246Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"节点","level":"3.2","depth":1,"next":{"title":"位置","level":"3.3","depth":1,"path":"concepts/03-locations.md","ref":"concepts/03-locations.md","articles":[]},"previous":{"title":"接口","level":"3.1","depth":1,"path":"concepts/01-interfaces.md","ref":"concepts/01-interfaces.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/02-nodes.md","mtime":"2022-06-22T02:40:16.974Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-22T02:40:23.031Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

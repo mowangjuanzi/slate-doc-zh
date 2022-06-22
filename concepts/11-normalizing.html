@@ -3,7 +3,7 @@
 <html lang="zh-hans" >
     <head>
         <meta charset="UTF-8">
-        <title>Normalizing · Slate 中文文档</title>
+        <title>标准化 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.7.3">
@@ -343,7 +343,7 @@
                 <a href="11-normalizing.html">
             
                     
-                    Normalizing
+                    标准化
             
                 </a>
             
@@ -778,7 +778,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Normalizing</a>
+        <a href=".." >标准化</a>
     </h1>
 </div>
 
@@ -793,28 +793,31 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="normalizing">Normalizing</h1>
-<p>Slate editors can edit complex, nested data structures. And for the most part this is great. But in certain cases inconsistencies in the data structure can be introduced—most often when allowing a user to paste arbitrary richtext content.</p>
-<p>&quot;Normalizing&quot; is how you can ensure that your editor&apos;s content is always of a certain shape. It&apos;s similar to &quot;validating&quot;, except instead of just determining whether the content is valid or invalid, its job is to fix the content to make it valid again.</p>
-<h2 id="built-in-constraints">Built-in Constraints</h2>
-<p>Slate editors come with a few built-in constraints out of the box. These constraints are there to make working with content <em>much</em> more predictable than standard <code>contenteditable</code>. All of the built-in logic in Slate depends on these constraints, so unfortunately you cannot omit them. They are...</p>
-<ol>
-<li><strong>All <code>Element</code> nodes must contain at least one <code>Text</code> descendant</strong> — even <a href="02-nodes.html#voids">Void Elements</a>. If an element node does not contain any children, an empty text node will be added as its only child. This constraint exists to ensure that the selection&apos;s anchor and focus points (which rely on referencing text nodes) can always be placed inside any node. With this, empty elements (or void elements) wouldn&apos;t be selectable.</li>
-<li><strong>Two adjacent texts with the same custom properties will be merged.</strong> If two adjacent text nodes have the same formatting, they&apos;re merged into a single text node with a combined text string of the two. This exists to prevent the text nodes from only ever expanding in count in the document, since both adding and removing formatting results in splitting text nodes.</li>
-<li><strong>Block nodes can only contain other blocks, or inline and text nodes.</strong> For example, a <code>paragraph</code> block cannot have another <code>paragraph</code> block element <em>and</em> a <code>link</code> inline element as children at the same time. The type of children allowed is determined by the first child, and any other non-conforming children are removed. This ensures that common richtext behaviors like &quot;splitting a block in two&quot; function consistently.</li>
-<li><strong>Inline nodes cannot be the first or last child of a parent block, nor can it be next to another inline node in the children array.</strong> If this is the case, an empty text node will be added to correct this to be in compliance with the constraint.</li>
-<li><strong>The top-level editor node can only contain block nodes.</strong> If any of the top-level children are inline or text nodes they will be removed. This ensures that there are always block nodes in the editor so that behaviors like &quot;splitting a block in two&quot; work as expected.</li>
-<li><strong>Nodes must be JSON-serializable.</strong> For example, avoid using <code>undefined</code> in your data model. This ensures that <a href="05-operations.html">operations</a> are also JSON-serializable, a property which is assumed by collaboration libraries.</li>
-<li><strong>Property values must not be <code>null</code>.</strong> Instead, you should use an optional property, e.g. <code>foo?: string</code> instead of <code>foo: string | null</code>. This limitation is due to <code>null</code> being used in <a href="05-operations.html">operations</a> to represent the absence of a property.</li>
-</ol>
-<p>These default constraints are all mandated because they make working with Slate documents <em>much</em> more predictable.</p>
+                                <h1 id="标准化">标准化</h1>
 <blockquote>
-<p>🤖 Although these constraints are the best we&apos;ve come up with now, we&apos;re always looking for ways to have Slate&apos;s built-in constraints be less constraining if possible—as long as it keeps standard behaviors easy to reason about. If you come up with a way to reduce or remove a built-in constraint with a different approach, we&apos;re all ears!</p>
+<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/11-normalizing.md" target="_blank">b8020ee6fc25f4b156b7024c190458aa646fcf21</a></p>
 </blockquote>
-<h2 id="adding-constraints">Adding Constraints</h2>
-<p>The built-in constraints are fairly generic. But you can also add your own constraints on top of the built-in ones that are specific to your domain.</p>
-<p>To do this, you extend the <code>normalizeNode</code> function on the editor. The <code>normalizeNode</code> function gets called every time an operation is applied that inserts or updates a node (or its descendants), giving you the opportunity to ensure that the changes didn&apos;t leave it in an invalid state, and correcting the node if so.</p>
-<p>For example here&apos;s a plugin that ensures <code>paragraph</code> blocks only have text or inline elements as children:</p>
+<p>Slate 编辑器可以编辑复杂嵌套的数据结构。大部分情况很棒。但在某些情况下可能会引起数据结构不一致 —— 最常见的是允许用户粘贴任意富文本内容。</p>
+<p>“标准化”是确保编辑器内容始终具有特定形态的方法。类似“验证”，除了确认内容是否有效之外，还要修复内容使其再次有效。</p>
+<h2 id="内置约束">内置约束</h2>
+<p>Slate 带有一些开箱即用的内置约束。这些约束使内容的处理比标准 <code>contenteditable</code> <em>更</em>可预测。Slate 中的所有内置逻辑都依赖这些约束，因此不能省略它们，它们是。。。</p>
+<ol>
+<li><strong>所有的 <code>Element</code> 节点最下级都必须包含至少一个 <code>Text</code> 子节点</strong> —— 甚至是 <a href="02-nodes.html#voids">void 元素</a>。如果元素节点未包含任何子节点，则会添加一个空文本节点作为其唯一的子节点。存在该约束以确保选区的锚点和焦点（依赖引用文本节点）始终可以放置在任何节点内。这样，空元素（或者 void 元素）将不可选。</li>
+<li><strong>相同自定义属性且相邻的两个文本将会合并。</strong> 如果相邻的两个节点具有相同的格式，将会合并成一个文本节点，其中包含两者组合后的文本字符串。这样做是为了防止文档中的文本节点数量不断扩大，因为添加/删除格式都会导致拆分文本节点。</li>
+<li><strong>块节点只能包含其它块或者行内/文本节点。</strong> 例如，一个 <code>paragraph</code> 块不能同时有另一个 <code>paragraph</code> 块元素<em>和</em> <code>link</code> 内联元素作为子节点。子节点的类型由第一个子节点确定，其它任何不符合的子节点都将被删除。这确保了常见的富文本行为（像是“块一分为二” 的功能）始终如一。</li>
+<li><strong>内联元素不能父级块的首尾第一个节点，也不能与子数组中的首个内联节点相邻。</strong> 如果是这种情况，将添加一个空文本节点一修复它以符合约束。</li>
+<li><strong>顶级编辑器节点只能包含块节点。</strong> 将会删除任何顶级子节点中的内联或文本节点。这确保了编辑器中始终存在块节点，以便“块元素一分为二”之类的行为按预期工作。</li>
+<li><strong>节点必须是 JSON 可序列化的。</strong> 例如，避免在数据模型中使用 <code>undefined</code>。这确保了<a href="05-operations.html">操作</a> 是 JSON 可序列化，协作库假设的属性。</li>
+<li><strong>属性值不能为 <code>null</code>。</strong> 相反，应该使用可选属性，例如 <code>foo?: string</code> 而不是 <code>foo: string | null</code>。此限制是因为在<a href="05-operations.html">操作</a>中使用 <code>null</code> 表示缺少的属性。</li>
+</ol>
+<p>这些默认约束都是强制性的，因为它们使 Slate 文档的工作<em>更</em>加可预测。</p>
+<blockquote>
+<p>🤖 虽然这些约束是我们能够想到的最好约束，但是我们也在寻找使 Slate 的内置约束尽可能减少的办法 —— 只要保持标准行为更易于推理。如果能想到一种通过不同方法减少或者删除内置约束的办法，我们洗耳恭听！</p>
+</blockquote>
+<h2 id="增加约束">增加约束</h2>
+<p>内置约束相当通用。但是也可以在内置之上为特定域添加自己的约束。</p>
+<p>为此，可以在编辑上扩展 <code>normalizeNode</code> 函数。操作每次应用插入或者更新节点（及其子节点）时都会调用 <code>normalizeNode</code> 函数，确保每次更改都不会让其处于无效状态，如果是的话，则会修复节点。</p>
+<p>例如，这是一个确保 <code>paragraph</code> 块值存在文本或者内联元素作为子节点的插件：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { Transforms, Element, Node } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 
 <span class="hljs-keyword">const</span> withParagraphs = <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
@@ -823,7 +826,7 @@
   editor.normalizeNode = <span class="hljs-function"><span class="hljs-params">entry</span> =&gt;</span> {
     <span class="hljs-keyword">const</span> [node, path] = entry
 
-    <span class="hljs-comment">// If the element is a paragraph, ensure its children are valid.</span>
+    <span class="hljs-comment">// 如果元素是段落，确保子节点是有效的。</span>
     <span class="hljs-keyword">if</span> (Element.isElement(node) &amp;&amp; node.type === <span class="hljs-string">&apos;paragraph&apos;</span>) {
       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [child, childPath] <span class="hljs-keyword">of</span> Node.children(editor, path)) {
         <span class="hljs-keyword">if</span> (Element.isElement(child) &amp;&amp; !editor.isInline(child)) {
@@ -833,28 +836,28 @@
       }
     }
 
-    <span class="hljs-comment">// Fall back to the original `normalizeNode` to enforce other constraints.</span>
+    <span class="hljs-comment">// 调用原始的 `normalizeNode` 以强制执行其它约束。</span>
     normalizeNode(entry)
   }
 
   <span class="hljs-keyword">return</span> editor
 }
 </code></pre>
-<p>This example is fairly simple. Whenever <code>normalizeNode</code> gets called on a paragraph element, it loops through each of its children ensuring that none of them are block elements. And if one is a block element, it gets unwrapped, so that the block is removed and its children take its place. The node is &quot;fixed&quot;.</p>
-<p>But what if the child has nested blocks?</p>
-<h2 id="multi-pass-normalizing">Multi-pass Normalizing</h2>
-<p>One thing to understand about <code>normalizeNode</code> constraints is that they are <strong>multi-pass</strong>.</p>
-<p>If you check the example above again, you&apos;ll notice the <code>return</code> statement:</p>
+<p>这个例子相当简单。每当在段落元素上调用 <code>normalizeNode</code> 时，都会遍历其每个子元素以确保子元素都不是块元素。如果有一个是块元素，将会解包，这样块就会被移除，其子元素就会取而代之。节点就会被“修复”。</p>
+<p>但是子元素有嵌套块呢？</p>
+<h2 id="多重标准化">多重标准化</h2>
+<p>关于 <code>normalizeNode</code> 约束要理解的一件事就是它们是<strong>多重的</strong>。</p>
+<p>如果再次检查上面的例子，会注意到上面的 <code>return</code> 语句：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">if</span> (Element.isElement(child) &amp;&amp; !editor.isInline(child)) {
   Transforms.unwrapNodes(editor, { <span class="hljs-attr">at</span>: childPath })
   <span class="hljs-keyword">return</span>
 }
 </code></pre>
-<p>You might at first think this is odd, because with the <code>return</code> there, the original <code>normalizeNodes</code> will never be called, and the built-in constraints won&apos;t get a chance to run their own normalizations.</p>
-<p>But, there&apos;s a slight &quot;trick&quot; to normalizing.</p>
-<p>When you do call <code>Editor.unwrapNodes</code>, you&apos;re actually changing the content of the node that is currently being normalized. So even though you&apos;re ending the current normalization pass, by making a change to the node you&apos;re kicking off a <em>new</em> normalization pass. This results in a sort of <em>recursive</em> normalizing.</p>
-<p>This multi-pass characteristic makes it <em>much</em> easier to write normalizations, because you only ever have to worry about fixing a single issue at once, and not fixing <em>every</em> possible issue that could be putting a node in an invalid state.</p>
-<p>To see how this works in practice, let&apos;s start with this invalid document:</p>
+<p>你可能刚开始觉得很奇怪，因为有 <code>return</code>，原始的 <code>normalizeNodes</code> 将永远不会调用且内置约束将没有机会运行自己的标准化。</p>
+<p>但对于标准化来说，这只是一个小“把戏”。</p>
+<p>当调用 <code>Editor.unwrapNodes</code> 时，实际上是正在标准化当前节点的内容。因此即使结束当前标准化过程，通过更改节点，也将开始<em>新的</em>标准化过程。这导致了一种<em>递归</em>标准化。</p>
+<p>这种多重特性使得编写规范<em>更加</em>容易，因为一次只需要担心且修复一个问题，而不是修复<em>所有</em>可能使节点处于无效状态的问题。</p>
+<p>要了解实战中是如何工作的，从这个无效文档开始：</p>
 <pre><code class="lang-jsx">&lt;editor&gt;
   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">a</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">b</span>&gt;</span>
@@ -863,31 +866,31 @@
   <span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span></span>
 &lt;/editor&gt;
 </code></pre>
-<p>The editor starts by running <code>normalizeNode</code> on <code>&lt;paragraph c&gt;</code>. And it is valid, because it contains only text nodes as children.</p>
-<p>But then, it moves up the tree, and runs <code>normalizeNode</code> on <code>&lt;paragraph b&gt;</code>. This paragraph is invalid, since it contains a block element (<code>&lt;paragraph c&gt;</code>). So that child block gets unwrapped, resulting in a new document of:</p>
+<p>编辑器首先在 <code>&lt;paragraph c&gt;</code> 上运行 <code>normalizeNode</code>。它是有效的，因为子节点只包含文本节点。</p>
+<p>接下来，会向上移动，并在 <code>&lt;paragraph b&gt;</code> 运行 <code>normalizeNode</code>。此段落无效，因为它包含块元素（<code>&lt;paragraph c&gt;</code>）。所以子快就会解包从而产生一个新文档：</p>
 <pre><code class="lang-jsx">&lt;editor&gt;
   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">a</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">b</span>&gt;</span>word<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span></span>
 &lt;/editor&gt;
 </code></pre>
-<p>And in performing that fix, the top-level <code>&lt;paragraph a&gt;</code> changed. It gets normalized, and it is invalid, so <code>&lt;paragraph b&gt;</code> gets unwrapped, resulting in:</p>
+<p>并且在执行修复后，顶级 <code>&lt;paragraph a&gt;</code> 变了。它被标准化了，且变为有效，所以解包 <code>&lt;paragraph b&gt;</code> 后变为：</p>
 <pre><code class="lang-jsx">&lt;editor&gt;
   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">a</span>&gt;</span>word<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span></span>
 &lt;/editor&gt;
 </code></pre>
-<p>And now when <code>normalizeNode</code> runs, no changes are made, so the document is valid!</p>
+<p>现在当 <code>normalizeNode</code> 运行时，没有发生变化，因此该文档是有效的！</p>
 <blockquote>
-<p>🤖 For the most part you don&apos;t need to think about these internals. You can just know that anytime <code>normalizeNode</code> is called and you spot an invalid state, you can fix that single invalid state and trust that <code>normalizeNode</code> will be called again until the node becomes valid.</p>
+<p>🤖 在大多数情况下并不需要考虑这些内部结构。只需要知道调用 <code>normalizeNode</code> 并发现无状态，可以修复单个无效状态并相信再次调用 <code>normalizeNode</code> 直到节点变为有效。</p>
 </blockquote>
-<h2 id="empty-children-early-constraint-execution">Empty Children Early Constraint Execution</h2>
-<p>One special normalization executes before all other normalizations and this can be important to keep in mind when writing your normalizers.</p>
-<p>Before any of the other normalizations can execute, Slate iterates through all <code>Element</code> nodes and makes sure they have at least one child. If it does not, an empty <code>Text</code> descendant is created.</p>
-<p>This can trip you up when you have custom handling when an <code>Element</code> has no children. For example, if a table element has no rows, you may wish to remove the table; however, this will never happen because a <code>Text</code> node would automatically be created before that normalization could run.</p>
-<h2 id="incorrect-fixes">Incorrect Fixes</h2>
-<p>One pitfall to avoid is creating an infinite normalization loop. This can happen if you check for a specific invalid structure, but then <strong>don&apos;t</strong> actually fix that structure with the change you make to the node. This results in an infinite loop because the node continues to be flagged as invalid, but it is never fixed properly.</p>
-<p>For example, consider a normalization that ensured <code>link</code> elements have a valid <code>url</code> property:</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// WARNING: this is an example of incorrect behavior!</span>
+<h2 id="空的子节点早期约束执行">空的子节点早期约束执行</h2>
+<p>特殊的标准化需要在所有其它标准化之前执行，在编写标准化器的时候要牢记这一点。</p>
+<p>在执行任何其它标准化之前，Slate 会遍历所有的 <code>Element</code> 节点并确保最少有一个子节点。如果没有，会创建一个空的 <code>Text</code> 子节点。</p>
+<p>当 <code>Element</code> 没有子节点且进行自定处理时，可能会犯错。例如，如果表格元素没有记录，可能会希望删除表格；然而，这永远不会发生，因为在标准化运行之前会自动创建一个 <code>Text</code> 节点。</p>
+<h2 id="错误修复">错误修复</h2>
+<p>需要避免的问题是创建标准化死循环。如果检查特定的无效结构，并实际上并<strong>没有</strong>通过更改节点来修复该结构，则可能会发生这种情况。这回导致死循环，因为该节点继续标记为无效，但它从未正确修复过。</p>
+<p>例如，确保 <code>link</code> 元素具有有效 <code>url</code> 的标准化：</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// WARNING：这是一个不正确行为的示例！</span>
 <span class="hljs-keyword">const</span> withLinks = <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
   <span class="hljs-keyword">const</span> { normalizeNode } = editor
 
@@ -899,7 +902,7 @@
       node.type === <span class="hljs-string">&apos;link&apos;</span> &amp;&amp;
       <span class="hljs-keyword">typeof</span> node.url !== <span class="hljs-string">&apos;string&apos;</span>
     ) {
-      <span class="hljs-comment">// ERROR: null is not a valid value for a url</span>
+      <span class="hljs-comment">// ERROR：对 url 来说 null 不是有效值</span>
       Transforms.setNodes(editor, { <span class="hljs-attr">url</span>: <span class="hljs-literal">null</span> }, { <span class="hljs-attr">at</span>: path })
       <span class="hljs-keyword">return</span>
     }
@@ -910,12 +913,11 @@
   <span class="hljs-keyword">return</span> editor
 }
 </code></pre>
-<p>This fix is incorrectly written. It wants to ensure that all <code>link</code> elements have a <code>url</code> property string. But to fix invalid links it sets the <code>url</code> to <code>null</code>, which is still not a string!</p>
-<p>In this case you&apos;d either want to unwrap the link, removing it entirely. <em>Or</em> expand your validation to accept an &quot;empty&quot; <code>url == null</code> as well.</p>
-<h2 id="implications-for-other-code">Implications for Other Code</h2>
-<p>Sequences of Transforms may need to be wrapped in <a href="../api/nodes/editor.html#editorwithoutnormalizingeditor-editor-fn---void--void"><code>Editor.withoutNormalizing</code></a> if the node tree should <em>not</em> be normalized between Transforms.
-This is frequently the case when you <code>unwrapNodes</code> followed by <code>wrapNodes</code>.
-For example, you might write a function to change the type of a block as follows:</p>
+<p>此修复程序编写错误。它希望确保所有 <code>link</code> 元素都有 <code>url</code> 属性字符串。但是要修复无效链接，会将 <code>url</code> 设置为 <code>null</code>，这仍然不是字符串！</p>
+<p>在这种情况下，可能想要解包链接，将其完全删除。<em>或者</em>扩展验证（<code>url == null</code>）以接受“空”链接 。</p>
+<h2 id="对其它代码的影响">对其它代码的影响</h2>
+<p>如果节点树<em>不</em>应在转换之间规范化，则转换序列可能需要包装在 <a href="../api/nodes/editor.html#editorwithoutnormalizingeditor-editor-fn---void--void"><code>Editor.withoutNormalizing</code></a> 中。
+当 <code>unwrapNodes</code> 后跟 <code>wrapNodes</code> 时，通常会出现这种情况。例如，可以编写汉书来改变块的类型，如下所示：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> LIST_TYPES = [<span class="hljs-string">&apos;numbered-list&apos;</span>, <span class="hljs-string">&apos;bulleted-list&apos;</span>]
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">changeBlockType</span>(<span class="hljs-params">editor, type</span>) </span>{
@@ -985,7 +987,7 @@ For example, you might write a function to change the type of a block as follows
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Normalizing","level":"3.11","depth":1,"next":{"title":"TypeScript","level":"3.12","depth":1,"path":"concepts/12-typescript.md","ref":"concepts/12-typescript.md","articles":[]},"previous":{"title":"序列化","level":"3.10","depth":1,"path":"concepts/10-serializing.md","ref":"concepts/10-serializing.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/11-normalizing.md","mtime":"2022-06-21T04:15:47.413Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-21T04:15:53.246Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"标准化","level":"3.11","depth":1,"next":{"title":"TypeScript","level":"3.12","depth":1,"path":"concepts/12-typescript.md","ref":"concepts/12-typescript.md","articles":[]},"previous":{"title":"序列化","level":"3.10","depth":1,"path":"concepts/10-serializing.md","ref":"concepts/10-serializing.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/11-normalizing.md","mtime":"2022-06-22T02:40:16.974Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-22T02:40:23.031Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
