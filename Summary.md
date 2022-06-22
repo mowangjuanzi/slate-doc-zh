@@ -26,7 +26,7 @@
 - [序列化](concepts/10-serializing.md)
 - [标准化](concepts/11-normalizing.md)
 - [TypeScript](concepts/12-typescript.md)
-- [Migrating](concepts/xx-migrating.md)
+- [迁移](concepts/xx-migrating.md)
 
 ## API
 
