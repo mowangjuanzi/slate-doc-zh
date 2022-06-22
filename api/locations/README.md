@@ -1,6 +1,6 @@
-# Location Types APIs
+# Location 类型 API
 
-The `Location` interface is a union of the ways to refer to a specific location in a Slate document: paths, points or ranges. Methods will often accept a `Location` instead of requiring only a `Path`, `Point` or `Range`.
+`Location` 接口是引用 Slate 文档中特定位置的多种方式的联合：路径、点或范围。方法通常会接受 `Location` 而不是只需要 `Path`、`Point` 或 `Range`。
 
 ```typescript
 type Location = Path | Point | Range
