@@ -3,7 +3,7 @@
 <html lang="zh-hans" >
     <head>
         <meta charset="UTF-8">
-        <title>Transforms · Slate 中文文档</title>
+        <title>Transform · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.7.3">
@@ -389,7 +389,7 @@
                 <a href="transforms.html">
             
                     
-                    Transforms
+                    Transform
             
                 </a>
             
@@ -402,7 +402,7 @@
                 <a href="nodes/">
             
                     
-                    Node Types
+                    Node 类型
             
                 </a>
             
@@ -486,7 +486,7 @@
                 <a href="locations/">
             
                     
-                    Location Types
+                    Location 类型
             
                 </a>
             
@@ -778,7 +778,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Transforms</a>
+        <a href=".." >Transform</a>
     </h1>
 </div>
 
@@ -793,20 +793,20 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="transforms-api">Transforms API</h1>
-<p>Transforms are helper functions operating on the document. They can be used in defining your own commands.</p>
+                                <h1 id="transform-api">Transform API</h1>
+<p>转换是对文档进行操作的助手函数。可用于定义自己的命令。</p>
 <ul>
-<li><a href="transforms.html#node-options">Node options</a></li>
-<li><a href="transforms.html#static-methods">Static methods</a><ul>
-<li><a href="transforms.html#node-transforms">Node transforms</a></li>
-<li><a href="transforms.html#selection-transforms">Selection transforms</a></li>
-<li><a href="transforms.html#text-transforms">Text transforms</a></li>
-<li><a href="transforms.html#editor-transforms">Editor transforms</a></li>
+<li><a href="transforms.html#node-options">Node 选项</a></li>
+<li><a href="transforms.html#static-methods">静态方法</a><ul>
+<li><a href="transforms.html#node-transforms">Node 转换</a></li>
+<li><a href="transforms.html#selection-transforms">Selection 转换</a></li>
+<li><a href="transforms.html#text-transforms">Text 转换</a></li>
+<li><a href="transforms.html#editor-transforms">Editor 转换</a></li>
 </ul>
 </li>
 </ul>
-<h2 id="node-options">Node options</h2>
-<p>All transforms support a parameter <code>options</code>. This includes options specific to the transform, and general <code>NodeOptions</code> to specify which Nodes in the document that the transform is applied to.</p>
+<h2 id="node-选项">Node 选项</h2>
+<p>所有的转换都支持参数 <code>options</code>。 This includes options specific to the transform, and general <code>NodeOptions</code> to specify which Nodes in the document that the transform is applied to.</p>
 <pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> NodeOptions {
   at?: Location
   match?: <span class="hljs-function">(<span class="hljs-params">node: Node, path: Location</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
@@ -815,18 +815,18 @@
 }
 </code></pre>
 <ul>
-<li><p>The <code>at</code> option selects a <a href="../concepts/03-locations.html">Location</a> in the editor. It defaults to the user&apos;s current selection. <a href="../concepts/04-transforms.html#the-at-option">Learn more about the <code>at</code> option</a></p>
+<li><p><code>at</code> 选项在编辑器中查找<a href="../concepts/03-locations.html">位置</a>。默认是用户当前选区。<a href="../concepts/04-transforms.html#at-选项">了解有关 <code>at</code> 选项的更多信息</a></p>
 </li>
-<li><p>The <code>match</code> option filters the set of Nodes with a custom function. <a href="../concepts/04-transforms.html#the-match-option">Learn more about the <code>match</code> option</a></p>
+<li><p><code>match</code> 选项使用自定义函数过滤节点集合。<a href="../concepts/04-transforms.html#match-选项">了解有关 <code>match</code> 选项的更多信息</a></p>
 </li>
-<li><p>The <code>mode</code> option also filters the set of nodes.</p>
+<li><p><code>mode</code> 选项也过滤节点集合。</p>
 </li>
-<li><p>When <code>voids</code> is false, <a href="nodes/editor#schema-specific-instance-methods-to-override">void Elements</a> are filtered out.</p>
+<li><p>当 <code>voids</code> 为 false, 将过滤掉 <a href="nodes/editor.html#重写特定模式实例方法">void 元素</a>。</p>
 </li>
 </ul>
-<h2 id="static-methods">Static methods</h2>
-<h3 id="node-transforms">Node transforms</h3>
-<p>Transforms that operate on nodes.</p>
+<h2 id="静态方法">静态方法</h2>
+<h3 id="node-转换">Node 转换</h3>
+<p>在节点上操作转换。</p>
 <h4 id="transformsinsertfragmenteditor-editor-fragment-node-options"><code>Transforms.insertFragment(editor: Editor, fragment: Node[], options?)</code></h4>
 <p>Insert of fragment of nodes at the specified location in the document. If no location is specified, insert at the current selection.</p>
 <p>Options: <code>{at?: Location, hanging?: boolean, voids?: boolean}</code></p>
@@ -871,7 +871,7 @@
 <h4 id="transformsmovenodeseditor-editor-options"><code>Transforms.moveNodes(editor: Editor, options)</code></h4>
 <p>Move the nodes from an origin to a destination. A destination must be specified in the <code>options</code>. If no origin is specified, move the selection.</p>
 <p>Options supported: <code>NodeOptions &amp; {to: Path}</code>. For <code>options.mode</code>, <code>&apos;all&apos;</code> is also supported.</p>
-<h3 id="selection-transforms">Selection transforms</h3>
+<h3 id="selection-转换">Selection 转换</h3>
 <p>Transforms that operate on the document&apos;s selection.</p>
 <h4 id="transformscollapseeditor-editor-options"><code>Transforms.collapse(editor: Editor, options?)</code></h4>
 <p>Collapse the selection to a single point.</p>
@@ -894,7 +894,7 @@
 <p>Options: <code>{edge?: &apos;anchor&apos; | &apos;focus&apos; | &apos;start&apos; | &apos;end&apos;}</code></p>
 <h4 id="transformssetselectioneditor-editor-props-partialrange"><code>Transforms.setSelection(editor: Editor, props: Partial&lt;Range&gt;)</code></h4>
 <p>Set new properties on an active selection. Since the value is a <code>Partial&lt;Range&gt;</code>, this method can only handle updates to an existing selection. If there is no active selection the operation will be void. Use <code>select</code> if you&apos;d like to create a selection when there is none.</p>
-<h3 id="text-transforms">Text transforms</h3>
+<h3 id="text-转换">Text 转换</h3>
 <p>Transforms that operate on text.</p>
 <h4 id="transformsdeleteeditor-editor-options"><code>Transforms.delete(editor: Editor, options?)</code></h4>
 <p>Delete text in the document.</p>
@@ -902,7 +902,7 @@
 <h4 id="transformsinserttexteditor-editor-text-string-options"><code>Transforms.insertText(editor: Editor, text: string, options?)</code></h4>
 <p>Insert a string of text at the specified location in the document. If no location is specified, insert at the current selection.</p>
 <p>Options: <code>{at?: Location, voids?: boolean}</code></p>
-<h3 id="editor-transforms">Editor transforms</h3>
+<h3 id="editor-转换">Editor 转换</h3>
 <h4 id="transformstransformeditor-editor-transform-transform"><code>Transforms.transform(editor: Editor, transform: Transform)</code></h4>
 <p>Transform the <code>editor</code> by an <code>operation</code>.</p>
 
@@ -937,7 +937,7 @@
                 </a>
                 
                 
-                <a href="nodes/" class="navigation navigation-next " aria-label="Next page: Node Types">
+                <a href="nodes/" class="navigation navigation-next " aria-label="Next page: Node 类型">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -948,7 +948,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Transforms","level":"4.1","depth":1,"next":{"title":"Node Types","level":"4.2","depth":1,"path":"api/nodes/README.md","ref":"api/nodes/README.md","articles":[{"title":"Editor","level":"4.2.1","depth":2,"path":"api/nodes/editor.md","ref":"api/nodes/editor.md","articles":[]},{"title":"Element","level":"4.2.2","depth":2,"path":"api/nodes/element.md","ref":"api/nodes/element.md","articles":[]},{"title":"Node","level":"4.2.3","depth":2,"path":"api/nodes/node.md","ref":"api/nodes/node.md","articles":[]},{"title":"NodeEntry","level":"4.2.4","depth":2,"path":"api/nodes/node-entry.md","ref":"api/nodes/node-entry.md","articles":[]},{"title":"Text","level":"4.2.5","depth":2,"path":"api/nodes/text.md","ref":"api/nodes/text.md","articles":[]}]},"previous":{"title":"迁移","level":"3.13","depth":1,"path":"concepts/xx-migrating.md","ref":"concepts/xx-migrating.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/transforms.md","mtime":"2022-06-22T14:26:12.365Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-22T14:26:22.331Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Transform","level":"4.1","depth":1,"next":{"title":"Node 类型","level":"4.2","depth":1,"path":"api/nodes/README.md","ref":"api/nodes/README.md","articles":[{"title":"Editor","level":"4.2.1","depth":2,"path":"api/nodes/editor.md","ref":"api/nodes/editor.md","articles":[]},{"title":"Element","level":"4.2.2","depth":2,"path":"api/nodes/element.md","ref":"api/nodes/element.md","articles":[]},{"title":"Node","level":"4.2.3","depth":2,"path":"api/nodes/node.md","ref":"api/nodes/node.md","articles":[]},{"title":"NodeEntry","level":"4.2.4","depth":2,"path":"api/nodes/node-entry.md","ref":"api/nodes/node-entry.md","articles":[]},{"title":"Text","level":"4.2.5","depth":2,"path":"api/nodes/text.md","ref":"api/nodes/text.md","articles":[]}]},"previous":{"title":"迁移","level":"3.13","depth":1,"path":"concepts/xx-migrating.md","ref":"concepts/xx-migrating.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/transforms.md","mtime":"2022-06-22T15:39:54.149Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-22T15:40:00.344Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
