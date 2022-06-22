@@ -793,18 +793,21 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="using-typescript">Using TypeScript</h1>
-<p>Slate supports typing of one Slate document model (ie. one set of custom <code>Editor</code>, <code>Element</code> and <code>Text</code> types). If you need to support more than one document model, see the section Multiple Document Models.</p>
-<p><strong>Warning:</strong> You must define <code>CustomTypes</code>, annotate <code>useState</code>, and annotate the editor&apos;s initial state when using TypeScript or Slate will display typing errors.</p>
-<h2 id="migrating-from-047x">Migrating from 0.47.x</h2>
-<p>When migrating from 0.47.x, read the guide below first. Also keep in mind these common migration issues:</p>
+                                <h1 id="使用-typescript">使用 TypeScript</h1>
+<blockquote>
+<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/12-typescript.md" target="_blank">f17413086e288352fc20259c88ebea2536b7d685</a></p>
+</blockquote>
+<p>Slate 支持 Slate 文档模型类型（即一组自定义 <code>Editor</code>、<code>Element</code>、<code>Text</code> 类型）。如果需要支持多个文档模型，参阅多文档模型章节。</p>
+<p><strong>警告：</strong> 使用 TypeScript 时必须定义 <code>CustomTypes</code>, 注解 <code>useState</code> 并注解编辑器的初始状态，否则 Slate 会显示类型错误。</p>
+<h2 id="从-047x-迁移">从 0.47.x 迁移</h2>
+<p>从 0.47.x 迁移时，首先阅读以下教程。同时还要记住这些常见的迁移问题：</p>
 <ul>
-<li>When referring to <code>node.type</code>, you may see the error <code>Property &apos;type&apos; does not exist on type &apos;Node&apos;</code>. To fix this, you need to add code like <code>Element.isElement(node) &amp;&amp; node.type === &apos;paragraph&apos;</code>. This is necessary because a <code>Node</code> can be an <code>Element</code> or <code>Text</code> and <code>Text</code> does not have a <code>type</code> property.</li>
-<li>Be careful when you define the CustomType for <code>Editor</code>. Make sure to define the CustomType for <code>Editor</code> as <code>BaseEditor &amp; ...</code>. It should not be <code>Editor &amp; ...</code></li>
+<li>当引用 <code>node.type</code> 时，可能会看到错误 <code>Property &apos;type&apos; does not exist on type &apos;Node&apos;</code>。要解决此问题，需要添加类似 <code>Element.isElement(node) &amp;&amp; node.type === &apos;paragraph&apos;</code> 之类的代码。这很有必要，因为 <code>Node</code> 可以是 <code>Element</code> 或者 <code>Text</code> 并且 <code>Text</code> 没有 <code>type</code> 属性。</li>
+<li>为 <code>Editor</code> 定义 CustomType 时要小心。确保 <code>Editor</code> 定义的 CustomType 是 <code>BaseEditor &amp; ...</code>。不是 <code>Editor &amp; ...</code></li>
 </ul>
-<h2 id="defining-editor-element-and-text-types">Defining <code>Editor</code>, <code>Element</code> and <code>Text</code> Types</h2>
-<p>To define a custom <code>Element</code> or <code>Text</code> type, extend the <code>CustomTypes</code> interface in the <code>slate</code> module like this.</p>
-<pre><code class="lang-typescript"><span class="hljs-comment">// This example is for an Editor with `ReactEditor` and `HistoryEditor`</span>
+<h2 id="定义-editor-element-and-text-类型">定义 <code>Editor</code>, <code>Element</code> and <code>Text</code> 类型</h2>
+<p>要定义自定义 <code>Element</code> 或者 <code>Text</code> 类型，要像这样在 <code>slate</code> 模块中扩展 <code>CustomTypes</code> 接口。</p>
+<pre><code class="lang-typescript"><span class="hljs-comment">// 此示例适用于使用 `ReactEditor` 和 `HistoryEditor` 的编辑器</span>
 <span class="hljs-keyword">import</span> { BaseEditor } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 <span class="hljs-keyword">import</span> { ReactEditor } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-react&apos;</span>
 <span class="hljs-keyword">import</span> { HistoryEditor } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-history&apos;</span>
@@ -820,8 +823,8 @@
   }
 }
 </code></pre>
-<h2 id="annotations-in-the-editor">Annotations in the Editor</h2>
-<p>Annotate the editor&apos;s initial value w/ <code>Descendant[]</code>.</p>
+<h2 id="编辑器中的注解">编辑器中的注解</h2>
+<p>使用 <code>Descendant[]</code> 注解编辑器的初始值.</p>
 <pre><code class="lang-tsx"><span class="hljs-keyword">import</span> React, { useMemo, useState } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>
 <span class="hljs-keyword">import</span> { createEditor, Descendant } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 <span class="hljs-keyword">import</span> { Slate, Editable, withReact } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-react&apos;</span>
@@ -843,10 +846,10 @@
   )
 }
 </code></pre>
-<h2 id="best-practices-for-element-and-text-types">Best Practices for <code>Element</code> and <code>Text</code> Types</h2>
-<p>While you can define types directly in the <code>CustomTypes</code> interface, best practice is to define and export each type separately so that you can reference individual types like a <code>ParagraphElement</code>.</p>
-<p>Using best practices, the custom types might look something like:</p>
-<pre><code class="lang-typescript"><span class="hljs-comment">// This example is for an Editor with `ReactEditor` and `HistoryEditor`</span>
+<h2 id="element-和-text-类型最佳实践"><code>Element</code> 和 <code>Text</code> 类型最佳实践</h2>
+<p>虽然可以直接在 <code>CustomTypes</code> 接口中定义类型，但最佳做法是分别定义和导出每种类型以便可以引用单个类型，例如 <code>ParagraphElement</code>.</p>
+<p>使用最佳实践，自定义类型看起来就像是这样：</p>
+<pre><code class="lang-typescript"><span class="hljs-comment">// 此示例适用于使用 `ReactEditor` 和 `HistoryEditor` 的编辑器</span>
 <span class="hljs-keyword">import</span> { BaseEditor } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 <span class="hljs-keyword">import</span> { ReactEditor } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-react&apos;</span>
 <span class="hljs-keyword">import</span> { HistoryEditor } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-history&apos;</span>
@@ -878,27 +881,27 @@
   }
 }
 </code></pre>
-<p>In this example, <code>CustomText</code> is equal to <code>FormattedText</code> but in a real editor, there can be more types of text like text in a code block which may not allow formatting for example.</p>
-<h2 id="why-is-the-type-definition-unusual">Why Is The Type Definition Unusual</h2>
-<p>Because it gets asked often, this section explains why Slate&apos;s type definition is atypical.</p>
-<p>Slate needs to support a feature called type discrimination which is available when using union types (e.g. <code>ParagraphElement | HeadingElement</code>). This allows a user to narrow a type. If presented with code like <code>if (node.type === &apos;paragraph&apos;) { ... }</code> the inside of the block, will narrow the type of node to <code>ParagraphElement</code>.</p>
-<p>Slate also needs a way to allow developers to get their custom types into Slate. This is done through declaration merging which is a feature of an <code>interface</code>.</p>
-<p>Slate combines a union type and an interface in order to use both features.</p>
-<p>For more information see <a href="https://github.com/ianstormtaylor/slate/issues/3725" target="_blank">Proposal: Add Custom TypeScript Types to Slate</a></p>
-<h2 id="multiple-document-models">Multiple Document Models</h2>
-<p>At the moment, Slate supports types for a single document model at a time. For example, it cannot support two different Rich Text Editor with different document schemas.</p>
-<p>Slate&apos;s TypeScript support was designed this way because typing for one document schema was better than none. The goal is to eventually support typing for multiple editor definitions and there is currently an in progress PR built by the creator of Slate.</p>
-<p>One workaround for supporting multiple document models is to create each editor in a separate package and then import them. This hasn&apos;t been tested but should work.</p>
-<h2 id="extending-other-types">Extending Other Types</h2>
-<p>Currently there is also support for extending other types but these haven&apos;t been tested as thoroughly as the ones documented above:</p>
+<p>在本示例中 <code>CustomText</code> 等于 <code>FormattedText</code>，但在真正的编辑器中，可能有更多类型的文本，像是不允许格式化的代码块文本。</p>
+<h2 id="为什么类型定义不寻常">为什么类型定义不寻常</h2>
+<p>因为经常会问这个问题，所以本节解释一下为什么 Slate 的类型定义是非典型。</p>
+<p>Slate 需要支持称为类型推断的功能，该功能可以在联合类型中使用（例如 <code>ParagraphElement | HeadingElement</code>）。这允许用户使用的类型减少。如果在块内部显示类似 <code>if (node.type === &apos;paragraph&apos;) { ... }</code> 类似的代码，会将节点的类型减少到 <code>ParagraphElement</code>。</p>
+<p>Slate 还需要一种方式允许开发者将自定义类型放入 Slate。这是通过合并声明来完成的，这是 <code>interface</code> 的功能。</p>
+<p>Slate 结合联合类型和接口来使用这两个功能。</p>
+<p>参阅<a href="https://github.com/ianstormtaylor/slate/issues/3725" target="_blank">提案：添加自定义 TypeScript 类型到 Slate</a> 获取更多信息。</p>
+<h2 id="多文档模型">多文档模型</h2>
+<p>目前， Slate 一次支持单个文档模型类型。例如，它不能支持具有不同文档架构的两个不同的富文本编辑器。</p>
+<p>Slate 的 TypeScript 支持是这样设计的，因为文档模式类型总比没有强。目标是支持为多个编辑器定义类型，目前 Slate 的创建者正在构建一个正在进行的 PR。</p>
+<p>支持多个文档模型的一种解决办法是在单独的包中创建每个编辑器，然后导入。这尚未经过测试，但应该可以工作。</p>
+<h2 id="扩展其它类型">扩展其它类型</h2>
+<p>当前还支持扩展其它类型，但这些类型并没有像上面记录的那样经过彻底的测试：</p>
 <ul>
 <li><code>Selection</code></li>
 <li><code>Range</code></li>
 <li><code>Point</code></li>
 </ul>
-<p>Feel free to extend these types but extending these types should be considered experimental. Please report bugs on GitHub issues.</p>
-<h2 id="typescript-examples">TypeScript Examples</h2>
-<p>For some examples of how to use types, see <code>packages/slate-react/src/custom-types.ts</code> in the slate repository.</p>
+<p>可以随意扩展这些类型，但扩展这些类型应该实验性的，请在 GitHub issues 中报告 bug。</p>
+<h2 id="typescript-示例">TypeScript 示例</h2>
+<p>有关如何使用类型的示例，请参阅 Slate 存储库中的 <code>packages/slate-react/src/custom-types.ts</code>。</p>
 
                                 
                                 </section>
@@ -942,7 +945,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"TypeScript","level":"3.12","depth":1,"next":{"title":"Migrating","level":"3.13","depth":1,"path":"concepts/xx-migrating.md","ref":"concepts/xx-migrating.md","articles":[]},"previous":{"title":"标准化","level":"3.11","depth":1,"path":"concepts/11-normalizing.md","ref":"concepts/11-normalizing.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/12-typescript.md","mtime":"2022-06-22T02:40:16.974Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-22T02:40:23.031Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"TypeScript","level":"3.12","depth":1,"next":{"title":"Migrating","level":"3.13","depth":1,"path":"concepts/xx-migrating.md","ref":"concepts/xx-migrating.md","articles":[]},"previous":{"title":"标准化","level":"3.11","depth":1,"path":"concepts/11-normalizing.md","ref":"concepts/11-normalizing.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/12-typescript.md","mtime":"2022-06-22T08:38:33.072Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-22T08:38:37.332Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
