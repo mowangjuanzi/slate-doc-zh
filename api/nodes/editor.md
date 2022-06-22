@@ -379,9 +379,9 @@ Options: `{affinity?: 'backward' | 'forward' | 'outward' | 'inward' | null}`
 
 Get the set of currently tracked range refs of the editor.
 
-## Instance Methods
+## 实例方法
 
-### Schema-specific instance methods to override
+### 重写特定模式实例方法
 
 Replace these methods to modify the original behavior of the editor when building [Plugins](../../concepts/08-plugins.md). When modifying behavior, call the original method when appropriate. For example, a plugin that marks image nodes as "void":
 

@@ -1,17 +1,17 @@
-# Transforms API
+# Transform API
 
-Transforms are helper functions operating on the document. They can be used in defining your own commands.
+转换是对文档进行操作的助手函数。可用于定义自己的命令。
 
-- [Node options](transforms.md#node-options)
-- [Static methods](transforms.md#static-methods)
-  - [Node transforms](transforms.md#node-transforms)
-  - [Selection transforms](transforms.md#selection-transforms)
-  - [Text transforms](transforms.md#text-transforms)
-  - [Editor transforms](transforms.md#editor-transforms)
+- [Node 选项](transforms.md#node-options)
+- [静态方法](transforms.md#static-methods)
+  - [Node 转换](transforms.md#node-transforms)
+  - [Selection 转换](transforms.md#selection-transforms)
+  - [Text 转换](transforms.md#text-transforms)
+  - [Editor 转换](transforms.md#editor-transforms)
 
-## Node options
+## Node 选项
 
-All transforms support a parameter `options`. This includes options specific to the transform, and general `NodeOptions` to specify which Nodes in the document that the transform is applied to.
+所有的转换都支持参数 `options`。 This includes options specific to the transform, and general `NodeOptions` to specify which Nodes in the document that the transform is applied to.
 
 ```typescript
 interface NodeOptions {
@@ -22,19 +22,19 @@ interface NodeOptions {
 }
 ```
 
-- The `at` option selects a [Location](../concepts/03-locations.md) in the editor. It defaults to the user's current selection. [Learn more about the `at` option](../concepts/04-transforms.md#the-at-option)
+- `at` 选项在编辑器中查找[位置](../concepts/03-locations.md)。默认是用户当前选区。[了解有关 `at` 选项的更多信息](../concepts/04-transforms.md#at-选项)
 
-- The `match` option filters the set of Nodes with a custom function. [Learn more about the `match` option](../concepts/04-transforms.md#the-match-option)
+- `match` 选项使用自定义函数过滤节点集合。[了解有关 `match` 选项的更多信息](../concepts/04-transforms.md#match-选项)
 
-- The `mode` option also filters the set of nodes.
+- `mode` 选项也过滤节点集合。
 
-- When `voids` is false, [void Elements](./nodes/editor#schema-specific-instance-methods-to-override) are filtered out.
+- 当 `voids` 为 false, 将过滤掉 [void 元素](./nodes/editor.md#重写特定模式实例方法)。
 
-## Static methods
+## 静态方法
 
-### Node transforms
+### Node 转换
 
-Transforms that operate on nodes.
+在节点上操作转换。
 
 #### `Transforms.insertFragment(editor: Editor, fragment: Node[], options?)`
 
@@ -115,7 +115,7 @@ Move the nodes from an origin to a destination. A destination must be specified 
 
 Options supported: `NodeOptions & {to: Path}`. For `options.mode`, `'all'` is also supported.
 
-### Selection transforms
+### Selection 转换
 
 Transforms that operate on the document's selection.
 
@@ -158,7 +158,7 @@ Options: `{edge?: 'anchor' | 'focus' | 'start' | 'end'}`
 
 Set new properties on an active selection. Since the value is a `Partial<Range>`, this method can only handle updates to an existing selection. If there is no active selection the operation will be void. Use `select` if you'd like to create a selection when there is none.
 
-### Text transforms
+### Text 转换
 
 Transforms that operate on text.
 
@@ -174,7 +174,7 @@ Insert a string of text at the specified location in the document. If no locatio
 
 Options: `{at?: Location, voids?: boolean}`
 
-### Editor transforms
+### Editor 转换
 
 #### `Transforms.transform(editor: Editor, transform: Transform)`
 

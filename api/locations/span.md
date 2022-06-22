@@ -6,13 +6,13 @@ A `Span` is a low-level way to refer to a `Range` using `Element` as the end poi
 type Span = [Path, Path]
 ```
 
-- [Static methods](span.md#static-methods)
-  - [Check methods](span.md#check-methods)
+- [静态方法](span.md#static-methods)
+  - [检测方法](span.md#check-methods)
 
-## Static Methods
+## 静态方法
 
-### Check Methods
+### 检测方法
 
 #### `Span.isSpan(value: any) => value is Span`
 
-Check if a `value` implements the `Span` interface.
+检测 `value` 是否实现了 `Span` 接口。

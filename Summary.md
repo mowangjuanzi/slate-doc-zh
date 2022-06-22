@@ -30,14 +30,14 @@
 
 ## API
 
-- [Transforms](api/transforms.md)
-- [Node Types](api/nodes/README.md)
+- [Transform](api/transforms.md)
+- [Node 类型](api/nodes/README.md)
   - [Editor](api/nodes/editor.md)
   - [Element](api/nodes/element.md)
   - [Node](api/nodes/node.md)
   - [NodeEntry](api/nodes/node-entry.md)
   - [Text](api/nodes/text.md)
-- [Location Types](api/locations/README.md)
+- [Location 类型](api/locations/README.md)
   - [Location](api/locations/location.md)
   - [Path](api/locations/path.md)
   - [PathRef](api/locations/path-ref.md)

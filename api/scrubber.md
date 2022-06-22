@@ -30,7 +30,7 @@ printed as
 Cannot get the child of a text node: {"text": "... scrubbed ..."}
 ```
 
-## Text Randomizer Example
+## 文本随机产生器示例
 
 Here's an example "textRandomizer" scrubber, which randomizes particular fields
 of Nodes, preserving their length, but replacing their contents with randomly

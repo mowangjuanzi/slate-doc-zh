@@ -1,6 +1,6 @@
-# Node Types APIs
+# Node 类型 API
 
-The `Node` union type represents all of the different types of nodes that occur in a Slate document tree.
+`Node` 联合类型代表 Slate 文档树中出现的所有不同节点类型。
 
 ```typescript
 type Node = Editor | Element | Text
