@@ -115,7 +115,7 @@ const editor = {
 
 接到的结果是（添加换行符增加可读性）：
 
-```markup
+```html
 <p>An opening paragraph with a <a href="https://example.com">link</a> in it.</p>
 <blockquote><p>A wise quote.</p></blockquote>
 <p>A closing paragraph!</p>

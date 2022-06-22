@@ -1,32 +1,34 @@
-# Normalizing
+# 标准化
 
-Slate editors can edit complex, nested data structures. And for the most part this is great. But in certain cases inconsistencies in the data structure can be introduced—most often when allowing a user to paste arbitrary richtext content.
+> Commit ID: [b8020ee6fc25f4b156b7024c190458aa646fcf21](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/11-normalizing.md)
 
-"Normalizing" is how you can ensure that your editor's content is always of a certain shape. It's similar to "validating", except instead of just determining whether the content is valid or invalid, its job is to fix the content to make it valid again.
+Slate 编辑器可以编辑复杂嵌套的数据结构。大部分情况很棒。但在某些情况下可能会引起数据结构不一致 —— 最常见的是允许用户粘贴任意富文本内容。
 
-## Built-in Constraints
+“标准化”是确保编辑器内容始终具有特定形态的方法。类似“验证”，除了确认内容是否有效之外，还要修复内容使其再次有效。
 
-Slate editors come with a few built-in constraints out of the box. These constraints are there to make working with content _much_ more predictable than standard `contenteditable`. All of the built-in logic in Slate depends on these constraints, so unfortunately you cannot omit them. They are...
+## 内置约束
 
-1. **All `Element` nodes must contain at least one `Text` descendant** &mdash; even [Void Elements](./02-nodes.md#voids). If an element node does not contain any children, an empty text node will be added as its only child. This constraint exists to ensure that the selection's anchor and focus points \(which rely on referencing text nodes\) can always be placed inside any node. With this, empty elements \(or void elements\) wouldn't be selectable.
-2. **Two adjacent texts with the same custom properties will be merged.** If two adjacent text nodes have the same formatting, they're merged into a single text node with a combined text string of the two. This exists to prevent the text nodes from only ever expanding in count in the document, since both adding and removing formatting results in splitting text nodes.
-3. **Block nodes can only contain other blocks, or inline and text nodes.** For example, a `paragraph` block cannot have another `paragraph` block element _and_ a `link` inline element as children at the same time. The type of children allowed is determined by the first child, and any other non-conforming children are removed. This ensures that common richtext behaviors like "splitting a block in two" function consistently.
-4. **Inline nodes cannot be the first or last child of a parent block, nor can it be next to another inline node in the children array.** If this is the case, an empty text node will be added to correct this to be in compliance with the constraint.
-5. **The top-level editor node can only contain block nodes.** If any of the top-level children are inline or text nodes they will be removed. This ensures that there are always block nodes in the editor so that behaviors like "splitting a block in two" work as expected.
-6. **Nodes must be JSON-serializable.** For example, avoid using `undefined` in your data model. This ensures that [operations](./05-operations.md) are also JSON-serializable, a property which is assumed by collaboration libraries.
-7. **Property values must not be `null`.** Instead, you should use an optional property, e.g. `foo?: string` instead of `foo: string | null`. This limitation is due to `null` being used in [operations](./05-operations.md) to represent the absence of a property.
+Slate 带有一些开箱即用的内置约束。这些约束使内容的处理比标准 `contenteditable` _更_可预测。Slate 中的所有内置逻辑都依赖这些约束，因此不能省略它们，它们是。。。
 
-These default constraints are all mandated because they make working with Slate documents _much_ more predictable.
+1. **所有的 `Element` 节点最下级都必须包含至少一个 `Text` 子节点** —— 甚至是 [void 元素](./02-nodes.md#voids)。如果元素节点未包含任何子节点，则会添加一个空文本节点作为其唯一的子节点。存在该约束以确保选区的锚点和焦点（依赖引用文本节点）始终可以放置在任何节点内。这样，空元素（或者 void 元素）将不可选。
+2. **相同自定义属性且相邻的两个文本将会合并。** 如果相邻的两个节点具有相同的格式，将会合并成一个文本节点，其中包含两者组合后的文本字符串。这样做是为了防止文档中的文本节点数量不断扩大，因为添加/删除格式都会导致拆分文本节点。
+3. **块节点只能包含其它块或者行内/文本节点。** 例如，一个 `paragraph` 块不能同时有另一个 `paragraph` 块元素_和_ `link` 内联元素作为子节点。子节点的类型由第一个子节点确定，其它任何不符合的子节点都将被删除。这确保了常见的富文本行为（像是“块一分为二” 的功能）始终如一。
+4. **内联元素不能父级块的首尾第一个节点，也不能与子数组中的首个内联节点相邻。** 如果是这种情况，将添加一个空文本节点一修复它以符合约束。
+5. **顶级编辑器节点只能包含块节点。** 将会删除任何顶级子节点中的内联或文本节点。这确保了编辑器中始终存在块节点，以便“块元素一分为二”之类的行为按预期工作。
+6. **节点必须是 JSON 可序列化的。** 例如，避免在数据模型中使用 `undefined`。这确保了[操作](./05-operations.md) 是 JSON 可序列化，协作库假设的属性。
+7. **属性值不能为 `null`。** 相反，应该使用可选属性，例如 `foo?: string` 而不是 `foo: string | null`。此限制是因为在[操作](./05-operations.md)中使用 `null` 表示缺少的属性。
 
-> 🤖 Although these constraints are the best we've come up with now, we're always looking for ways to have Slate's built-in constraints be less constraining if possible—as long as it keeps standard behaviors easy to reason about. If you come up with a way to reduce or remove a built-in constraint with a different approach, we're all ears!
+这些默认约束都是强制性的，因为它们使 Slate 文档的工作_更_加可预测。
 
-## Adding Constraints
+> 🤖 虽然这些约束是我们能够想到的最好约束，但是我们也在寻找使 Slate 的内置约束尽可能减少的办法 —— 只要保持标准行为更易于推理。如果能想到一种通过不同方法减少或者删除内置约束的办法，我们洗耳恭听！
 
-The built-in constraints are fairly generic. But you can also add your own constraints on top of the built-in ones that are specific to your domain.
+## 增加约束
 
-To do this, you extend the `normalizeNode` function on the editor. The `normalizeNode` function gets called every time an operation is applied that inserts or updates a node \(or its descendants\), giving you the opportunity to ensure that the changes didn't leave it in an invalid state, and correcting the node if so.
+内置约束相当通用。但是也可以在内置之上为特定域添加自己的约束。
 
-For example here's a plugin that ensures `paragraph` blocks only have text or inline elements as children:
+为此，可以在编辑上扩展 `normalizeNode` 函数。操作每次应用插入或者更新节点（及其子节点）时都会调用 `normalizeNode` 函数，确保每次更改都不会让其处于无效状态，如果是的话，则会修复节点。
+
+例如，这是一个确保 `paragraph` 块值存在文本或者内联元素作为子节点的插件：
 
 ```javascript
 import { Transforms, Element, Node } from 'slate'
@@ -37,7 +39,7 @@ const withParagraphs = editor => {
   editor.normalizeNode = entry => {
     const [node, path] = entry
 
-    // If the element is a paragraph, ensure its children are valid.
+    // 如果元素是段落，确保子节点是有效的。
     if (Element.isElement(node) && node.type === 'paragraph') {
       for (const [child, childPath] of Node.children(editor, path)) {
         if (Element.isElement(child) && !editor.isInline(child)) {
@@ -47,7 +49,7 @@ const withParagraphs = editor => {
       }
     }
 
-    // Fall back to the original `normalizeNode` to enforce other constraints.
+    // 调用原始的 `normalizeNode` 以强制执行其它约束。
     normalizeNode(entry)
   }
 
@@ -55,15 +57,15 @@ const withParagraphs = editor => {
 }
 ```
 
-This example is fairly simple. Whenever `normalizeNode` gets called on a paragraph element, it loops through each of its children ensuring that none of them are block elements. And if one is a block element, it gets unwrapped, so that the block is removed and its children take its place. The node is "fixed".
+这个例子相当简单。每当在段落元素上调用 `normalizeNode` 时，都会遍历其每个子元素以确保子元素都不是块元素。如果有一个是块元素，将会解包，这样块就会被移除，其子元素就会取而代之。节点就会被“修复”。
 
-But what if the child has nested blocks?
+但是子元素有嵌套块呢？
 
-## Multi-pass Normalizing
+## 多重标准化
 
-One thing to understand about `normalizeNode` constraints is that they are **multi-pass**.
+关于 `normalizeNode` 约束要理解的一件事就是它们是**多重的**。
 
-If you check the example above again, you'll notice the `return` statement:
+如果再次检查上面的例子，会注意到上面的 `return` 语句：
 
 ```javascript
 if (Element.isElement(child) && !editor.isInline(child)) {
@@ -72,15 +74,15 @@ if (Element.isElement(child) && !editor.isInline(child)) {
 }
 ```
 
-You might at first think this is odd, because with the `return` there, the original `normalizeNodes` will never be called, and the built-in constraints won't get a chance to run their own normalizations.
+你可能刚开始觉得很奇怪，因为有 `return`，原始的 `normalizeNodes` 将永远不会调用且内置约束将没有机会运行自己的标准化。
 
-But, there's a slight "trick" to normalizing.
+但对于标准化来说，这只是一个小“把戏”。
 
-When you do call `Editor.unwrapNodes`, you're actually changing the content of the node that is currently being normalized. So even though you're ending the current normalization pass, by making a change to the node you're kicking off a _new_ normalization pass. This results in a sort of _recursive_ normalizing.
+当调用 `Editor.unwrapNodes` 时，实际上是正在标准化当前节点的内容。因此即使结束当前标准化过程，通过更改节点，也将开始_新的_标准化过程。这导致了一种_递归_标准化。
 
-This multi-pass characteristic makes it _much_ easier to write normalizations, because you only ever have to worry about fixing a single issue at once, and not fixing _every_ possible issue that could be putting a node in an invalid state.
+这种多重特性使得编写规范_更加_容易，因为一次只需要担心且修复一个问题，而不是修复_所有_可能使节点处于无效状态的问题。
 
-To see how this works in practice, let's start with this invalid document:
+要了解实战中是如何工作的，从这个无效文档开始：
 
 ```jsx
 <editor>
@@ -92,9 +94,9 @@ To see how this works in practice, let's start with this invalid document:
 </editor>
 ```
 
-The editor starts by running `normalizeNode` on `<paragraph c>`. And it is valid, because it contains only text nodes as children.
+编辑器首先在 `<paragraph c>` 上运行 `normalizeNode`。它是有效的，因为子节点只包含文本节点。
 
-But then, it moves up the tree, and runs `normalizeNode` on `<paragraph b>`. This paragraph is invalid, since it contains a block element \(`<paragraph c>`\). So that child block gets unwrapped, resulting in a new document of:
+接下来，会向上移动，并在 `<paragraph b>` 运行 `normalizeNode`。此段落无效，因为它包含块元素（`<paragraph c>`）。所以子快就会解包从而产生一个新文档：
 
 ```jsx
 <editor>
@@ -104,7 +106,7 @@ But then, it moves up the tree, and runs `normalizeNode` on `<paragraph b>`. Thi
 </editor>
 ```
 
-And in performing that fix, the top-level `<paragraph a>` changed. It gets normalized, and it is invalid, so `<paragraph b>` gets unwrapped, resulting in:
+并且在执行修复后，顶级 `<paragraph a>` 变了。它被标准化了，且变为有效，所以解包 `<paragraph b>` 后变为：
 
 ```jsx
 <editor>
@@ -112,26 +114,26 @@ And in performing that fix, the top-level `<paragraph a>` changed. It gets norma
 </editor>
 ```
 
-And now when `normalizeNode` runs, no changes are made, so the document is valid!
+现在当 `normalizeNode` 运行时，没有发生变化，因此该文档是有效的！
 
-> 🤖 For the most part you don't need to think about these internals. You can just know that anytime `normalizeNode` is called and you spot an invalid state, you can fix that single invalid state and trust that `normalizeNode` will be called again until the node becomes valid.
+> 🤖 在大多数情况下并不需要考虑这些内部结构。只需要知道调用 `normalizeNode` 并发现无状态，可以修复单个无效状态并相信再次调用 `normalizeNode` 直到节点变为有效。
 
-## Empty Children Early Constraint Execution
+## 空的子节点早期约束执行
 
-One special normalization executes before all other normalizations and this can be important to keep in mind when writing your normalizers.
+特殊的标准化需要在所有其它标准化之前执行，在编写标准化器的时候要牢记这一点。
 
-Before any of the other normalizations can execute, Slate iterates through all `Element` nodes and makes sure they have at least one child. If it does not, an empty `Text` descendant is created.
+在执行任何其它标准化之前，Slate 会遍历所有的 `Element` 节点并确保最少有一个子节点。如果没有，会创建一个空的 `Text` 子节点。
 
-This can trip you up when you have custom handling when an `Element` has no children. For example, if a table element has no rows, you may wish to remove the table; however, this will never happen because a `Text` node would automatically be created before that normalization could run.
+当 `Element` 没有子节点且进行自定处理时，可能会犯错。例如，如果表格元素没有记录，可能会希望删除表格；然而，这永远不会发生，因为在标准化运行之前会自动创建一个 `Text` 节点。
 
-## Incorrect Fixes
+## 错误修复
 
-One pitfall to avoid is creating an infinite normalization loop. This can happen if you check for a specific invalid structure, but then **don't** actually fix that structure with the change you make to the node. This results in an infinite loop because the node continues to be flagged as invalid, but it is never fixed properly.
+需要避免的问题是创建标准化死循环。如果检查特定的无效结构，并实际上并**没有**通过更改节点来修复该结构，则可能会发生这种情况。这回导致死循环，因为该节点继续标记为无效，但它从未正确修复过。
 
-For example, consider a normalization that ensured `link` elements have a valid `url` property:
+例如，确保 `link` 元素具有有效 `url` 的标准化：
 
 ```javascript
-// WARNING: this is an example of incorrect behavior!
+// WARNING：这是一个不正确行为的示例！
 const withLinks = editor => {
   const { normalizeNode } = editor
 
@@ -143,7 +145,7 @@ const withLinks = editor => {
       node.type === 'link' &&
       typeof node.url !== 'string'
     ) {
-      // ERROR: null is not a valid value for a url
+      // ERROR：对 url 来说 null 不是有效值
       Transforms.setNodes(editor, { url: null }, { at: path })
       return
     }
@@ -155,15 +157,14 @@ const withLinks = editor => {
 }
 ```
 
-This fix is incorrectly written. It wants to ensure that all `link` elements have a `url` property string. But to fix invalid links it sets the `url` to `null`, which is still not a string!
+此修复程序编写错误。它希望确保所有 `link` 元素都有 `url` 属性字符串。但是要修复无效链接，会将 `url` 设置为 `null`，这仍然不是字符串！
 
-In this case you'd either want to unwrap the link, removing it entirely. _Or_ expand your validation to accept an "empty" `url == null` as well.
+在这种情况下，可能想要解包链接，将其完全删除。_或者_扩展验证（`url == null`）以接受“空”链接 。
 
-## Implications for Other Code
+## 对其它代码的影响
 
-Sequences of Transforms may need to be wrapped in [`Editor.withoutNormalizing`](../api/nodes/editor.md#editorwithoutnormalizingeditor-editor-fn---void--void) if the node tree should _not_ be normalized between Transforms.
-This is frequently the case when you `unwrapNodes` followed by `wrapNodes`.
-For example, you might write a function to change the type of a block as follows:
+如果节点树_不_应在转换之间规范化，则转换序列可能需要包装在 [`Editor.withoutNormalizing`](../api/nodes/editor.md#editorwithoutnormalizingeditor-editor-fn---void--void) 中。
+当 `unwrapNodes` 后跟 `wrapNodes` 时，通常会出现这种情况。例如，可以编写汉书来改变块的类型，如下所示：
 
 ```javascript
 const LIST_TYPES = ['numbered-list', 'bulleted-list']
