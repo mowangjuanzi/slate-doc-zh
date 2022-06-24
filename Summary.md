@@ -50,15 +50,15 @@
 - [Operation](api/operation.md)
 - [Scrubber](api/scrubber.md)
 
-## Libraries
+## 库
 
 - [Slate React](libraries/slate-react.md)
 - [Slate History](libraries/slate-history.md)
 - [Slate Hyperscript](libraries/slate-hyperscript.md)
 
-## General
+## 通用
 
-- [Resources](general/resources.md)
-- [Contributing](general/contributing.md)
-- [Changelog](general/changelog.md)
-- [FAQ](general/faq.md)
+- [资源](general/resources.md)
+- [贡献](general/contributing.md)
+- [更新日志](general/changelog.md)
+- [常见问题](general/faq.md)

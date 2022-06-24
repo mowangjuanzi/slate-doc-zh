@@ -1,15 +1,15 @@
-# FAQ
+# 常见问题
 
-A series of common questions people have about Slate:
+人们对 Slate 的一些常见问题：
 
-- [Why is content pasted as plain text?](faq.md#why-is-content-is-pasted-as-plaintext)
-- [What browsers and devices does Slate support?](faq.md#what-browsers-and-devices-does-slate-support)
+- [为什么内容粘贴为纯文本？](faq.md#why-is-content-is-pasted-as-plaintext)
+- [Slate 支持哪些浏览器和设备？](faq.md#what-browsers-and-devices-does-slate-support)
 
 ## Why is content pasted as plain text?
 
-One of Slate's core principles is that, unlike most other editors, it does **not** prescribe a specific "schema" to the content you are editing. This means that Slate's core has no concept of "block quotes" or "bold formatting".
+Slate 的核心原则之一是，与大多数编辑器不同，**不会**为正在编辑的内容规定指定的“模式”。这意味着 Slate 核心没有“引用”或者“粗体格式”的概念。
 
-For the most part, this leads to increased flexbility without many downsides, but there are certain cases where you have to do a bit more work. Pasting is one of those cases.
+大部分情况会提升灵活性而没有多少缺点，但在某些情况下必须做更多的工作。粘贴就是其中之一。
 
 Since Slate knows nothing about your domain, it can't know how to parse pasted HTML content \(or other content\). So, by default whenever a user pastes content into a Slate editor, it will parse it as plain text. If you want it to be smarter about pasted content, you need to override the `insert_data` command and deserialize the `DataTransfer` object's `text/html` data as you wish.
 
