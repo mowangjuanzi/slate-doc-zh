@@ -794,31 +794,31 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="slate-react">Slate React</h1>
-<p>This sub-library contains the React-specific logic for Slate.</p>
-<h2 id="components">Components</h2>
-<p>React components for rendering Slate editors</p>
+<p>该子库包含 Slate 特定于 React 的相关逻辑。</p>
+<h2 id="组件">组件</h2>
+<p>用于渲染 Slate 编辑器的 React 组件</p>
 <h3 id="renderelementprops"><code>RenderElementProps</code></h3>
-<p><code>RenderElementProps</code> are passed to the <code>renderElement</code> handler.</p>
+<p><code>RenderElementProps</code> 传递给 <code>renderElement</code> 处理程序。</p>
 <h3 id="renderleafprops"><code>RenderLeafProps</code></h3>
-<p><code>RenderLeafProps</code> are passed to the <code>renderLeaf</code> handler.</p>
+<p><code>RenderLeafProps</code> 传递给 <code>renderLeaf</code> 处理程序。</p>
 <h3 id="editable"><code>Editable</code></h3>
-<p>The main Slate editor.</p>
-<h4 id="event-handling">Event Handling</h4>
-<p>By default, the <code>Editable</code> component comes with a set of event handlers that handle typical rich-text editing behaviors (for example, it implements its own <code>onCopy</code>, <code>onPaste</code>, <code>onDrop</code>, and <code>onKeyDown</code> handlers).</p>
-<p>In some cases you may want to extend or override Slate&apos;s default behavior, which can be done by passing your own event handler(s) to the <code>Editable</code> component.</p>
+<p>主要的 Slate 编辑器。</p>
+<h4 id="事件处理">事件处理</h4>
+<p>默认情况下，<code>Editable</code> 组件带有一组事件处理程序，用于处理典型的富文本编辑行为（例如实现了自己的 <code>onCopy</code>、<code>onPaste</code>、<code>onDrop</code>、 <code>onKeyDown</code> 处理程序。</p>
+<p>在某些情况下会想要扩展或者重写 Slate 的默认行为，可以通过将自定义的事件处理程序传递给 <code>Editable</code> 组件来实现。</p>
 <p>Your custom event handler can control whether or not Slate should execute its own event handling for a given event after your handler runs depending on the return value of your event handler as described below.</p>
 <pre><code class="lang-jsx"><span class="hljs-keyword">import</span> {Editable} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-react&apos;</span>;
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyEditor</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">const</span> onClick = <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> {
-    <span class="hljs-comment">// Implement custom event logic...</span>
+    <span class="hljs-comment">// 实现自定义事件逻辑。。。</span>
 
     <span class="hljs-comment">// When no value is returned, Slate will execute its own event handler when</span>
     <span class="hljs-comment">// neither isDefaultPrevented nor isPropagationStopped was set on the event</span>
   };
 
   <span class="hljs-keyword">const</span> onDrop = <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> {
-    <span class="hljs-comment">// Implement custom event logic...</span>
+    <span class="hljs-comment">// 实现自定义事件逻辑。。。</span>
 
     <span class="hljs-comment">// No matter the state of the event, treat it as being handled by returning</span>
     <span class="hljs-comment">// true here, Slate will skip its own event handler</span>
@@ -826,7 +826,7 @@
   };
 
   <span class="hljs-keyword">const</span> onDragStart = <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> {
-    <span class="hljs-comment">// Implement custom event logic...</span>
+    <span class="hljs-comment">// 实现自定义事件逻辑。。。</span>
 
     <span class="hljs-comment">// No matter the status of the event, treat event as *not* being handled by</span>
     <span class="hljs-comment">// returning false, Slate will execute its own event handler afterward</span>
@@ -844,23 +844,23 @@
 }
 </code></pre>
 <h3 id="defaultelementprops-renderelementprops"><code>DefaultElement(props: RenderElementProps)</code></h3>
-<p>The default element renderer.</p>
+<p>默认元素</p>
 <h3 id="defaultleafprops-renderleafprops"><code>DefaultLeaf(props: RenderLeafProps)</code></h3>
 <p>The default custom leaf renderer.</p>
 <h3 id="slateeditor-reacteditor-value-node-children-reactreactnode-onchange-value-node--void-key-string-any"><code>Slate(editor: ReactEditor, value: Node[], children: React.ReactNode, onChange: (value: Node[]) =&gt; void, [key: string]: any)</code></h3>
 <p>A wrapper around the provider to handle <code>onChange</code> events, because the editor is a mutable singleton so it won&apos;t ever register as &quot;changed&quot; otherwise.</p>
 <h2 id="hooks">Hooks</h2>
-<p>React hooks for Slate editors</p>
+<p>Slate 编辑器的 React hook</p>
 <h3 id="usefocused"><code>useFocused</code></h3>
-<p>Get the current <code>focused</code> state of the editor.</p>
+<p>获取当前编辑器的 <code>focused</code> 状态。</p>
 <h3 id="usereadonly"><code>useReadOnly</code></h3>
-<p>Get the current <code>readOnly</code> state of the editor.</p>
+<p>获取当前编辑器的 <code>readOnly</code> 状态。</p>
 <h3 id="useselected"><code>useSelected</code></h3>
-<p>Get the current <code>selected</code> state of an element.</p>
+<p>获取当前编辑器的 <code>selected</code> 状态。</p>
 <h3 id="useslate"><code>useSlate</code></h3>
-<p>Get the current editor object from the React context. Re-renders the context whenever changes occur in the editor.</p>
+<p>从 React 上下文中获取当前编辑器对象。每当编辑器中发生更改时重新渲染上下文。</p>
 <h3 id="useslatestatic"><code>useSlateStatic</code></h3>
-<p>Get the current editor object from the React context. A version of useSlate that does not re-render the context. Previously called <code>useEditor</code>.</p>
+<p>从 React 上下文中获取当前编辑器对象。 该 useSlate 版本不会重新渲染上下文。之前的调用 <code>useEditor</code>。</p>
 <h2 id="reacteditor">ReactEditor</h2>
 <p>A React and DOM-specific version of the <code>Editor</code> interface. All about translating between the DOM and Slate.</p>
 <h3 id="iscomposingeditor-reacteditor"><code>isComposing(editor: ReactEditor)</code></h3>
@@ -898,20 +898,20 @@
 <h3 id="toslatenodeeditor-reacteditor-domnode-domnode"><code>toSlateNode(editor: ReactEditor, domNode: DOMNode)</code></h3>
 <p>Find a Slate node from a native DOM <code>element</code>.</p>
 <h3 id="findeventrangeeditor-reacteditor-event-any"><code>findEventRange(editor: ReactEditor, event: any)</code></h3>
-<p>Get the target range from a DOM <code>event</code>.</p>
+<p>从 DOM <code>event</code> 中获取目标范围。</p>
 <h3 id="toslatepointeditor-reacteditor-dompoint-dompoint"><code>toSlatePoint(editor: ReactEditor, domPoint: DOMPoint)</code></h3>
-<p>Find a Slate point from a DOM selection&apos;s <code>domNode</code> and <code>domOffset</code>.</p>
+<p>从 DOM 选区的 <code>domNode</code> 和 <code>domOffset</code> 中查找 Slate 点。</p>
 <h3 id="toslaterangeeditor-reacteditor-domrange-domrange--domstaticrange--domselection-options--exactmatch-boolean---"><code>toSlateRange(editor: ReactEditor, domRange: DOMRange | DOMStaticRange | DOMSelection, options?: { exactMatch?: boolean } = {})</code></h3>
-<p>Find a Slate range from a DOM range or selection.</p>
-<h2 id="plugins">Plugins</h2>
-<p>React-specific plugins for Slate editors</p>
+<p>从 DOM 范围或者选区中查找 Slate 范围。</p>
+<h2 id="插件">插件</h2>
+<p>Slate 编辑器特定于React 插件</p>
 <h3 id="withreacteditor-editor"><code>withReact(editor: Editor)</code></h3>
-<p>Adds React and DOM specific behaviors to the editor.</p>
-<p>When used with <code>withHistory</code>, <code>withReact</code> should be applied outside. For example:</p>
+<p>添加 React and DOM 特定行为到编辑器。</p>
+<p>当与 <code>withHistory</code> 一起使用时， <code>withReact</code> 应该应用于外部。例如：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> editor = useMemo(<span class="hljs-function">() =&gt;</span> withReact(withHistory(createEditor())), [])
 </code></pre>
-<h2 id="utils">Utils</h2>
-<p>Private convenience modules</p>
+<h2 id="工具">工具</h2>
+<p>私有便利模块。</p>
 
                                 
                                 </section>
@@ -955,7 +955,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Slate React","level":"5.1","depth":1,"next":{"title":"Slate History","level":"5.2","depth":1,"path":"libraries/slate-history.md","ref":"libraries/slate-history.md","articles":[]},"previous":{"title":"Scrubber","level":"4.5","depth":1,"path":"api/scrubber.md","ref":"api/scrubber.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"libraries/slate-react.md","mtime":"2022-06-24T00:31:28.014Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-24T00:31:33.099Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Slate React","level":"5.1","depth":1,"next":{"title":"Slate History","level":"5.2","depth":1,"path":"libraries/slate-history.md","ref":"libraries/slate-history.md","articles":[]},"previous":{"title":"Scrubber","level":"4.5","depth":1,"path":"api/scrubber.md","ref":"api/scrubber.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"libraries/slate-react.md","mtime":"2022-06-27T04:02:17.865Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-27T04:02:24.943Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
