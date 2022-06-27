@@ -29,7 +29,7 @@ interface Editor {
 }
 ```
 
-- [Instantiation methods](editor.md#instantiation-methods)
+- [实例化方法](editor.md#实例化方法)
 - [Static methods](editor.md#static-methods)
   - [Retrieval methods](editor.md#retrieval-methods)
   - [Manipulation methods](editor.md#manipulation-methods)
@@ -47,13 +47,13 @@ interface Editor {
   - [Insert Methods](editor.md/#insert-methods)
   - [Operation Handling Method](editor.md/#operation-handling-method)
 
-## Instantiation methods
+## 实例化方法
 
 #### `createEditor() => Editor`
 
-Note: This method is imported directly from Slate and is not part of the Editor object.
+注意：该方法是直接从 Slate 导入，不是 Editor 对象的一部分。
 
-Creates a new, empty `Editor` object.
+新创建一个空 `Editor` 对象。
 
 ## Static methods
 
