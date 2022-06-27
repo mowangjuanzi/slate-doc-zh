@@ -1,28 +1,28 @@
 # Slate React
 
-This sub-library contains the React-specific logic for Slate.
+该子库包含 Slate 特定于 React 的相关逻辑。
 
-## Components
+## 组件
 
-React components for rendering Slate editors
+用于渲染 Slate 编辑器的 React 组件
 
 ### `RenderElementProps`
 
-`RenderElementProps` are passed to the `renderElement` handler.
+`RenderElementProps` 传递给 `renderElement` 处理程序。
 
 ### `RenderLeafProps`
 
-`RenderLeafProps` are passed to the `renderLeaf` handler.
+`RenderLeafProps` 传递给 `renderLeaf` 处理程序。
 
 ### `Editable`
 
-The main Slate editor.
+主要的 Slate 编辑器。
 
-#### Event Handling
+#### 事件处理
 
-By default, the `Editable` component comes with a set of event handlers that handle typical rich-text editing behaviors (for example, it implements its own `onCopy`, `onPaste`, `onDrop`, and `onKeyDown` handlers).
+默认情况下，`Editable` 组件带有一组事件处理程序，用于处理典型的富文本编辑行为（例如实现了自己的 `onCopy`、`onPaste`、`onDrop`、 `onKeyDown` 处理程序。
 
-In some cases you may want to extend or override Slate's default behavior, which can be done by passing your own event handler(s) to the `Editable` component.
+在某些情况下会想要扩展或者重写 Slate 的默认行为，可以通过将自定义的事件处理程序传递给 `Editable` 组件来实现。
 
 Your custom event handler can control whether or not Slate should execute its own event handling for a given event after your handler runs depending on the return value of your event handler as described below.
 
@@ -31,14 +31,14 @@ import {Editable} from 'slate-react';
 
 function MyEditor() {
   const onClick = event => {
-    // Implement custom event logic...
+    // 实现自定义事件逻辑。。。
 
     // When no value is returned, Slate will execute its own event handler when
     // neither isDefaultPrevented nor isPropagationStopped was set on the event
   };
 
   const onDrop = event => {
-    // Implement custom event logic...
+    // 实现自定义事件逻辑。。。
 
     // No matter the state of the event, treat it as being handled by returning
     // true here, Slate will skip its own event handler
@@ -46,7 +46,7 @@ function MyEditor() {
   };
 
   const onDragStart = event => {
-    // Implement custom event logic...
+    // 实现自定义事件逻辑。。。
 
     // No matter the status of the event, treat event as *not* being handled by
     // returning false, Slate will execute its own event handler afterward
@@ -66,7 +66,7 @@ function MyEditor() {
 
 ### `DefaultElement(props: RenderElementProps)`
 
-The default element renderer.
+默认元素
 
 ### `DefaultLeaf(props: RenderLeafProps)`
 
@@ -78,27 +78,27 @@ A wrapper around the provider to handle `onChange` events, because the editor is
 
 ## Hooks
 
-React hooks for Slate editors
+Slate 编辑器的 React hook
 
 ### `useFocused`
 
-Get the current `focused` state of the editor.
+获取当前编辑器的 `focused` 状态。
 
 ### `useReadOnly`
 
-Get the current `readOnly` state of the editor.
+获取当前编辑器的 `readOnly` 状态。
 
 ### `useSelected`
 
-Get the current `selected` state of an element.
+获取当前编辑器的 `selected` 状态。
 
 ### `useSlate`
 
-Get the current editor object from the React context. Re-renders the context whenever changes occur in the editor.
+从 React 上下文中获取当前编辑器对象。每当编辑器中发生更改时重新渲染上下文。
 
 ### `useSlateStatic`
 
-Get the current editor object from the React context. A version of useSlate that does not re-render the context. Previously called `useEditor`.
+从 React 上下文中获取当前编辑器对象。 该 useSlate 版本不会重新渲染上下文。之前的调用 `useEditor`。
 
 ## ReactEditor
 
@@ -174,30 +174,30 @@ Find a Slate node from a native DOM `element`.
 
 ### `findEventRange(editor: ReactEditor, event: any)`
 
-Get the target range from a DOM `event`.
+从 DOM `event` 中获取目标范围。
 
 ### `toSlatePoint(editor: ReactEditor, domPoint: DOMPoint)`
 
-Find a Slate point from a DOM selection's `domNode` and `domOffset`.
+从 DOM 选区的 `domNode` 和 `domOffset` 中查找 Slate 点。
 
 ### `toSlateRange(editor: ReactEditor, domRange: DOMRange | DOMStaticRange | DOMSelection, options?: { exactMatch?: boolean } = {})`
 
-Find a Slate range from a DOM range or selection.
+从 DOM 范围或者选区中查找 Slate 范围。
 
-## Plugins
+## 插件
 
-React-specific plugins for Slate editors
+Slate 编辑器特定于React 插件
 
 ### `withReact(editor: Editor)`
 
-Adds React and DOM specific behaviors to the editor.
+添加 React and DOM 特定行为到编辑器。
 
-When used with `withHistory`, `withReact` should be applied outside. For example:
+当与 `withHistory` 一起使用时， `withReact` 应该应用于外部。例如：
 
 ```javascript
 const editor = useMemo(() => withReact(withHistory(createEditor())), [])
 ```
 
-## Utils
+## 工具
 
-Private convenience modules
+私有便利模块。
