@@ -1,6 +1,6 @@
 # 保存到数据库
 
-> Commit ID: [acdc5c3417e30ec50ff2499394205246ccb70ca7](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/06-saving-to-a-database.md)
+> Commit ID: [abea3a3dd47ea53f35090d4041be21cbf8dcdbe7](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/06-saving-to-a-database.md)
 
 现在已经学习了如何向 Slate 编辑器添加功能的基础知识，那如何保存正在编辑的内容，以便稍后回到应用程序后还能继续加载呢。
 
@@ -17,7 +17,7 @@ const initialValue = [
 ]
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
 
   return (
     <Slate editor={editor} value={initialValue}>
@@ -42,7 +42,7 @@ const initialValue = [
 ]
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
 
   return (
     <Slate
@@ -71,7 +71,7 @@ const App = () => {
 
 ```jsx
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
   // 如果存在，则从本地存储拉取初始化内容。
   const initialValue = useMemo(
     () =>
@@ -137,7 +137,7 @@ const deserialize = string => {
 }
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
   // 使用反序列化函数从本地存储中读取数据。
   const initialValue = useMemo(
     deserialize(localStorage.getItem('content')) || '',
