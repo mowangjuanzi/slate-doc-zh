@@ -795,7 +795,7 @@
                                 
                                 <h1 id="应用自定义格式">应用自定义格式</h1>
 <blockquote>
-<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/04-applying-custom-formatting.md" target="_blank">ce02acd2fd21359c26c7d1322064a4cb1c228511</a></p>
+<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/04-applying-custom-formatting.md" target="_blank">d96887f9093c0e822cb5009e3d4726f2aa4f1050</a></p>
 </blockquote>
 <p>之前的教程中，学习了如何创建自定义块类型且在不同的容器中渲染文本块。但 Slate 不是只有“块”。</p>
 <p>在本教程中，将会展示如何添加自定义格式选项，例如 <strong>粗体</strong>, <em>斜体</em>, <code>代码</code> 或者 <del>删除线</del>.</p>
@@ -817,7 +817,7 @@
 ]
 
 <span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> editor = useMemo(<span class="hljs-function">() =&gt;</span> withReact(createEditor()), [])
+  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
 
   <span class="hljs-keyword">return</span> (
     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
@@ -850,7 +850,7 @@
 ]
 
 <span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> editor = useMemo(<span class="hljs-function">() =&gt;</span> withReact(createEditor()), [])
+  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
 
   <span class="hljs-keyword">const</span> renderElement = useCallback(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
     <span class="hljs-keyword">switch</span> (props.element.type) {
@@ -918,7 +918,7 @@
   )
 }
 </code></pre>
-<p>是不是很熟悉？</p>
+<p>是不是很熟悉？请注意，它使用 <code>span</code> 描述——这是因为所有的叶子都必须是<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements" target="_blank">内联元素</a>。可以在<a href="../concepts/09-rendering.html#leaves">渲染小节</a>了解更多关于叶子的信息。</p>
 <p>现在，需要告诉 Slate 叶子的处理逻辑。在 prop 中传入 <code>renderLeaf</code> 到编辑器。</p>
 <pre><code class="lang-jsx"><span class="hljs-keyword">const</span> initialValue = [
   {
@@ -928,7 +928,7 @@
 ]
 
 <span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> editor = useMemo(<span class="hljs-function">() =&gt;</span> withReact(createEditor()), [])
+  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
 
   <span class="hljs-keyword">const</span> renderElement = useCallback(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
     <span class="hljs-keyword">switch</span> (props.element.type) {
@@ -1040,7 +1040,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"应用自定义格式","level":"2.4","depth":1,"next":{"title":"执行命令","level":"2.5","depth":1,"path":"walkthroughs/05-executing-commands.md","ref":"walkthroughs/05-executing-commands.md","articles":[]},"previous":{"title":"定义自定义元素","level":"2.3","depth":1,"path":"walkthroughs/03-defining-custom-elements.md","ref":"walkthroughs/03-defining-custom-elements.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/04-applying-custom-formatting.md","mtime":"2023-03-04T13:13:49.874Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-03-04T13:13:54.054Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"应用自定义格式","level":"2.4","depth":1,"next":{"title":"执行命令","level":"2.5","depth":1,"path":"walkthroughs/05-executing-commands.md","ref":"walkthroughs/05-executing-commands.md","articles":[]},"previous":{"title":"定义自定义元素","level":"2.3","depth":1,"path":"walkthroughs/03-defining-custom-elements.md","ref":"walkthroughs/03-defining-custom-elements.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/04-applying-custom-formatting.md","mtime":"2023-03-04T14:09:59.228Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-03-04T14:10:10.546Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
