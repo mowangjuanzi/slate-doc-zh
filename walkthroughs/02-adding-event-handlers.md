@@ -1,6 +1,6 @@
 # 添加事件处理程序
 
-> Commit ID: [9892cf0ffbd741cc2880d1f0bd0d7c1b36145bbd](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/02-adding-event-handlers.md)
+> Commit ID: [22308b34172e946d88405cbb6338273dbda5dff4](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/02-adding-event-handlers.md)
 
 好，已经安装了 Slate 并在页面渲染，当输入时，会看到变化。但是需要做的不仅仅是输入纯文本字符串。
 
@@ -19,7 +19,7 @@ const initialValue = [
 ]
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
 
   return (
     <Slate editor={editor} value={initialValue}>
@@ -40,7 +40,7 @@ const initialValue = [
 ]
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
 
   return (
     <Slate editor={editor} value={initialValue}>
@@ -70,7 +70,7 @@ const initialValue = [
 ]
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
 
   return (
     <Slate editor={editor} value={initialValue}>
