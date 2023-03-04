@@ -825,14 +825,14 @@
 <p>Here&apos;s a <a href="https://jsfiddle.net/01pLxfzu/" target="_blank">JSFiddle template for Slate</a> to get you started:</p>
 <p><a href="https://jsfiddle.net/01pLxfzu/" target="_blank"><img src="../.gitbook/assets/jsfiddle.png" alt></a></p>
 <h2 id="asking-questions">Asking Questions</h2>
-<p>We&apos;ve also got a <a href="https://slate-slack.herokuapp.com" target="_blank">Slate Slack team</a> where you can ask questions and get answers from other people using Slate:</p>
-<p><a href="https://slate-slack.herokuapp.com" target="_blank"><img src="../.gitbook/assets/slack.png" alt></a></p>
+<p>We&apos;ve also got a <a href="https://join.slack.com/t/slate-js/shared_invite/zt-f8t986ip-7dA1DyiqPpzootz1snKXkw" target="_blank">Slate Slack team</a> where you can ask questions and get answers from other people using Slate:</p>
+<p><a href="https://join.slack.com/t/slate-js/shared_invite/zt-f8t986ip-7dA1DyiqPpzootz1snKXkw" target="_blank"><img src="../.gitbook/assets/slack.png" alt></a></p>
 <p>Please use the Slack instead of asking questions in issues, since we want to reserve issues for keeping track of bugs and features. We close questions in issues so that maintaining the project isn&apos;t overwhelming.</p>
 <h2 id="submitting-pull-requests">Submitting Pull Requests</h2>
 <p>All pull requests are super welcomed and greatly appreciated! Issues in need of a solution are marked with a <a href="https://github.com/ianstormtaylor/slate/issues?q=is%3Aissue+is%3Aopen+label%3A%22%E2%99%A5+help%22" target="_blank"><code>♥ help</code></a> label if you&apos;re looking for somewhere to start.</p>
 <p>Please include tests and docs with every pull request!</p>
 <h2 id="repository-setup">Repository Setup</h2>
-<p>The slate repository is a monorepo that is managed with <a href="https://github.com/lerna/lerna" target="_blank">lerna</a>. Unlike more traditional repositories, this means that the repository must be built in order for tests, linting, or other common development activities to function as expected.</p>
+<p>The Slate repository is a monorepo that is managed with <a href="https://github.com/lerna/lerna" target="_blank">lerna</a>. Unlike more traditional repositories, this means that the repository must be built in order for tests, linting, or other common development activities to function as expected.</p>
 <p>To run the build, you need to have the Slate repository cloned to your computer. After that, you need to <code>cd</code> into the directory where you cloned it, and install the dependencies with <code>yarn</code> and build the monorepo:</p>
 <pre><code class="lang-text">yarn install
 yarn build
@@ -848,7 +848,7 @@ yarn build
 <pre><code class="lang-text">yarn test
 </code></pre>
 <p>If you need to debug something, you can add a <code>debugger</code> line to the source, and then run <code>yarn test:inspect</code>.</p>
-<p>If you only want to run a specific test or tests, you can run <code>yarn test --fgrep=&quot;slate-react rendering&quot;</code> flag which will filter the tests being run by grepping for the string in each test. (This is a Mocha flag that gets passed through.)</p>
+<p>If you only want to run a specific test or tests, you can run <code>yarn run test:mocha --fgrep=&quot;slate-react rendering&quot;</code> flag which will filter the tests being run by grepping for the string in each test. (This is a Mocha flag that gets passed through.)</p>
 <p>In addition to tests you should also run the linter:</p>
 <pre><code class="lang-text">yarn lint
 </code></pre>
@@ -925,7 +925,7 @@ yarn build
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"贡献","level":"6.2","depth":1,"next":{"title":"更新日志","level":"6.3","depth":1,"path":"general/changelog.md","ref":"general/changelog.md","articles":[]},"previous":{"title":"资源","level":"6.1","depth":1,"path":"general/resources.md","ref":"general/resources.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"general/contributing.md","mtime":"2023-03-04T15:53:14.669Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-03-04T15:53:18.898Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"贡献","level":"6.2","depth":1,"next":{"title":"更新日志","level":"6.3","depth":1,"path":"general/changelog.md","ref":"general/changelog.md","articles":[]},"previous":{"title":"资源","level":"6.1","depth":1,"path":"general/resources.md","ref":"general/resources.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"general/contributing.md","mtime":"2023-03-04T16:00:32.011Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-03-04T16:00:35.915Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
