@@ -1,6 +1,6 @@
 # 编辑器
 
-> Commit ID: [20acca4bc8f31bd1aa6fbca2c49aaae5f31cadfe](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/07-editor.md)
+> Commit ID: [84f811a79c9b76050cb3dbe424efca3192cc44c6](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/07-editor.md)
 
 Slate 编辑器的所有行为、内容、状态都汇总到单个顶级 `Editor` 对象。接口是：
 
@@ -14,8 +14,9 @@ interface Editor {
   // 特定模式的节点行为。
   isInline: (element: Element) => boolean
   isVoid: (element: Element) => boolean
+  markableVoid: (element: Element) => boolean
   normalizeNode: (entry: NodeEntry) => void
-  onChange: () => void
+  onChange: (options?: { operation?: Operation }) => void
   // 可重写的核心操作。
   addMark: (key: string, value: any) => void
   apply: (operation: Operation) => void
@@ -35,7 +36,7 @@ interface Editor {
 
 `children` 属性包含构成编辑器内容的节点的文档树。
 
-`selection` 属性包含用户当前的选区（如果存在）。不要直接设置，使用 [Transforms.select](04-transforms#selection-transforms)。
+`selection` 属性包含用户当前的选区（如果存在）。不要直接设置，使用 [Transforms.select](04-transforms.md#selection-transforms)。
 
 `operations` 属性包含了自上次“更改”刷新以来已应用的所有操作（因为 Slate 将批次操作加入到事件循环的 tick 中。）
 
@@ -68,6 +69,20 @@ editor.insertText = text => {
   }
 
   insertText(text)
+}
+```
+
+如果有可以接受粗体或斜体等标记的 void “mention”元素：
+
+```javascript
+const { isVoid, markableVoid } = editor
+
+editor.isVoid = element => {
+  return element.type === 'mention' ? true : isInline(element)
+}
+
+editor.markableVoid = element => {
+  return element.type === 'mention' || markableVoid(element)
 }
 ```
 
