@@ -1,6 +1,6 @@
 # 执行命令
 
-> Commit ID: [9892cf0ffbd741cc2880d1f0bd0d7c1b36145bbd](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/05-executing-commands.md)
+> Commit ID: [22308b34172e946d88405cbb6338273dbda5dff4](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/05-executing-commands.md)
 
 直到现在，我们学到的都是为特定编辑器编写一次性逻辑。但是 Slate 最强大的功能是可以根据个人喜好对富文本编辑器“域”进行建模，并减少一次性代码的编写。
 
@@ -21,7 +21,7 @@ const initialValue = [
 ]
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
 
   const renderElement = useCallback(props => {
     switch (props.element.type) {
@@ -128,7 +128,7 @@ const initialValue = [
 ]
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
 
   const renderElement = useCallback(props => {
     switch (props.element.type) {
@@ -185,7 +185,7 @@ const initialValue = [
 ]
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
 
   const renderElement = useCallback(props => {
     switch (props.element.type) {
