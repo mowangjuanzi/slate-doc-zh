@@ -9,6 +9,12 @@ npm install
 npm run serve
 ```
 
-## 贡献
+## 贡献指南
 
 欢迎修复 bug，提交翻译更新！！！
+
+// TODO 操作示例
+
+## 自用
+
+- 查看文件 diff https://github.com/ianstormtaylor/slate/compare/slate%400.81.0...slate%400.91.4
