@@ -1,6 +1,6 @@
 # 应用自定义格式
 
-> Commit ID: [ce02acd2fd21359c26c7d1322064a4cb1c228511](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/04-applying-custom-formatting.md)
+> Commit ID: [d96887f9093c0e822cb5009e3d4726f2aa4f1050](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/04-applying-custom-formatting.md)
 
 之前的教程中，学习了如何创建自定义块类型且在不同的容器中渲染文本块。但 Slate 不是只有“块”。
 
@@ -26,7 +26,7 @@ const initialValue = [
 ]
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
 
   return (
     <Slate editor={editor} value={initialValue}>
@@ -62,7 +62,7 @@ const initialValue = [
 ]
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
 
   const renderElement = useCallback(props => {
     switch (props.element.type) {
@@ -135,7 +135,7 @@ const Leaf = props => {
 }
 ```
 
-是不是很熟悉？
+是不是很熟悉？请注意，它使用 `span` 描述——这是因为所有的叶子都必须是[内联元素](https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements)。可以在[渲染小节](../concepts/09-rendering.md#leaves)了解更多关于叶子的信息。
 
 现在，需要告诉 Slate 叶子的处理逻辑。在 prop 中传入 `renderLeaf` 到编辑器。
 
@@ -148,7 +148,7 @@ const initialValue = [
 ]
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
 
   const renderElement = useCallback(props => {
     switch (props.element.type) {
