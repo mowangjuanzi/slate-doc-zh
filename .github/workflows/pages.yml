@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master  # default branch
-      - flow-1
 
 jobs:
   pages:
@@ -26,8 +25,8 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
-      # - name: Deploy
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./_book
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_book
