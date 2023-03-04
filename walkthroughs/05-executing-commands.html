@@ -795,7 +795,7 @@
                                 
                                 <h1 id="执行命令">执行命令</h1>
 <blockquote>
-<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/05-executing-commands.md" target="_blank">9892cf0ffbd741cc2880d1f0bd0d7c1b36145bbd</a></p>
+<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/05-executing-commands.md" target="_blank">22308b34172e946d88405cbb6338273dbda5dff4</a></p>
 </blockquote>
 <p>直到现在，我们学到的都是为特定编辑器编写一次性逻辑。但是 Slate 最强大的功能是可以根据个人喜好对富文本编辑器“域”进行建模，并减少一次性代码的编写。</p>
 <p>在之前的教程中，编写了一些有用的代码来处理格式化代码块以及粗体标记。通过添加 <code>onKeyDown</code> 处理程序来调用代码。但这都是使用内置 <code>Editor</code> 助手来实现，而不是使用“命令”。</p>
@@ -810,7 +810,7 @@
 ]
 
 <span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> editor = useMemo(<span class="hljs-function">() =&gt;</span> withReact(createEditor()), [])
+  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
 
   <span class="hljs-keyword">const</span> renderElement = useCallback(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
     <span class="hljs-keyword">switch</span> (props.element.type) {
@@ -913,7 +913,7 @@
 ]
 
 <span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> editor = useMemo(<span class="hljs-function">() =&gt;</span> withReact(createEditor()), [])
+  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
 
   <span class="hljs-keyword">const</span> renderElement = useCallback(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
     <span class="hljs-keyword">switch</span> (props.element.type) {
@@ -967,7 +967,7 @@
 ]
 
 <span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> editor = useMemo(<span class="hljs-function">() =&gt;</span> withReact(createEditor()), [])
+  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
 
   <span class="hljs-keyword">const</span> renderElement = useCallback(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
     <span class="hljs-keyword">switch</span> (props.element.type) {
@@ -1076,7 +1076,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"执行命令","level":"2.5","depth":1,"next":{"title":"保存到数据库","level":"2.6","depth":1,"path":"walkthroughs/06-saving-to-a-database.md","ref":"walkthroughs/06-saving-to-a-database.md","articles":[]},"previous":{"title":"应用自定义格式","level":"2.4","depth":1,"path":"walkthroughs/04-applying-custom-formatting.md","ref":"walkthroughs/04-applying-custom-formatting.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/05-executing-commands.md","mtime":"2023-03-04T14:10:29.548Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-03-04T14:10:33.324Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"执行命令","level":"2.5","depth":1,"next":{"title":"保存到数据库","level":"2.6","depth":1,"path":"walkthroughs/06-saving-to-a-database.md","ref":"walkthroughs/06-saving-to-a-database.md","articles":[]},"previous":{"title":"应用自定义格式","level":"2.4","depth":1,"path":"walkthroughs/04-applying-custom-formatting.md","ref":"walkthroughs/04-applying-custom-formatting.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/05-executing-commands.md","mtime":"2023-03-04T14:52:07.338Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-03-04T14:52:15.342Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
