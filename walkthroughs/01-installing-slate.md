@@ -1,6 +1,6 @@
 # 安装 Slate
 
-> Commit ID: [a66c7315a343460c404bc8eea611b93a70e66c15](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/01-installing-slate.md)
+> Commit ID: [56ab505485f94f2aa3bdf34e121bd080bf6cc248](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/01-installing-slate.md)
 
 Slate 是分为多个 npm 包的单一代码库，所以你需要使用如下方式安装它：
 
@@ -20,7 +20,7 @@ _注意，如果你更愿意使用预打包的 Slate，你可以 `yarn add slate
 
 ```jsx
 // 导入 React 依赖。
-import React, { useMemo } from 'react'
+import React, { useState } from 'react'
 // 导入 Slate 编辑器工厂。
 import { createEditor } from 'slate'
 
@@ -42,7 +42,7 @@ const App = () => {
 ```jsx
 const App = () => {
   // 创建一个不会随着渲染而改变的 Slate 编辑器对象。
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
   return null
 }
 ```
@@ -76,7 +76,7 @@ declare module 'slate' {
 const initialValue = []
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
   // 渲染 Slate 上下文。
   return <Slate editor={editor} value={initialValue} />
 }
@@ -96,7 +96,7 @@ const App = () => {
 const initialValue = []
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
   return (
     // 在上下文中添加可编辑组件。
     <Slate editor={editor} value={initialValue}>
@@ -122,7 +122,7 @@ const initialValue = [
 ]
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
 
   return (
     <Slate editor={editor} value={initialValue}>
