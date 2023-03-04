@@ -1,5 +1,7 @@
 # 迁移
 
+> Commit ID: [a47c35cd953ea6f67cd8c4670a36a8beaee0d9fc](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/xx-migrating.md)
+
 Slate 从早期版本迁移到 `0.50.x` 版本并不是一项简单的任务。从头开始考虑整个框架。这导致了一组**很**好的抽象，将会编写更少的代码。但迁移过程并不简单。
 
 强烈建议阅读本教程后能通读[演示](../walkthroughs/01-installing-slate.md)和其它[概念](01-interfaces.md)以了解如何应用所有新概念。
