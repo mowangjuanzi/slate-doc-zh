@@ -1,6 +1,6 @@
 # 定义自定义元素
 
-> Commit ID: [9892cf0ffbd741cc2880d1f0bd0d7c1b36145bbd](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/03-defining-custom-elements.md)
+> Commit ID: [d1f90ebd12ee2da855911471648136e674efc813](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/03-defining-custom-elements.md)
 
 在之前的示例中，在之前的段落中，但是并未真正告诉过 Slate 任何关于段落块类型的信息。只是让其使用内部默认渲染器，一个普通的老式 `<div>`。
 
@@ -17,7 +17,7 @@ const initialValue = [
 ]
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
 
   return (
     <Slate editor={editor} value={initialValue}>
@@ -76,7 +76,7 @@ const initialValue = [
 ]
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
 
   // 基于传递给 `props` 的元素定义渲染函数。
   // 在这里使用 `useCallback` 记住函数以供后续渲染。
@@ -118,7 +118,7 @@ const DefaultElement = props => {
 }
 ```
 
-好，但现在需要一种方式让用户真正的将块转化为代码块。所以改变 `onKeyDown` 函数，添加 <kbd>Ctrl</kbd> + <kbd>`</kbd> 快捷键来做这件事：
+好，但现在需要一种方式让用户真正的将块转化为代码块。所以改变 `onKeyDown` 函数，添加 `` Ctrl-` `` 快捷键来做这件事：
 
 ```jsx
 // 从 Slate 导入 `Editor` 和 `Transforms` 助手。
@@ -132,7 +132,7 @@ const initialValue = [
 ]
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
 
   const renderElement = useCallback(props => {
     switch (props.element.type) {
@@ -177,9 +177,9 @@ const DefaultElement = props => {
 }
 ```
 
-现在，如果按下 <kbd>Ctrl</kbd> + <kbd>`</kbd>，现在光标所在的块会变成代码块！神奇吧！
+现在，如果按下 `` Ctrl-` ``，现在光标所在的块会变成代码块！神奇吧！
 
-但是忘记了一件事。就是当再次点击 <kbd>Ctrl</kbd> + <kbd>`</kbd> 时，应该将代码块改回段落。为此，需要添加逻辑来根据当前选择的块是否是代码块来更改设置的类型：
+但是忘记了一件事。就是当再次点击 `` Ctrl-` `` 时，应该将代码块改回段落。为此，需要添加逻辑来根据当前选择的块是否是代码块来更改设置的类型：
 
 ```jsx
 const initialValue = [
@@ -190,7 +190,7 @@ const initialValue = [
 ]
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
 
   const renderElement = useCallback(props => {
     switch (props.element.type) {
@@ -226,4 +226,4 @@ const App = () => {
 }
 ```
 
-这很简单！如果代码块中按 <kbd>Ctrl</kbd> + <kbd>`</kbd>，应该要变回段落！
+这很简单！如果代码块中按 `` Ctrl-` ``，应该要变回段落！
