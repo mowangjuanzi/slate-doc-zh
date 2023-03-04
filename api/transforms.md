@@ -1,5 +1,7 @@
 # Transform API
 
+> Commit ID: [fbc9838fd72e78bfa9af49013981939773dcca11](https://github.com/ianstormtaylor/slate/blob/main/docs/api/transforms.md)
+
 转换是对文档进行操作的助手函数。可用于定义自己的命令。
 
 - [Node 选项](transforms.md#node-options)
@@ -101,7 +103,7 @@ Options supported: `NodeOptions & {hanging?: boolean, split?: boolean}`. For `op
 
 Unset properties of nodes at the specified location. If no location is specified, use the selection.
 
-Options supported: `NodeOptions & {split?: boolean}`. For `options.mode`, `'all'` is also supported.
+Options supported: `NodeOptions & {hanging?: boolean, split?: boolean}`. For `options.mode`, `'all'` is also supported.
 
 #### `Transforms.liftNodes(editor: Editor, options?)`
 
