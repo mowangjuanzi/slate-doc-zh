@@ -1,5 +1,7 @@
 # Slate React
 
+> Commit ID: [9bc0b6132aa288a37ae9a85d0e59a9d5a75ebdd7](https://github.com/ianstormtaylor/slate/blob/main/docs/libraries/slate-react.md)
+
 该子库包含 Slate 特定于 React 的相关逻辑。
 
 ## 组件
@@ -96,9 +98,17 @@ Slate 编辑器的 React hook
 
 从 React 上下文中获取当前编辑器对象。每当编辑器中发生更改时重新渲染上下文。
 
+### `useSlateWithV`
+
+The same as `useSlate()` but includes a version counter which you can use to prevent re-renders.
+
 ### `useSlateStatic`
 
 从 React 上下文中获取当前编辑器对象。 该 useSlate 版本不会重新渲染上下文。之前的调用 `useEditor`。
+
+### `useSlateSelection`
+
+Get the current editor selection from the React context. Only re-renders when the selection changes.
 
 ## ReactEditor
 
@@ -195,7 +205,7 @@ Slate 编辑器特定于React 插件
 当与 `withHistory` 一起使用时， `withReact` 应该应用于外部。例如：
 
 ```javascript
-const editor = useMemo(() => withReact(withHistory(createEditor())), [])
+const [editor] = useState(() => withReact(withHistory(createEditor())))
 ```
 
 ## 工具
