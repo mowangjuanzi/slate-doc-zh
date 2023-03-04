@@ -1,6 +1,6 @@
 # 渲染
 
-> Commit ID: [f183bde599133e1e6ce3549e1f3055e936246b8e](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/09-rendering.md)
+> Commit ID: [9c4097a26fa92718e6f4fc1f984a70fb5af42ca2](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/09-rendering.md)
 
 Slate 使用 React 构建是最好的部分，因此适用现有的应用程序。不会重新发明需要学习的视图层。尽可能的保持 React。
 
@@ -15,7 +15,7 @@ import { createEditor } from 'slate'
 import { Slate, Editable, withReact } from 'slate-react'
 
 const MyEditor = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
   const renderElement = useCallback(({ attributes, children, element }) => {
     switch (element.type) {
       case 'quote':
@@ -117,7 +117,7 @@ const renderLeaf = useCallback(({ attributes, children, leaf }) => {
 
 ```jsx
 const MyEditor = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
   return (
     <Slate editor={editor}>
       <Toolbar />
@@ -138,3 +138,24 @@ const Toolbar = () => {
 ```
 
 因为 `<Toolbar>` 使用 `useSlate` hook 检索上下文，所以会在编辑器更改时重新渲染，以便按钮的状态保持同步。
+
+## 编辑器样式
+
+通过使用 `<Editable>` 组件上的 `style` 属性，可以将自定义样式应用于编辑器本身。
+
+```jsx
+const MyEditor = () => {
+  const [editor] = useState(() => withReact(createEditor()))
+  return (
+    <Slate editor={editor}>
+      <Editable style={{ minHeight: '200px', backgroundColor: 'lime' }} />
+    </Slate>
+  )
+}
+```
+
+也可以使用样式表和 `className` 来应用自定义样式。但是，Slate 使用内联样式为编辑器提供一些默认样式。因为内联样式优先级比样式表高，所以使用样式表提供的样式不会覆盖默认样式。如果尝试使用样式表而规则没有生效，请执行以下操作之一：
+
+- 使用 `style` 属性而不是样式表提供样式，它会覆盖默认的内联样式。
+- 将 `disableDefaultStyles` 属性传递给 `<Editable>` 组件。
+- 在样式表声明中使用 `!important` 使其覆盖内联样式。
