@@ -795,7 +795,7 @@
                                 
                                 <h1 id="位置">位置</h1>
 <blockquote>
-<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/03-locations.md" target="_blank">7d9d25e1790c6557e6ff2072f79f7904736aec65</a></p>
+<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/03-locations.md" target="_blank">469bec3d040f6272d5066b94cc827c1bb7272709</a></p>
 </blockquote>
 <p>位置是在 Slate 编辑器中插入、删除、执行任何操作时引用文档中的特定位置的方式。有几种不同类型的位置接口用于不同的用例。</p>
 <h2 id="path"><code>Path</code></h2>
@@ -861,7 +861,7 @@
 <p>🤖 参考<a href="../api/locations/range.html">范围 API 参考</a>获取更多信息。</p>
 </blockquote>
 <h2 id="选区">选区</h2>
-<p>当需要引用两点之间的内容范围时，Slate API 的中很多地方都使用了范围。最常见的例子是用户的当前“选区”。</p>
+<p>当需要引用两点之间的内容范围时，Slate API 的中很多地方都使用了范围。最常见的示例是用户的当前“选区”。</p>
 <p>选区是一个特殊范围，是顶级 <code>Editor</code> 的属性。例如，假设当前选择了整个句子：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> editor = {
   <span class="hljs-attr">selection</span>: {
@@ -884,6 +884,26 @@
 <p>🤖 选区概念也是从 DOM 中借用的，参阅 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Selection" target="_blank"><code>Selection</code>, MDN</a>, 尽管形式非常简化，因为 Slate 不允许在单个选区中包含多个范围，但也使得易于使用。</p>
 </blockquote>
 <p>没有特定的 <code>Selection</code> 接口。它只是正好遵循了更通用的 <code>Range</code> 接口。</p>
+<p>例如，要找到包含所有当前选区的最低的块：</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getCommonBlock</span>(<span class="hljs-params">editor</span>) </span>{
+  <span class="hljs-keyword">const</span> range = Editor.unhangRange(editor, editor.selection, { <span class="hljs-attr">voids</span>: <span class="hljs-literal">true</span> })
+
+  <span class="hljs-keyword">let</span> [common, path] = SlateNode.common(
+    editor,
+    range.anchor.path,
+    range.focus.path
+  )
+
+  <span class="hljs-keyword">if</span> (Editor.isBlock(editor, common) || Editor.isEditor(common)) {
+    <span class="hljs-keyword">return</span> [common, path]
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> Editor.above(editor, {
+      <span class="hljs-attr">at</span>: path,
+      <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> Editor.isBlock(editor, n) || Editor.isEditor(n),
+    })
+  }
+}
+</code></pre>
 
                                 
                                 </section>
@@ -927,7 +947,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"位置","level":"3.3","depth":1,"next":{"title":"转换","level":"3.4","depth":1,"path":"concepts/04-transforms.md","ref":"concepts/04-transforms.md","articles":[]},"previous":{"title":"节点","level":"3.2","depth":1,"path":"concepts/02-nodes.md","ref":"concepts/02-nodes.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/03-locations.md","mtime":"2023-03-04T14:58:57.134Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-03-04T14:59:05.065Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"位置","level":"3.3","depth":1,"next":{"title":"转换","level":"3.4","depth":1,"path":"concepts/04-transforms.md","ref":"concepts/04-transforms.md","articles":[]},"previous":{"title":"节点","level":"3.2","depth":1,"path":"concepts/02-nodes.md","ref":"concepts/02-nodes.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/03-locations.md","mtime":"2023-03-04T15:25:56.381Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-03-04T15:26:10.037Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -795,7 +795,7 @@
                                 
                                 <h1 id="编辑器">编辑器</h1>
 <blockquote>
-<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/07-editor.md" target="_blank">20acca4bc8f31bd1aa6fbca2c49aaae5f31cadfe</a></p>
+<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/07-editor.md" target="_blank">84f811a79c9b76050cb3dbe424efca3192cc44c6</a></p>
 </blockquote>
 <p>Slate 编辑器的所有行为、内容、状态都汇总到单个顶级 <code>Editor</code> 对象。接口是：</p>
 <pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Editor {
@@ -807,8 +807,9 @@
   <span class="hljs-comment">// 特定模式的节点行为。</span>
   <span class="hljs-attr">isInline</span>: <span class="hljs-function">(<span class="hljs-params">element: Element</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
   <span class="hljs-attr">isVoid</span>: <span class="hljs-function">(<span class="hljs-params">element: Element</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
+  <span class="hljs-attr">markableVoid</span>: <span class="hljs-function">(<span class="hljs-params">element: Element</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
   <span class="hljs-attr">normalizeNode</span>: <span class="hljs-function">(<span class="hljs-params">entry: NodeEntry</span>) =&gt;</span> <span class="hljs-built_in">void</span>
-  <span class="hljs-attr">onChange</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">void</span>
+  <span class="hljs-attr">onChange</span>: <span class="hljs-function">(<span class="hljs-params">options?: { operation?: Operation }</span>) =&gt;</span> <span class="hljs-built_in">void</span>
   <span class="hljs-comment">// 可重写的核心操作。</span>
   <span class="hljs-attr">addMark</span>: <span class="hljs-function">(<span class="hljs-params">key: <span class="hljs-built_in">string</span>, value: <span class="hljs-built_in">any</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>
   <span class="hljs-attr">apply</span>: <span class="hljs-function">(<span class="hljs-params">operation: Operation</span>) =&gt;</span> <span class="hljs-built_in">void</span>
@@ -825,7 +826,7 @@
 </code></pre>
 <p>它比其它的稍微复杂一些，因为包含所有的顶级函数，比如定义的自定义函数以及特定领域的行为。</p>
 <p><code>children</code> 属性包含构成编辑器内容的节点的文档树。</p>
-<p><code>selection</code> 属性包含用户当前的选区（如果存在）。不要直接设置，使用 <a href="04-transforms#selection-transforms">Transforms.select</a>。</p>
+<p><code>selection</code> 属性包含用户当前的选区（如果存在）。不要直接设置，使用 <a href="04-transforms.html#selection-transforms">Transforms.select</a>。</p>
 <p><code>operations</code> 属性包含了自上次“更改”刷新以来已应用的所有操作（因为 Slate 将批次操作加入到事件循环的 tick 中。）</p>
 <p><code>marks</code> 属性保存了当编辑器插入文本时要应用的格式，如果 <code>marks</code> 是 <code>null</code>，格式从当前选区获取。
 不能直接赋值，使用 <code>Editor.addMark</code> 和 <code>Editor.removeMark</code> 设置该值。</p>
@@ -848,6 +849,17 @@ editor.insertText = <span class="hljs-function"><span class="hljs-params">text</
   }
 
   insertText(text)
+}
+</code></pre>
+<p>如果有可以接受粗体或斜体等标记的 void “mention”元素：</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { isVoid, markableVoid } = editor
+
+editor.isVoid = <span class="hljs-function"><span class="hljs-params">element</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> element.type === <span class="hljs-string">&apos;mention&apos;</span> ? <span class="hljs-literal">true</span> : isInline(element)
+}
+
+editor.markableVoid = <span class="hljs-function"><span class="hljs-params">element</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> element.type === <span class="hljs-string">&apos;mention&apos;</span> || markableVoid(element)
 }
 </code></pre>
 <p>或者甚至想要定义自定义“标准化”，确保链接遵从某些约束：</p>
@@ -933,7 +945,7 @@ editor.normalizeNode = <span class="hljs-function"><span class="hljs-params">ent
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"编辑器","level":"3.7","depth":1,"next":{"title":"插件","level":"3.8","depth":1,"path":"concepts/08-plugins.md","ref":"concepts/08-plugins.md","articles":[]},"previous":{"title":"命令","level":"3.6","depth":1,"path":"concepts/06-commands.md","ref":"concepts/06-commands.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/07-editor.md","mtime":"2023-03-04T14:58:57.138Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-03-04T14:59:05.065Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"编辑器","level":"3.7","depth":1,"next":{"title":"插件","level":"3.8","depth":1,"path":"concepts/08-plugins.md","ref":"concepts/08-plugins.md","articles":[]},"previous":{"title":"命令","level":"3.6","depth":1,"path":"concepts/06-commands.md","ref":"concepts/06-commands.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/07-editor.md","mtime":"2023-03-04T15:25:56.381Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-03-04T15:26:10.037Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
