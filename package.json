@@ -3,12 +3,11 @@
   "version": "0.81.0",
   "main": "index.js",
   "license": "MIT",
-  "dependencies": {
-    "honkit": "^3.7.3",
-    "slate": "^0.81.0"
-  },
   "scripts": {
     "build": "honkit build",
     "serve": "honkit serve"
+  },
+  "devDependencies": {
+    "honkit": "^4.0.4"
   }
 }
