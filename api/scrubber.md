@@ -1,5 +1,7 @@
 # Scrubber API
 
+> Commit ID: [fe13a8f9e750569342ee004951e34233ab6614bf](https://github.com/ianstormtaylor/slate/blob/main/docs/api/scrubber.md)
+
 When Slate throws an exception, it includes a stringified representation of the
 relevant data. For example, if your application makes an API call to access the
 child of a text Node (an impossible operation), Slate will throw an exception
