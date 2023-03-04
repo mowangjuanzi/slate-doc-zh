@@ -795,7 +795,7 @@
                                 
                                 <h1 id="定义自定义元素">定义自定义元素</h1>
 <blockquote>
-<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/03-defining-custom-elements.md" target="_blank">9892cf0ffbd741cc2880d1f0bd0d7c1b36145bbd</a></p>
+<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/03-defining-custom-elements.md" target="_blank">d1f90ebd12ee2da855911471648136e674efc813</a></p>
 </blockquote>
 <p>在之前的示例中，在之前的段落中，但是并未真正告诉过 Slate 任何关于段落块类型的信息。只是让其使用内部默认渲染器，一个普通的老式 <code>&lt;div&gt;</code>。</p>
 <p>但是能做的不仅仅是这些。Slate 允许定义任何自定义块类型，像引用、代码块、列表项等等。</p>
@@ -808,7 +808,7 @@
 ]
 
 <span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> editor = useMemo(<span class="hljs-function">() =&gt;</span> withReact(createEditor()), [])
+  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
 
   <span class="hljs-keyword">return</span> (
     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
@@ -853,7 +853,7 @@
 ]
 
 <span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> editor = useMemo(<span class="hljs-function">() =&gt;</span> withReact(createEditor()), [])
+  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
 
   <span class="hljs-comment">// 基于传递给 `props` 的元素定义渲染函数。</span>
   <span class="hljs-comment">// 在这里使用 `useCallback` 记住函数以供后续渲染。</span>
@@ -894,7 +894,7 @@
   <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> {<span class="hljs-attr">...props.attributes</span>}&gt;</span>{props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
 }
 </code></pre>
-<p>好，但现在需要一种方式让用户真正的将块转化为代码块。所以改变 <code>onKeyDown</code> 函数，添加 <kbd>Ctrl</kbd> + <kbd>`</kbd> 快捷键来做这件事：</p>
+<p>好，但现在需要一种方式让用户真正的将块转化为代码块。所以改变 <code>onKeyDown</code> 函数，添加 <code>Ctrl-` </code> 快捷键来做这件事：</p>
 <pre><code class="lang-jsx"><span class="hljs-comment">// 从 Slate 导入 `Editor` 和 `Transforms` 助手。</span>
 <span class="hljs-keyword">import</span> { Editor, Transforms } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 
@@ -906,7 +906,7 @@
 ]
 
 <span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> editor = useMemo(<span class="hljs-function">() =&gt;</span> withReact(createEditor()), [])
+  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
 
   <span class="hljs-keyword">const</span> renderElement = useCallback(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
     <span class="hljs-keyword">switch</span> (props.element.type) {
@@ -950,8 +950,8 @@
   <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> {<span class="hljs-attr">...props.attributes</span>}&gt;</span>{props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
 }
 </code></pre>
-<p>现在，如果按下 <kbd>Ctrl</kbd> + <kbd>`</kbd>，现在光标所在的块会变成代码块！神奇吧！</p>
-<p>但是忘记了一件事。就是当再次点击 <kbd>Ctrl</kbd> + <kbd>`</kbd> 时，应该将代码块改回段落。为此，需要添加逻辑来根据当前选择的块是否是代码块来更改设置的类型：</p>
+<p>现在，如果按下 <code>Ctrl-` </code>，现在光标所在的块会变成代码块！神奇吧！</p>
+<p>但是忘记了一件事。就是当再次点击 <code>Ctrl-` </code> 时，应该将代码块改回段落。为此，需要添加逻辑来根据当前选择的块是否是代码块来更改设置的类型：</p>
 <pre><code class="lang-jsx"><span class="hljs-keyword">const</span> initialValue = [
   {
     <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
@@ -960,7 +960,7 @@
 ]
 
 <span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> editor = useMemo(<span class="hljs-function">() =&gt;</span> withReact(createEditor()), [])
+  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
 
   <span class="hljs-keyword">const</span> renderElement = useCallback(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
     <span class="hljs-keyword">switch</span> (props.element.type) {
@@ -995,7 +995,7 @@
   )
 }
 </code></pre>
-<p>这很简单！如果代码块中按 <kbd>Ctrl</kbd> + <kbd>`</kbd>，应该要变回段落！</p>
+<p>这很简单！如果代码块中按 <code>Ctrl-` </code>，应该要变回段落！</p>
 
                                 
                                 </section>
@@ -1039,7 +1039,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"定义自定义元素","level":"2.3","depth":1,"next":{"title":"应用自定义格式","level":"2.4","depth":1,"path":"walkthroughs/04-applying-custom-formatting.md","ref":"walkthroughs/04-applying-custom-formatting.md","articles":[]},"previous":{"title":"添加事件处理程序","level":"2.2","depth":1,"path":"walkthroughs/02-adding-event-handlers.md","ref":"walkthroughs/02-adding-event-handlers.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/03-defining-custom-elements.md","mtime":"2023-03-04T13:06:01.948Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-03-04T13:06:06.834Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"定义自定义元素","level":"2.3","depth":1,"next":{"title":"应用自定义格式","level":"2.4","depth":1,"path":"walkthroughs/04-applying-custom-formatting.md","ref":"walkthroughs/04-applying-custom-formatting.md","articles":[]},"previous":{"title":"添加事件处理程序","level":"2.2","depth":1,"path":"walkthroughs/02-adding-event-handlers.md","ref":"walkthroughs/02-adding-event-handlers.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/03-defining-custom-elements.md","mtime":"2023-03-04T13:13:49.874Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-03-04T13:13:54.054Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
