@@ -1,6 +1,6 @@
 # 转换
 
-> Commit ID: [5d3eccf26279d6e4ba0eeecc754d8894c6061dbe](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/04-transforms.md)
+> Commit ID: [a1b558ac7285855cc147857c273c99b3639a472e](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/04-transforms.md)
 
 Slate 的数据结构不可变，所以不能直接修改或者删除节点。不过，Slate 带有一组“转换”函数用于转换编辑器的值。
 
@@ -8,7 +8,7 @@ Slate 的转换函数设计为非常灵活，可以对编辑器进行各种更�
 
 通常，会将单个操作用于单个或者多个节点。例如，通过对每个块级元素的父级应用 `unwrapNodes` 来展平语法树：
 
-```js
+```javascript
 Transforms.unwrapNodes(editor, {
   at: [], // 编辑器的路径
   match: node =>
@@ -22,7 +22,7 @@ Transforms.unwrapNodes(editor, {
 NodeEntries JavaScript 迭代器且用 for..of 执行。
 例如，用对应的 alt 文本替换所有图像元素：
 
-```js
+```javascript
 const imageElmnts = Editor.nodes(editor, {
   at: [], // 编辑器的路径
   match: (node, path) => 'image' === node.type,
@@ -45,7 +45,7 @@ for (const nodeEntry of imageElmnts) {
 
 选区关联转换是一些更简单的转换。例如，以下是将选区设置为新范围的方法：
 
-```js
+```javascript
 Transforms.select(editor, {
   anchor: { path: [0, 0], offset: 0 },
   focus: { path: [1, 0], offset: 2 },
@@ -56,7 +56,7 @@ Transforms.select(editor, {
 
 例如，通常需要将光标按照字符，单词，行来向前/后移动不同的距离。以下是如何将光标向后移动三个单词：
 
-```js
+```javascript
 Transforms.move(editor, {
   distance: 3,
   unit: 'word',
@@ -70,7 +70,7 @@ Transforms.move(editor, {
 
 文本转换用于编辑器的文本内容。例如，以下是在指定位置插入文本字符串的方法：
 
-```js
+```javascript
 Transforms.insertText(editor, 'some words', {
   at: { path: [0, 0], offset: 3 },
 })
@@ -78,7 +78,7 @@ Transforms.insertText(editor, 'some words', {
 
 或者从编辑器中删除整个范围内的所有内容：
 
-```js
+```javascript
 Transforms.delete(editor, {
   at: {
     anchor: { path: [0, 0], offset: 0 },
@@ -93,7 +93,7 @@ Transforms.delete(editor, {
 
 节点转换作用于构成编辑器值的单个元素和文本节点。例如，在指定位置插入新文本节点：
 
-```js
+```javascript
 Transforms.insertNodes(
   editor,
   {
@@ -107,7 +107,7 @@ Transforms.insertNodes(
 
 或者将节点从该路径移动到其它路径：
 
-```js
+```javascript
 Transforms.moveNodes(editor, {
   at: [0, 0],
   to: [0, 1],
@@ -122,13 +122,13 @@ Transforms.moveNodes(editor, {
 
 例如在插入文本时，会在用户的当前光标处插入字符串：
 
-```js
+```javascript
 Transforms.insertText(editor, 'some words')
 ```
 
 而这将会在指定位置插入：
 
-```js
+```javascript
 Transforms.insertText(editor, 'some words', {
   at: { path: [0, 0], offset: 3 },
 })
@@ -140,7 +140,7 @@ Transforms.insertText(editor, 'some words', {
 
 所以要用新字符串替换文本，可以执行如下操作：
 
-```js
+```javascript
 Transforms.insertText(editor, 'some words', {
   at: {
     anchor: { path: [0, 0], offset: 0 },
@@ -153,7 +153,7 @@ Transforms.insertText(editor, 'some words', {
 
 所以使用新字符串替换整个节点的文本，可以执行如下操作：
 
-```js
+```javascript
 Transforms.insertText(editor, 'some words', {
   at: [0, 0],
 })
@@ -167,7 +167,7 @@ Transforms.insertText(editor, 'some words', {
 
 例如，考虑一个基础的转换，将节点从一个路径移动到另一个路径：
 
-```js
+```javascript
 Transforms.moveNodes(editor, {
   at: [2],
   to: [5],
@@ -178,7 +178,7 @@ Transforms.moveNodes(editor, {
 
 首先， `at` 选项扩展为范围代表 `[2]` 节点内的所有内容。看起来就像是：
 
-```js
+```javascript
 at: {
   anchor: { path: [2, 0], offset: 0 },
   focus: { path: [2, 2], offset: 19 }
@@ -187,7 +187,7 @@ at: {
 
 其次，`match` 选项默认仅为匹配指定路径的函数，在这里是 `[2]`：
 
-```js
+```javascript
 match: (node, path) => Path.equals(path, [2])
 ```
 
@@ -199,7 +199,7 @@ match: (node, path) => Path.equals(path, [2])
 
 不过，可以使用 `at` 和 `match` 选项来匹配所有子节点：
 
-```js
+```javascript
 Transforms.moveNodes(editor, {
   // 这将会扩展到 `[2]` 的整个节点的范围。
   at: [2],
@@ -215,8 +215,8 @@ Transforms.moveNodes(editor, {
 
 例如，考虑为任何不是斜体的文本节点添加粗体标记：
 
-```js
-Transform.setNodes(
+```javascript
+Transforms.setNodes(
   editor,
   { bold: true },
   {
