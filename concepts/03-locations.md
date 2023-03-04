@@ -1,6 +1,6 @@
 # 位置
 
-> Commit ID: [7d9d25e1790c6557e6ff2072f79f7904736aec65](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/03-locations.md)
+> Commit ID: [469bec3d040f6272d5066b94cc827c1bb7272709](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/03-locations.md)
 
 位置是在 Slate 编辑器中插入、删除、执行任何操作时引用文档中的特定位置的方式。有几种不同类型的位置接口用于不同的用例。
 
@@ -91,7 +91,7 @@ interface Range {
 
 ## 选区
 
-当需要引用两点之间的内容范围时，Slate API 的中很多地方都使用了范围。最常见的例子是用户的当前“选区”。
+当需要引用两点之间的内容范围时，Slate API 的中很多地方都使用了范围。最常见的示例是用户的当前“选区”。
 
 选区是一个特殊范围，是顶级 `Editor` 的属性。例如，假设当前选择了整个句子：
 
@@ -117,3 +117,26 @@ const editor = {
 > 🤖 选区概念也是从 DOM 中借用的，参阅 [`Selection`, MDN](https://developer.mozilla.org/en-US/docs/Web/API/Selection), 尽管形式非常简化，因为 Slate 不允许在单个选区中包含多个范围，但也使得易于使用。
 
 没有特定的 `Selection` 接口。它只是正好遵循了更通用的 `Range` 接口。
+
+例如，要找到包含所有当前选区的最低的块：
+
+```javascript
+function getCommonBlock(editor) {
+  const range = Editor.unhangRange(editor, editor.selection, { voids: true })
+
+  let [common, path] = SlateNode.common(
+    editor,
+    range.anchor.path,
+    range.focus.path
+  )
+
+  if (Editor.isBlock(editor, common) || Editor.isEditor(common)) {
+    return [common, path]
+  } else {
+    return Editor.above(editor, {
+      at: path,
+      match: n => Editor.isBlock(editor, n) || Editor.isEditor(n),
+    })
+  }
+}
+```
