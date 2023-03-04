@@ -1,6 +1,6 @@
 # 使用 TypeScript
 
-> Commit ID: [f17413086e288352fc20259c88ebea2536b7d685](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/12-typescript.md)
+> Commit ID: [c8c75e9e2d6317383d2517c26110b971dec027fe](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/12-typescript.md)
 
 Slate 支持 Slate 文档模型类型（即一组自定义 `Editor`、`Element`、`Text` 类型）。如果需要支持多个文档模型，参阅多文档模型章节。
 
@@ -40,7 +40,7 @@ declare module 'slate' {
 使用 `Descendant[]` 注解编辑器的初始值.
 
 ```tsx
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import { createEditor, Descendant } from 'slate'
 import { Slate, Editable, withReact } from 'slate-react'
 
@@ -52,7 +52,7 @@ const initialValue: Descendant[] = [
 ]
 
 const App = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
+  const [editor] = useState(() => withReact(createEditor()))
 
   return (
     <Slate editor={editor} value={initialValue}>
