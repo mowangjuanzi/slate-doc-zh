@@ -1,6 +1,6 @@
 # 使用已打包源
 
-> Commit ID: [a47c35cd953ea6f67cd8c4670a36a8beaee0d9fc](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/xx-using-the-bundled-source.md)
+> Commit ID: [abea3a3dd47ea53f35090d4041be21cbf8dcdbe7](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/xx-using-the-bundled-source.md)
 
 对大部分人来说，会希望通过 `npm` 安装 Slate，在这种情况下，可以按照常规[安装 Slate](01-installing-slate.md)的教程去操作。
 
