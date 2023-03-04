@@ -824,6 +824,8 @@
 <p>A &quot;block&quot; element can only be siblings with other &quot;block&quot; elements. An &quot;inline&quot; node can be siblings with <code>Text</code> nodes or other &quot;inline&quot; elements.</p>
 <h3 id="void-vs-not-void">Void vs Not Void</h3>
 <p>In a not &quot;void&quot; element, Slate handles the rendering of its <code>children</code> (e.g. in a paragraph where the <code>Text</code> and <code>Inline</code> children are rendered by Slate). In a &quot;void&quot; element, the <code>children</code> are rendered by the <code>Element</code>&apos;s render code.</p>
+<h4 id="voids-that-support-marks">Voids That Support Marks</h4>
+<p>Some void elements are effectively stand-ins for text, such as with the <a href="https://www.slatejs.org/examples/mentions" target="_blank">Mentions</a> example, where the mention element renders the character&apos;s name. Users might want to format Void elements like this with bold, or set their font and size, so <code>editor.markableVoid</code> tells Slate whether or not to apply Marks to the text children of void elements.</p>
 <h4 id="rendering-void-elements">Rendering Void Elements</h4>
 <p>Void Elements must</p>
 <ul>
@@ -838,6 +840,39 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">hr</span> /&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 )
+</code></pre>
+<p>For a &quot;markable&quot; void such as a <code>mention</code> element, marks on the empty child element can be used to determine how the void element is rendered (Slate Marks are applied only to Text leaves):</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> Mention = <span class="hljs-function">(<span class="hljs-params">{ attributes, children, element }</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> selected = useSelected()
+  <span class="hljs-keyword">const</span> focused = useFocused()
+  <span class="hljs-keyword">const</span> style: React.CSSProperties = {
+    <span class="hljs-attr">padding</span>: <span class="hljs-string">&apos;3px 3px 2px&apos;</span>,
+    <span class="hljs-attr">margin</span>: <span class="hljs-string">&apos;0 1px&apos;</span>,
+    <span class="hljs-attr">verticalAlign</span>: <span class="hljs-string">&apos;baseline&apos;</span>,
+    <span class="hljs-attr">display</span>: <span class="hljs-string">&apos;inline-block&apos;</span>,
+    <span class="hljs-attr">borderRadius</span>: <span class="hljs-string">&apos;4px&apos;</span>,
+    <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">&apos;#eee&apos;</span>,
+    <span class="hljs-attr">fontSize</span>: <span class="hljs-string">&apos;0.9em&apos;</span>,
+    <span class="hljs-attr">boxShadow</span>: selected &amp;&amp; focused ? <span class="hljs-string">&apos;0 0 0 2px #B4D5FF&apos;</span> : <span class="hljs-string">&apos;none&apos;</span>,
+  }
+  <span class="hljs-comment">// See if our empty text child has any styling marks applied and apply those</span>
+  <span class="hljs-keyword">if</span> (element.children[<span class="hljs-number">0</span>].bold) {
+    style.fontWeight = <span class="hljs-string">&apos;bold&apos;</span>
+  }
+  <span class="hljs-keyword">if</span> (element.children[<span class="hljs-number">0</span>].italic) {
+    style.fontStyle = <span class="hljs-string">&apos;italic&apos;</span>
+  }
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>
+      {<span class="hljs-attr">...attributes</span>}
+      <span class="hljs-attr">contentEditable</span>=<span class="hljs-string">{false}</span>
+      <span class="hljs-attr">data-cy</span>=<span class="hljs-string">{</span>`<span class="hljs-attr">mention-</span>${<span class="hljs-attr">element.character.replace</span>(&apos; &apos;, &apos;<span class="hljs-attr">-</span>&apos;)}`}
+      <span class="hljs-attr">style</span>=<span class="hljs-string">{style}</span>
+    &gt;</span>
+      {children}@{element.character}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span>
+  )
+}
 </code></pre>
 <h2 id="static-methods">Static methods</h2>
 <h3 id="retrieval-methods">Retrieval methods</h3>
@@ -896,7 +931,7 @@ Default it check to <code>type</code> key value</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Element","level":"4.2.2","depth":2,"next":{"title":"Node","level":"4.2.3","depth":2,"path":"api/nodes/node.md","ref":"api/nodes/node.md","articles":[]},"previous":{"title":"Editor","level":"4.2.1","depth":2,"path":"api/nodes/editor.md","ref":"api/nodes/editor.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/nodes/element.md","mtime":"2023-03-04T15:39:53.999Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-03-04T15:39:58.329Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Element","level":"4.2.2","depth":2,"next":{"title":"Node","level":"4.2.3","depth":2,"path":"api/nodes/node.md","ref":"api/nodes/node.md","articles":[]},"previous":{"title":"Editor","level":"4.2.1","depth":2,"path":"api/nodes/editor.md","ref":"api/nodes/editor.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/nodes/element.md","mtime":"2023-03-04T15:49:12.592Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-03-04T15:49:16.952Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

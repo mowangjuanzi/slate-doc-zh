@@ -794,6 +794,9 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="editor-api">Editor API</h1>
+<blockquote>
+<p>Commit ID: <a href="https://github.com/ianstormtaylor/slate/blob/main/docs/api/nodes/editor.md" target="_blank">0ac72a626c41a9e259dc945b408d09367eca4b3f</a></p>
+</blockquote>
 <p>The <code>Editor</code> object stores all the state of a Slate editor. It can be extended by <a href="../../concepts/08-plugins.html">plugins</a> to add helpers and implement new behaviors. It&apos;s a type of <code>Node</code> and its path is <code>[]</code>.</p>
 <pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Editor {
   <span class="hljs-attr">children</span>: Node[]
@@ -804,8 +807,9 @@
   <span class="hljs-comment">// Schema-specific node behaviors.</span>
   <span class="hljs-attr">isInline</span>: <span class="hljs-function">(<span class="hljs-params">element: Element</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
   <span class="hljs-attr">isVoid</span>: <span class="hljs-function">(<span class="hljs-params">element: Element</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
+  <span class="hljs-attr">markableVoid</span>: <span class="hljs-function">(<span class="hljs-params">element: Element</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
   <span class="hljs-attr">normalizeNode</span>: <span class="hljs-function">(<span class="hljs-params">entry: NodeEntry</span>) =&gt;</span> <span class="hljs-built_in">void</span>
-  <span class="hljs-attr">onChange</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">void</span>
+  <span class="hljs-attr">onChange</span>: <span class="hljs-function">(<span class="hljs-params">options?: { operation?: Operation }</span>) =&gt;</span> <span class="hljs-built_in">void</span>
 
   <span class="hljs-comment">// Overrideable core actions.</span>
   <span class="hljs-attr">addMark</span>: <span class="hljs-function">(<span class="hljs-params">key: <span class="hljs-built_in">string</span>, value: <span class="hljs-built_in">any</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>
@@ -833,7 +837,7 @@
 <li><a href="editor.html#instance-methods">Instance methods</a><ul>
 <li><a href="editor.html#schema-specific-instance-methods-to-override">Schema-specific methods to override</a></li>
 <li><a href="editor.html#element-type-methods">Element Type Methods</a></li>
-<li><a href="editor.html#normalize-method">Normalize Method</a></li>
+<li><a href="editor.html#normalize-methods">Normalize Methods</a></li>
 <li><a href="editor.html#callback-method">Callback Method</a></li>
 <li><a href="editor.html#mark-methods">Mark Methods</a></li>
 <li><a href="editor.html#getfragment-method">getFragment Method</a></li>
@@ -846,7 +850,7 @@
 <h2 id="实例化方法">实例化方法</h2>
 <h4 id="createeditor--editor"><code>createEditor() =&gt; Editor</code></h4>
 <p>注意：该方法是直接从 Slate 导入，不是 Editor 对象的一部分。</p>
-<p>新创建一个空 <code>Editor</code> 对象。</p>
+<p>新创建空 <code>Editor</code> 对象。</p>
 <h2 id="static-methods">Static methods</h2>
 <h3 id="retrieval-methods">Retrieval methods</h3>
 <h4 id="editorabovet-extends-ancestoreditor-editor-options--nodeentryt--undefined"><code>Editor.above&lt;T extends Ancestor&gt;(editor: Editor, options?) =&gt; NodeEntry&lt;T&gt; | undefined</code></h4>
@@ -886,7 +890,7 @@
 <p>Get the marks that would be added to text at the current selection.</p>
 <h4 id="editornextt-extends-descendanteditor-editor-options--nodeentryt--undefined"><code>Editor.next&lt;T extends Descendant&gt;(editor: Editor, options?) =&gt; NodeEntry&lt;T&gt; | undefined</code></h4>
 <p>Get the matching node in the branch of the document after a location.</p>
-<p>Note: If you are looking for the next Point, and not the next Node, you are probably looking for the method <code>Editor.after</code></p>
+<p>Note: To find the next Point, and not the next Node, use the <code>Editor.after</code> method</p>
 <p>Options: <code>{at?: Location, match?: NodeMatch, mode?: &apos;all&apos; | &apos;highest&apos; | &apos;lowest&apos;, voids?: boolean}</code></p>
 <h4 id="editornodeeditor-editor-at-location-options--nodeentry"><code>Editor.node(editor: Editor, at: Location, options?) =&gt; NodeEntry</code></h4>
 <p>Get the node at a location.</p>
@@ -913,7 +917,7 @@
 <h4 id="editorpositionseditor-editor-options--generatorpoint-void-undefined"><code>Editor.positions(editor: Editor, options?) =&gt; Generator&lt;Point, void, undefined&gt;</code></h4>
 <p>Iterate through all of the positions in the document where a <code>Point</code> can be placed. The first <code>Point</code> returns is always the starting point followed by the next <code>Point</code> as determined by the <code>unit</code> option.</p>
 <p>Read <code>options.unit</code> to see how this method iterates through positions.</p>
-<p>Note: By default void nodes are treated as a single point and iteration will not happen inside their content unless you pass in true for the voids option, then iteration will occur.</p>
+<p>Note: By default void nodes are treated as a single point and iteration will not happen inside their content unless the voids option is set, then iteration will occur.</p>
 <p>Options:</p>
 <ul>
 <li><code>at?: Location = editor.selection</code>: The <code>Location</code> in which to iterate the positions of.</li>
@@ -929,7 +933,7 @@
 </ul>
 <h4 id="editorprevioust-extends-nodeeditor-editor-options--nodeentryt--undefined"><code>Editor.previous&lt;T extends Node&gt;(editor: Editor, options?) =&gt; NodeEntry&lt;T&gt; | undefined</code></h4>
 <p>Get the matching node in the branch of the document before a location.</p>
-<p>Note: If you are looking for the previous Point, and not the previous Node, you are probably looking for the method <code>Editor.before</code></p>
+<p>Note: To find the previous Point, and not the previous Node, use the <code>Editor.before</code> method</p>
 <p>Options: <code>{at?: Location, match?: NodeMatch, mode?: &apos;all&apos; | &apos;highest&apos; | &apos;lowest&apos;, voids?: boolean}</code></p>
 <h4 id="editorrangeeditor-editor-at-location-to-location--range"><code>Editor.range(editor: Editor, at: Location, to?: Location) =&gt; Range</code></h4>
 <p>Get a range of a location.</p>
@@ -937,14 +941,14 @@
 <p>Get the start point of a location.</p>
 <h4 id="editorstringeditor-editor-at-location-options--string"><code>Editor.string(editor: Editor, at: Location, options?) =&gt; string</code></h4>
 <p>Get the text string content of a location.</p>
-<p>Note: by default the text of void nodes is considered to be an empty string, regardless of content, unless you pass in true for the voids option</p>
+<p>Note: by default the text of void nodes is considered to be an empty string, regardless of content, unless the voids option is set.</p>
 <p>Options: : <code>{voids?: boolean}</code></p>
 <h4 id="editorvoideditor-editor-options--nodeentryelement--undefined"><code>Editor.void(editor: Editor, options?) =&gt; NodeEntry&lt;Element&gt; | undefined</code></h4>
 <p>Match a void node in the current branch of the editor.</p>
 <p>Options: <code>{at?: Location, mode?: &apos;highest&apos; | &apos;lowest&apos;, voids?: boolean}</code></p>
 <h3 id="manipulation-methods">Manipulation methods</h3>
 <h4 id="editoraddmarkeditor-editor-key-string-value-any--void"><code>Editor.addMark(editor: Editor, key: string, value: any) =&gt; void</code></h4>
-<p>Add a custom property to the leaf text nodes in the current selection.</p>
+<p>Add a custom property to the leaf text nodes and any nodes that <code>editor.markableVoid()</code> allows in the current selection.</p>
 <p>If the selection is currently collapsed, the marks will be added to the <code>editor.marks</code> property instead, and applied when text is inserted next.</p>
 <h4 id="editordeletebackwardeditor-editor-options--void"><code>Editor.deleteBackward(editor: Editor, options?) =&gt; void</code></h4>
 <p>Delete content in the editor backward from the current selection.</p>
@@ -966,7 +970,7 @@
 <p>Inserts text <em>at the current selection</em>.</p>
 <p>If the selection is currently expanded, it will be deleted first.</p>
 <h4 id="editorremovemarkeditor-editor-key-string--void"><code>Editor.removeMark(editor: Editor, key: string) =&gt; void</code></h4>
-<p>Remove a custom property from all of the leaf text nodes in the current selection.</p>
+<p>Remove a custom property from all of the leaf text nodes within non-void nodes or void nodes that <code>editor.markableVoid()</code> allows in the current selection.</p>
 <p>If the selection is currently collapsed, the removal will be stored on <code>editor.marks</code> and applied to the text inserted next.</p>
 <h4 id="editorunhangrangeeditor-editor-range-range-options--range"><code>Editor.unhangRange(editor: Editor, range: Range, options?) =&gt; Range</code></h4>
 <p>Convert a range into a non-hanging one.</p>
@@ -1008,7 +1012,7 @@
 <h3 id="normalization-methods">Normalization methods</h3>
 <h4 id="editornormalizeeditor-editor-options--void"><code>Editor.normalize(editor: Editor, options?) =&gt; void</code></h4>
 <p>Normalize any dirty objects in the editor.</p>
-<p>Options: <code>{force?: boolean}</code></p>
+<p>Options: <code>{force?: boolean; operation?: Operation}</code></p>
 <h4 id="editorwithoutnormalizingeditor-editor-fn---void--void"><code>Editor.withoutNormalizing(editor: Editor, fn: () =&gt; void) =&gt; void</code></h4>
 <p>Call a function, deferring normalization until after it completes.
 See <a href="11-normalizing.md#implications-for-other-code">Normalization - Implications for Other Code</a>;</p>
@@ -1047,22 +1051,27 @@ See <a href="11-normalizing.md#implications-for-other-code">Normalization - Impl
 <p>Check if a value is an inline <code>Element</code> object.</p>
 <h4 id="isvoidelement-element--boolean"><code>isVoid(element: Element) =&gt; boolean</code></h4>
 <p>Check if a value is a void <code>Element</code> object.</p>
-<h3 id="normalize-method">Normalize method</h3>
-<h4 id="normalizenodeentry-nodeentry--void"><code>normalizeNode(entry: NodeEntry) =&gt; void</code></h4>
+<h3 id="normalize-methods">Normalize methods</h3>
+<h4 id="normalizenodeentry-nodeentry--operation---void"><code>normalizeNode(entry: NodeEntry, { operation }) =&gt; void</code></h4>
 <p><a href="../../concepts/11-normalizing.html">Normalize</a> a Node according to the schema.</p>
+<h4 id="shouldnormalize-options--boolean"><code>shouldNormalize: (options) =&gt; boolean</code></h4>
+<p>Override this method to prevent normalizing the editor.</p>
+<p>Options: <code>{ dirtyPaths: Path[]; initialDirtyPathsLength: number; iteration: number; operation?: Operation }</code></p>
 <h3 id="callback-method">Callback method</h3>
-<h4 id="onchange--void"><code>onChange() =&gt; void</code></h4>
+<h4 id="onchangeoptions--operation-operation---void"><code>onChange(options?: { operation?: Operation }) =&gt; void</code></h4>
 <p>Called when there is a change in the editor.</p>
 <h3 id="mark-methods">Mark methods</h3>
+<h4 id="markablevoid-element-element--boolean"><code>markableVoid: (element: Element) =&gt; boolean</code></h4>
+<p>Tells which void nodes accept Marks. Slate&apos;s default implementation returns <code>false</code>, but if some void elements support formatting, override this function to include them.</p>
 <h4 id="addmarkkey-string-value-any--void"><code>addMark(key: string, value: any) =&gt; void</code></h4>
-<p>Add a custom property to the leaf text nodes in the current selection. If the selection is currently collapsed, the marks will be added to the <code>editor.marks</code> property instead, and applied when text is inserted next.</p>
+<p>Add a custom property to the leaf text nodes within non-void nodes or void nodes that <code>editor.markableVoid()</code> allows in the current selection. If the selection is currently collapsed, the marks will be added to the <code>editor.marks</code> property instead, and applied when text is inserted next.</p>
 <h4 id="removemarkkey-string--void"><code>removeMark(key: string) =&gt; void</code></h4>
-<p>Remove a custom property from the leaf text nodes in the current selection.</p>
+<p>Remove a custom property from the leaf text nodes within non-void nodes or void nodes that <code>editor.markableVoid()</code> allows in the current selection.</p>
 <h3 id="getfragment-method">getFragment method</h3>
 <h4 id="getfragment--descendant"><code>getFragment() =&gt; Descendant</code></h4>
 <p>Returns the fragment at the current selection. Used when cutting or copying, as an example, to get the fragment at the current selection.</p>
 <h3 id="delete-methods">Delete methods</h3>
-<p>When a user presses backspace or delete, it invokes the method based on the selection. For example, if the selection is expanded over some text and the user presses the backspace key, <code>deleteFragment</code> will be called but if the selecttion is collapsed, <code>deleteBackward</code> will be called.</p>
+<p>When a user presses backspace or delete, it invokes the method based on the selection. For example, if the selection is expanded over some text and the user presses the backspace key, <code>deleteFragment</code> will be called, but if the selection is collapsed, <code>deleteBackward</code> will be called.</p>
 <h4 id="deletebackwardoptions-unit-character--word--line--block--void"><code>deleteBackward(options?: {unit?: &apos;character&apos; | &apos;word&apos; | &apos;line&apos; | &apos;block&apos;}) =&gt; void</code></h4>
 <p>Delete content in the editor backward from the current selection.</p>
 <h4 id="deleteforwardoptions-unit-character--word--line--block--void"><code>deleteForward(options?: {unit?: &apos;character&apos; | &apos;word&apos; | &apos;line&apos; | &apos;block&apos;}) =&gt; void</code></h4>
@@ -1126,7 +1135,7 @@ See <a href="11-normalizing.md#implications-for-other-code">Normalization - Impl
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Editor","level":"4.2.1","depth":2,"next":{"title":"Element","level":"4.2.2","depth":2,"path":"api/nodes/element.md","ref":"api/nodes/element.md","articles":[]},"previous":{"title":"Node 类型","level":"4.2","depth":1,"path":"api/nodes/README.md","ref":"api/nodes/README.md","articles":[{"title":"Editor","level":"4.2.1","depth":2,"path":"api/nodes/editor.md","ref":"api/nodes/editor.md","articles":[]},{"title":"Element","level":"4.2.2","depth":2,"path":"api/nodes/element.md","ref":"api/nodes/element.md","articles":[]},{"title":"Node","level":"4.2.3","depth":2,"path":"api/nodes/node.md","ref":"api/nodes/node.md","articles":[]},{"title":"NodeEntry","level":"4.2.4","depth":2,"path":"api/nodes/node-entry.md","ref":"api/nodes/node-entry.md","articles":[]},{"title":"Text","level":"4.2.5","depth":2,"path":"api/nodes/text.md","ref":"api/nodes/text.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/nodes/editor.md","mtime":"2023-03-04T15:39:53.999Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-03-04T15:39:58.329Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Editor","level":"4.2.1","depth":2,"next":{"title":"Element","level":"4.2.2","depth":2,"path":"api/nodes/element.md","ref":"api/nodes/element.md","articles":[]},"previous":{"title":"Node 类型","level":"4.2","depth":1,"path":"api/nodes/README.md","ref":"api/nodes/README.md","articles":[{"title":"Editor","level":"4.2.1","depth":2,"path":"api/nodes/editor.md","ref":"api/nodes/editor.md","articles":[]},{"title":"Element","level":"4.2.2","depth":2,"path":"api/nodes/element.md","ref":"api/nodes/element.md","articles":[]},{"title":"Node","level":"4.2.3","depth":2,"path":"api/nodes/node.md","ref":"api/nodes/node.md","articles":[]},{"title":"NodeEntry","level":"4.2.4","depth":2,"path":"api/nodes/node-entry.md","ref":"api/nodes/node-entry.md","articles":[]},{"title":"Text","level":"4.2.5","depth":2,"path":"api/nodes/text.md","ref":"api/nodes/text.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/nodes/editor.md","mtime":"2023-03-04T15:49:12.592Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-03-04T15:49:16.952Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
