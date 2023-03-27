@@ -1,7 +1,5 @@
 # Editor API
 
-> Commit ID: [0ac72a626c41a9e259dc945b408d09367eca4b3f](https://github.com/ianstormtaylor/slate/blob/main/docs/api/nodes/editor.md)
-
 The `Editor` object stores all the state of a Slate editor. It can be extended by [plugins](../../concepts/08-plugins.md) to add helpers and implement new behaviors. It's a type of `Node` and its path is `[]`.
 
 ```typescript

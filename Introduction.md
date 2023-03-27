@@ -1,6 +1,10 @@
 # 简介
 
-> Commit ID: [863357f99486f13541cb6ca7addd8a6221c03699](https://github.com/ianstormtaylor/slate/blob/main/docs/Introduction.md)
+> 本项目地址：https://github.com/mowangjuanzi/slate-doc-zh
+> 
+> 英文官网项目地址：https://github.com/ianstormtaylor/slate
+>
+> 目前的版本是：[slate@0.91.4](https://github.com/ianstormtaylor/slate/releases/tag/slate%400.91.4)
 
 [Slate](http://slatejs.org) 是_完全_可定制的框架，用于构建富文本编辑器。
 

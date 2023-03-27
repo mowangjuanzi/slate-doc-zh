@@ -1,7 +1,5 @@
 # 编辑器
 
-> Commit ID: [84f811a79c9b76050cb3dbe424efca3192cc44c6](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/07-editor.md)
-
 Slate 编辑器的所有行为、内容、状态都汇总到单个顶级 `Editor` 对象。接口是：
 
 ```typescript

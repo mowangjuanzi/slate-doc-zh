@@ -1,7 +1,5 @@
 # 使用已打包源
 
-> Commit ID: [abea3a3dd47ea53f35090d4041be21cbf8dcdbe7](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/xx-using-the-bundled-source.md)
-
 对大部分人来说，会希望通过 `npm` 安装 Slate，在这种情况下，可以按照常规[安装 Slate](01-installing-slate.md)的教程去操作。
 
 但是，如果希望通过简单的添加 `<script>` 标记来安装 Slate 到应用程序，那么本教程会有帮助。为了使“已打包”用例更简单的使用，每个版本的 Slate 都附带一个叫做 `slate.js` 的已打包源代码的文件。

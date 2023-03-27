@@ -1,7 +1,5 @@
 # 应用自定义格式
 
-> Commit ID: [d96887f9093c0e822cb5009e3d4726f2aa4f1050](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/04-applying-custom-formatting.md)
-
 之前的教程中，学习了如何创建自定义块类型且在不同的容器中渲染文本块。但 Slate 不是只有“块”。
 
 在本教程中，将会展示如何添加自定义格式选项，例如 **粗体**, _斜体_, `代码` 或者 ~~删除线~~.

@@ -1,7 +1,5 @@
 # 使用 TypeScript
 
-> Commit ID: [c8c75e9e2d6317383d2517c26110b971dec027fe](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/12-typescript.md)
-
 Slate 支持 Slate 文档模型类型（即一组自定义 `Editor`、`Element`、`Text` 类型）。如果需要支持多个文档模型，参阅多文档模型章节。
 
 **警告：** 使用 TypeScript 时必须定义 `CustomTypes`, 注解 `useState` 并注解编辑器的初始状态，否则 Slate 会显示类型错误。

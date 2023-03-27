@@ -1,7 +1,5 @@
 # 标准化
 
-> Commit ID: [d8dbbb19f716dbfe0fa88fb3fec0ab9755741a0f](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/11-normalizing.md)
-
 Slate 编辑器可以编辑复杂嵌套的数据结构。大部分情况很棒。但在某些情况下可能会引起数据结构不一致 —— 最常见的是允许用户粘贴任意富文本内容。
 
 “标准化”是确保编辑器内容始终具有特定形态的方法。类似“验证”，除了确认内容是否有效之外，还要修复内容使其再次有效。

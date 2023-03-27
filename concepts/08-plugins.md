@@ -1,7 +1,5 @@
 # 插件
 
-> Commit ID: [f183bde599133e1e6ce3549e1f3055e936246b8e](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/08-plugins.md)
-
 已经了解如何重写 Slate 编辑器的行为。这些重写可以打包为“插件”，以便复用，测试和共享。这是 Slate 架构中最强大的方面。
 
 插件仅仅是函数，接受一个 `Editor` 对象，以某种方式增强并返回。

@@ -1,7 +1,5 @@
 # 添加事件处理程序
 
-> Commit ID: [22308b34172e946d88405cbb6338273dbda5dff4](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/02-adding-event-handlers.md)
-
 好，已经安装了 Slate 并在页面渲染，当输入时，会看到变化。但是需要做的不仅仅是输入纯文本字符串。
 
 Slate 之所以如此出色是因为它易于定制。就像使用其它 React 组件一样，当某些事件触发的时候，Slate 允许传递处理程序。

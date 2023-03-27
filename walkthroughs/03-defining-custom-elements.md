@@ -1,7 +1,5 @@
 # 定义自定义元素
 
-> Commit ID: [d1f90ebd12ee2da855911471648136e674efc813](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/03-defining-custom-elements.md)
-
 在之前的示例中，在之前的段落中，但是并未真正告诉过 Slate 任何关于段落块类型的信息。只是让其使用内部默认渲染器，一个普通的老式 `<div>`。
 
 但是能做的不仅仅是这些。Slate 允许定义任何自定义块类型，像引用、代码块、列表项等等。

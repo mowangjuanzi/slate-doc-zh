@@ -1,7 +1,5 @@
 # 操作
 
-> Commit ID: [f183bde599133e1e6ce3549e1f3055e936246b8e](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/05-operations.md)
-
 操作是调用转换时发生的细粒度，低层次操作。单个转换可能会导致多个低层次操作应用于编辑器。
 
 Slate 的核心定义了所有可能可以在富文本文档上发生的操作。例如：

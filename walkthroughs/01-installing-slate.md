@@ -1,7 +1,5 @@
 # 安装 Slate
 
-> Commit ID: [56ab505485f94f2aa3bdf34e121bd080bf6cc248](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/01-installing-slate.md)
-
 Slate 是分为多个 npm 包的单一代码库，所以你需要使用如下方式安装它：
 
 ```text

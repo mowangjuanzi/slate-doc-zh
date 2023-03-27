@@ -1,7 +1,5 @@
 # 命令
 
-> Commit ID: [f183bde599133e1e6ce3549e1f3055e936246b8e](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/06-commands.md)
-
 在编辑富文本内容时，用户会执行插入文本，删除文本，拆分段落，添加格式等操作，在底层，这些编辑使用转换和操作来表达。但是在高层级上，称之为“命令”。
 
 命令是代表用户特定意图的高级操作。在 `Editor` 接口上表示为助手函数。 少量常用富文本行为助手包含在核心中，但鼓励编写自己的助手来为特定域建模。

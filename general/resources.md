@@ -1,7 +1,5 @@
 # 资源
 
-> Commit ID: [7d1e60b88f6cafb9282bc40f1e43db05137734fd](https://github.com/ianstormtaylor/slate/blob/main/docs/general/resources.md)
-
 一些有助于使用 Slate 构建的资源。
 
 ## 库

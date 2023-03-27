@@ -1,7 +1,5 @@
 # 转换
 
-> Commit ID: [a1b558ac7285855cc147857c273c99b3639a472e](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/04-transforms.md)
-
 Slate 的数据结构不可变，所以不能直接修改或者删除节点。不过，Slate 带有一组“转换”函数用于转换编辑器的值。
 
 Slate 的转换函数设计为非常灵活，可以对编辑器进行各种更改。然而，这种灵活可能刚开始难以理解。

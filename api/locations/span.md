@@ -1,7 +1,5 @@
 # Span API
 
-> Commit ID: [7d9d25e1790c6557e6ff2072f79f7904736aec65](https://github.com/ianstormtaylor/slate/blob/main/docs/api/locations/span.md)
-
 A `Span` is a low-level way to refer to a `Range` using `Element` as the end points instead of a `Point` which requires the use of leaf text nodes.
 
 ```typescript

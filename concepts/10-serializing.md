@@ -1,7 +1,5 @@
 # 序列化
 
-> Commit ID: [1d8010be8500ef5c98dbd4179354db1986d5c8f4](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/10-serializing.md)
-
 Slate 的数据模型在构建时就考虑了序列化。准确的说，文本节点的定义方式使其一目了然，但也易于序列化为 HTML 和 Markdown 等常见格式。
 
 而且，Slate 使用 JSON 作为数据，可以非常轻松的编写序列化逻辑。

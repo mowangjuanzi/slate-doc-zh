@@ -1,7 +1,5 @@
 # Slate React
 
-> Commit ID: [9bc0b6132aa288a37ae9a85d0e59a9d5a75ebdd7](https://github.com/ianstormtaylor/slate/blob/main/docs/libraries/slate-react.md)
-
 该子库包含 Slate 特定于 React 的相关逻辑。
 
 ## 组件

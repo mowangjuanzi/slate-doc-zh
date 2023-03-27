@@ -1,7 +1,5 @@
 # 接口
 
-> Commit ID: [706f2fc07297ea639bb8218b3de93bd9e8b4608c](https://github.com/ianstormtaylor/slate/blob/main/docs/concepts/01-interfaces.md)
-
 Slate 使用纯 JSON 对象。要求那些 JSON 对象符合某些接口。例如，Slate 中的文本节点必须遵循 `Text` 接口：
 
 ```typescript

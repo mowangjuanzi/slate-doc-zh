@@ -1,7 +1,5 @@
 # 执行命令
 
-> Commit ID: [22308b34172e946d88405cbb6338273dbda5dff4](https://github.com/ianstormtaylor/slate/blob/main/docs/walkthroughs/05-executing-commands.md)
-
 直到现在，我们学到的都是为特定编辑器编写一次性逻辑。但是 Slate 最强大的功能是可以根据个人喜好对富文本编辑器“域”进行建模，并减少一次性代码的编写。
 
 在之前的教程中，编写了一些有用的代码来处理格式化代码块以及粗体标记。通过添加 `onKeyDown` 处理程序来调用代码。但这都是使用内置 `Editor` 助手来实现，而不是使用“命令”。
