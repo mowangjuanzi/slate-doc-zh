@@ -31,8 +31,8 @@ interface Editor {
 ```
 
 - [实例化方法](editor.md#实例化方法)
-- [Static methods](editor.md#static-methods)
-  - [Retrieval methods](editor.md#retrieval-methods)
+- [静态方法](editor.md#static-methods)
+  - [检索方法](editor.md#retrieval-methods)
   - [Manipulation methods](editor.md#manipulation-methods)
   - [Check methods](editor.md#check-methods)
   - [Normalization methods](editor.md#normalization-methods)
@@ -56,9 +56,9 @@ interface Editor {
 
 新创建空 `Editor` 对象。
 
-## Static methods
+## 静态方法
 
-### Retrieval methods
+### 检索方法
 
 #### `Editor.above<T extends Ancestor>(editor: Editor, options?) => NodeEntry<T> | undefined`
 

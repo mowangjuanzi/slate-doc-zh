@@ -48,7 +48,7 @@ Slate 尝试解决“[为什么？](Introduction.md#为什么？)”提出的问
 
 ## Demo
 
-查看所有示例的 [**在线 demo**](http://slatejs.org)！
+查看所有示例的[**在线 demo**](http://slatejs.org)！
 
 ## 示例
 
@@ -81,7 +81,7 @@ Slate 尝试解决“[为什么？](Introduction.md#为什么？)”提出的问
 
 也有将文档翻译成其它语言：
 
-- [中文](https://github.com/mowangjuanzi/slate-doc-zh)【译者注：厚脸皮贴上本项目，修复请向此项目 PR】
+- [中文](https://doodlewind.github.io/slate-doc-cn/)
 
 如果你正在维护翻译，请随时在此提交 PR！
 
