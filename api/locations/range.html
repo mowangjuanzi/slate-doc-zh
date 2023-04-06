@@ -792,39 +792,39 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="range-api">Range API</h1>
-<p><code>Range</code> objects are a set of points that refer to a specific span of a Slate document. They can define a span inside a single node or they can span across multiple nodes. The editor&apos;s <code>selection</code> is stored as a range.</p>
+<p><code>Range</code> 对象是一组指向 Slate 文档特定范围的点。它们可以在单个节点内定义，也可以跨越多个节点定义。编辑器的 <code>selection</code> 存储的是范围。</p>
 <pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Range {
   <span class="hljs-attr">anchor</span>: Point
   <span class="hljs-attr">focus</span>: Point
 }
 </code></pre>
 <ul>
-<li><a href="range.html#static-methods">Static methods</a><ul>
-<li><a href="range.html#retrieval-methods">Retrieval methods</a></li>
-<li><a href="range.html#check-methods">Check methods</a></li>
+<li><a href="range.html#静态方法">静态方法</a><ul>
+<li><a href="range.html#检索方法">检索方法</a></li>
+<li><a href="range.html#检查方法">检查方法</a></li>
 <li><a href="range.html#transform-methods">Transform methods</a></li>
 </ul>
 </li>
 </ul>
-<h2 id="static-methods">Static methods</h2>
-<h3 id="retrieval-methods">Retrieval methods</h3>
+<h2 id="静态方法">静态方法</h2>
+<h3 id="检索方法">检索方法</h3>
 <h4 id="rangeedgesrange-range-options--point-point"><code>Range.edges(range: Range, options?) =&gt; [Point, Point]</code></h4>
-<p>Get the start and end points of a <code>range</code>, in the order in which they appear in the document.</p>
-<p>Options: <code>{reverse?: boolean}</code></p>
+<p>按照在文档中出现的顺序获取 <code>range</code> 的起点和终点。</p>
+<p>选项: <code>{reverse?: boolean}</code></p>
 <h4 id="rangeendrange-range--point"><code>Range.end(range: Range) =&gt; Point</code></h4>
-<p>Get the end point of a <code>range</code> according to the order in which it appears in the document.</p>
+<p>根据在文档中出现的顺序获取 <code>range</code> 的终点。</p>
 <h4 id="rangeintersectionrange-range-another-range--range--null"><code>Range.intersection(range: Range, another: Range) =&gt; Range | null</code></h4>
-<p>Get the intersection of one <code>range</code> with <code>another</code>. If the two ranges do not overlap, return <code>null</code>.</p>
+<p>获取 <code>range</code> 与 <code>another</code> 的交集。如果两个范围不重叠，则返回 <code>null</code>。</p>
 <h4 id="rangepointsrange-range--generatorpointentry"><code>Range.points(range: Range) =&gt; Generator&lt;PointEntry&gt;</code></h4>
 <p>Iterate through the two point entries in a <code>Range</code>. First it will yield a <code>PointEntry</code> representing the <code>anchor</code>, then it will yield a <code>PointEntry</code> representing the <code>focus</code>.</p>
 <h4 id="rangestartrange-range--point"><code>Range.start(range: Range) =&gt; Point</code></h4>
-<p>Get the start point of a <code>range</code> according to the order in which it appears in the document.</p>
-<h3 id="check-methods">Check methods</h3>
-<p>Check some attribute of a Range. Always returns a boolean.</p>
+<p>根据在文档中出现的顺序获取 <code>range</code> 的起点。</p>
+<h3 id="检查方法">检查方法</h3>
+<p>检查 Range 的某些属性。始终返回布尔值。</p>
 <h4 id="rangeequalsrange-range-another-range--boolean"><code>Range.equals(range: Range, another: Range) =&gt; boolean</code></h4>
-<p>Check if a <code>range</code> is exactly equal to <code>another</code>.</p>
+<p>检查 <code>range</code> 是否完全等于 <code>another</code>。</p>
 <h4 id="rangeincludesrange-range-target-path--point--range--boolean"><code>Range.includes(range: Range, target: Path | Point | Range) =&gt; boolean</code></h4>
-<p>Check if a <code>range</code> includes a path, a point, or part of another range.</p>
+<p>检查 <code>range</code> 是否包含路径、点或另一个范围的一部分。</p>
 <p>For clarity the definition of <code>includes</code> can mean partially includes. Another way to describe this is if one Range intersectns the other Range.</p>
 <h4 id="rangeisbackwardrange-range--boolean"><code>Range.isBackward(range: Range) =&gt; boolean</code></h4>
 <p>Check if a <code>range</code> is backward, meaning that its anchor point appears <em>after</em> its focus point in the document.</p>
@@ -883,7 +883,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Range","level":"4.3.7","depth":2,"next":{"title":"RangeRef","level":"4.3.8","depth":2,"path":"api/locations/range-ref.md","ref":"api/locations/range-ref.md","articles":[]},"previous":{"title":"PointRef","level":"4.3.6","depth":2,"path":"api/locations/point-ref.md","ref":"api/locations/point-ref.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/locations/range.md","mtime":"2023-04-06T03:10:44.385Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-06T03:10:48.664Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Range","level":"4.3.7","depth":2,"next":{"title":"RangeRef","level":"4.3.8","depth":2,"path":"api/locations/range-ref.md","ref":"api/locations/range-ref.md","articles":[]},"previous":{"title":"PointRef","level":"4.3.6","depth":2,"path":"api/locations/point-ref.md","ref":"api/locations/point-ref.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/locations/range.md","mtime":"2023-04-06T05:51:42.493Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-06T05:51:46.711Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

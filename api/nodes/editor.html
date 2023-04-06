@@ -792,21 +792,21 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="editor-api">Editor API</h1>
-<p>The <code>Editor</code> object stores all the state of a Slate editor. It can be extended by <a href="../../concepts/08-plugins.html">plugins</a> to add helpers and implement new behaviors. It&apos;s a type of <code>Node</code> and its path is <code>[]</code>.</p>
+<p><code>Editor</code> 对象存储 Slate 编辑器的所有状态。可以通过<a href="../../concepts/08-plugins.html">插件</a>扩展以添加助手并实现新的行为。它是 <code>Node</code> 类型，路径是 <code>[]</code>。</p>
 <pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Editor {
   <span class="hljs-attr">children</span>: Node[]
   <span class="hljs-attr">selection</span>: Range | <span class="hljs-literal">null</span>
   <span class="hljs-attr">operations</span>: Operation[]
   <span class="hljs-attr">marks</span>: Omit&lt;Text, <span class="hljs-string">&apos;text&apos;</span>&gt; | <span class="hljs-literal">null</span>
 
-  <span class="hljs-comment">// Schema-specific node behaviors.</span>
+  <span class="hljs-comment">// 适用于 Schema 的节点行为。</span>
   <span class="hljs-attr">isInline</span>: <span class="hljs-function">(<span class="hljs-params">element: Element</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
   <span class="hljs-attr">isVoid</span>: <span class="hljs-function">(<span class="hljs-params">element: Element</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
   <span class="hljs-attr">markableVoid</span>: <span class="hljs-function">(<span class="hljs-params">element: Element</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
   <span class="hljs-attr">normalizeNode</span>: <span class="hljs-function">(<span class="hljs-params">entry: NodeEntry</span>) =&gt;</span> <span class="hljs-built_in">void</span>
   <span class="hljs-attr">onChange</span>: <span class="hljs-function">(<span class="hljs-params">options?: { operation?: Operation }</span>) =&gt;</span> <span class="hljs-built_in">void</span>
 
-  <span class="hljs-comment">// Overrideable core actions.</span>
+  <span class="hljs-comment">// 可覆盖的核心操作。</span>
   <span class="hljs-attr">addMark</span>: <span class="hljs-function">(<span class="hljs-params">key: <span class="hljs-built_in">string</span>, value: <span class="hljs-built_in">any</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>
   <span class="hljs-attr">apply</span>: <span class="hljs-function">(<span class="hljs-params">operation: Operation</span>) =&gt;</span> <span class="hljs-built_in">void</span>
   <span class="hljs-attr">deleteBackward</span>: <span class="hljs-function">(<span class="hljs-params">unit: <span class="hljs-string">&apos;character&apos;</span> | <span class="hljs-string">&apos;word&apos;</span> | <span class="hljs-string">&apos;line&apos;</span> | <span class="hljs-string">&apos;block&apos;</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>
@@ -821,8 +821,8 @@
 </code></pre>
 <ul>
 <li><a href="editor.html#实例化方法">实例化方法</a></li>
-<li><a href="editor.html#static-methods">静态方法</a><ul>
-<li><a href="editor.html#retrieval-methods">检索方法</a></li>
+<li><a href="editor.html#静态方法">静态方法</a><ul>
+<li><a href="editor.html#检索方法">检索方法</a></li>
 <li><a href="editor.html#manipulation-methods">Manipulation methods</a></li>
 <li><a href="editor.html#check-methods">Check methods</a></li>
 <li><a href="editor.html#normalization-methods">Normalization methods</a></li>
@@ -1130,7 +1130,7 @@ See <a href="11-normalizing.md#implications-for-other-code">Normalization - Impl
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Editor","level":"4.2.1","depth":2,"next":{"title":"Element","level":"4.2.2","depth":2,"path":"api/nodes/element.md","ref":"api/nodes/element.md","articles":[]},"previous":{"title":"Node 类型","level":"4.2","depth":1,"path":"api/nodes/README.md","ref":"api/nodes/README.md","articles":[{"title":"Editor","level":"4.2.1","depth":2,"path":"api/nodes/editor.md","ref":"api/nodes/editor.md","articles":[]},{"title":"Element","level":"4.2.2","depth":2,"path":"api/nodes/element.md","ref":"api/nodes/element.md","articles":[]},{"title":"Node","level":"4.2.3","depth":2,"path":"api/nodes/node.md","ref":"api/nodes/node.md","articles":[]},{"title":"NodeEntry","level":"4.2.4","depth":2,"path":"api/nodes/node-entry.md","ref":"api/nodes/node-entry.md","articles":[]},{"title":"Text","level":"4.2.5","depth":2,"path":"api/nodes/text.md","ref":"api/nodes/text.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/nodes/editor.md","mtime":"2023-04-06T03:10:44.385Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-06T03:10:48.664Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Editor","level":"4.2.1","depth":2,"next":{"title":"Element","level":"4.2.2","depth":2,"path":"api/nodes/element.md","ref":"api/nodes/element.md","articles":[]},"previous":{"title":"Node 类型","level":"4.2","depth":1,"path":"api/nodes/README.md","ref":"api/nodes/README.md","articles":[{"title":"Editor","level":"4.2.1","depth":2,"path":"api/nodes/editor.md","ref":"api/nodes/editor.md","articles":[]},{"title":"Element","level":"4.2.2","depth":2,"path":"api/nodes/element.md","ref":"api/nodes/element.md","articles":[]},{"title":"Node","level":"4.2.3","depth":2,"path":"api/nodes/node.md","ref":"api/nodes/node.md","articles":[]},{"title":"NodeEntry","level":"4.2.4","depth":2,"path":"api/nodes/node-entry.md","ref":"api/nodes/node-entry.md","articles":[]},{"title":"Text","level":"4.2.5","depth":2,"path":"api/nodes/text.md","ref":"api/nodes/text.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/nodes/editor.md","mtime":"2023-04-06T05:51:42.493Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-06T05:51:46.711Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
