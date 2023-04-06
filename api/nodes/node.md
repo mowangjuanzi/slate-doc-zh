@@ -85,7 +85,7 @@ Options: `{from?: Path, to?: Path, reverse?: boolean, pass?: (node: NodeEntry =>
 
 #### `Node.parent(root: Node, path: Path) => Ancestor`
 
-Get the parent of a node at a specific `path`.
+获取特定 `path` 上节点的父节点。
 
 ### Text methods
 

@@ -1,6 +1,6 @@
 # Editor API
 
-The `Editor` object stores all the state of a Slate editor. It can be extended by [plugins](../../concepts/08-plugins.md) to add helpers and implement new behaviors. It's a type of `Node` and its path is `[]`.
+`Editor` 对象存储 Slate 编辑器的所有状态。可以通过[插件](../../concepts/08-plugins.md)扩展以添加助手并实现新的行为。它是 `Node` 类型，路径是 `[]`。
 
 ```typescript
 interface Editor {
@@ -9,14 +9,14 @@ interface Editor {
   operations: Operation[]
   marks: Omit<Text, 'text'> | null
 
-  // Schema-specific node behaviors.
+  // 适用于 Schema 的节点行为。
   isInline: (element: Element) => boolean
   isVoid: (element: Element) => boolean
   markableVoid: (element: Element) => boolean
   normalizeNode: (entry: NodeEntry) => void
   onChange: (options?: { operation?: Operation }) => void
 
-  // Overrideable core actions.
+  // 可覆盖的核心操作。
   addMark: (key: string, value: any) => void
   apply: (operation: Operation) => void
   deleteBackward: (unit: 'character' | 'word' | 'line' | 'block') => void
@@ -31,8 +31,8 @@ interface Editor {
 ```
 
 - [实例化方法](editor.md#实例化方法)
-- [静态方法](editor.md#static-methods)
-  - [检索方法](editor.md#retrieval-methods)
+- [静态方法](editor.md#静态方法)
+  - [检索方法](editor.md#检索方法)
   - [Manipulation methods](editor.md#manipulation-methods)
   - [Check methods](editor.md#check-methods)
   - [Normalization methods](editor.md#normalization-methods)

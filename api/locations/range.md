@@ -1,6 +1,6 @@
 # Range API
 
-`Range` objects are a set of points that refer to a specific span of a Slate document. They can define a span inside a single node or they can span across multiple nodes. The editor's `selection` is stored as a range.
+`Range` 对象是一组指向 Slate 文档特定范围的点。它们可以在单个节点内定义，也可以跨越多个节点定义。编辑器的 `selection` 存储的是范围。
 
 ```typescript
 interface Range {
@@ -9,28 +9,28 @@ interface Range {
 }
 ```
 
-- [Static methods](range.md#static-methods)
-  - [Retrieval methods](range.md#retrieval-methods)
-  - [Check methods](range.md#check-methods)
+- [静态方法](range.md#静态方法)
+  - [检索方法](range.md#检索方法)
+  - [检查方法](range.md#检查方法)
   - [Transform methods](range.md#transform-methods)
 
-## Static methods
+## 静态方法
 
-### Retrieval methods
+### 检索方法
 
 #### `Range.edges(range: Range, options?) => [Point, Point]`
 
-Get the start and end points of a `range`, in the order in which they appear in the document.
+按照在文档中出现的顺序获取 `range` 的起点和终点。
 
-Options: `{reverse?: boolean}`
+选项: `{reverse?: boolean}`
 
 #### `Range.end(range: Range) => Point`
 
-Get the end point of a `range` according to the order in which it appears in the document.
+根据在文档中出现的顺序获取 `range` 的终点。
 
 #### `Range.intersection(range: Range, another: Range) => Range | null`
 
-Get the intersection of one `range` with `another`. If the two ranges do not overlap, return `null`.
+获取 `range` 与 `another` 的交集。如果两个范围不重叠，则返回 `null`。
 
 #### `Range.points(range: Range) => Generator<PointEntry>`
 
@@ -38,19 +38,19 @@ Iterate through the two point entries in a `Range`. First it will yield a `Point
 
 #### `Range.start(range: Range) => Point`
 
-Get the start point of a `range` according to the order in which it appears in the document.
+根据在文档中出现的顺序获取 `range` 的起点。
 
-### Check methods
+### 检查方法
 
-Check some attribute of a Range. Always returns a boolean.
+检查 Range 的某些属性。始终返回布尔值。
 
 #### `Range.equals(range: Range, another: Range) => boolean`
 
-Check if a `range` is exactly equal to `another`.
+检查 `range` 是否完全等于 `another`。
 
 #### `Range.includes(range: Range, target: Path | Point | Range) => boolean`
 
-Check if a `range` includes a path, a point, or part of another range.
+检查 `range` 是否包含路径、点或另一个范围的一部分。
 
 For clarity the definition of `includes` can mean partially includes. Another way to describe this is if one Range intersectns the other Range.
 
