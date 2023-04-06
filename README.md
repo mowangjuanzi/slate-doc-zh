@@ -1,6 +1,6 @@
 # Slate 中文文档
 
-本文档目前以 [slate@0.91.4](https://github.com/ianstormtaylor/slate/releases/tag/slate%400.91.4) 为蓝本进行翻译。
+本文档目前以 [slate@0.93.0](https://github.com/ianstormtaylor/slate/releases/tag/slate%400.93.0) 为蓝本进行翻译。
 
 ## 运行
 
