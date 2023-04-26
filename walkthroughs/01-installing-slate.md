@@ -71,7 +71,12 @@ declare module 'slate' {
 提供者组件会保持对 Slate 编辑器、插件、值、选择以及发生任何更改的追踪。它**必须**在 `<Editable>` 组件上渲染。但是它也可以使用 `useSlate` 钩子将编辑器状态提供给工具栏、菜单等其它组件。
 
 ```jsx
-const initialValue = []
+const initialValue = [
+  {
+    type: 'paragraph',
+    children: [{ text: 'A line of text in a paragraph.' }],
+  },
+]
 
 const App = () => {
   const [editor] = useState(() => withReact(createEditor()))
@@ -88,30 +93,9 @@ const App = () => {
 
 通过共享上下文，其它组件可以执行命令，查询编辑器状态等。
 
-好，下一步是渲染 `<Editable>` 组件：
+好，下一步是渲染 `<Editable>` 组件。组件的作用类似于 `contenteditable`；在任何地方渲染都会为最近的编辑器上下文渲染一个可编辑的富文本文档。
 
 ```jsx
-const initialValue = []
-
-const App = () => {
-  const [editor] = useState(() => withReact(createEditor()))
-  return (
-    // 在上下文中添加可编辑组件。
-    <Slate editor={editor} value={initialValue}>
-      <Editable />
-    </Slate>
-  )
-}
-```
-
-`<Editable>` 组件的作用类似于 `contenteditable`。在任何地方渲染都会为最近的编辑器上下文渲染一个可编辑的富文本文档。
-
-只剩一步。到目前为止我们一直使用空的 `[]` 数组作为编辑器的初始值，所以没有内容。通过定义初始化值可以解决这个问题。
-
-值仅是普通的 JSON。这是包含一些文本的单个段落块：
-
-```jsx
-// 添加初始化值。
 const initialValue = [
   {
     type: 'paragraph',
@@ -121,8 +105,8 @@ const initialValue = [
 
 const App = () => {
   const [editor] = useState(() => withReact(createEditor()))
-
   return (
+    // Add the editable component inside the context.
     <Slate editor={editor} value={initialValue}>
       <Editable />
     </Slate>
