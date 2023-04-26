@@ -1,6 +1,6 @@
 # Point API
 
-`Point` objects refer to a specific location in a text node in a Slate document. Its `path` refers to the location of the node in the tree, and its `offset` refers to distance into the node's string of text. Points may only refer to `Text` nodes.
+`Point` 对象是指 Slate 文档中文本节点中的特定位置。它的 `path` 是指节点在树中的位置，其 `offset` 是指到节点文本字符串的距离。Points 可能仅指 `Text` 节点。
 
 ```typescript
 interface Point {
@@ -9,12 +9,12 @@ interface Point {
 }
 ```
 
-- [Static methods](point.md#static-methods)
+- [静态方法](point.md#静态方法)
   - [Retrieval methods](point.md#retrieval-methods)
   - [Check methods](point.md#check-methods)
   - [Transform methods](point.md#transform-methods)
 
-## Static methods
+## 静态方法
 
 ### Retrieval methods
 
