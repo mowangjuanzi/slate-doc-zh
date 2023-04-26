@@ -615,9 +615,23 @@
             
         </li>
     
-        <li class="chapter " data-level="4.4" data-path="../api/operation.html">
+        <li class="chapter " data-level="4.4" data-path="../api/operations/">
             
-                <a href="../api/operation.html">
+                <a href="../api/operations/">
+            
+                    
+                    Operation Types
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.4.1" data-path="../api/operations/operation.html">
+            
+                <a href="../api/operations/operation.html">
             
                     
                     Operation
@@ -625,6 +639,11 @@
                 </a>
             
 
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -648,9 +667,9 @@
         
         
     
-        <li class="chapter " data-level="5.1" data-path="../libraries/slate-react.html">
+        <li class="chapter " data-level="5.1" data-path="../libraries/slate-react/">
             
-                <a href="../libraries/slate-react.html">
+                <a href="../libraries/slate-react/">
             
                     
                     Slate React
@@ -659,11 +678,95 @@
             
 
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.1" data-path="../libraries/slate-react/with-react.html">
+            
+                <a href="../libraries/slate-react/with-react.html">
+            
+                    
+                    withReact
+            
+                </a>
+            
+
+            
         </li>
     
-        <li class="chapter " data-level="5.2" data-path="../libraries/slate-history.html">
+        <li class="chapter " data-level="5.1.2" data-path="../libraries/slate-react/react-editor.html">
             
-                <a href="../libraries/slate-history.html">
+                <a href="../libraries/slate-react/react-editor.html">
+            
+                    
+                    ReactEditor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3" data-path="../libraries/slate-react/hooks.html">
+            
+                <a href="../libraries/slate-react/hooks.html">
+            
+                    
+                    Hooks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.4" data-path="../libraries/slate-react/slate.html">
+            
+                <a href="../libraries/slate-react/slate.html">
+            
+                    
+                    Slate Component
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.5" data-path="../libraries/slate-react/editable.html">
+            
+                <a href="../libraries/slate-react/editable.html">
+            
+                    
+                    Editable Component
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.6" data-path="../libraries/slate-react/event-handling.html">
+            
+                <a href="../libraries/slate-react/event-handling.html">
+            
+                    
+                    Event Handling
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../libraries/slate-history/">
+            
+                <a href="../libraries/slate-history/">
             
                     
                     Slate History
@@ -671,6 +774,51 @@
                 </a>
             
 
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.2.1" data-path="../libraries/slate-history/with-history.html">
+            
+                <a href="../libraries/slate-history/with-history.html">
+            
+                    
+                    withHistory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.2" data-path="../libraries/slate-history/history-editor.html">
+            
+                <a href="../libraries/slate-history/history-editor.html">
+            
+                    
+                    HistoryEditor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.3" data-path="../libraries/slate-history/history.html">
+            
+                <a href="../libraries/slate-history/history.html">
+            
+                    
+                    History
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -842,7 +990,12 @@
 </code></pre>
 <p>接下来渲染 <code>&lt;Slate&gt;</code> 内容提供者。</p>
 <p>提供者组件会保持对 Slate 编辑器、插件、值、选择以及发生任何更改的追踪。它<strong>必须</strong>在 <code>&lt;Editable&gt;</code> 组件上渲染。但是它也可以使用 <code>useSlate</code> 钩子将编辑器状态提供给工具栏、菜单等其它组件。</p>
-<pre><code class="lang-jsx"><span class="hljs-keyword">const</span> initialValue = []
+<pre><code class="lang-jsx"><span class="hljs-keyword">const</span> initialValue = [
+  {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
+    <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;A line of text in a paragraph.&apos;</span> }],
+  },
+]
 
 <span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
   <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
@@ -856,24 +1009,8 @@
 </blockquote>
 <p>这与 <code>&lt;input&gt;</code> 或 <code>&lt;textarea&gt;</code> 之类的心智模型略有不同，因为富文本文档更加复杂。你通常希望在可编辑内容旁边包含工具栏，实时预览或者其它复杂组件。</p>
 <p>通过共享上下文，其它组件可以执行命令，查询编辑器状态等。</p>
-<p>好，下一步是渲染 <code>&lt;Editable&gt;</code> 组件：</p>
-<pre><code class="lang-jsx"><span class="hljs-keyword">const</span> initialValue = []
-
-<span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
-  <span class="hljs-keyword">return</span> (
-    <span class="hljs-comment">// 在上下文中添加可编辑组件。</span>
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">Editable</span> /&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">Slate</span>&gt;</span></span>
-  )
-}
-</code></pre>
-<p><code>&lt;Editable&gt;</code> 组件的作用类似于 <code>contenteditable</code>。在任何地方渲染都会为最近的编辑器上下文渲染一个可编辑的富文本文档。</p>
-<p>只剩一步。到目前为止我们一直使用空的 <code>[]</code> 数组作为编辑器的初始值，所以没有内容。通过定义初始化值可以解决这个问题。</p>
-<p>值仅是普通的 JSON。这是包含一些文本的单个段落块：</p>
-<pre><code class="lang-jsx"><span class="hljs-comment">// 添加初始化值。</span>
-<span class="hljs-keyword">const</span> initialValue = [
+<p>好，下一步是渲染 <code>&lt;Editable&gt;</code> 组件。组件的作用类似于 <code>contenteditable</code>；在任何地方渲染都会为最近的编辑器上下文渲染一个可编辑的富文本文档。</p>
+<pre><code class="lang-jsx"><span class="hljs-keyword">const</span> initialValue = [
   {
     <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
     <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;A line of text in a paragraph.&apos;</span> }],
@@ -882,8 +1019,8 @@
 
 <span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
   <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
-
   <span class="hljs-keyword">return</span> (
+    <span class="hljs-comment">// Add the editable component inside the context.</span>
     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">Editable</span> /&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">Slate</span>&gt;</span></span>
@@ -935,7 +1072,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"安装 Slate","level":"2.1","depth":1,"next":{"title":"添加事件处理程序","level":"2.2","depth":1,"path":"walkthroughs/02-adding-event-handlers.md","ref":"walkthroughs/02-adding-event-handlers.md","articles":[]},"previous":{"title":"简介","level":"1.1","depth":1,"path":"Introduction.md","ref":"Introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/01-installing-slate.md","mtime":"2023-04-06T05:51:42.505Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-06T05:51:46.711Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"安装 Slate","level":"2.1","depth":1,"next":{"title":"添加事件处理程序","level":"2.2","depth":1,"path":"walkthroughs/02-adding-event-handlers.md","ref":"walkthroughs/02-adding-event-handlers.md","articles":[]},"previous":{"title":"简介","level":"1.1","depth":1,"path":"Introduction.md","ref":"Introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/01-installing-slate.md","mtime":"2023-04-26T08:48:19.619Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:48:24.980Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

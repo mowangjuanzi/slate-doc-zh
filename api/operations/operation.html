@@ -3,7 +3,7 @@
 <html lang="zh-hans" >
     <head>
         <meta charset="UTF-8">
-        <title>PathRef · Slate 中文文档</title>
+        <title>Operation · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 4.0.7">
@@ -56,10 +56,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="point.html" />
+    <link rel="next" href="../scrubber.html" />
     
     
-    <link rel="prev" href="path.html" />
+    <link rel="prev" href="./" />
     
 
     </head>
@@ -479,9 +479,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3" data-path="./">
+        <li class="chapter " data-level="4.3" data-path="../locations/">
             
-                <a href="./">
+                <a href="../locations/">
             
                     
                     Location 类型
@@ -493,9 +493,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.3.1" data-path="location.html">
+        <li class="chapter " data-level="4.3.1" data-path="../locations/location.html">
             
-                <a href="location.html">
+                <a href="../locations/location.html">
             
                     
                     Location
@@ -506,9 +506,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3.2" data-path="path.html">
+        <li class="chapter " data-level="4.3.2" data-path="../locations/path.html">
             
-                <a href="path.html">
+                <a href="../locations/path.html">
             
                     
                     Path
@@ -519,9 +519,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.3.3" data-path="path-ref.html">
+        <li class="chapter " data-level="4.3.3" data-path="../locations/path-ref.html">
             
-                <a href="path-ref.html">
+                <a href="../locations/path-ref.html">
             
                     
                     PathRef
@@ -532,9 +532,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3.4" data-path="point.html">
+        <li class="chapter " data-level="4.3.4" data-path="../locations/point.html">
             
-                <a href="point.html">
+                <a href="../locations/point.html">
             
                     
                     Point
@@ -545,9 +545,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3.5" data-path="point-entry.html">
+        <li class="chapter " data-level="4.3.5" data-path="../locations/point-entry.html">
             
-                <a href="point-entry.html">
+                <a href="../locations/point-entry.html">
             
                     
                     PointEntry
@@ -558,9 +558,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3.6" data-path="point-ref.html">
+        <li class="chapter " data-level="4.3.6" data-path="../locations/point-ref.html">
             
-                <a href="point-ref.html">
+                <a href="../locations/point-ref.html">
             
                     
                     PointRef
@@ -571,9 +571,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3.7" data-path="range.html">
+        <li class="chapter " data-level="4.3.7" data-path="../locations/range.html">
             
-                <a href="range.html">
+                <a href="../locations/range.html">
             
                     
                     Range
@@ -584,9 +584,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3.8" data-path="range-ref.html">
+        <li class="chapter " data-level="4.3.8" data-path="../locations/range-ref.html">
             
-                <a href="range-ref.html">
+                <a href="../locations/range-ref.html">
             
                     
                     RangeRef
@@ -597,9 +597,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3.9" data-path="span.html">
+        <li class="chapter " data-level="4.3.9" data-path="../locations/span.html">
             
-                <a href="span.html">
+                <a href="../locations/span.html">
             
                     
                     Span
@@ -615,9 +615,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.4" data-path="../operations/">
+        <li class="chapter " data-level="4.4" data-path="./">
             
-                <a href="../operations/">
+                <a href="./">
             
                     
                     Operation Types
@@ -629,9 +629,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.4.1" data-path="../operations/operation.html">
+        <li class="chapter active" data-level="4.4.1" data-path="operation.html">
             
-                <a href="../operations/operation.html">
+                <a href="operation.html">
             
                     
                     Operation
@@ -924,7 +924,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >PathRef</a>
+        <a href="../.." >Operation</a>
     </h1>
 </div>
 
@@ -939,25 +939,30 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="pathref-api">PathRef API</h1>
-<p><code>PathRef</code> objects keep a specific path in a document synced over time as new operations are applied to the editor. It is created using the <code>Editor.pathRef</code> method. You can access their property <code>current</code> at any time for the up-to-date <code>Path</code> value. When you no longer need to track this location, call <code>unref()</code> to free the resources. The <code>affinity</code> refers to the direction the <code>PathRef</code> will go when a user inserts content at the current position of the <code>Path</code>.</p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> PathRef {
-  <span class="hljs-attr">current</span>: Path | <span class="hljs-literal">null</span>
-  <span class="hljs-attr">affinity</span>: <span class="hljs-string">&apos;forward&apos;</span> | <span class="hljs-string">&apos;backward&apos;</span> | <span class="hljs-literal">null</span>
-  unref(): Path | <span class="hljs-literal">null</span>
-}
-</code></pre>
+                                <h1 id="operation-api">Operation API</h1>
+<p><code>Operation</code> 对象定义了底层指令，用来 Slate 编辑其应用更改到其内部状态。将所有的更改表示为操作是允许 Slate 编辑器轻松实现历史记录、写作和其他功能的原因。</p>
 <ul>
-<li><a href="path-ref.html#static-methods">Static methods</a><ul>
-<li><a href="path-ref.html#trasnform-methods">Transform methods</a></li>
+<li><a href="operation.html#static-methods">Static methods</a><ul>
+<li><a href="operation.html#manipulation-methods">Manipulation methods</a></li>
+<li><a href="operation.html#check-methods">Check methods</a></li>
 </ul>
 </li>
 </ul>
 <h2 id="static-methods">Static methods</h2>
-<h3 id="transform-methods">Transform methods</h3>
-<h4 id="pathreftransformref-pathref-op-operation"><code>PathRef.transform(ref: PathRef, op: Operation)</code></h4>
-<p>Transform the path refs current value by an <code>op</code>.
-The editor calls this as needed, so normally you won&apos;t need to.</p>
+<h3 id="manipulation-methods">Manipulation methods</h3>
+<h4 id="operationinverseop-operation--operation"><code>Operation.inverse(op: Operation) =&gt; Operation</code></h4>
+<p>Invert an operation, returning a new operation that will exactly undo the original when applied.</p>
+<h3 id="check-methods">Check methods</h3>
+<h4 id="operationisnodeoperationvalue-any--boolean"><code>Operation.isNodeOperation(value: any) =&gt; boolean</code></h4>
+<p>Check if a value is a <code>NodeOperation</code> object. Returns the value as a <code>NodeOperation</code> if it is one.</p>
+<h4 id="operationisoperationvalue-any--boolean"><code>Operation.isOperation(value: any) =&gt; boolean</code></h4>
+<p>Check if a value is an <code>Operation</code> object. Returns the value as an <code>Operation</code> if it is one.</p>
+<h4 id="operationisoperationlistvalue-any--boolean"><code>Operation.isOperationList(value: any) =&gt; boolean</code></h4>
+<p>Check if a value is a list of <code>Operation</code> objects. Returns the value as an <code>Operation[]</code> if it is one.</p>
+<h4 id="operationisselectionoperationvalue-any--boolean"><code>Operation.isSelectionOperation(value: any) =&gt; boolean</code></h4>
+<p>Check if a value is a <code>SelectionOperation</code> object. Returns the value as a <code>SelectionOperation</code> if it is one.</p>
+<h4 id="operationistextoperationvalue-any--boolean"><code>Operation.isTextOperation(value: any) =&gt; boolean</code></h4>
+<p>Check if a value is a <code>TextOperation</code> object. Returns the value as a <code>TextOperation</code> if it is one.</p>
 
                                 
                                 </section>
@@ -985,12 +990,12 @@ The editor calls this as needed, so normally you won&apos;t need to.</p>
 
             
                 
-                <a href="path.html" class="navigation navigation-prev " aria-label="Previous page: Path">
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Operation Types">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="point.html" class="navigation navigation-next " aria-label="Next page: Point">
+                <a href="../scrubber.html" class="navigation navigation-next " aria-label="Next page: Scrubber">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1001,7 +1006,7 @@ The editor calls this as needed, so normally you won&apos;t need to.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"PathRef","level":"4.3.3","depth":2,"next":{"title":"Point","level":"4.3.4","depth":2,"path":"api/locations/point.md","ref":"api/locations/point.md","articles":[]},"previous":{"title":"Path","level":"4.3.2","depth":2,"path":"api/locations/path.md","ref":"api/locations/path.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/locations/path-ref.md","mtime":"2023-04-26T08:48:19.607Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:48:24.980Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Operation","level":"4.4.1","depth":2,"next":{"title":"Scrubber","level":"4.5","depth":1,"path":"api/scrubber.md","ref":"api/scrubber.md","articles":[]},"previous":{"title":"Operation Types","level":"4.4","depth":1,"path":"api/operations/README.md","ref":"api/operations/README.md","articles":[{"title":"Operation","level":"4.4.1","depth":2,"path":"api/operations/operation.md","ref":"api/operations/operation.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/operations/operation.md","mtime":"2023-04-26T08:48:19.607Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:48:24.980Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
