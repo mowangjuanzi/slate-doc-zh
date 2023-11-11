@@ -27,7 +27,7 @@ const App = () => {
   const [editor] = useState(() => withReact(createEditor()))
 
   return (
-    <Slate editor={editor} value={initialValue}>
+    <Slate editor={editor} initialValue={initialValue}>
       <Editable
         renderElement={renderElement}
         onKeyDown={event => {
@@ -72,7 +72,7 @@ const App = () => {
   }, [])
 
   return (
-    <Slate editor={editor} value={initialValue}>
+    <Slate editor={editor} initialValue={initialValue}>
       <Editable
         renderElement={renderElement}
         onKeyDown={event => {
@@ -98,13 +98,7 @@ const App = () => {
             // 当按下 “B” 时，所选内容进行文本加粗。
             case 'b': {
               event.preventDefault()
-              Transforms.setNodes(
-                editor,
-                { bold: true },
-                // 应用于文本节点，如果仅选择一部分
-                // 文本节点，则会将文本节点分拆。
-                { match: n => Text.isText(n), split: true }
-              )
+              Editor.addMark(editor, 'bold', true)
               break
             }
           }
@@ -115,9 +109,11 @@ const App = () => {
 }
 ```
 
+Unlike the code format from the previous step, which is a block-level format, bold is a character-level format. Slate manages text contained within blocks (or any other element) using "leaves". Slate's character-level formats/styles are called "marks". Adjacent text with the same marks (styles) applied will be grouped within the same "leaf". When we use `addMark` to add our bold mark to the selected text, Slate will automatically break up the "leaves" using the selection boundaries and produce a new "leaf" with the bold mark added.
+
 好，我们已经设置了快捷键处理程序。。。但是！如果碰巧尝试选择文本并按 `control-B`，将会不会注意到任何变化。因为 Slate 还不知道如何渲染“粗体”标记。
 
-对于添加的每种格式，Slate 会将文本内容分解为“叶子”，Slate 需要知道如何像元素一样理解它。所以需要定义 `Leaf` 组件：
+对于添加的每种格式，Slate 需要知道如何像元素一样渲染。所以需要定义 `Leaf` 组件：
 
 ```jsx
 // 定义 React 组件渲染带有粗体文本的叶子。
@@ -163,7 +159,7 @@ const App = () => {
   }, [])
 
   return (
-    <Slate editor={editor} value={initialValue}>
+    <Slate editor={editor} initialValue={initialValue}>
       <Editable
         renderElement={renderElement}
         // 传入 `renderLeaf` 函数。
@@ -189,11 +185,7 @@ const App = () => {
 
             case 'b': {
               event.preventDefault()
-              Transforms.setNodes(
-                editor,
-                { bold: true },
-                { match: n => Text.isText(n), split: true }
-              )
+              Editor.addMark(editor, 'bold', true)
               break
             }
           }

@@ -10,6 +10,7 @@
 - [应用自定义格式](walkthroughs/04-applying-custom-formatting.md)
 - [执行命令](walkthroughs/05-executing-commands.md)
 - [保存到数据库](walkthroughs/06-saving-to-a-database.md)
+- [启用协作编辑](walkthroughs/07-enabling-collaborative-editing.md)
 - [使用已打包源](walkthroughs/xx-using-the-bundled-source.md)
 
 ## 概念

@@ -37,7 +37,7 @@ const MyEditor = () => {
 }
 ```
 
-> 🤖 请务必在自定义组件中同时使用 `props.attributes` 和 `props.children` 渲染！attributes 必须添加到组件内的顶级 DOM 元素，因为这是 Slate DOM 助手函数运行所必需的。children 是 Slate 自动管理的文档的实际文本内容。
+> 🤖 请务必在自定义组件中同时使用 `props.attributes` 和 `props.children` 渲染！attributes 必须添加到组件内的顶级 DOM 元素，因为这是 Slate DOM 助手函数运行所必需的。children 是 Slate 自动管理的文档的实际文本内容。children 是保存文本内容和内联元素的“叶子”。
 
 不必使用简单的 HTML 元素，也可以使用自定义 React 组件：
 
@@ -56,7 +56,7 @@ const renderElement = useCallback(props => {
 
 ## 叶子
 
-当渲染文本级别格式时，字符被分为文本的“叶子”，每个文本都包含相同的格式。
+当渲染文本级别格式时，字符被分为文本的“叶子”，每个文本都包含相同的格式（marks）。
 
 要自定义每个叶子的渲染，使用自定义 `renderLeaf` prop：
 
@@ -77,6 +77,8 @@ const renderLeaf = useCallback(({ attributes, children, leaf }) => {
 ```
 
 请注意，尽管我们处理的方式跟 `renderElement` 略有不同。由于文本格式往往非常简单，所以选择放弃 `switch` 语句而只开关一些样式。（但是如果愿意的话，没有什么能阻拦使用自定义组件）。
+
+> 🤖 As with the Element renderer, be sure to mix in `props.attributes` and render `props.children` in your leaf renderer! The attributes must be added to the top-level DOM element inside the component, as they are required for Slate's DOM helper functions to work. And the children are the actual text content of your document which Slate manages for you automatically.
 
 文本级别格式的一个缺点就是不能保证任何指定的格式都是“连续的” —— 意味着将保持单个叶子。这种叶子限制类似 DOM，但这是无效的：
 

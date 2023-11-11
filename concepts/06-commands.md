@@ -44,6 +44,9 @@ const MyEditor = {
 
 ```javascript
 // 在范围内的所有文本节点设置“粗体”格式。
+// Normally you would apply a style like bold using the Editor.addMark() command.
+// The addMark() command performs a similar setNodes transform, but it uses a more
+// complicated match function in order to apply marks within markableVoid elements.
 Transforms.setNodes(
   editor,
   { bold: true },

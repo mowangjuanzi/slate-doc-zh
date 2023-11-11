@@ -52,7 +52,7 @@ Iterate through the two point entries in a `Range`. First it will yield a `Point
 
 检查 `range` 是否包含路径、点或另一个范围的一部分。
 
-For clarity the definition of `includes` can mean partially includes. Another way to describe this is if one Range intersectns the other Range.
+For clarity the definition of `includes` can mean partially includes. Another way to describe this is if one Range intersects the other Range.
 
 #### `Range.isBackward(range: Range) => boolean`
 

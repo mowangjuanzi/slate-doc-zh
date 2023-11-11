@@ -21,12 +21,12 @@ NodeEntries JavaScript 迭代器且用 for..of 执行。
 例如，用对应的 alt 文本替换所有图像元素：
 
 ```javascript
-const imageElmnts = Editor.nodes(editor, {
+const imageElements = Editor.nodes(editor, {
   at: [], // 编辑器的路径
   match: (node, path) => 'image' === node.type,
   // 模式默认是 “all”，所以也可以搜索编辑器的子元素
 })
-for (const nodeEntry of imageElmnts) {
+for (const nodeEntry of imageElements) {
   const altText =
     nodeEntry[0].alt ||
     nodeEntry[0].title ||

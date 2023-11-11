@@ -4,7 +4,7 @@
 > 
 > 英文官网项目地址：https://github.com/ianstormtaylor/slate
 >
-> 目前的版本是：[slate@0.94.0](https://github.com/ianstormtaylor/slate/releases/tag/slate%400.94.0)
+> 目前的版本是：[slate@0.101.0](https://github.com/ianstormtaylor/slate/releases/tag/slate-react%400.101.0)
 
 [Slate](http://slatejs.org) 是_完全_可定制的框架，用于构建富文本编辑器。
 
