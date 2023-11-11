@@ -6,7 +6,7 @@
         <title>转换 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../walkthroughs/xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                <a href="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../walkthroughs/xx-using-the-bundled-source.html">
             
                 <a href="../walkthroughs/xx-using-the-bundled-source.html">
             
@@ -943,30 +956,30 @@
 <p>Slate 的数据结构不可变，所以不能直接修改或者删除节点。不过，Slate 带有一组“转换”函数用于转换编辑器的值。</p>
 <p>Slate 的转换函数设计为非常灵活，可以对编辑器进行各种更改。然而，这种灵活可能刚开始难以理解。</p>
 <p>通常，会将单个操作用于单个或者多个节点。例如，通过对每个块级元素的父级应用 <code>unwrapNodes</code> 来展平语法树：</p>
-<pre><code class="lang-javascript">Transforms.unwrapNodes(editor, {
+<pre><code class="lang-javascript"><span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">unwrapNodes</span>(editor, {
   <span class="hljs-attr">at</span>: [], <span class="hljs-comment">// 编辑器的路径</span>
   <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span>
-    !Editor.isEditor(node) &amp;&amp;
-    node.children?.every(<span class="hljs-function"><span class="hljs-params">child</span> =&gt;</span> Editor.isBlock(editor, child)),
+    !<span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">isEditor</span>(node) &amp;&amp;
+    node.<span class="hljs-property">children</span>?.<span class="hljs-title function_">every</span>(<span class="hljs-function"><span class="hljs-params">child</span> =&gt;</span> <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">isBlock</span>(editor, child)),
   <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;all&apos;</span>, <span class="hljs-comment">// 还有编辑器的子元素</span>
 })
 </code></pre>
 <p>非标准操作（或者调试/追踪哪些节点会受到 NodeOptions 的影响）可能需要使用 <code>Editor.nodes</code> 创建 
 NodeEntries JavaScript 迭代器且用 for..of 执行。
 例如，用对应的 alt 文本替换所有图像元素：</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> imageElmnts = Editor.nodes(editor, {
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> imageElements = <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">nodes</span>(editor, {
   <span class="hljs-attr">at</span>: [], <span class="hljs-comment">// 编辑器的路径</span>
-  <span class="hljs-attr">match</span>: <span class="hljs-function">(<span class="hljs-params">node, path</span>) =&gt;</span> <span class="hljs-string">&apos;image&apos;</span> === node.type,
+  <span class="hljs-attr">match</span>: <span class="hljs-function">(<span class="hljs-params">node, path</span>) =&gt;</span> <span class="hljs-string">&apos;image&apos;</span> === node.<span class="hljs-property">type</span>,
   <span class="hljs-comment">// 模式默认是 “all”，所以也可以搜索编辑器的子元素</span>
 })
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> nodeEntry <span class="hljs-keyword">of</span> imageElmnts) {
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> nodeEntry <span class="hljs-keyword">of</span> imageElements) {
   <span class="hljs-keyword">const</span> altText =
-    nodeEntry[<span class="hljs-number">0</span>].alt ||
-    nodeEntry[<span class="hljs-number">0</span>].title ||
-    <span class="hljs-regexp">/\/([^/]+)$/</span>.exec(nodeEntry[<span class="hljs-number">0</span>].url)?.[<span class="hljs-number">1</span>] ||
+    nodeEntry[<span class="hljs-number">0</span>].<span class="hljs-property">alt</span> ||
+    nodeEntry[<span class="hljs-number">0</span>].<span class="hljs-property">title</span> ||
+    <span class="hljs-regexp">/\/([^/]+)$/</span>.<span class="hljs-title function_">exec</span>(nodeEntry[<span class="hljs-number">0</span>].<span class="hljs-property">url</span>)?.[<span class="hljs-number">1</span>] ||
     <span class="hljs-string">&apos;☹︎&apos;</span>
-  Transforms.select(editor, nodeEntry[<span class="hljs-number">1</span>])
-  Editor.insertFragment(editor, [{ <span class="hljs-attr">text</span>: altText }])
+  <span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">select</span>(editor, nodeEntry[<span class="hljs-number">1</span>])
+  <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">insertFragment</span>(editor, [{ <span class="hljs-attr">text</span>: altText }])
 }
 </code></pre>
 <blockquote>
@@ -974,14 +987,14 @@ NodeEntries JavaScript 迭代器且用 for..of 执行。
 </blockquote>
 <h2 id="选区转换">选区转换</h2>
 <p>选区关联转换是一些更简单的转换。例如，以下是将选区设置为新范围的方法：</p>
-<pre><code class="lang-javascript">Transforms.select(editor, {
+<pre><code class="lang-javascript"><span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">select</span>(editor, {
   <span class="hljs-attr">anchor</span>: { <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>], <span class="hljs-attr">offset</span>: <span class="hljs-number">0</span> },
   <span class="hljs-attr">focus</span>: { <span class="hljs-attr">path</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>], <span class="hljs-attr">offset</span>: <span class="hljs-number">2</span> },
 })
 </code></pre>
 <p>但也可以更复杂。</p>
 <p>例如，通常需要将光标按照字符，单词，行来向前/后移动不同的距离。以下是如何将光标向后移动三个单词：</p>
-<pre><code class="lang-javascript">Transforms.move(editor, {
+<pre><code class="lang-javascript"><span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">move</span>(editor, {
   <span class="hljs-attr">distance</span>: <span class="hljs-number">3</span>,
   <span class="hljs-attr">unit</span>: <span class="hljs-string">&apos;word&apos;</span>,
   <span class="hljs-attr">reverse</span>: <span class="hljs-literal">true</span>,
@@ -992,12 +1005,12 @@ NodeEntries JavaScript 迭代器且用 for..of 执行。
 </blockquote>
 <h2 id="文本转换">文本转换</h2>
 <p>文本转换用于编辑器的文本内容。例如，以下是在指定位置插入文本字符串的方法：</p>
-<pre><code class="lang-javascript">Transforms.insertText(editor, <span class="hljs-string">&apos;some words&apos;</span>, {
+<pre><code class="lang-javascript"><span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">insertText</span>(editor, <span class="hljs-string">&apos;some words&apos;</span>, {
   <span class="hljs-attr">at</span>: { <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>], <span class="hljs-attr">offset</span>: <span class="hljs-number">3</span> },
 })
 </code></pre>
 <p>或者从编辑器中删除整个范围内的所有内容：</p>
-<pre><code class="lang-javascript">Transforms.delete(editor, {
+<pre><code class="lang-javascript"><span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">delete</span>(editor, {
   <span class="hljs-attr">at</span>: {
     <span class="hljs-attr">anchor</span>: { <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>], <span class="hljs-attr">offset</span>: <span class="hljs-number">0</span> },
     <span class="hljs-attr">focus</span>: { <span class="hljs-attr">path</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">0</span>], <span class="hljs-attr">offset</span>: <span class="hljs-number">2</span> },
@@ -1009,7 +1022,7 @@ NodeEntries JavaScript 迭代器且用 for..of 执行。
 </blockquote>
 <h2 id="节点转换">节点转换</h2>
 <p>节点转换作用于构成编辑器值的单个元素和文本节点。例如，在指定位置插入新文本节点：</p>
-<pre><code class="lang-javascript">Transforms.insertNodes(
+<pre><code class="lang-javascript"><span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">insertNodes</span>(
   editor,
   {
     <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;A new string of text.&apos;</span>,
@@ -1020,7 +1033,7 @@ NodeEntries JavaScript 迭代器且用 for..of 执行。
 )
 </code></pre>
 <p>或者将节点从该路径移动到其它路径：</p>
-<pre><code class="lang-javascript">Transforms.moveNodes(editor, {
+<pre><code class="lang-javascript"><span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">moveNodes</span>(editor, {
   <span class="hljs-attr">at</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
   <span class="hljs-attr">to</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>],
 })
@@ -1031,17 +1044,17 @@ NodeEntries JavaScript 迭代器且用 for..of 执行。
 <h2 id="at-选项"><code>at</code> 选项</h2>
 <p>许多转换作用于文档的指定位置。默认情况下使用用户的当前选区。但是可以使用 <code>at</code> 选项覆盖。</p>
 <p>例如在插入文本时，会在用户的当前光标处插入字符串：</p>
-<pre><code class="lang-javascript">Transforms.insertText(editor, <span class="hljs-string">&apos;some words&apos;</span>)
+<pre><code class="lang-javascript"><span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">insertText</span>(editor, <span class="hljs-string">&apos;some words&apos;</span>)
 </code></pre>
 <p>而这将会在指定位置插入：</p>
-<pre><code class="lang-javascript">Transforms.insertText(editor, <span class="hljs-string">&apos;some words&apos;</span>, {
+<pre><code class="lang-javascript"><span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">insertText</span>(editor, <span class="hljs-string">&apos;some words&apos;</span>, {
   <span class="hljs-attr">at</span>: { <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>], <span class="hljs-attr">offset</span>: <span class="hljs-number">3</span> },
 })
 </code></pre>
 <p><code>at</code> 选项的用途非常广泛，很容易的用于实现更复杂的装换。因为它是 <code>Location</code> 所以它可以是 <code>Path</code>、<code>Point</code>、<code>Range</code>。每种类型的位置都会导致略有不同的转换。</p>
 <p>例如，在插入文本时，如果指定 <code>Range</code> 位置，首先删除范围，在插入文本的位置折叠为单个点。</p>
 <p>所以要用新字符串替换文本，可以执行如下操作：</p>
-<pre><code class="lang-javascript">Transforms.insertText(editor, <span class="hljs-string">&apos;some words&apos;</span>, {
+<pre><code class="lang-javascript"><span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">insertText</span>(editor, <span class="hljs-string">&apos;some words&apos;</span>, {
   <span class="hljs-attr">at</span>: {
     <span class="hljs-attr">anchor</span>: { <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>], <span class="hljs-attr">offset</span>: <span class="hljs-number">0</span> },
     <span class="hljs-attr">focus</span>: { <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>], <span class="hljs-attr">offset</span>: <span class="hljs-number">3</span> },
@@ -1050,7 +1063,7 @@ NodeEntries JavaScript 迭代器且用 for..of 执行。
 </code></pre>
 <p>如果指定 <code>Path</code> 位置，将会扩大到范围，覆盖该路径的整个节点。然后，使用基于范围的行为，删除整个节点的内容且使用文本替换。</p>
 <p>所以使用新字符串替换整个节点的文本，可以执行如下操作：</p>
-<pre><code class="lang-javascript">Transforms.insertText(editor, <span class="hljs-string">&apos;some words&apos;</span>, {
+<pre><code class="lang-javascript"><span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">insertText</span>(editor, <span class="hljs-string">&apos;some words&apos;</span>, {
   <span class="hljs-attr">at</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
 })
 </code></pre>
@@ -1058,37 +1071,37 @@ NodeEntries JavaScript 迭代器且用 for..of 执行。
 <h2 id="match-选项"><code>match</code> 选项</h2>
 <p>许多基于节点的转换采用 <code>match</code> 函数选项，限制转换仅应用于函数返回 <code>true</code> 的节点。当跟 <code>at</code> 一起使用时， <code>match</code> 也会变得非常强大。</p>
 <p>例如，考虑一个基础的转换，将节点从一个路径移动到另一个路径：</p>
-<pre><code class="lang-javascript">Transforms.moveNodes(editor, {
+<pre><code class="lang-javascript"><span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">moveNodes</span>(editor, {
   <span class="hljs-attr">at</span>: [<span class="hljs-number">2</span>],
   <span class="hljs-attr">to</span>: [<span class="hljs-number">5</span>],
 })
 </code></pre>
 <p>虽然看起来就像是将路径移动到另一个地方。在底层发生了两件事。。。</p>
 <p>首先， <code>at</code> 选项扩展为范围代表 <code>[2]</code> 节点内的所有内容。看起来就像是：</p>
-<pre><code class="lang-javascript">at: {
+<pre><code class="lang-javascript"><span class="hljs-attr">at</span>: {
   <span class="hljs-attr">anchor</span>: { <span class="hljs-attr">path</span>: [<span class="hljs-number">2</span>, <span class="hljs-number">0</span>], <span class="hljs-attr">offset</span>: <span class="hljs-number">0</span> },
   <span class="hljs-attr">focus</span>: { <span class="hljs-attr">path</span>: [<span class="hljs-number">2</span>, <span class="hljs-number">2</span>], <span class="hljs-attr">offset</span>: <span class="hljs-number">19</span> }
 }
 </code></pre>
 <p>其次，<code>match</code> 选项默认仅为匹配指定路径的函数，在这里是 <code>[2]</code>：</p>
-<pre><code class="lang-javascript">match: <span class="hljs-function">(<span class="hljs-params">node, path</span>) =&gt;</span> Path.equals(path, [<span class="hljs-number">2</span>])
+<pre><code class="lang-javascript"><span class="hljs-attr">match</span>: <span class="hljs-function">(<span class="hljs-params">node, path</span>) =&gt;</span> <span class="hljs-title class_">Path</span>.<span class="hljs-title function_">equals</span>(path, [<span class="hljs-number">2</span>])
 </code></pre>
 <p>然后 Slate 遍历范围，移动所有通过了匹配器函数的节点到新位置。在本例中，因为 <code>match</code> 默认仅匹配精确的 <code>[2]</code> 路径，因此该节点被移动。</p>
 <p>但是想要移动 <code>[2]</code> 的子节点呢？</p>
 <p>可能会循环子节点并依次移动，但会变得非常复杂，因为当移动节点时，所引用的路径也会过时。</p>
 <p>不过，可以使用 <code>at</code> 和 <code>match</code> 选项来匹配所有子节点：</p>
-<pre><code class="lang-javascript">Transforms.moveNodes(editor, {
+<pre><code class="lang-javascript"><span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">moveNodes</span>(editor, {
   <span class="hljs-comment">// 这将会扩展到 `[2]` 的整个节点的范围。</span>
   <span class="hljs-attr">at</span>: [<span class="hljs-number">2</span>],
   <span class="hljs-comment">// 匹配路径较长的节点，即子节点。</span>
-  <span class="hljs-attr">match</span>: <span class="hljs-function">(<span class="hljs-params">node, path</span>) =&gt;</span> path.length === <span class="hljs-number">2</span>,
+  <span class="hljs-attr">match</span>: <span class="hljs-function">(<span class="hljs-params">node, path</span>) =&gt;</span> path.<span class="hljs-property">length</span> === <span class="hljs-number">2</span>,
   <span class="hljs-attr">to</span>: [<span class="hljs-number">5</span>],
 })
 </code></pre>
 <p>这是我们使用相同的 <code>at</code> 路径（扩展到范围），但是默认情况下不仅匹配路径，而是提供恰好匹配指定子节点的 <code>match</code> 函数。</p>
 <p>使用 <code>match</code> 可以使复杂的逻辑变得很简单。</p>
 <p>例如，考虑为任何不是斜体的文本节点添加粗体标记：</p>
-<pre><code class="lang-javascript">Transforms.setNodes(
+<pre><code class="lang-javascript"><span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">setNodes</span>(
   editor,
   { <span class="hljs-attr">bold</span>: <span class="hljs-literal">true</span> },
   {
@@ -1096,7 +1109,7 @@ NodeEntries JavaScript 迭代器且用 for..of 执行。
     <span class="hljs-comment">// 包含编辑器所有内容的范围。</span>
     <span class="hljs-attr">at</span>: [],
     <span class="hljs-comment">// 仅匹配不是斜体的文本节点。</span>
-    <span class="hljs-attr">match</span>: <span class="hljs-function">(<span class="hljs-params">node, path</span>) =&gt;</span> Text.isText(node) &amp;&amp; node.italic !== <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">match</span>: <span class="hljs-function">(<span class="hljs-params">node, path</span>) =&gt;</span> <span class="hljs-title class_">Text</span>.<span class="hljs-title function_">isText</span>(node) &amp;&amp; node.<span class="hljs-property">italic</span> !== <span class="hljs-literal">true</span>,
   }
 )
 </code></pre>
@@ -1147,7 +1160,7 @@ NodeEntries JavaScript 迭代器且用 for..of 执行。
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"转换","level":"3.4","depth":1,"next":{"title":"操作","level":"3.5","depth":1,"path":"concepts/05-operations.md","ref":"concepts/05-operations.md","articles":[]},"previous":{"title":"位置","level":"3.3","depth":1,"path":"concepts/03-locations.md","ref":"concepts/03-locations.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/04-transforms.md","mtime":"2023-04-26T08:49:07.651Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"转换","level":"3.4","depth":1,"next":{"title":"操作","level":"3.5","depth":1,"path":"concepts/05-operations.md","ref":"concepts/05-operations.md","articles":[]},"previous":{"title":"位置","level":"3.3","depth":1,"path":"concepts/03-locations.md","ref":"concepts/03-locations.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/04-transforms.md","mtime":"2023-11-11T14:45:37.990Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

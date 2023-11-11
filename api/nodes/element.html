@@ -6,7 +6,7 @@
         <title>Element · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../../walkthroughs/xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="../../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                <a href="../../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../../walkthroughs/xx-using-the-bundled-source.html">
             
                 <a href="../../walkthroughs/xx-using-the-bundled-source.html">
             
@@ -941,8 +954,8 @@
                                 
                                 <h1 id="element-api">Element API</h1>
 <p><code>Element</code> objects are a type of <code>Node</code> in a Slate document that contain other <code>Element</code> nodes or <code>Text</code> nodes.</p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Element {
-  <span class="hljs-attr">children</span>: Node[]
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Element</span> {
+  <span class="hljs-attr">children</span>: <span class="hljs-title class_">Node</span>[]
 }
 </code></pre>
 <ul>
@@ -981,17 +994,17 @@
 </ul>
 <p>Typical rendering code will resemble this <code>thematic-break</code> (horizontal rule) element:</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">return</span> (
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> {<span class="hljs-attr">...attributes</span>} <span class="hljs-attr">contentEditable</span>=<span class="hljs-string">{false}</span>&gt;</span>
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> {<span class="hljs-attr">...attributes</span>} <span class="hljs-attr">contentEditable</span>=<span class="hljs-string">{false}</span>&gt;</span>
     {children}
     <span class="hljs-tag">&lt;<span class="hljs-name">hr</span> /&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 )
 </code></pre>
 <p>For a &quot;markable&quot; void such as a <code>mention</code> element, marks on the empty child element can be used to determine how the void element is rendered (Slate Marks are applied only to Text leaves):</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> Mention = <span class="hljs-function">(<span class="hljs-params">{ attributes, children, element }</span>) =&gt;</span> {
-  <span class="hljs-keyword">const</span> selected = useSelected()
-  <span class="hljs-keyword">const</span> focused = useFocused()
-  <span class="hljs-keyword">const</span> style: React.CSSProperties = {
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Mention</span> = (<span class="hljs-params">{ attributes, children, element }</span>) =&gt; {
+  <span class="hljs-keyword">const</span> selected = <span class="hljs-title function_">useSelected</span>()
+  <span class="hljs-keyword">const</span> focused = <span class="hljs-title function_">useFocused</span>()
+  <span class="hljs-keyword">const</span> <span class="hljs-attr">style</span>: <span class="hljs-title class_">React</span>.<span class="hljs-property">CSSProperties</span> = {
     <span class="hljs-attr">padding</span>: <span class="hljs-string">&apos;3px 3px 2px&apos;</span>,
     <span class="hljs-attr">margin</span>: <span class="hljs-string">&apos;0 1px&apos;</span>,
     <span class="hljs-attr">verticalAlign</span>: <span class="hljs-string">&apos;baseline&apos;</span>,
@@ -1002,14 +1015,14 @@
     <span class="hljs-attr">boxShadow</span>: selected &amp;&amp; focused ? <span class="hljs-string">&apos;0 0 0 2px #B4D5FF&apos;</span> : <span class="hljs-string">&apos;none&apos;</span>,
   }
   <span class="hljs-comment">// See if our empty text child has any styling marks applied and apply those</span>
-  <span class="hljs-keyword">if</span> (element.children[<span class="hljs-number">0</span>].bold) {
-    style.fontWeight = <span class="hljs-string">&apos;bold&apos;</span>
+  <span class="hljs-keyword">if</span> (element.<span class="hljs-property">children</span>[<span class="hljs-number">0</span>].<span class="hljs-property">bold</span>) {
+    style.<span class="hljs-property">fontWeight</span> = <span class="hljs-string">&apos;bold&apos;</span>
   }
-  <span class="hljs-keyword">if</span> (element.children[<span class="hljs-number">0</span>].italic) {
-    style.fontStyle = <span class="hljs-string">&apos;italic&apos;</span>
+  <span class="hljs-keyword">if</span> (element.<span class="hljs-property">children</span>[<span class="hljs-number">0</span>].<span class="hljs-property">italic</span>) {
+    style.<span class="hljs-property">fontStyle</span> = <span class="hljs-string">&apos;italic&apos;</span>
   }
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>
       {<span class="hljs-attr">...attributes</span>}
       <span class="hljs-attr">contentEditable</span>=<span class="hljs-string">{false}</span>
       <span class="hljs-attr">data-cy</span>=<span class="hljs-string">{</span>`<span class="hljs-attr">mention-</span>${<span class="hljs-attr">element.character.replace</span>(&apos; &apos;, &apos;<span class="hljs-attr">-</span>&apos;)}`}
@@ -1077,7 +1090,7 @@ Default it check to <code>type</code> key value</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Element","level":"4.2.2","depth":2,"next":{"title":"Node","level":"4.2.3","depth":2,"path":"api/nodes/node.md","ref":"api/nodes/node.md","articles":[]},"previous":{"title":"Editor","level":"4.2.1","depth":2,"path":"api/nodes/editor.md","ref":"api/nodes/editor.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/nodes/element.md","mtime":"2023-04-26T08:49:07.651Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Element","level":"4.2.2","depth":2,"next":{"title":"Node","level":"4.2.3","depth":2,"path":"api/nodes/node.md","ref":"api/nodes/node.md","articles":[]},"previous":{"title":"Editor","level":"4.2.1","depth":2,"path":"api/nodes/editor.md","ref":"api/nodes/editor.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/nodes/element.md","mtime":"2023-11-11T14:45:37.990Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -6,7 +6,7 @@
         <title>更新日志 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../walkthroughs/xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                <a href="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../walkthroughs/xx-using-the-bundled-source.html">
             
                 <a href="../walkthroughs/xx-using-the-bundled-source.html">
             
@@ -966,11 +979,11 @@
 <h3 id="breaking">BREAKING</h3>
 <p><strong>Overridable commands now live directly on the editor object.</strong> Previously the <code>Command</code> concept was implemented as an interface that was passed into the <code>editor.exec</code> function, allowing the &quot;core&quot; commands to be overridden in one place. But this introduced a lot of Redux-like indirection when implementing custom commands that wasn&apos;t necessary because they are never overridden. Instead, now the core actions that can be overridden are implemented as individual functions on the editor (eg. <code>editor.insertText</code>) and they can be overridden just like any other function (eg. <code>isVoid</code>).</p>
 <p>Previously to override a command you&apos;d do:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> withPlugin = <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">withPlugin</span> = editor =&gt; {
   <span class="hljs-keyword">const</span> { exec } = editor
 
-  editor.exec = <span class="hljs-function"><span class="hljs-params">command</span> =&gt;</span> {
-    <span class="hljs-keyword">if</span> (command.type === <span class="hljs-string">&apos;insert_text&apos;</span>) {
+  editor.<span class="hljs-property">exec</span> = <span class="hljs-function"><span class="hljs-params">command</span> =&gt;</span> {
+    <span class="hljs-keyword">if</span> (command.<span class="hljs-property">type</span> === <span class="hljs-string">&apos;insert_text&apos;</span>) {
       <span class="hljs-keyword">const</span> { text } = command
 
       <span class="hljs-keyword">if</span> (myCustomLogic) {
@@ -979,23 +992,23 @@
       }
     }
 
-    exec(command)
+    <span class="hljs-title function_">exec</span>(command)
   }
 
   <span class="hljs-keyword">return</span> editor
 }
 </code></pre>
 <p>Now, you&apos;d override the specific function directly:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> withPlugin = <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">withPlugin</span> = editor =&gt; {
   <span class="hljs-keyword">const</span> { insertText } = editor
 
-  editor.insertText = <span class="hljs-function"><span class="hljs-params">text</span> =&gt;</span> {
+  editor.<span class="hljs-property">insertText</span> = <span class="hljs-function"><span class="hljs-params">text</span> =&gt;</span> {
     <span class="hljs-keyword">if</span> (myCustomLogic) {
       <span class="hljs-comment">// ...</span>
       <span class="hljs-keyword">return</span>
     }
 
-    insertText(text)
+    <span class="hljs-title function_">insertText</span>(text)
   }
 
   <span class="hljs-keyword">return</span> editor
@@ -1004,28 +1017,28 @@
 <p>You shouldn&apos;t ever need to call these functions directly! They are there for plugins to tap into, but there are higher level helpers for you to call whenever you actually need to invoke them. Read on…</p>
 <p><strong>Transforms now live in a separate namespace of helpers.</strong> Previously the document and selection transformation helpers were available directly on the <code>Editor</code> interface as <code>Editor.*</code>. But these helpers are fairly low level, and not something that you&apos;d use in your own codebase all over the place, usually only inside specific custom helpers of your own. To make room for custom userland commands, these helpers have been moved to a new <code>Transforms</code> namespace.</p>
 <p>Previously you&apos;d write:</p>
-<pre><code class="lang-javascript">Editor.unwrapNodes(editor, ...)
+<pre><code class="lang-javascript"><span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">unwrapNodes</span>(editor, ...)
 </code></pre>
 <p>Now you&apos;d write:</p>
-<pre><code class="lang-javascript">Transforms.unwrapNodes(editor, ...)
+<pre><code class="lang-javascript"><span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">unwrapNodes</span>(editor, ...)
 </code></pre>
 <p><strong>The <code>Command</code> interfaces were removed.</strong> As part of those changes, the existing <code>Command</code>, <code>CoreCommand</code>, <code>HistoryCommand</code>, and <code>ReactCommand</code> interfaces were all removed. You no longer need to define these &quot;command objects&quot;, because you can just call the functions directly. Plugins can still define their own overridable commands by extending the <code>Editor</code> interface with new functions. The <code>slate-react</code> plugin does this with <code>insertData</code> and the <code>slate-history</code> plugin does this with <code>undo</code> and <code>redo</code>.</p>
 <h3 id="new">NEW</h3>
 <p><strong>User action helpers now live directly on the <code>Editor.*</code> interface.</strong> These are taking the place of the existing <code>Transforms.*</code> helpers that were moved. These helpers are equivalent to user actions, and they always operate on the existing selection. There are some defined by core, but you are likely to define your own custom helpers that are specific to your domain as well.</p>
 <p>For example, here are some of the built-in actions:</p>
-<pre><code class="lang-javascript">Editor.insertText(editor, <span class="hljs-string">&apos;a string of text&apos;</span>)
-Editor.deleteForward(editor)
-Editor.deleteBackward(editor, { <span class="hljs-attr">unit</span>: <span class="hljs-string">&apos;word&apos;</span> })
-Editor.addMark(editor, <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-literal">true</span>)
-Editor.insertBreak(editor)
+<pre><code class="lang-javascript"><span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">insertText</span>(editor, <span class="hljs-string">&apos;a string of text&apos;</span>)
+<span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">deleteForward</span>(editor)
+<span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">deleteBackward</span>(editor, { <span class="hljs-attr">unit</span>: <span class="hljs-string">&apos;word&apos;</span> })
+<span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">addMark</span>(editor, <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-literal">true</span>)
+<span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">insertBreak</span>(editor)
 ...
 </code></pre>
 <p>Every one of the old &quot;core commands&quot; has an equivalent <code>Editor.*</code> helper exposed now. However, you can easily define your own custom helpers and place them in a namespace as well:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> MyEditor = {
-  ...Editor,
-  <span class="hljs-function"><span class="hljs-title">insertParagraph</span>(<span class="hljs-params">editor</span>)</span> { ... },
-  <span class="hljs-function"><span class="hljs-title">toggleBoldMark</span>(<span class="hljs-params">editor</span>)</span> { ... },
-  <span class="hljs-function"><span class="hljs-title">formatLink</span>(<span class="hljs-params">editor, url</span>)</span> { ... },
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> <span class="hljs-title class_">MyEditor</span> = {
+  ...<span class="hljs-title class_">Editor</span>,
+  <span class="hljs-title function_">insertParagraph</span>(<span class="hljs-params">editor</span>) { ... },
+  <span class="hljs-title function_">toggleBoldMark</span>(<span class="hljs-params">editor</span>) { ... },
+  <span class="hljs-title function_">formatLink</span>(<span class="hljs-params">editor, url</span>) { ... },
   ...
 }
 </code></pre>
@@ -1034,16 +1047,16 @@ Editor.insertBreak(editor)
 <h3 id="breaking">BREAKING</h3>
 <p><strong>The <code>format_text</code> command is split into <code>add_mark</code> and <code>remove_mark</code>.</strong> Although the goal is to keep the number of commands in core to a minimum, having this as a combined command made it very hard to write logic that wanted to guarantee to only ever add or remove a mark from a text node. Now you can be guaranteed that the <code>add_mark</code> command will only ever add custom properties to text nodes, and the <code>remove_mark</code> command will only ever remove them.</p>
 <p>Previously you would write:</p>
-<pre><code class="lang-javascript">editor.exec({
+<pre><code class="lang-javascript">editor.<span class="hljs-title function_">exec</span>({
   <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;format_text&apos;</span>,
   <span class="hljs-attr">properties</span>: { <span class="hljs-attr">bold</span>: <span class="hljs-literal">true</span> },
 })
 </code></pre>
 <p>Now you would write:</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">if</span> (isActive) {
-  editor.exec({ <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;remove_mark&apos;</span>, <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;bold&apos;</span> })
+  editor.<span class="hljs-title function_">exec</span>({ <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;remove_mark&apos;</span>, <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;bold&apos;</span> })
 } <span class="hljs-keyword">else</span> {
-  editor.exec({ <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;add_mark&apos;</span>, <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-attr">value</span>: <span class="hljs-literal">true</span> })
+  editor.<span class="hljs-title function_">exec</span>({ <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;add_mark&apos;</span>, <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-attr">value</span>: <span class="hljs-literal">true</span> })
 }
 </code></pre>
 <blockquote>
@@ -1054,47 +1067,47 @@ Editor.insertBreak(editor)
 <h3 id="breaking">BREAKING</h3>
 <p><strong>The <code>match</code> option must now be a function.</strong> Previously there were a few shorthands, like passing in a plain object. This behavior was removed because it made it harder to reason about exactly what was being matched, it made debugging harder, and it made it hard to type well. Now the <code>match</code> option must be a function that receives the <code>Node</code> object to match. If you&apos;re using TypeScript, and the function you pass in is a type guard, that will be taken into account in the return value!</p>
 <p>Previously you might write:</p>
-<pre><code class="lang-javascript">Editor.nodes(editor, {
+<pre><code class="lang-javascript"><span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">nodes</span>(editor, {
   <span class="hljs-attr">at</span>: range,
   <span class="hljs-attr">match</span>: <span class="hljs-string">&apos;text&apos;</span>,
 })
 
-Editor.nodes(editor, {
+<span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">nodes</span>(editor, {
   <span class="hljs-attr">at</span>: range,
   <span class="hljs-attr">match</span>: { <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span> },
 })
 </code></pre>
 <p>Now you&apos;d write:</p>
-<pre><code class="lang-javascript">Editor.nodes(editor, {
+<pre><code class="lang-javascript"><span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">nodes</span>(editor, {
   <span class="hljs-attr">at</span>: range,
-  <span class="hljs-attr">match</span>: Text.isText,
+  <span class="hljs-attr">match</span>: <span class="hljs-title class_">Text</span>.<span class="hljs-property">isText</span>,
 })
 
-Editor.nodes(editor, {
+<span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">nodes</span>(editor, {
   <span class="hljs-attr">at</span>: range,
-  <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> node.type === <span class="hljs-string">&apos;paragraph&apos;</span>,
+  <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> node.<span class="hljs-property">type</span> === <span class="hljs-string">&apos;paragraph&apos;</span>,
 })
 </code></pre>
 <p><strong>The <code>mode</code> option now defaults to <code>&apos;lowest&apos;</code>.</strong> Previously the default varied depending on where in the codebase it was used. Now it defaults to <code>&apos;lowest&apos;</code> everywhere, and you can always pass in <code>&apos;highest&apos;</code> to change the behavior. The one exception is the <code>Editor.nodes</code> helper which defaults to <code>&apos;all&apos;</code> since that&apos;s the expected behavior most of the time.</p>
 <p><strong>The <code>Editor.match</code> helper was renamed to <code>Editor.above</code>.</strong> This was just to make it clear how it searched in the tree—it looks through all of the nodes directly above a location in the document.</p>
 <p><strong>The <code>Editor.above/previous/next</code> helpers now take all options in a dictionary.</strong> Previously their APIs did not exactly match the <code>Editor.nodes</code> helper which they are shorthand for, but now this is no longer the case. The <code>at</code>, <code>match</code> and <code>mode</code> options are all passed in the <code>options</code> argument.</p>
 <p>Previously you would use:</p>
-<pre><code class="lang-javascript">Editor.previous(editor, path, <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> Text.isText(n), {
+<pre><code class="lang-javascript"><span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">previous</span>(editor, path, <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-title class_">Text</span>.<span class="hljs-title function_">isText</span>(n), {
   <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;lowest&apos;</span>,
 })
 </code></pre>
 <p>Now you&apos;d use:</p>
-<pre><code class="lang-javascript">Editor.previous(editor, {
+<pre><code class="lang-javascript"><span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">previous</span>(editor, {
   <span class="hljs-attr">at</span>: path,
-  <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> Text.isText(n),
+  <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-title class_">Text</span>.<span class="hljs-title function_">isText</span>(n),
   <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;lowest&apos;</span>,
   ...
 })
 </code></pre>
 <p><strong>The <code>Editor.elements</code> and <code>Editor.texts</code> helpers were removed.</strong> These were simple convenience helpers that were rarely used. You can now achieve the same thing by using the <code>Editor.nodes</code> helper directly along with the <code>match</code> option. For example:</p>
-<pre><code class="lang-javascript">Editor.nodes(editor, {
+<pre><code class="lang-javascript"><span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">nodes</span>(editor, {
   <span class="hljs-attr">at</span>: range,
-  <span class="hljs-attr">match</span>: Element.isElement,
+  <span class="hljs-attr">match</span>: <span class="hljs-title class_">Element</span>.<span class="hljs-property">isElement</span>,
 })
 </code></pre>
 <h2 id="054-—-december-12-2019"><code>0.54</code> — December 12, 2019</h2>
@@ -1141,22 +1154,22 @@ Editor.nodes(editor, {
 <p>And the marks are added and removed from the text nodes using the same <code>Editor.setNodes</code> transform that you use for toggling formatting on block and inline nodes. This greatly simplifies things and makes Slate&apos;s core even smaller.</p>
 <p><strong>The <code>&lt;Slate&gt;</code> component is now a &quot;controlled&quot; component.</strong> This makes things a bit more React-ish, and makes it easier to update the editor&apos;s value when new data is received after the initial render. To arrive at the previous &quot;uncontrolled&quot; behavior you&apos;ll need to implement it in userland using React&apos;s built-in hooks.</p>
 <p>Whereas previously you would do:</p>
-<pre><code class="lang-jsx">&lt;Slate defaultValue={initialValue}&gt;...&lt;/Slate&gt;
+<pre><code class="lang-jsx">&lt;<span class="hljs-title class_">Slate</span> defaultValue={initialValue}&gt;...&lt;/<span class="hljs-title class_">Slate</span>&gt;
 </code></pre>
 <p>Now you must manage the value and selection yourself, like:</p>
-<pre><code class="lang-jsx"><span class="hljs-keyword">const</span> [value, setValue] = useState(initialValue)
-<span class="hljs-keyword">const</span> [selection, setSelection] = useState(<span class="hljs-literal">null</span>)
+<pre><code class="lang-jsx"><span class="hljs-keyword">const</span> [value, setValue] = <span class="hljs-title function_">useState</span>(initialValue)
+<span class="hljs-keyword">const</span> [selection, setSelection] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">null</span>)
 
-&lt;Slate
-  value={value}
+&lt;<span class="hljs-title class_">Slate</span>
+  initialValue={value}
   selection={selection}
   onChange={<span class="hljs-function">(<span class="hljs-params">value, selection</span>) =&gt;</span> {
-    setValue(value)
-    setSelection(selection)
+    <span class="hljs-title function_">setValue</span>(value)
+    <span class="hljs-title function_">setSelection</span>(selection)
   }}
 &gt;
   ...
-&lt;/Slate&gt;
+&lt;/<span class="hljs-title class_">Slate</span>&gt;
 </code></pre>
 <h2 id="050-—-november-27-2019"><code>0.50</code> — November 27, 2019</h2>
 <h3 id="breaking">BREAKING</h3>
@@ -1169,31 +1182,31 @@ Editor.nodes(editor, {
 <p><strong>Introducing the <code>Annotation</code> model.</strong> This is very similar to what used to be stored in <code>value.decorations</code>, except they also contain a unique &quot;key&quot; to be identified by. They can be used for things like comments, suggestions, collaborative cursors, etc.</p>
 <pre><code class="lang-javascript">{
   <span class="hljs-attr">object</span>: <span class="hljs-string">&apos;annotation&apos;</span>,
-  <span class="hljs-attr">key</span>: <span class="hljs-built_in">String</span>,
-  <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
-  <span class="hljs-attr">data</span>: <span class="hljs-built_in">Map</span>,
-  <span class="hljs-attr">anchor</span>: Point,
-  <span class="hljs-attr">focus</span>: Point,
+  <span class="hljs-attr">key</span>: <span class="hljs-title class_">String</span>,
+  <span class="hljs-attr">type</span>: <span class="hljs-title class_">String</span>,
+  <span class="hljs-attr">data</span>: <span class="hljs-title class_">Map</span>,
+  <span class="hljs-attr">anchor</span>: <span class="hljs-title class_">Point</span>,
+  <span class="hljs-attr">focus</span>: <span class="hljs-title class_">Point</span>,
 }
 </code></pre>
 <p><strong>There are three new <code>*_annotation</code> operations.</strong> The set of operations now includes <code>add_annotation</code>, <code>remove_annotation</code> and <code>set_annotation</code>. They are similar to the existing <code>*_mark</code> operations.</p>
 <p><strong>Introducing &quot;iterable&quot; model methods.</strong> This introduces several iteratable-producing methods on the <code>Element</code> interface, which <code>Document</code>, <code>Block</code> and <code>Inline</code> all implement. There are iterables for traversing the entire tree:</p>
-<pre><code class="lang-javascript">element.blocks(options)
-element.descendants(options)
-element.inlines(options)
-element.texts(options)
+<pre><code class="lang-javascript">element.<span class="hljs-title function_">blocks</span>(options)
+element.<span class="hljs-title function_">descendants</span>(options)
+element.<span class="hljs-title function_">inlines</span>(options)
+element.<span class="hljs-title function_">texts</span>(options)
 
-element.ancestors(path, options)
-element.siblings(path, options)
+element.<span class="hljs-title function_">ancestors</span>(path, options)
+element.<span class="hljs-title function_">siblings</span>(path, options)
 </code></pre>
 <p>You can use them just like the native JavaScript iterables. For example, you can loop through the text nodes after a specific node:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> next <span class="hljs-keyword">of</span> <span class="hljs-built_in">document</span>.texts({ <span class="hljs-attr">path</span>: start.path })) {
+<pre><code class="lang-javascript"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> next <span class="hljs-keyword">of</span> <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">texts</span>({ <span class="hljs-attr">path</span>: start.<span class="hljs-property">path</span> })) {
   <span class="hljs-keyword">const</span> [node, path] = next
   <span class="hljs-comment">// do something with the text node or its path</span>
 }
 </code></pre>
 <p>Or you can traverse all of the &quot;leaf&quot; blocks:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [block] <span class="hljs-keyword">of</span> <span class="hljs-built_in">document</span>.blocks({ <span class="hljs-attr">onlyLeaves</span>: <span class="hljs-literal">true</span> })) {
+<pre><code class="lang-javascript"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [block] <span class="hljs-keyword">of</span> <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">blocks</span>({ <span class="hljs-attr">onlyLeaves</span>: <span class="hljs-literal">true</span> })) {
   <span class="hljs-comment">// ...</span>
 }
 </code></pre>
@@ -1203,10 +1216,10 @@ element.siblings(path, options)
 <p><strong>The <code>Decoration</code> model no longer has a nested <code>mark</code> property.</strong> Previously a real <code>Mark</code> object was used as a property on decorations, but now the <code>type</code> and <code>data</code> properties are first class properties instead.</p>
 <pre><code class="lang-javascript">{
   <span class="hljs-attr">object</span>: <span class="hljs-string">&apos;decoration&apos;</span>,
-  <span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
-  <span class="hljs-attr">data</span>: <span class="hljs-built_in">Map</span>,
-  <span class="hljs-attr">anchor</span>: Point,
-  <span class="hljs-attr">focus</span>: Point,
+  <span class="hljs-attr">type</span>: <span class="hljs-title class_">String</span>,
+  <span class="hljs-attr">data</span>: <span class="hljs-title class_">Map</span>,
+  <span class="hljs-attr">anchor</span>: <span class="hljs-title class_">Point</span>,
+  <span class="hljs-attr">focus</span>: <span class="hljs-title class_">Point</span>,
 }
 </code></pre>
 <h2 id="046-—-may-1-2019"><code>0.46</code> — May 1, 2019</h2>
@@ -1215,27 +1228,27 @@ element.siblings(path, options)
 <p><strong>Text operations no longer have a <code>marks</code> property.</strong> Previously it was used to add text with a specific set of marks. However this is no longer necessary, and when text is added with marks it will result in an <code>insert_text</code> operation as well as an <code>add_mark</code> operation.</p>
 <p><strong>Using <code>Text.create</code> or <code>Text.createList</code> with a <code>leaves</code> property will error.</strong> Now that text nodes no longer have leaves, you will need to pass in the <code>text</code> string and <code>marks</code> directly when creating a new text node. (However, you can still create entire values using <code>Value.create</code> in a backwards compatible way for convenience while migrating.)</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// This works, although deprecated, which is the common case...</span>
-Value.create(oldValueJson)
+<span class="hljs-title class_">Value</span>.<span class="hljs-title function_">create</span>(oldValueJson)
 
 <span class="hljs-comment">// ...but this will error!</span>
-Text.create(oldTextJson)
+<span class="hljs-title class_">Text</span>.<span class="hljs-title function_">create</span>(oldTextJson)
 </code></pre>
 <p><strong><code>Value.toJSON</code> returns the new data model format, without leaves.</strong> Although <code>Value.fromJSON</code> and <code>Value.create</code> allow the old format in deprecated mode, calling <code>Value.toJSON</code> will return the new data format. If you still need the old one you&apos;ll need to iterate the document tree converting text nodes yourself.</p>
 <p><strong>The low-level <code>Value.*</code> and <code>Node.*</code> mutation methods have changed.</strong> These changes follow the operation signature changes, since the methods take the same arguments as the operations themselves. For example:</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Previously...</span>
-value.addMark(path, offset, length, mark)
+value.<span class="hljs-title function_">addMark</span>(path, offset, length, mark)
 
 <span class="hljs-comment">// ...is now:</span>
-value.addMark(path, mark)
+value.<span class="hljs-title function_">addMark</span>(path, mark)
 </code></pre>
 <p>These are low-level methods, so this change shouldn&apos;t affect the majority of use cases.</p>
 <h3 id="deprecated">DEPRECATED</h3>
 <p><strong>Initializing editors with <code>Text</code> nodes with a <code>leaves</code> property is deprecated.</strong> In this new version of Slate, creating a new value with <code>Value.create</code> with the old leaf data model is still allowed for convenience in migration, but it will be removed in a coming version. (However, using the low-level <code>Text.create</code> will throw an error!)</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// This works, although deprecated, which is the common case...</span>
-Value.create(oldValueJson)
+<span class="hljs-title class_">Value</span>.<span class="hljs-title function_">create</span>(oldValueJson)
 
 <span class="hljs-comment">// ...but this will error!</span>
-Text.create(oldTextJson)
+<span class="hljs-title class_">Text</span>.<span class="hljs-title function_">create</span>(oldTextJson)
 </code></pre>
 <h2 id="045-—-april-2-2019"><code>0.45</code> — April 2, 2019</h2>
 <h3 id="breaking">BREAKING</h3>
@@ -1251,15 +1264,15 @@ Text.create(oldTextJson)
 <h2 id="043-—-october-27-2018"><code>0.43</code> — October 27, 2018</h2>
 <h3 id="new">NEW</h3>
 <p><strong>The <code>editor.command</code> and <code>editor.query</code> methods can take functions.</strong> Previously they only accepted a <code>type</code> string and would look up the command or query by type. Now, they also accept a custom function. This is helpful for plugin authors, who want to accept a &quot;command option&quot;, since it gives users more flexibility to write one-off commands or queries. For example a plugin could be passed either:</p>
-<pre><code class="lang-javascript">Hotkey({
+<pre><code class="lang-javascript"><span class="hljs-title class_">Hotkey</span>({
   <span class="hljs-attr">hotkey</span>: <span class="hljs-string">&apos;cmd+b&apos;</span>,
   <span class="hljs-attr">command</span>: <span class="hljs-string">&apos;addBoldMark&apos;</span>,
 })
 </code></pre>
 <p>Or a custom command function:</p>
-<pre><code class="lang-javascript">Hotkey({
+<pre><code class="lang-javascript"><span class="hljs-title class_">Hotkey</span>({
   <span class="hljs-attr">hotkey</span>: <span class="hljs-string">&apos;cmd+b&apos;</span>,
-  <span class="hljs-attr">command</span>: <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> editor.addBoldMark().moveToEnd(),
+  <span class="hljs-attr">command</span>: <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> editor.<span class="hljs-title function_">addBoldMark</span>().<span class="hljs-title function_">moveToEnd</span>(),
 })
 </code></pre>
 <h3 id="breaking">BREAKING</h3>
@@ -1267,14 +1280,11 @@ Text.create(oldTextJson)
 <p><strong>Changes are now flushed to <code>onChange</code> asynchronously.</strong> Previously this was done synchronously, which resulted in some strange race conditions in React environments. Now they will always be flushed asynchronously, just like <code>setState</code>.</p>
 <p><strong>The <code>normalize*</code> and <code>validate*</code> middleware signatures have changed!</strong> Previously the <code>normalize*</code> and <code>validate*</code> middleware was passed <code>(node, next)</code>. However now, for consistency with the other middleware they are all passed <code>(node, editor, next)</code>. This way, all middleware always receive <code>editor</code> and <code>next</code> as their final two arguments.</p>
 <p><strong>The <code>editor.event</code> method has been removed.</strong> Previously this is what you&apos;d use when writing tests to simulate events being fired—which were slightly different to other running other middleware. With the simplification to the editor and to the newly-consistent middleware signatures, you can now use <code>editor.run</code> directly to simulate events:</p>
-<pre><code class="lang-javascript">editor.run(<span class="hljs-string">&apos;onKeyDown&apos;</span>, { <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;Tab&apos;</span>, ... })
+<pre><code class="lang-javascript">editor.<span class="hljs-title function_">run</span>(<span class="hljs-string">&apos;onKeyDown&apos;</span>, { <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;Tab&apos;</span>, ... })
 </code></pre>
 <h3 id="deprecated">DEPRECATED</h3>
 <p><strong>The <code>editor.change</code> method is deprecated.</strong> With the removal of the <code>Change</code> object, there&apos;s no need anymore to create the small closures with <code>editor.change()</code>. Instead you can directly invoke commands on the editor in series, and all of the changes will be emitted asynchronously on the next tick.</p>
-<pre><code class="lang-javascript">editor
-  .insertText(<span class="hljs-string">&apos;word&apos;</span>)
-  .moveFocusForward(<span class="hljs-number">10</span>)
-  .addMark(<span class="hljs-string">&apos;bold&apos;</span>)
+<pre><code class="lang-javascript">editor.<span class="hljs-title function_">insertText</span>(<span class="hljs-string">&apos;word&apos;</span>).<span class="hljs-title function_">moveFocusForward</span>(<span class="hljs-number">10</span>).<span class="hljs-title function_">addMark</span>(<span class="hljs-string">&apos;bold&apos;</span>)
 </code></pre>
 <p><strong>The <code>applyOperations</code> method is deprecated.</strong> Instead you can loop a set of operations and apply each one using <code>applyOperation</code>. This is to reduce the number of methods exposed on the <code>Editor</code> to keep it simpler.</p>
 <p><strong>The <code>change.call</code> method is deprecated.</strong> Previously this was used to call a one-off function as a change method. Now this behavior is equivalent to calling <code>editor.command(fn)</code> instead.</p>
@@ -1284,45 +1294,45 @@ Text.create(oldTextJson)
 <p>A new <code>Editor</code> controller now makes this relationship clear. It borrows many of its behaviors from the React <code>&lt;Editor&gt;</code> component. And the component actually just instantiates its own plain JavaScript <code>Editor</code> under the covers to delegate the work to.</p>
 <p>This new concept powers a lot of the thinking in this new version, unlocking a lot of changes that bring a clearer separation of responsibilities to Slate. It allows us to create editors in any environment, which makes server-side use cases easier, brings parity to testing, and even opens us up to supporting other view layers like React Native or Vue.js in the future.</p>
 <p>It has a familiar API, based on the existing <code>editor</code> concept:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">new</span> Editor({ plugins, value, onChange })
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Editor</span>({ plugins, value, onChange })
 
-editor.change(<span class="hljs-function"><span class="hljs-params">change</span> =&gt;</span> {
+editor.<span class="hljs-title function_">change</span>(<span class="hljs-function"><span class="hljs-params">change</span> =&gt;</span> {
   ...
 })
 </code></pre>
 <p>However it also introduces imperative methods to make testing easier:</p>
-<pre><code class="lang-javascript">editor.run(<span class="hljs-string">&apos;renderNode&apos;</span>, props)
+<pre><code class="lang-javascript">editor.<span class="hljs-title function_">run</span>(<span class="hljs-string">&apos;renderNode&apos;</span>, props)
 
-editor.event(<span class="hljs-string">&apos;onKeyDown&apos;</span>, event)
+editor.<span class="hljs-title function_">event</span>(<span class="hljs-string">&apos;onKeyDown&apos;</span>, event)
 
-editor.command(<span class="hljs-string">&apos;addMark&apos;</span>, <span class="hljs-string">&apos;bold&apos;</span>)
+editor.<span class="hljs-title function_">command</span>(<span class="hljs-string">&apos;addMark&apos;</span>, <span class="hljs-string">&apos;bold&apos;</span>)
 
-editor.query(<span class="hljs-string">&apos;isVoid&apos;</span>, node)
+editor.<span class="hljs-title function_">query</span>(<span class="hljs-string">&apos;isVoid&apos;</span>, node)
 </code></pre>
 <p>I&apos;m very excited about it, so I hope you like it!</p>
 <p><strong>Introducing the &quot;commands&quot; concept.</strong> Previously, &quot;change methods&quot; were treated in a first-class way, but plugins had no easy way to add their own change methods that were reusable elsewhere. And they had no way to override the built-in logic for certain commands, for example <code>splitBlock</code> or <code>insertText</code>. However, now this is all customizable by plugins, with the core Slate plugin providing all of the previous default commands.</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> plugin = {
   <span class="hljs-attr">commands</span>: {
-    <span class="hljs-function"><span class="hljs-title">wrapQuote</span>(<span class="hljs-params">change</span>)</span> {
-      change.wrapBlock(<span class="hljs-string">&apos;quote&apos;</span>)
+    <span class="hljs-title function_">wrapQuote</span>(<span class="hljs-params">change</span>) {
+      change.<span class="hljs-title function_">wrapBlock</span>(<span class="hljs-string">&apos;quote&apos;</span>)
     },
   },
 }
 </code></pre>
 <p>Those commands are then available directly on the <code>change</code> objects, which are now editor-specific:</p>
-<pre><code class="lang-javascript">change.wrapQuote()
+<pre><code class="lang-javascript">change.<span class="hljs-title function_">wrapQuote</span>()
 </code></pre>
 <p>This allows you to define all of your commands in a single, easily-testable place. And then &quot;behavioral&quot; plugins can simply take command names as options, so that you have full control over the logic they trigger.</p>
 <p><strong>Introducing the &quot;queries&quot; concept.</strong> Similarly to the commands, queries allow plugins to define specific behaviors that the editor can be queried for in a reusable way, to be used when rendering buttons, or deciding on command behaviors, etc.</p>
 <p>For example, you might define an <code>getActiveList</code> query:</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> plugin = {
   <span class="hljs-attr">queries</span>: {
-    <span class="hljs-function"><span class="hljs-title">getActiveList</span>(<span class="hljs-params">editor</span>)</span> {},
+    <span class="hljs-title function_">getActiveList</span>(<span class="hljs-params">editor</span>) {},
   },
 }
 </code></pre>
 <p>And then be able to re-use that logic easily in different places in your codebase, or pass in the query name to a plugin that can use your custom logic itself:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> list = change.getActiveList()
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> list = change.<span class="hljs-title function_">getActiveList</span>()
 
 <span class="hljs-keyword">if</span> (list) {
   ...
@@ -1333,21 +1343,21 @@ editor.query(<span class="hljs-string">&apos;isVoid&apos;</span>, node)
 <p>Taken together, commands and queries offer a better way for plugins to manage their inter-dependencies. They can take in command or query names as options to change their behaviors, or they can export new commands and queries that you can reuse in your codebase.</p>
 <p><strong>The middleware stack is now deferrable.</strong> With the introduction of the <code>Editor</code> controller, the middleware stack in Slate has also been upgraded. Each middleware now receives a <code>next</code> function (similar to Express or Koa) that allows you to choose whether to iterating the stack or not.</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Previously, you&apos;d return `undefined` to continue.</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onKeyDown</span>(<span class="hljs-params">event, editor, next</span>) </span>{
-  <span class="hljs-keyword">if</span> (event.key !== <span class="hljs-string">&apos;Enter&apos;</span>) <span class="hljs-keyword">return</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">onKeyDown</span>(<span class="hljs-params">event, editor, next</span>) {
+  <span class="hljs-keyword">if</span> (event.<span class="hljs-property">key</span> !== <span class="hljs-string">&apos;Enter&apos;</span>) <span class="hljs-keyword">return</span>
   ...
 }
 
 <span class="hljs-comment">// Now, you call `next()` to continue...</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onKeyDown</span>(<span class="hljs-params">event, editor, next</span>) </span>{
-  <span class="hljs-keyword">if</span> (event.key !== <span class="hljs-string">&apos;Enter&apos;</span>) <span class="hljs-keyword">return</span> next()
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">onKeyDown</span>(<span class="hljs-params">event, editor, next</span>) {
+  <span class="hljs-keyword">if</span> (event.<span class="hljs-property">key</span> !== <span class="hljs-string">&apos;Enter&apos;</span>) <span class="hljs-keyword">return</span> <span class="hljs-title function_">next</span>()
   ...
 }
 </code></pre>
 <p>While that may seem inconvenient, it opens up an entire new behavior, which is deferring to the plugins later in the stack to see if they &quot;handle&quot; a specific case, and if not, handling it yourself:</p>
-<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onKeyDown</span>(<span class="hljs-params">event, editor, next</span>) </span>{
-  <span class="hljs-keyword">if</span> (event.key === <span class="hljs-string">&apos;Enter&apos;</span>) {
-    <span class="hljs-keyword">const</span> handled = next()
+<pre><code class="lang-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">onKeyDown</span>(<span class="hljs-params">event, editor, next</span>) {
+  <span class="hljs-keyword">if</span> (event.<span class="hljs-property">key</span> === <span class="hljs-string">&apos;Enter&apos;</span>) {
+    <span class="hljs-keyword">const</span> handled = <span class="hljs-title function_">next</span>()
     <span class="hljs-keyword">if</span> (handled) <span class="hljs-keyword">return</span> handled
 
     <span class="hljs-comment">// Otherwise, handle `Enter` yourself...</span>
@@ -1357,7 +1367,7 @@ editor.query(<span class="hljs-string">&apos;isVoid&apos;</span>, node)
 <p>This is how all of the core logic in <code>slate-react</code> is now implemented, eliminating the need for a &quot;before&quot; and an &quot;after&quot; plugin that duplicate logic.</p>
 <p>Under the covers, the <code>schema</code>, <code>commands</code> and <code>queries</code> concept are all implemented as plugins that attach varying middleware as well. For example, commands are processed using the <code>onCommand</code> middleware under the covers:</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> plugin = {
-  <span class="hljs-function"><span class="hljs-title">onCommand</span>(<span class="hljs-params">command, editor, next</span>)</span> {
+  <span class="hljs-title function_">onCommand</span>(<span class="hljs-params">command, editor, next</span>) {
     ...
   }
 }
@@ -1369,13 +1379,13 @@ editor.query(<span class="hljs-string">&apos;isVoid&apos;</span>, node)
 <h3 id="breaking">BREAKING</h3>
 <p><strong>The <code>Value</code> object is no longer tied to changes.</strong> Previously, you could create a new <code>Change</code> by calling <code>value.change()</code> and retrieve a new value. With the re-architecture to properly decouple the schema, commands, queries and plugins from the core Slate data models, this is no longer possible. Instead, changes are always created via an <code>Editor</code> instance, where those concepts live.</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// Instead of...</span>
-<span class="hljs-keyword">const</span> { value } = <span class="hljs-built_in">this</span>.state
-<span class="hljs-keyword">const</span> change = value.change()
+<span class="hljs-keyword">const</span> { value } = <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>
+<span class="hljs-keyword">const</span> change = value.<span class="hljs-title function_">change</span>()
 ...
-<span class="hljs-built_in">this</span>.onChange(change)
+<span class="hljs-variable language_">this</span>.<span class="hljs-title function_">onChange</span>(change)
 
 <span class="hljs-comment">// You now would do...</span>
-<span class="hljs-built_in">this</span>.editor.change(<span class="hljs-function"><span class="hljs-params">change</span> =&gt;</span> {
+<span class="hljs-variable language_">this</span>.<span class="hljs-property">editor</span>.<span class="hljs-title function_">change</span>(<span class="hljs-function"><span class="hljs-params">change</span> =&gt;</span> {
   <span class="hljs-keyword">const</span> { value } = change
   ...
 })
@@ -1384,7 +1394,7 @@ editor.query(<span class="hljs-string">&apos;isVoid&apos;</span>, node)
 <p><strong>Remove the <code>Stack</code> &quot;model&quot;, in favor of the new <code>Editor</code>.</strong> Previously there was a pseudo-model called the <code>Stack</code> that was very low level, and not really a model. This concept has now been rolled into the new <code>Editor</code> controller, which can be used in any environment because it&apos;s just plain JavaScript. There was almost no need to directly use a <code>Stack</code> instance previously, so this change shouldn&apos;t affect almost anyone.</p>
 <p><strong>Remove the <code>Schema</code> &quot;model&quot;, in favor of the new <code>Editor</code>.</strong> Previously there was another pseudo-model called the <code>Schema</code>, that was used to contain validation logic. All of the same validation features are still available, but the old <code>Schema</code> model is now rolled into the <code>Editor</code> controller as well, in the form of an internal <code>SchemaPlugin</code> that isn&apos;t exposed.</p>
 <p><strong>Remove the <code>schema.isVoid</code> and <code>schema.isAtomic</code> in favor of queries.</strong> Previously these two methods were used to query the schema about the behavior of a specific <code>node</code> or <code>decoration</code>. Now these same queries as possible using the &quot;queries&quot; concept, and are available directly on the <code>change</code> object:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">if</span> (change.isVoid(node)) {
+<pre><code class="lang-javascript"><span class="hljs-keyword">if</span> (change.<span class="hljs-title function_">isVoid</span>(node)) {
   ...
 }
 </code></pre>
@@ -1392,12 +1402,12 @@ editor.query(<span class="hljs-string">&apos;isVoid&apos;</span>, node)
 <p><strong>Remove the <code>History</code> model, in favor of commands.</strong> Previously there was a <code>History</code> model that stored the undo/redo stacks, and managing saving new operations to those stacks. All of this logic has been folded into the new &quot;commands&quot; concept, and the undo/redo stacks now live in <code>value.data</code>. This has the benefit of allowing the history behavior to be completely overridable by userland plugins, which was not an easy feat to manage before.</p>
 <p><strong>Values can no longer be normalized on creation.</strong> With the decoupling of the data model and the plugin layer, the schema rules are no longer available inside the <code>Value</code> model. This means that you can no longer receive a &quot;normalized&quot; value without having access to the <code>Editor</code> and its plugins.</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// While previously you could attach a `schema` to a value...</span>
-<span class="hljs-keyword">const</span> normalized = Value.create({ ..., schema })
+<span class="hljs-keyword">const</span> normalized = <span class="hljs-title class_">Value</span>.<span class="hljs-title function_">create</span>({ ..., schema })
 
 <span class="hljs-comment">// Now you&apos;d need to do that with the `editor`...</span>
-<span class="hljs-keyword">const</span> value = Value.create({ ... })
-<span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">new</span> Editor({ value, <span class="hljs-attr">plugins</span>: [{ schema }] })
-<span class="hljs-keyword">const</span> normalized = editor.value
+<span class="hljs-keyword">const</span> value = <span class="hljs-title class_">Value</span>.<span class="hljs-title function_">create</span>({ ... })
+<span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Editor</span>({ value, <span class="hljs-attr">plugins</span>: [{ schema }] })
+<span class="hljs-keyword">const</span> normalized = editor.<span class="hljs-property">value</span>
 </code></pre>
 <p>While this seems inconvenient, it makes the boundaries in the API much more clear, and keeps the immutable and mutable concepts separated. This specific code sample gets longer, but the complexities elsewhere in the library are removed.</p>
 <p><strong>The <code>Change</code> class is no longer exported.</strong> Changes are now editor-specific, so exporting the <code>Change</code> class no longer makes sense. Instead, you can use the <code>editor.change()</code> API to receive a new change object with the commands and queries specific to your editor&apos;s plugins.</p>
@@ -1407,12 +1417,12 @@ editor.query(<span class="hljs-string">&apos;isVoid&apos;</span>, node)
 <p><strong>The <code>withoutNormalization</code> helper has been renamed to <code>withoutNormalizing</code>.</strong> This is to stay consistent with the new helpers for <code>withoutSaving</code> and <code>withoutMerging</code>.</p>
 <h3 id="breaking">BREAKING</h3>
 <p><strong>The the &quot;operation flags&quot; concept was removed.</strong> This was a confusing concept that was implemented in multiple different ways and led to the logic around normalizing, saving, and merging operations being more complex than it needed to be. These flags have been replaced with three simpler helper functions: <code>withoutNormalizing</code>, <code>withoutSaving</code> and <code>withoutMerging</code>.</p>
-<pre><code class="lang-javascript">change.withoutNormalizing(<span class="hljs-function">() =&gt;</span> {
-  nodes.forEach(<span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> change.removeNodeByKey(node.key))
+<pre><code class="lang-javascript">change.<span class="hljs-title function_">withoutNormalizing</span>(<span class="hljs-function">() =&gt;</span> {
+  nodes.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> change.<span class="hljs-title function_">removeNodeByKey</span>(node.<span class="hljs-property">key</span>))
 })
 </code></pre>
-<pre><code class="lang-javascript">change.withoutSaving(<span class="hljs-function">() =&gt;</span> {
-  change.setValue({ decorations })
+<pre><code class="lang-javascript">change.<span class="hljs-title function_">withoutSaving</span>(<span class="hljs-function">() =&gt;</span> {
+  change.<span class="hljs-title function_">setValue</span>({ decorations })
 })
 </code></pre>
 <p>This means that you no longer use the <code>{ normalize: false }</code> or <code>{ save: false }</code> options as arguments to individual change methods, and instead use these new helper methods to apply these behaviors to groups of changes at once.</p>
@@ -1427,7 +1437,7 @@ editor.query(<span class="hljs-string">&apos;isVoid&apos;</span>, node)
 <p><strong>Introducing the <code>Decoration</code> and <code>Selection</code> models.</strong> These two new models both implement the new <code>Range</code> interface. Where previously they had to mis-use the <code>Range</code> model itself with added semantics. This just cleans up some of the confusion around overlapping properties, and allows us to add even more domain-specific methods and properties in the future without trouble.</p>
 <h3 id="breaking">BREAKING</h3>
 <p><strong>Decorations have changed!</strong> Previously, decorations piggybacked on the <code>Range</code> model, using the existing <code>marks</code> property, and introducing their own <code>isAtomic</code> property. However, they have now been split out into their own <code>Decoration</code> model with a single <code>mark</code> and with the <code>isAtomic</code> property controlled by the schema. What previously would have looked like:</p>
-<pre><code class="lang-javascript">Range.create({
+<pre><code class="lang-javascript"><span class="hljs-title class_">Range</span>.<span class="hljs-title function_">create</span>({
   <span class="hljs-attr">anchor</span>: { ... },
   <span class="hljs-attr">focus</span>: { ... },
   <span class="hljs-attr">marks</span>: [{ <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;highlight&apos;</span> }],
@@ -1435,7 +1445,7 @@ editor.query(<span class="hljs-string">&apos;isVoid&apos;</span>, node)
 })
 </code></pre>
 <p>Is now:</p>
-<pre><code class="lang-javascript">Decoration.create({
+<pre><code class="lang-javascript"><span class="hljs-title class_">Decoration</span>.<span class="hljs-title function_">create</span>({
   <span class="hljs-attr">anchor</span>: { ... },
   <span class="hljs-attr">focus</span>: { ... },
   <span class="hljs-attr">mark</span>: { <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;highlight&apos;</span> },
@@ -1451,14 +1461,14 @@ editor.query(<span class="hljs-string">&apos;isVoid&apos;</span>, node)
 }
 </code></pre>
 <p><strong>The <code>Range</code> model has reduced semantics.</strong> Previously, since all decorations and selections were ranges, you could create ranges with an <code>isFocused</code>, <code>isAtomic</code> or <code>marks</code> properties. Now <code>Range</code> objects are much simpler, offering only an <code>anchor</code> and a <code>focus</code>, and can be extended by other models implementing the range interface. However, this means that using <code>Range.create</code> or <code>document.createRange</code> might not be what you want anymore. For example, for creating a new selection, you used to use:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> selection = <span class="hljs-built_in">document</span>.createRange({
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> selection = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createRange</span>({
   <span class="hljs-attr">isFocused</span>: <span class="hljs-literal">true</span>,
   <span class="hljs-attr">anchor</span>: { ... },
   <span class="hljs-attr">focus</span>: { ... },
 })
 </code></pre>
 <p>But now, you&apos;ll need to use <code>document.createSelection</code> instead:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> selection = <span class="hljs-built_in">document</span>.createSelection({
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> selection = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createSelection</span>({
   <span class="hljs-attr">isFocused</span>: <span class="hljs-literal">true</span>,
   <span class="hljs-attr">anchor</span>: { ... },
   <span class="hljs-attr">focus</span>: { ... },
@@ -1472,12 +1482,12 @@ editor.query(<span class="hljs-string">&apos;isVoid&apos;</span>, node)
 <h2 id="038-—-august-21-2018"><code>0.38</code> — August 21, 2018</h2>
 <h3 id="deprecated">DEPRECATED</h3>
 <p><strong><code>Node.isVoid</code> access is deprecated.</strong> Previously the &quot;voidness&quot; of a node was hardcoded in the data model. Soon it will be determined at runtime based on your editor&apos;s schema. This deprecation just ensures that you aren&apos;t using the <code>node.isVoid</code> property which will not work in future verisons. What previously would have been:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">if</span> (node.isVoid) {
+<pre><code class="lang-javascript"><span class="hljs-keyword">if</span> (node.<span class="hljs-property">isVoid</span>) {
   ...
 }
 </code></pre>
 <p>Now becomes:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">if</span> (schema.isVoid(node)) {
+<pre><code class="lang-javascript"><span class="hljs-keyword">if</span> (schema.<span class="hljs-title function_">isVoid</span>(node)) {
   ...
 }
 </code></pre>
@@ -1486,7 +1496,7 @@ editor.query(<span class="hljs-string">&apos;isVoid&apos;</span>, node)
 <h2 id="037-—-august-3-2018"><code>0.37</code> — August 3, 2018</h2>
 <h3 id="new">NEW</h3>
 <p><strong>Introducing the <code>Point</code> model.</strong> Ranges are now built up of two <code>Point</code> models—an <code>anchor</code> and a <code>focus</code>—instead of having the properties set directly on the range itself. This makes the &quot;point&quot; concept first-class in Slate and better API&apos;s can be built around point objects.</p>
-<pre><code class="lang-javascript">Point.create({
+<pre><code class="lang-javascript"><span class="hljs-title class_">Point</span>.<span class="hljs-title function_">create</span>({
   <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;a&apos;</span>,
   <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
   <span class="hljs-attr">offset</span>: <span class="hljs-number">31</span>,
@@ -1494,11 +1504,11 @@ editor.query(<span class="hljs-string">&apos;isVoid&apos;</span>, node)
 </code></pre>
 <p>These points are exposed on <code>Range</code> objects via the <code>anchor</code>, <code>focus</code>, <code>start</code> and <code>end</code> properties:</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { anchor, focus } = range
-change.removeNodeByKey(anchor.key)
+change.<span class="hljs-title function_">removeNodeByKey</span>(anchor.<span class="hljs-property">key</span>)
 </code></pre>
 <p>These replace the earlier <code>anchorKey</code>, <code>anchorOffset</code>, etc. properties.</p>
 <p><strong><code>Document.createRange</code> creates a relative range.</strong> Previously you&apos;d have to use <code>Range.create</code> and make sure that you passed valid arguments, and ensure that you &quot;normalized&quot; the range to sync its keys and paths. This is no longer the case, since the <code>createRange</code> method will do it for you.</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> range = <span class="hljs-built_in">document</span>.createRange({
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> range = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createRange</span>({
   <span class="hljs-attr">anchor</span>: {
     <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;a&apos;</span>,
     <span class="hljs-attr">offset</span>: <span class="hljs-number">1</span>,
@@ -1511,7 +1521,7 @@ change.removeNodeByKey(anchor.key)
 </code></pre>
 <p>This will automatically ensure that the range references leaf text nodes, and that its <code>anchor</code> and <code>focus</code> paths are set.</p>
 <p><strong><code>Document.createPoint</code> creates a relative point.</strong> Just like the <code>createRange</code> method, <code>createPoint</code> will create a point that is guaranteed to be relative to the document itself. This is often a lot easier than using <code>Point.create</code> directly.</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> anchor = <span class="hljs-built_in">document</span>.createPoint({
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> anchor = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createPoint</span>({
   <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;a&apos;</span>,
   <span class="hljs-attr">offset</span>: <span class="hljs-number">1</span>,
 })
@@ -1711,7 +1721,7 @@ selectAll -&gt; moveToRangeOfDocument
       <span class="hljs-comment">// Match all blocks, regardless of type!</span>
       <span class="hljs-attr">match</span>: { <span class="hljs-attr">object</span>: <span class="hljs-string">&apos;block&apos;</span> },
       <span class="hljs-attr">text</span>: <span class="hljs-regexp">/.../g</span>,
-      normalize: <span class="hljs-function">() =&gt;</span> { ... },
+      <span class="hljs-attr">normalize</span>: <span class="hljs-function">() =&gt;</span> { ... },
     }]
   }
 }
@@ -1723,7 +1733,7 @@ selectAll -&gt; moveToRangeOfDocument
   <span class="hljs-attr">normalize</span>: (change, violation, context) {
     <span class="hljs-keyword">if</span> (violation === <span class="hljs-string">&apos;child_type_invalid&apos;</span>) {
       <span class="hljs-keyword">const</span> type = index === <span class="hljs-number">0</span> ? <span class="hljs-string">&apos;title&apos;</span> : <span class="hljs-string">&apos;paragraph&apos;</span>
-      <span class="hljs-keyword">return</span> change.setNodeByKey(context.child.key, type)
+      <span class="hljs-keyword">return</span> change.<span class="hljs-title function_">setNodeByKey</span>(context.<span class="hljs-property">child</span>.<span class="hljs-property">key</span>, type)
     }
   }
 }
@@ -1731,9 +1741,9 @@ selectAll -&gt; moveToRangeOfDocument
 <p>Would now look like:</p>
 <pre><code class="lang-javascript">{
   <span class="hljs-attr">normalize</span>: (change, error) {
-    <span class="hljs-keyword">if</span> (error.code === <span class="hljs-string">&apos;child_type_invalid&apos;</span>) {
+    <span class="hljs-keyword">if</span> (error.<span class="hljs-property">code</span> === <span class="hljs-string">&apos;child_type_invalid&apos;</span>) {
       <span class="hljs-keyword">const</span> type = index === <span class="hljs-number">0</span> ? <span class="hljs-string">&apos;title&apos;</span> : <span class="hljs-string">&apos;paragraph&apos;</span>
-      <span class="hljs-keyword">return</span> change.setNodeByKey(error.child.key, type)
+      <span class="hljs-keyword">return</span> change.<span class="hljs-title function_">setNodeByKey</span>(error.<span class="hljs-property">child</span>.<span class="hljs-property">key</span>, type)
     }
   }
 }
@@ -1848,18 +1858,18 @@ selectAll -&gt; moveToRangeOfDocument
 <p><strong>The <code>toggleMark</code> transform now checks the intersection of marks.</strong> Previously, toggling would remove the mark from the range if any of the characters in a range didn&apos;t have it. However, this wasn&apos;t what all other richtext editors did, so the behavior has changed to mimic the standard behavior. Now, if any characters in the selection have the mark applied, it will first be added when toggling.</p>
 <p><strong>The <code>.length</code> property of nodes has been removed.</strong> This property caused issues with code like in Lodash that checked for &quot;array-likeness&quot; by simply looking for a <code>.length</code> property that was a number.</p>
 <p><strong><code>onChange</code> now receives a <code>Change</code> object (previously named <code>Transform</code>) instead of a <code>State</code>.</strong> This is needed because it enforces that all changes are represented by a single set of operations. Otherwise right now it&apos;s possible to do things like <code>state.transform()....apply({ save: false }).transform()....apply()</code> and result in losing the operation information in the history. With OT, we need all transforms that may happen to be exposed and emitted by the editor. The new syntax looks like:</p>
-<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-title">onChange</span>(<span class="hljs-params">change</span>)</span> {
-  <span class="hljs-built_in">this</span>.setState({ <span class="hljs-attr">state</span>: change.state })
+<pre><code class="lang-javascript"><span class="hljs-title function_">onChange</span>(<span class="hljs-params">change</span>) {
+  <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>({ <span class="hljs-attr">state</span>: change.<span class="hljs-property">state</span> })
 }
 
-<span class="hljs-function"><span class="hljs-title">onChange</span>(<span class="hljs-params">{ state }</span>)</span> {
-  <span class="hljs-built_in">this</span>.setState({ state })
+<span class="hljs-title function_">onChange</span>(<span class="hljs-params">{ state }</span>) {
+  <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>({ state })
 }
 </code></pre>
 <p><strong>Similarly, handlers now receive <code>e, data, change</code> instead of <code>e, data, state</code>.</strong> Instead of doing <code>return state.transform()....apply()</code> the plugins can now act on the change object directly. Plugins can still <code>return change...</code> if they want to break the stack from continuing on to other plugins. (Any <code>!= null</code> value will break out.) But they can also now not return anything, and the stack will apply their changes and continue onwards. This was previously impossible. The new syntax looks like:</p>
-<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onKeyDown</span>(<span class="hljs-params">e, data, change</span>) </span>{
-  <span class="hljs-keyword">if</span> (data.key == <span class="hljs-string">&apos;enter&apos;</span>) {
-    <span class="hljs-keyword">return</span> change.splitBlock()
+<pre><code class="lang-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">onKeyDown</span>(<span class="hljs-params">e, data, change</span>) {
+  <span class="hljs-keyword">if</span> (data.<span class="hljs-property">key</span> == <span class="hljs-string">&apos;enter&apos;</span>) {
+    <span class="hljs-keyword">return</span> change.<span class="hljs-title function_">splitBlock</span>()
   }
 }
 </code></pre>
@@ -2031,7 +2041,7 @@ selectAll -&gt; moveToRangeOfDocument
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"更新日志","level":"6.3","depth":1,"next":{"title":"常见问题","level":"6.4","depth":1,"path":"general/faq.md","ref":"general/faq.md","articles":[]},"previous":{"title":"贡献","level":"6.2","depth":1,"path":"general/contributing.md","ref":"general/contributing.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"general/changelog.md","mtime":"2023-04-26T08:49:07.651Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"更新日志","level":"6.3","depth":1,"next":{"title":"常见问题","level":"6.4","depth":1,"path":"general/faq.md","ref":"general/faq.md","articles":[]},"previous":{"title":"贡献","level":"6.2","depth":1,"path":"general/contributing.md","ref":"general/contributing.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"general/changelog.md","mtime":"2023-11-11T14:45:37.990Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -6,7 +6,7 @@
         <title>保存到数据库 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -56,7 +56,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="xx-using-the-bundled-source.html" />
+    <link rel="next" href="07-enabling-collaborative-editing.html" />
     
     
     <link rel="prev" href="05-executing-commands.html" />
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="07-enabling-collaborative-editing.html">
+            
+                <a href="07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="xx-using-the-bundled-source.html">
             
                 <a href="xx-using-the-bundled-source.html">
             
@@ -950,11 +963,11 @@
   },
 ]
 
-<span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> [editor] = <span class="hljs-title function_">useState</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">withReact</span>(<span class="hljs-title function_">createEditor</span>()))
 
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">initialValue</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">Editable</span> /&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">Slate</span>&gt;</span></span>
   )
@@ -970,13 +983,13 @@
   },
 ]
 
-<span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> [editor] = <span class="hljs-title function_">useState</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">withReact</span>(<span class="hljs-title function_">createEditor</span>()))
 
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span>
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span>
       <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span>
-      <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>
+      <span class="hljs-attr">initialValue</span>=<span class="hljs-string">{initialValue}</span>
       <span class="hljs-attr">onChange</span>=<span class="hljs-string">{value</span> =&gt;</span> {
         const isAstChange = editor.operations.some(
           op =&gt; &apos;set_selection&apos; !== op.type
@@ -995,12 +1008,12 @@
 </code></pre>
 <p>现在每当编辑页面，如果查看本地存储，应该会看到 <code>content</code> 值发生变化。</p>
 <p>但。。。如果刷新页面，一切都会重置。这是因为需要确保从同一个本地存储位置拉取初始值，如下所示：</p>
-<pre><code class="lang-jsx"><span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
+<pre><code class="lang-jsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> [editor] = <span class="hljs-title function_">useState</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">withReact</span>(<span class="hljs-title function_">createEditor</span>()))
   <span class="hljs-comment">// 如果存在，则从本地存储拉取初始化内容。</span>
-  <span class="hljs-keyword">const</span> initialValue = useMemo(
+  <span class="hljs-keyword">const</span> initialValue = <span class="hljs-title function_">useMemo</span>(
     <span class="hljs-function">() =&gt;</span>
-      <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-built_in">localStorage</span>.getItem(<span class="hljs-string">&apos;content&apos;</span>)) || [
+      <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&apos;content&apos;</span>)) || [
         {
           <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
           <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;A line of text in a paragraph.&apos;</span> }],
@@ -1010,9 +1023,9 @@
   )
 
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span>
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span>
       <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span>
-      <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>
+      <span class="hljs-attr">initialValue</span>=<span class="hljs-string">{initialValue}</span>
       <span class="hljs-attr">onChange</span>=<span class="hljs-string">{value</span> =&gt;</span> {
         const isAstChange = editor.operations.some(
           op =&gt; &apos;set_selection&apos; !== op.type
@@ -1033,41 +1046,41 @@
 <p>成功 —— 在数据库中已包含 JSON。</p>
 <p>但是如果你想要 JSON 意外的东西呢？是的，需要用不同的方式序列化值。例如将内容保存为纯文本而不是 JSON，可以编写一些序列化和反序列化纯文本值：</p>
 <pre><code class="lang-jsx"><span class="hljs-comment">// 从 Slate 中导入 `Node` 助手接口。</span>
-<span class="hljs-keyword">import</span> { Node } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Node</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 
 <span class="hljs-comment">// 定义接受值并返回字符串的序列化函数。</span>
-<span class="hljs-keyword">const</span> serialize = <span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">serialize</span> = value =&gt; {
   <span class="hljs-keyword">return</span> (
     value
       <span class="hljs-comment">// 在值的子项中返回每个段落的字符串内容。</span>
-      .map(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> Node.string(n))
+      .<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-title class_">Node</span>.<span class="hljs-title function_">string</span>(n))
       <span class="hljs-comment">// 用表示段落的换行符将其串联起来。</span>
-      .join(<span class="hljs-string">&apos;\n&apos;</span>)
+      .<span class="hljs-title function_">join</span>(<span class="hljs-string">&apos;\n&apos;</span>)
   )
 }
 
 <span class="hljs-comment">// 定义接受字符串返回值的反序列化函数。</span>
-<span class="hljs-keyword">const</span> deserialize = <span class="hljs-function"><span class="hljs-params">string</span> =&gt;</span> {
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">deserialize</span> = string =&gt; {
   <span class="hljs-comment">// 通过拆分字符串提取子级值数组。</span>
-  <span class="hljs-keyword">return</span> string.split(<span class="hljs-string">&apos;\n&apos;</span>).map(<span class="hljs-function"><span class="hljs-params">line</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> string.<span class="hljs-title function_">split</span>(<span class="hljs-string">&apos;\n&apos;</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">line</span> =&gt;</span> {
     <span class="hljs-keyword">return</span> {
       <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: line }],
     }
   })
 }
 
-<span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> [editor] = <span class="hljs-title function_">useState</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">withReact</span>(<span class="hljs-title function_">createEditor</span>()))
   <span class="hljs-comment">// 使用反序列化函数从本地存储中读取数据。</span>
-  <span class="hljs-keyword">const</span> initialValue = useMemo(
-    deserialize(<span class="hljs-built_in">localStorage</span>.getItem(<span class="hljs-string">&apos;content&apos;</span>)) || <span class="hljs-string">&apos;&apos;</span>,
+  <span class="hljs-keyword">const</span> initialValue = <span class="hljs-title function_">useMemo</span>(
+    <span class="hljs-title function_">deserialize</span>(<span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&apos;content&apos;</span>)) || <span class="hljs-string">&apos;&apos;</span>,
     []
   )
 
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span>
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span>
       <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span>
-      <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>
+      <span class="hljs-attr">initialValue</span>=<span class="hljs-string">{initialValue}</span>
       <span class="hljs-attr">onChange</span>=<span class="hljs-string">{value</span> =&gt;</span> {
         const isAstChange = editor.operations.some(
           op =&gt; &apos;set_selection&apos; !== op.type
@@ -1093,29 +1106,29 @@
   * resetNodes 重置编辑器的值。
   * 需要注意的是，传递 `at` 参数可能会导致 “Cannot resolve a DOM point from Slate point” 错误。
   */</span>
-  resetNodes&lt;T <span class="hljs-keyword">extends</span> Node&gt;(
-    editor: Editor,
+  resetNodes&lt;T <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Node</span>&gt;(
+    <span class="hljs-attr">editor</span>: <span class="hljs-title class_">Editor</span>,
     <span class="hljs-attr">options</span>: {
-      nodes?: Node | Node[],
-      at?: Location
+      nodes?: <span class="hljs-title class_">Node</span> | <span class="hljs-title class_">Node</span>[],
+      at?: <span class="hljs-title class_">Location</span>
     } = {}
   ): <span class="hljs-keyword">void</span> {
-    <span class="hljs-keyword">const</span> children = [...editor.children]
+    <span class="hljs-keyword">const</span> children = [...editor.<span class="hljs-property">children</span>]
 
-    children.forEach(<span class="hljs-function">(<span class="hljs-params">node</span>) =&gt;</span> editor.apply({ <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;remove_node&apos;</span>, <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>], node }))
+    children.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">node</span>) =&gt;</span> editor.<span class="hljs-title function_">apply</span>({ <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;remove_node&apos;</span>, <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>], node }))
 
-    <span class="hljs-keyword">if</span> (options.nodes) {
-      <span class="hljs-keyword">const</span> nodes = Node.isNode(options.nodes) ? [options.nodes] : options.nodes
+    <span class="hljs-keyword">if</span> (options.<span class="hljs-property">nodes</span>) {
+      <span class="hljs-keyword">const</span> nodes = <span class="hljs-title class_">Node</span>.<span class="hljs-title function_">isNode</span>(options.<span class="hljs-property">nodes</span>) ? [options.<span class="hljs-property">nodes</span>] : options.<span class="hljs-property">nodes</span>
 
-      nodes.forEach(<span class="hljs-function">(<span class="hljs-params">node, i</span>) =&gt;</span> editor.apply({ <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;insert_node&apos;</span>, <span class="hljs-attr">path</span>: [i], <span class="hljs-attr">node</span>: node }))
+      nodes.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">node, i</span>) =&gt;</span> editor.<span class="hljs-title function_">apply</span>({ <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;insert_node&apos;</span>, <span class="hljs-attr">path</span>: [i], <span class="hljs-attr">node</span>: node }))
     }
 
-    <span class="hljs-keyword">const</span> point = options.at &amp;&amp; Point.isPoint(options.at)
-      ? options.at
-      : Editor.end(editor, [])
+    <span class="hljs-keyword">const</span> point = options.<span class="hljs-property">at</span> &amp;&amp; <span class="hljs-title class_">Point</span>.<span class="hljs-title function_">isPoint</span>(options.<span class="hljs-property">at</span>)
+      ? options.<span class="hljs-property">at</span>
+      : <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">end</span>(editor, [])
 
     <span class="hljs-keyword">if</span> (point) {
-      Transforms.select(editor, point)
+      <span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">select</span>(editor, point)
     }
   }
 </code></pre>
@@ -1151,7 +1164,7 @@
                 </a>
                 
                 
-                <a href="xx-using-the-bundled-source.html" class="navigation navigation-next " aria-label="Next page: 使用已打包源">
+                <a href="07-enabling-collaborative-editing.html" class="navigation navigation-next " aria-label="Next page: 启用协作编辑">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1162,7 +1175,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"保存到数据库","level":"2.6","depth":1,"next":{"title":"使用已打包源","level":"2.7","depth":1,"path":"walkthroughs/xx-using-the-bundled-source.md","ref":"walkthroughs/xx-using-the-bundled-source.md","articles":[]},"previous":{"title":"执行命令","level":"2.5","depth":1,"path":"walkthroughs/05-executing-commands.md","ref":"walkthroughs/05-executing-commands.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/06-saving-to-a-database.md","mtime":"2023-04-26T08:49:07.659Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"保存到数据库","level":"2.6","depth":1,"next":{"title":"启用协作编辑","level":"2.7","depth":1,"path":"walkthroughs/07-enabling-collaborative-editing.md","ref":"walkthroughs/07-enabling-collaborative-editing.md","articles":[]},"previous":{"title":"执行命令","level":"2.5","depth":1,"path":"walkthroughs/05-executing-commands.md","ref":"walkthroughs/05-executing-commands.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/06-saving-to-a-database.md","mtime":"2023-11-11T14:45:38.002Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

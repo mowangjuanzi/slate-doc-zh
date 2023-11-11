@@ -6,7 +6,7 @@
         <title>接口 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../walkthroughs/xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                <a href="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../walkthroughs/xx-using-the-bundled-source.html">
             
                 <a href="../walkthroughs/xx-using-the-bundled-source.html">
             
@@ -941,7 +954,7 @@
                                 
                                 <h1 id="接口">接口</h1>
 <p>Slate 使用纯 JSON 对象。要求那些 JSON 对象符合某些接口。例如，Slate 中的文本节点必须遵循 <code>Text</code> 接口：</p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Text {
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Text</span> {
   <span class="hljs-attr">text</span>: <span class="hljs-built_in">string</span>
 }
 </code></pre>
@@ -950,8 +963,8 @@
 <p>基于接口的方法将 Slate 与大多数其它使用手动 “model” 类的富文本编辑器分类开来，可以更好的理解它。这也意味着避免了在启动时“初始化”数据模型造成的时间损失。</p>
 <h2 id="自定义属性">自定义属性</h2>
 <p>据个例子， Slate 中的 <code>Element</code> 节点接口是：</p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Element {
-  <span class="hljs-attr">children</span>: Node[]
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Element</span> {
+  <span class="hljs-attr">children</span>: <span class="hljs-title class_">Node</span>[]
 }
 </code></pre>
 <p>这是个非常宽松的接口。它只要求 <code>children</code> 属性定义为包含元素的子节点。</p>
@@ -968,28 +981,28 @@
 }
 </code></pre>
 <p><code>type</code> 和 <code>url</code> 属性是自定义 API。Slate 能看到它们，但不使用它们。然而当 Slate 渲染 link 元素，将会接收一个附带自定义属性的对象，以便可以将其渲染为：</p>
-<pre><code class="lang-jsx">&lt;a href={element.url}&gt;{element.children}&lt;/a&gt;
+<pre><code class="lang-jsx">&lt;a href={element.<span class="hljs-property">url</span>}&gt;{element.<span class="hljs-property">children</span>}&lt;/a&gt;
 </code></pre>
 <p>当开始使用 Slate 时，了解所有定义的接口非常重要。每个教程中都讨论了一些接口。</p>
 <h2 id="助手函数">助手函数</h2>
 <p>除了类型信息之外，Slate 中的每个接口还公开了一系列助手函数，使其更易于使用。</p>
 <p>例如，使用节点时：</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { Node } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Node</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 
 <span class="hljs-comment">// 获取元素节点的字符串内容。</span>
-<span class="hljs-keyword">const</span> string = Node.string(element)
+<span class="hljs-keyword">const</span> string = <span class="hljs-title class_">Node</span>.<span class="hljs-title function_">string</span>(element)
 
 <span class="hljs-comment">// 获取 root 节点内的指定节点。</span>
-<span class="hljs-keyword">const</span> descendant = Node.get(value, path)
+<span class="hljs-keyword">const</span> descendant = <span class="hljs-title class_">Node</span>.<span class="hljs-title function_">get</span>(value, path)
 </code></pre>
 <p>或者使用范围时：</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { Range } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Range</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 
 <span class="hljs-comment">// 按顺序获取范围的起点和终点。</span>
-<span class="hljs-keyword">const</span> [start, end] = Range.edges(range)
+<span class="hljs-keyword">const</span> [start, end] = <span class="hljs-title class_">Range</span>.<span class="hljs-title function_">edges</span>(range)
 
 <span class="hljs-comment">// 检查范围是否折叠为一个点。</span>
-<span class="hljs-keyword">if</span> (Range.isCollapsed(range)) {
+<span class="hljs-keyword">if</span> (<span class="hljs-title class_">Range</span>.<span class="hljs-title function_">isCollapsed</span>(range)) {
   <span class="hljs-comment">// ...</span>
 }
 </code></pre>
@@ -997,17 +1010,17 @@
 <h2 id="自定义助手">自定义助手</h2>
 <p>除了内置助手函数之外，可能还会想定义自定义助手函数并在自定义空间中将其公开。</p>
 <p>例如，如果编辑器支持图像，可能需要一个助手来确定元素是否是图像元素：</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> isImageElement = <span class="hljs-function"><span class="hljs-params">element</span> =&gt;</span> {
-  <span class="hljs-keyword">return</span> element.type === <span class="hljs-string">&apos;image&apos;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> element.url === <span class="hljs-string">&apos;string&apos;</span>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">isImageElement</span> = element =&gt; {
+  <span class="hljs-keyword">return</span> element.<span class="hljs-property">type</span> === <span class="hljs-string">&apos;image&apos;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> element.<span class="hljs-property">url</span> === <span class="hljs-string">&apos;string&apos;</span>
 }
 </code></pre>
 <p>可以轻松将它们定义为一次性功能。也可以将它们绑定到命名空间中，就像核心接口一样，然后使用它们。</p>
 <p>例如：</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { Element } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Element</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 
 <span class="hljs-comment">// 可以在任何地方使用 `MyElement` 访问扩展。</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> MyElement = {
-  ...Element,
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">MyElement</span> = {
+  ...<span class="hljs-title class_">Element</span>,
   isImageElement,
   isParagraphElement,
   isQuoteElement,
@@ -1057,7 +1070,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"接口","level":"3.1","depth":1,"next":{"title":"节点","level":"3.2","depth":1,"path":"concepts/02-nodes.md","ref":"concepts/02-nodes.md","articles":[]},"previous":{"title":"使用已打包源","level":"2.7","depth":1,"path":"walkthroughs/xx-using-the-bundled-source.md","ref":"walkthroughs/xx-using-the-bundled-source.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/01-interfaces.md","mtime":"2023-04-26T08:49:07.651Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"接口","level":"3.1","depth":1,"next":{"title":"节点","level":"3.2","depth":1,"path":"concepts/02-nodes.md","ref":"concepts/02-nodes.md","articles":[]},"previous":{"title":"使用已打包源","level":"2.8","depth":1,"path":"walkthroughs/xx-using-the-bundled-source.md","ref":"walkthroughs/xx-using-the-bundled-source.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/01-interfaces.md","mtime":"2023-11-11T14:45:37.990Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

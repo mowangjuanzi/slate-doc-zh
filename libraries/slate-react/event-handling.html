@@ -6,7 +6,7 @@
         <title>Event Handling · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../../walkthroughs/xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="../../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                <a href="../../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../../walkthroughs/xx-using-the-bundled-source.html">
             
                 <a href="../../walkthroughs/xx-using-the-bundled-source.html">
             
@@ -943,17 +956,17 @@
 <p>默认情况下，<code>Editable</code> 组件带有一组事件处理程序，用于处理典型的富文本编辑行为（例如实现了自己的 <code>onCopy</code>、<code>onPaste</code>、<code>onDrop</code>、 <code>onKeyDown</code> 处理程序。</p>
 <p>在某些情况下会想要扩展或者重写 Slate 的默认行为，可以通过将自定义的事件处理程序传递给 <code>Editable</code> 组件来实现。</p>
 <p>Your custom event handler can control whether or not Slate should execute its own event handling for a given event after your handler runs depending on the return value of your event handler as described below.</p>
-<pre><code class="lang-jsx"><span class="hljs-keyword">import</span> {Editable} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-react&apos;</span>;
+<pre><code class="lang-jsx"><span class="hljs-keyword">import</span> {<span class="hljs-title class_">Editable</span>} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-react&apos;</span>;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyEditor</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">const</span> onClick = <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> {
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">MyEditor</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">onClick</span> = event =&gt; {
     <span class="hljs-comment">// 实现自定义事件逻辑。。。</span>
 
     <span class="hljs-comment">// When no value is returned, Slate will execute its own event handler when</span>
     <span class="hljs-comment">// neither isDefaultPrevented nor isPropagationStopped was set on the event</span>
   };
 
-  <span class="hljs-keyword">const</span> onDrop = <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">onDrop</span> = event =&gt; {
     <span class="hljs-comment">// 实现自定义事件逻辑。。。</span>
 
     <span class="hljs-comment">// No matter the state of the event, treat it as being handled by returning</span>
@@ -961,7 +974,7 @@
     <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
   };
 
-  <span class="hljs-keyword">const</span> onDragStart = <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">onDragStart</span> = event =&gt; {
     <span class="hljs-comment">// 实现自定义事件逻辑。。。</span>
 
     <span class="hljs-comment">// No matter the status of the event, treat event as *not* being handled by</span>
@@ -970,7 +983,7 @@
   };
 
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Editable</span>
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Editable</span>
       <span class="hljs-attr">onClick</span>=<span class="hljs-string">{onClick}</span>
       <span class="hljs-attr">onDrop</span>=<span class="hljs-string">{onDrop}</span>
       <span class="hljs-attr">onDragStart</span>=<span class="hljs-string">{onDragStart}</span>
@@ -1022,7 +1035,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Event Handling","level":"5.1.6","depth":2,"next":{"title":"Slate History","level":"5.2","depth":1,"path":"libraries/slate-history/README.md","ref":"libraries/slate-history/README.md","articles":[{"title":"withHistory","level":"5.2.1","depth":2,"path":"libraries/slate-history/with-history.md","ref":"libraries/slate-history/with-history.md","articles":[]},{"title":"HistoryEditor","level":"5.2.2","depth":2,"path":"libraries/slate-history/history-editor.md","ref":"libraries/slate-history/history-editor.md","articles":[]},{"title":"History","level":"5.2.3","depth":2,"path":"libraries/slate-history/history.md","ref":"libraries/slate-history/history.md","articles":[]}]},"previous":{"title":"Editable Component","level":"5.1.5","depth":2,"path":"libraries/slate-react/editable.md","ref":"libraries/slate-react/editable.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"libraries/slate-react/event-handling.md","mtime":"2023-04-26T08:49:07.659Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Event Handling","level":"5.1.6","depth":2,"next":{"title":"Slate History","level":"5.2","depth":1,"path":"libraries/slate-history/README.md","ref":"libraries/slate-history/README.md","articles":[{"title":"withHistory","level":"5.2.1","depth":2,"path":"libraries/slate-history/with-history.md","ref":"libraries/slate-history/with-history.md","articles":[]},{"title":"HistoryEditor","level":"5.2.2","depth":2,"path":"libraries/slate-history/history-editor.md","ref":"libraries/slate-history/history-editor.md","articles":[]},{"title":"History","level":"5.2.3","depth":2,"path":"libraries/slate-history/history.md","ref":"libraries/slate-history/history.md","articles":[]}]},"previous":{"title":"Editable Component","level":"5.1.5","depth":2,"path":"libraries/slate-react/editable.md","ref":"libraries/slate-react/editable.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"libraries/slate-react/event-handling.md","mtime":"2023-11-11T14:45:37.998Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

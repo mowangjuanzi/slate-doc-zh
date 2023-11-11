@@ -6,7 +6,7 @@
         <title>PathRef · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../../walkthroughs/xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="../../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                <a href="../../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../../walkthroughs/xx-using-the-bundled-source.html">
             
                 <a href="../../walkthroughs/xx-using-the-bundled-source.html">
             
@@ -941,10 +954,10 @@
                                 
                                 <h1 id="pathref-api">PathRef API</h1>
 <p><code>PathRef</code> objects keep a specific path in a document synced over time as new operations are applied to the editor. It is created using the <code>Editor.pathRef</code> method. You can access their property <code>current</code> at any time for the up-to-date <code>Path</code> value. When you no longer need to track this location, call <code>unref()</code> to free the resources. The <code>affinity</code> refers to the direction the <code>PathRef</code> will go when a user inserts content at the current position of the <code>Path</code>.</p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> PathRef {
-  <span class="hljs-attr">current</span>: Path | <span class="hljs-literal">null</span>
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">PathRef</span> {
+  <span class="hljs-attr">current</span>: <span class="hljs-title class_">Path</span> | <span class="hljs-literal">null</span>
   <span class="hljs-attr">affinity</span>: <span class="hljs-string">&apos;forward&apos;</span> | <span class="hljs-string">&apos;backward&apos;</span> | <span class="hljs-literal">null</span>
-  unref(): Path | <span class="hljs-literal">null</span>
+  <span class="hljs-title function_">unref</span>(): <span class="hljs-title class_">Path</span> | <span class="hljs-literal">null</span>
 }
 </code></pre>
 <ul>
@@ -1001,7 +1014,7 @@ The editor calls this as needed, so normally you won&apos;t need to.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"PathRef","level":"4.3.3","depth":2,"next":{"title":"Point","level":"4.3.4","depth":2,"path":"api/locations/point.md","ref":"api/locations/point.md","articles":[]},"previous":{"title":"Path","level":"4.3.2","depth":2,"path":"api/locations/path.md","ref":"api/locations/path.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/locations/path-ref.md","mtime":"2023-04-26T08:49:07.651Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"PathRef","level":"4.3.3","depth":2,"next":{"title":"Point","level":"4.3.4","depth":2,"path":"api/locations/point.md","ref":"api/locations/point.md","articles":[]},"previous":{"title":"Path","level":"4.3.2","depth":2,"path":"api/locations/path.md","ref":"api/locations/path.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/locations/path-ref.md","mtime":"2023-11-11T14:45:37.986Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

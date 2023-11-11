@@ -6,7 +6,7 @@
         <title>位置 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../walkthroughs/xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                <a href="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../walkthroughs/xx-using-the-bundled-source.html">
             
                 <a href="../walkthroughs/xx-using-the-bundled-source.html">
             
@@ -943,7 +956,7 @@
 <p>位置是在 Slate 编辑器中插入、删除、执行任何操作时引用文档中的特定位置的方式。有几种不同类型的位置接口用于不同的用例。</p>
 <h2 id="path"><code>Path</code></h2>
 <p>路径是位置引用最低层方式。每个路径都是简单的数字数组，通过文档树中的每个祖先节点的索引来引用节点：</p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> Path = <span class="hljs-built_in">number</span>[]
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Path</span> = <span class="hljs-built_in">number</span>[]
 </code></pre>
 <p>例如，在文档中：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> editor = {
@@ -963,8 +976,8 @@
 <p>编辑器本身的路径是 <code>[]</code>。例如，调用 <code>Transforms.select(editor, [])</code> 选择编辑器的全部内容。</p>
 <h2 id="point"><code>Point</code></h2>
 <p>点比路径更加具体，且包含特定文本的 <code>offset</code>。接口是：</p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Point {
-  <span class="hljs-attr">path</span>: Path
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Point</span> {
+  <span class="hljs-attr">path</span>: <span class="hljs-title class_">Path</span>
   <span class="hljs-attr">offset</span>: <span class="hljs-built_in">number</span>
 }
 </code></pre>
@@ -986,9 +999,9 @@
 </blockquote>
 <h2 id="range"><code>Range</code></h2>
 <p>范围不仅仅可以引用文档中的单个点，还可以引用两个点之间更广泛的内容。（范围的例子是选区。）接口是：</p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Range {
-  <span class="hljs-attr">anchor</span>: Point
-  <span class="hljs-attr">focus</span>: Point
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Range</span> {
+  <span class="hljs-attr">anchor</span>: <span class="hljs-title class_">Point</span>
+  <span class="hljs-attr">focus</span>: <span class="hljs-title class_">Point</span>
 }
 </code></pre>
 <blockquote>
@@ -1028,21 +1041,21 @@
 </blockquote>
 <p>没有特定的 <code>Selection</code> 接口。它只是正好遵循了更通用的 <code>Range</code> 接口。</p>
 <p>例如，要找到包含所有当前选区的最低的块：</p>
-<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getCommonBlock</span>(<span class="hljs-params">editor</span>) </span>{
-  <span class="hljs-keyword">const</span> range = Editor.unhangRange(editor, editor.selection, { <span class="hljs-attr">voids</span>: <span class="hljs-literal">true</span> })
+<pre><code class="lang-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getCommonBlock</span>(<span class="hljs-params">editor</span>) {
+  <span class="hljs-keyword">const</span> range = <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">unhangRange</span>(editor, editor.<span class="hljs-property">selection</span>, { <span class="hljs-attr">voids</span>: <span class="hljs-literal">true</span> })
 
-  <span class="hljs-keyword">let</span> [common, path] = SlateNode.common(
+  <span class="hljs-keyword">let</span> [common, path] = <span class="hljs-title class_">SlateNode</span>.<span class="hljs-title function_">common</span>(
     editor,
-    range.anchor.path,
-    range.focus.path
+    range.<span class="hljs-property">anchor</span>.<span class="hljs-property">path</span>,
+    range.<span class="hljs-property">focus</span>.<span class="hljs-property">path</span>
   )
 
-  <span class="hljs-keyword">if</span> (Editor.isBlock(editor, common) || Editor.isEditor(common)) {
+  <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">isBlock</span>(editor, common) || <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">isEditor</span>(common)) {
     <span class="hljs-keyword">return</span> [common, path]
   } <span class="hljs-keyword">else</span> {
-    <span class="hljs-keyword">return</span> Editor.above(editor, {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">above</span>(editor, {
       <span class="hljs-attr">at</span>: path,
-      <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> Editor.isBlock(editor, n) || Editor.isEditor(n),
+      <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">isBlock</span>(editor, n) || <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">isEditor</span>(n),
     })
   }
 }
@@ -1090,7 +1103,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"位置","level":"3.3","depth":1,"next":{"title":"转换","level":"3.4","depth":1,"path":"concepts/04-transforms.md","ref":"concepts/04-transforms.md","articles":[]},"previous":{"title":"节点","level":"3.2","depth":1,"path":"concepts/02-nodes.md","ref":"concepts/02-nodes.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/03-locations.md","mtime":"2023-04-26T08:49:07.651Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"位置","level":"3.3","depth":1,"next":{"title":"转换","level":"3.4","depth":1,"path":"concepts/04-transforms.md","ref":"concepts/04-transforms.md","articles":[]},"previous":{"title":"节点","level":"3.2","depth":1,"path":"concepts/02-nodes.md","ref":"concepts/02-nodes.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/03-locations.md","mtime":"2023-11-11T14:45:37.990Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

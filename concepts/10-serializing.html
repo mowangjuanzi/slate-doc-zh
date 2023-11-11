@@ -6,7 +6,7 @@
         <title>序列化 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../walkthroughs/xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                <a href="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../walkthroughs/xx-using-the-bundled-source.html">
             
                 <a href="../walkthroughs/xx-using-the-bundled-source.html">
             
@@ -944,10 +957,10 @@
 <p>而且，Slate 使用 JSON 作为数据，可以非常轻松的编写序列化逻辑。</p>
 <h2 id="纯文本">纯文本</h2>
 <p>例如，获取编辑器的值并返回纯文本：</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { Node } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Node</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 
-<span class="hljs-keyword">const</span> serialize = <span class="hljs-function"><span class="hljs-params">nodes</span> =&gt;</span> {
-  <span class="hljs-keyword">return</span> nodes.map(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> Node.string(n)).join(<span class="hljs-string">&apos;\n&apos;</span>)
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">serialize</span> = nodes =&gt; {
+  <span class="hljs-keyword">return</span> nodes.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-title class_">Node</span>.<span class="hljs-title function_">string</span>(n)).<span class="hljs-title function_">join</span>(<span class="hljs-string">&apos;\n&apos;</span>)
 }
 </code></pre>
 <p>这里将 <code>Editor</code> 的子节点作为 <code>nodes</code> 参数并返回纯文本表示，其中每个顶级节点都使用单个 <code>\n</code> 换行符分隔。</p>
@@ -976,20 +989,20 @@ A closing paragraph!
 <h2 id="html">HTML</h2>
 <p>例如，这是差不多的 HTML <code>serialize</code> 函数：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">import</span> escapeHtml <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;escape-html&apos;</span>
-<span class="hljs-keyword">import</span> { Text } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Text</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 
-<span class="hljs-keyword">const</span> serialize = <span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> {
-  <span class="hljs-keyword">if</span> (Text.isText(node)) {
-    <span class="hljs-keyword">let</span> string = escapeHtml(node.text)
-    <span class="hljs-keyword">if</span> (node.bold) {
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">serialize</span> = node =&gt; {
+  <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Text</span>.<span class="hljs-title function_">isText</span>(node)) {
+    <span class="hljs-keyword">let</span> string = escapeHtml(node.<span class="hljs-property">text</span>)
+    <span class="hljs-keyword">if</span> (node.<span class="hljs-property">bold</span>) {
       string = <span class="hljs-string">`&lt;strong&gt;<span class="hljs-subst">${string}</span>&lt;/strong&gt;`</span>
     }
     <span class="hljs-keyword">return</span> string
   }
 
-  <span class="hljs-keyword">const</span> children = node.children.map(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> serialize(n)).join(<span class="hljs-string">&apos;&apos;</span>)
+  <span class="hljs-keyword">const</span> children = node.<span class="hljs-property">children</span>.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-title function_">serialize</span>(n)).<span class="hljs-title function_">join</span>(<span class="hljs-string">&apos;&apos;</span>)
 
-  <span class="hljs-keyword">switch</span> (node.type) {
+  <span class="hljs-keyword">switch</span> (node.<span class="hljs-property">type</span>) {
     <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;quote&apos;</span>:
       <span class="hljs-keyword">return</span> <span class="hljs-string">`&lt;blockquote&gt;&lt;p&gt;<span class="hljs-subst">${children}</span>&lt;/p&gt;&lt;/blockquote&gt;`</span>
     <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;paragraph&apos;</span>:
@@ -1039,11 +1052,11 @@ A closing paragraph!
 <p>Slate 中的另一个常见用例是反序列化。这一些任意输入需要转化为兼容 Slate 的 JSON 结构时。例如当粘贴 HTML 到编辑器，希望确保使用合适的编辑器格式对其进行解析。</p>
 <p>Slate 有一个内置助手： <code>slate-hyperscript</code> 包。</p>
 <p>使用 <code>slate-hyperscript</code> 最常见的方式是编写 JSX 文档，例如编写当编写测试时。你可以这么使用它：</p>
-<pre><code class="lang-jsx"><span class="hljs-comment">/** <span class="hljs-doctag">@jsx </span>jsx */</span>
+<pre><code class="lang-jsx"><span class="hljs-comment">/** <span class="hljs-doctag">@jsx</span> jsx */</span>
 <span class="hljs-keyword">import</span> { jsx } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-hyperscript&apos;</span>
 
 <span class="hljs-keyword">const</span> input = (
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">fragment</span>&gt;</span>
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">fragment</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">element</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;paragraph&quot;</span>&gt;</span>A line of text.<span class="hljs-tag">&lt;/<span class="hljs-name">element</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">fragment</span>&gt;</span></span>
 )
@@ -1062,42 +1075,42 @@ A closing paragraph!
 <p>例如，下面是 HTML 的 <code>deserialize</code> 函数：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { jsx } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate-hyperscript&apos;</span>
 
-<span class="hljs-keyword">const</span> deserialize = <span class="hljs-function">(<span class="hljs-params">el, markAttributes = {}</span>) =&gt;</span> {
-  <span class="hljs-keyword">if</span> (el.nodeType === Node.TEXT_NODE) {
-    <span class="hljs-keyword">return</span> jsx(<span class="hljs-string">&apos;text&apos;</span>, markAttributes, el.textContent)
-  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (el.nodeType !== Node.ELEMENT_NODE) {
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">deserialize</span> = (<span class="hljs-params">el, markAttributes = {}</span>) =&gt; {
+  <span class="hljs-keyword">if</span> (el.<span class="hljs-property">nodeType</span> === <span class="hljs-title class_">Node</span>.<span class="hljs-property">TEXT_NODE</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">jsx</span>(<span class="hljs-string">&apos;text&apos;</span>, markAttributes, el.<span class="hljs-property">textContent</span>)
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (el.<span class="hljs-property">nodeType</span> !== <span class="hljs-title class_">Node</span>.<span class="hljs-property">ELEMENT_NODE</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
   }
 
   <span class="hljs-keyword">const</span> nodeAttributes = { ...markAttributes }
 
   <span class="hljs-comment">// 为文本节点定义属性</span>
-  <span class="hljs-keyword">switch</span> (el.nodeName) {
+  <span class="hljs-keyword">switch</span> (el.<span class="hljs-property">nodeName</span>) {
     <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;STRONG&apos;</span>:
-      nodeAttributes.bold = <span class="hljs-literal">true</span>
+      nodeAttributes.<span class="hljs-property">bold</span> = <span class="hljs-literal">true</span>
   }
 
-  <span class="hljs-keyword">const</span> children = <span class="hljs-built_in">Array</span>.from(el.childNodes)
-    .map(<span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> deserialize(node, nodeAttributes))
-    .flat()
+  <span class="hljs-keyword">const</span> children = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(el.<span class="hljs-property">childNodes</span>)
+    .<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> <span class="hljs-title function_">deserialize</span>(node, nodeAttributes))
+    .<span class="hljs-title function_">flat</span>()
 
-  <span class="hljs-keyword">if</span> (children.length === <span class="hljs-number">0</span>) {
-    children.push(jsx(<span class="hljs-string">&apos;text&apos;</span>, nodeAttributes, <span class="hljs-string">&apos;&apos;</span>))
+  <span class="hljs-keyword">if</span> (children.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) {
+    children.<span class="hljs-title function_">push</span>(<span class="hljs-title function_">jsx</span>(<span class="hljs-string">&apos;text&apos;</span>, nodeAttributes, <span class="hljs-string">&apos;&apos;</span>))
   }
 
-  <span class="hljs-keyword">switch</span> (el.nodeName) {
+  <span class="hljs-keyword">switch</span> (el.<span class="hljs-property">nodeName</span>) {
     <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;BODY&apos;</span>:
-      <span class="hljs-keyword">return</span> jsx(<span class="hljs-string">&apos;fragment&apos;</span>, {}, children)
+      <span class="hljs-keyword">return</span> <span class="hljs-title function_">jsx</span>(<span class="hljs-string">&apos;fragment&apos;</span>, {}, children)
     <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;BR&apos;</span>:
       <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;\n&apos;</span>
     <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;BLOCKQUOTE&apos;</span>:
-      <span class="hljs-keyword">return</span> jsx(<span class="hljs-string">&apos;element&apos;</span>, { <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;quote&apos;</span> }, children)
+      <span class="hljs-keyword">return</span> <span class="hljs-title function_">jsx</span>(<span class="hljs-string">&apos;element&apos;</span>, { <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;quote&apos;</span> }, children)
     <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;P&apos;</span>:
-      <span class="hljs-keyword">return</span> jsx(<span class="hljs-string">&apos;element&apos;</span>, { <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span> }, children)
+      <span class="hljs-keyword">return</span> <span class="hljs-title function_">jsx</span>(<span class="hljs-string">&apos;element&apos;</span>, { <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span> }, children)
     <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;A&apos;</span>:
-      <span class="hljs-keyword">return</span> jsx(
+      <span class="hljs-keyword">return</span> <span class="hljs-title function_">jsx</span>(
         <span class="hljs-string">&apos;element&apos;</span>,
-        { <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;link&apos;</span>, <span class="hljs-attr">url</span>: el.getAttribute(<span class="hljs-string">&apos;href&apos;</span>) },
+        { <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;link&apos;</span>, <span class="hljs-attr">url</span>: el.<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&apos;href&apos;</span>) },
         children
       )
     <span class="hljs-attr">default</span>:
@@ -1107,8 +1120,8 @@ A closing paragraph!
 </code></pre>
 <p>它接受 <code>el</code> HTML 元素对象并返回 Slate 片段。如果对于 HTML 字符串，可以像这样对其解析和反序列化：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> html = <span class="hljs-string">&apos;...&apos;</span>
-<span class="hljs-keyword">const</span> <span class="hljs-built_in">document</span> = <span class="hljs-keyword">new</span> DOMParser().parseFromString(html, <span class="hljs-string">&apos;text/html&apos;</span>)
-deserialize(<span class="hljs-built_in">document</span>.body)
+<span class="hljs-keyword">const</span> <span class="hljs-variable language_">document</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DOMParser</span>().<span class="hljs-title function_">parseFromString</span>(html, <span class="hljs-string">&apos;text/html&apos;</span>)
+<span class="hljs-title function_">deserialize</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>)
 </code></pre>
 <p>使用此输入：</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>An opening paragraph with a <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://example.com&quot;</span>&gt;</span>link<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> in it.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
@@ -1188,7 +1201,7 @@ deserialize(<span class="hljs-built_in">document</span>.body)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"序列化","level":"3.10","depth":1,"next":{"title":"标准化","level":"3.11","depth":1,"path":"concepts/11-normalizing.md","ref":"concepts/11-normalizing.md","articles":[]},"previous":{"title":"渲染","level":"3.9","depth":1,"path":"concepts/09-rendering.md","ref":"concepts/09-rendering.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/10-serializing.md","mtime":"2023-04-26T08:49:07.651Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"序列化","level":"3.10","depth":1,"next":{"title":"标准化","level":"3.11","depth":1,"path":"concepts/11-normalizing.md","ref":"concepts/11-normalizing.md","articles":[]},"previous":{"title":"渲染","level":"3.9","depth":1,"path":"concepts/09-rendering.md","ref":"concepts/09-rendering.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/10-serializing.md","mtime":"2023-11-11T14:45:37.990Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

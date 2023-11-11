@@ -6,7 +6,7 @@
         <title>标准化 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../walkthroughs/xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                <a href="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../walkthroughs/xx-using-the-bundled-source.html">
             
                 <a href="../walkthroughs/xx-using-the-bundled-source.html">
             
@@ -961,26 +974,26 @@
 <p>内置约束相当通用。但是也可以在内置之上为特定域添加自己的约束。</p>
 <p>为此，可以在编辑上扩展 <code>normalizeNode</code> 函数。操作每次应用插入或者更新节点（及其子节点）时都会调用 <code>normalizeNode</code> 函数，确保每次更改都不会让其处于无效状态，如果是的话，则会修复节点。</p>
 <p>例如，这是一个确保 <code>paragraph</code> 块值存在文本或者内联元素作为子节点的插件：</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { Transforms, Element, Node } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Transforms</span>, <span class="hljs-title class_">Element</span>, <span class="hljs-title class_">Node</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 
-<span class="hljs-keyword">const</span> withParagraphs = <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">withParagraphs</span> = editor =&gt; {
   <span class="hljs-keyword">const</span> { normalizeNode } = editor
 
-  editor.normalizeNode = <span class="hljs-function"><span class="hljs-params">entry</span> =&gt;</span> {
+  editor.<span class="hljs-property">normalizeNode</span> = <span class="hljs-function"><span class="hljs-params">entry</span> =&gt;</span> {
     <span class="hljs-keyword">const</span> [node, path] = entry
 
     <span class="hljs-comment">// 如果元素是段落，确保子节点是有效的。</span>
-    <span class="hljs-keyword">if</span> (Element.isElement(node) &amp;&amp; node.type === <span class="hljs-string">&apos;paragraph&apos;</span>) {
-      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [child, childPath] <span class="hljs-keyword">of</span> Node.children(editor, path)) {
-        <span class="hljs-keyword">if</span> (Element.isElement(child) &amp;&amp; !editor.isInline(child)) {
-          Transforms.unwrapNodes(editor, { <span class="hljs-attr">at</span>: childPath })
+    <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Element</span>.<span class="hljs-title function_">isElement</span>(node) &amp;&amp; node.<span class="hljs-property">type</span> === <span class="hljs-string">&apos;paragraph&apos;</span>) {
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [child, childPath] <span class="hljs-keyword">of</span> <span class="hljs-title class_">Node</span>.<span class="hljs-title function_">children</span>(editor, path)) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Element</span>.<span class="hljs-title function_">isElement</span>(child) &amp;&amp; !editor.<span class="hljs-title function_">isInline</span>(child)) {
+          <span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">unwrapNodes</span>(editor, { <span class="hljs-attr">at</span>: childPath })
           <span class="hljs-keyword">return</span>
         }
       }
     }
 
     <span class="hljs-comment">// 调用原始的 `normalizeNode` 以强制执行其它约束。</span>
-    normalizeNode(entry)
+    <span class="hljs-title function_">normalizeNode</span>(entry)
   }
 
   <span class="hljs-keyword">return</span> editor
@@ -991,8 +1004,8 @@
 <h2 id="多重标准化">多重标准化</h2>
 <p>关于 <code>normalizeNode</code> 约束要理解的一件事就是它们是<strong>多重的</strong>。</p>
 <p>如果再次检查上面的例子，会注意到上面的 <code>return</code> 语句：</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">if</span> (Element.isElement(child) &amp;&amp; !editor.isInline(child)) {
-  Transforms.unwrapNodes(editor, { <span class="hljs-attr">at</span>: childPath })
+<pre><code class="lang-javascript"><span class="hljs-keyword">if</span> (<span class="hljs-title class_">Element</span>.<span class="hljs-title function_">isElement</span>(child) &amp;&amp; !editor.<span class="hljs-title function_">isInline</span>(child)) {
+  <span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">unwrapNodes</span>(editor, { <span class="hljs-attr">at</span>: childPath })
   <span class="hljs-keyword">return</span>
 }
 </code></pre>
@@ -1002,7 +1015,7 @@
 <p>这种多重特性使得编写规范<em>更加</em>容易，因为一次只需要担心且修复一个问题，而不是修复<em>所有</em>可能使节点处于无效状态的问题。</p>
 <p>要了解实战中是如何工作的，从这个无效文档开始：</p>
 <pre><code class="lang-jsx">&lt;editor&gt;
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">a</span>&gt;</span>
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">a</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">b</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">c</span>&gt;</span>word<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
@@ -1012,14 +1025,14 @@
 <p>编辑器首先在 <code>&lt;paragraph c&gt;</code> 上运行 <code>normalizeNode</code>。它是有效的，因为子节点只包含文本节点。</p>
 <p>接下来，会向上移动，并在 <code>&lt;paragraph b&gt;</code> 运行 <code>normalizeNode</code>。此段落无效，因为它包含块元素（<code>&lt;paragraph c&gt;</code>）。所以子快就会解包从而产生一个新文档：</p>
 <pre><code class="lang-jsx">&lt;editor&gt;
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">a</span>&gt;</span>
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">a</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">b</span>&gt;</span>word<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span></span>
 &lt;/editor&gt;
 </code></pre>
 <p>并且在执行修复后，顶级 <code>&lt;paragraph a&gt;</code> 变了。它被标准化了，且变为有效，所以解包 <code>&lt;paragraph b&gt;</code> 后变为：</p>
 <pre><code class="lang-jsx">&lt;editor&gt;
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">a</span>&gt;</span>word<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span></span>
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">a</span>&gt;</span>word<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span></span>
 &lt;/editor&gt;
 </code></pre>
 <p>现在当 <code>normalizeNode</code> 运行时，没有发生变化，因此该文档是有效的！</p>
@@ -1034,23 +1047,23 @@
 <p>需要避免的问题是创建标准化死循环。如果检查特定的无效结构，并实际上并<strong>没有</strong>通过更改节点来修复该结构，则可能会发生这种情况。这回导致死循环，因为该节点继续标记为无效，但它从未正确修复过。</p>
 <p>例如，确保 <code>link</code> 元素具有有效 <code>url</code> 的标准化：</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// WARNING：这是一个不正确行为的示例！</span>
-<span class="hljs-keyword">const</span> withLinks = <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">withLinks</span> = editor =&gt; {
   <span class="hljs-keyword">const</span> { normalizeNode } = editor
 
-  editor.normalizeNode = <span class="hljs-function"><span class="hljs-params">entry</span> =&gt;</span> {
+  editor.<span class="hljs-property">normalizeNode</span> = <span class="hljs-function"><span class="hljs-params">entry</span> =&gt;</span> {
     <span class="hljs-keyword">const</span> [node, path] = entry
 
     <span class="hljs-keyword">if</span> (
-      Element.isElement(node) &amp;&amp;
-      node.type === <span class="hljs-string">&apos;link&apos;</span> &amp;&amp;
-      <span class="hljs-keyword">typeof</span> node.url !== <span class="hljs-string">&apos;string&apos;</span>
+      <span class="hljs-title class_">Element</span>.<span class="hljs-title function_">isElement</span>(node) &amp;&amp;
+      node.<span class="hljs-property">type</span> === <span class="hljs-string">&apos;link&apos;</span> &amp;&amp;
+      <span class="hljs-keyword">typeof</span> node.<span class="hljs-property">url</span> !== <span class="hljs-string">&apos;string&apos;</span>
     ) {
       <span class="hljs-comment">// ERROR：对 url 来说 null 不是有效值</span>
-      Transforms.setNodes(editor, { <span class="hljs-attr">url</span>: <span class="hljs-literal">null</span> }, { <span class="hljs-attr">at</span>: path })
+      <span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">setNodes</span>(editor, { <span class="hljs-attr">url</span>: <span class="hljs-literal">null</span> }, { <span class="hljs-attr">at</span>: path })
       <span class="hljs-keyword">return</span>
     }
 
-    normalizeNode(entry)
+    <span class="hljs-title function_">normalizeNode</span>(entry)
   }
 
   <span class="hljs-keyword">return</span> editor
@@ -1061,28 +1074,28 @@
 <h2 id="对其它代码的影响">对其它代码的影响</h2>
 <p>如果节点树<em>不</em>应在转换之间规范化，则转换序列可能需要包装在 <a href="../api/nodes/editor.html#editorwithoutnormalizingeditor-editor-fn---void--void"><code>Editor.withoutNormalizing</code></a> 中。
 当 <code>unwrapNodes</code> 后跟 <code>wrapNodes</code> 时，通常会出现这种情况。例如，可以编写汉书来改变块的类型，如下所示：</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> LIST_TYPES = [<span class="hljs-string">&apos;numbered-list&apos;</span>, <span class="hljs-string">&apos;bulleted-list&apos;</span>]
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">LIST_TYPES</span> = [<span class="hljs-string">&apos;numbered-list&apos;</span>, <span class="hljs-string">&apos;bulleted-list&apos;</span>]
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">changeBlockType</span>(<span class="hljs-params">editor, type</span>) </span>{
-  Editor.withoutNormalizing(editor, <span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-keyword">const</span> isActive = isBlockActive(editor, type)
-    <span class="hljs-keyword">const</span> isList = LIST_TYPES.includes(type)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">changeBlockType</span>(<span class="hljs-params">editor, type</span>) {
+  <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">withoutNormalizing</span>(editor, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">const</span> isActive = <span class="hljs-title function_">isBlockActive</span>(editor, type)
+    <span class="hljs-keyword">const</span> isList = <span class="hljs-variable constant_">LIST_TYPES</span>.<span class="hljs-title function_">includes</span>(type)
 
-    Transforms.unwrapNodes(editor, {
+    <span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">unwrapNodes</span>(editor, {
       <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span>
-        LIST_TYPES.includes(
-          !Editor.isEditor(n) &amp;&amp; SlateElement.isElement(n) &amp;&amp; n.type
+        <span class="hljs-variable constant_">LIST_TYPES</span>.<span class="hljs-title function_">includes</span>(
+          !<span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">isEditor</span>(n) &amp;&amp; <span class="hljs-title class_">SlateElement</span>.<span class="hljs-title function_">isElement</span>(n) &amp;&amp; n.<span class="hljs-property">type</span>
         ),
       <span class="hljs-attr">split</span>: <span class="hljs-literal">true</span>,
     })
     <span class="hljs-keyword">const</span> newProperties = {
       <span class="hljs-attr">type</span>: isActive ? <span class="hljs-string">&apos;paragraph&apos;</span> : isList ? <span class="hljs-string">&apos;list-item&apos;</span> : type,
     }
-    Transforms.setNodes(editor, newProperties)
+    <span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">setNodes</span>(editor, newProperties)
 
     <span class="hljs-keyword">if</span> (!isActive &amp;&amp; isList) {
       <span class="hljs-keyword">const</span> block = { <span class="hljs-attr">type</span>: type, <span class="hljs-attr">children</span>: [] }
-      Transforms.wrapNodes(editor, block)
+      <span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">wrapNodes</span>(editor, block)
     }
   })
 }
@@ -1130,7 +1143,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"标准化","level":"3.11","depth":1,"next":{"title":"TypeScript","level":"3.12","depth":1,"path":"concepts/12-typescript.md","ref":"concepts/12-typescript.md","articles":[]},"previous":{"title":"序列化","level":"3.10","depth":1,"path":"concepts/10-serializing.md","ref":"concepts/10-serializing.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/11-normalizing.md","mtime":"2023-04-26T08:49:07.651Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"标准化","level":"3.11","depth":1,"next":{"title":"TypeScript","level":"3.12","depth":1,"path":"concepts/12-typescript.md","ref":"concepts/12-typescript.md","articles":[]},"previous":{"title":"序列化","level":"3.10","depth":1,"path":"concepts/10-serializing.md","ref":"concepts/10-serializing.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/11-normalizing.md","mtime":"2023-11-11T14:45:37.990Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

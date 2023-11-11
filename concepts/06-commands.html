@@ -6,7 +6,7 @@
         <title>命令 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../walkthroughs/xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                <a href="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../walkthroughs/xx-using-the-bundled-source.html">
             
                 <a href="../walkthroughs/xx-using-the-bundled-source.html">
             
@@ -943,11 +956,11 @@
 <p>在编辑富文本内容时，用户会执行插入文本，删除文本，拆分段落，添加格式等操作，在底层，这些编辑使用转换和操作来表达。但是在高层级上，称之为“命令”。</p>
 <p>命令是代表用户特定意图的高级操作。在 <code>Editor</code> 接口上表示为助手函数。 少量常用富文本行为助手包含在核心中，但鼓励编写自己的助手来为特定域建模。</p>
 <p>例如，以下是一些内置命令：</p>
-<pre><code class="lang-javascript">Editor.insertText(editor, <span class="hljs-string">&apos;A new string of text to be inserted.&apos;</span>)
+<pre><code class="lang-javascript"><span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">insertText</span>(editor, <span class="hljs-string">&apos;A new string of text to be inserted.&apos;</span>)
 
-Editor.deleteBackward(editor, { <span class="hljs-attr">unit</span>: <span class="hljs-string">&apos;word&apos;</span> })
+<span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">deleteBackward</span>(editor, { <span class="hljs-attr">unit</span>: <span class="hljs-string">&apos;word&apos;</span> })
 
-Editor.insertBreak(editor)
+<span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">insertBreak</span>(editor)
 </code></pre>
 <p>但是可以（将会）定义自定义命令来对域建模。例如，对允许的内容类型定义 <code>formatQuote</code> 命令或者<code>insertImage</code> 命令或者 <code>toggleBold</code> 命令。</p>
 <p>命令总是要描述要采取的行为，就像<strong>用户</strong>正在执行该操作一样。因此不需要定义执行命令的位置，因为总是根据用户的当前选区操作。</p>
@@ -957,10 +970,10 @@ Editor.insertBreak(editor)
 <p>在底层，Slate 负责将每个命令转化为一组低级“操作”，用于产生新值。这就是能让协作编辑称为可能的原因。但是也不需要担心，因为它是自动发生的。</p>
 <h2 id="自定义命令">自定义命令</h2>
 <p>当穿件自定义命令时，可以创建自己的命名空间：</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> MyEditor = {
-  ...Editor,
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> <span class="hljs-title class_">MyEditor</span> = {
+  ...<span class="hljs-title class_">Editor</span>,
 
-  <span class="hljs-function"><span class="hljs-title">insertParagraph</span>(<span class="hljs-params">editor</span>)</span> {
+  <span class="hljs-title function_">insertParagraph</span>(<span class="hljs-params">editor</span>) {
     <span class="hljs-comment">// ...</span>
   },
 }
@@ -969,29 +982,32 @@ Editor.insertBreak(editor)
 <h2 id="转换">转换</h2>
 <p>转换是一组特定的助手，允许对文档执行各种特定的更改，例如：</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// 在范围内的所有文本节点设置“粗体”格式。</span>
-Transforms.setNodes(
+<span class="hljs-comment">// Normally you would apply a style like bold using the Editor.addMark() command.</span>
+<span class="hljs-comment">// The addMark() command performs a similar setNodes transform, but it uses a more</span>
+<span class="hljs-comment">// complicated match function in order to apply marks within markableVoid elements.</span>
+<span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">setNodes</span>(
   editor,
   { <span class="hljs-attr">bold</span>: <span class="hljs-literal">true</span> },
   {
     <span class="hljs-attr">at</span>: range,
-    <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> Text.isText(node),
+    <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> <span class="hljs-title class_">Text</span>.<span class="hljs-title function_">isText</span>(node),
     <span class="hljs-attr">split</span>: <span class="hljs-literal">true</span>,
   }
 )
 
 <span class="hljs-comment">// Wrap the lowest block at a point in the document in a quote block.</span>
-Transforms.wrapNodes(
+<span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">wrapNodes</span>(
   editor,
   { <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;quote&apos;</span>, <span class="hljs-attr">children</span>: [] },
   {
     <span class="hljs-attr">at</span>: point,
-    <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> Editor.isBlock(editor, node),
+    <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">node</span> =&gt;</span> <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">isBlock</span>(editor, node),
     <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;lowest&apos;</span>,
   }
 )
 
 <span class="hljs-comment">// 在指定路径插入新文本以替换节点中的文本。</span>
-Transforms.insertText(editor, <span class="hljs-string">&apos;A new string of text.&apos;</span>, { <span class="hljs-attr">at</span>: path })
+<span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">insertText</span>(editor, <span class="hljs-string">&apos;A new string of text.&apos;</span>, { <span class="hljs-attr">at</span>: path })
 
 <span class="hljs-comment">// ...还有更多的转换！</span>
 </code></pre>
@@ -1039,7 +1055,7 @@ Transforms.insertText(editor, <span class="hljs-string">&apos;A new string of te
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"命令","level":"3.6","depth":1,"next":{"title":"编辑器","level":"3.7","depth":1,"path":"concepts/07-editor.md","ref":"concepts/07-editor.md","articles":[]},"previous":{"title":"操作","level":"3.5","depth":1,"path":"concepts/05-operations.md","ref":"concepts/05-operations.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/06-commands.md","mtime":"2023-04-26T08:49:07.651Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"命令","level":"3.6","depth":1,"next":{"title":"编辑器","level":"3.7","depth":1,"path":"concepts/07-editor.md","ref":"concepts/07-editor.md","articles":[]},"previous":{"title":"操作","level":"3.5","depth":1,"path":"concepts/05-operations.md","ref":"concepts/05-operations.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/06-commands.md","mtime":"2023-11-11T14:45:37.990Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

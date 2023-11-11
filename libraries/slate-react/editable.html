@@ -6,7 +6,7 @@
         <title>Editable Component · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../../walkthroughs/xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="../../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                <a href="../../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../../walkthroughs/xx-using-the-bundled-source.html">
             
                 <a href="../../walkthroughs/xx-using-the-bundled-source.html">
             
@@ -944,24 +957,156 @@
 <p>The <code>Editable</code> component is the main editing component. Note that it must be inside a <code>Slate</code> component.</p>
 <h3 id="props">Props</h3>
 <p>It takes as its props, any props accepted by a Textarea element plus the following props.</p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> EditableProps = {
-  decorate?: <span class="hljs-function">(<span class="hljs-params">entry: NodeEntry</span>) =&gt;</span> Range[]
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">EditableProps</span> = {
+  decorate?: <span class="hljs-function">(<span class="hljs-params">entry: NodeEntry</span>) =&gt;</span> <span class="hljs-title class_">Range</span>[]
   onDOMBeforeInput?: <span class="hljs-function">(<span class="hljs-params">event: InputEvent</span>) =&gt;</span> <span class="hljs-built_in">void</span>
   placeholder?: <span class="hljs-built_in">string</span>
   readOnly?: <span class="hljs-built_in">boolean</span>
   role?: <span class="hljs-built_in">string</span>
-  style?: React.CSSProperties
-  renderElement?: <span class="hljs-function">(<span class="hljs-params">props: RenderElementProps</span>) =&gt;</span> JSX.Element
-  renderLeaf?: <span class="hljs-function">(<span class="hljs-params">props: RenderLeafProps</span>) =&gt;</span> JSX.Element
-  renderPlaceholder?: <span class="hljs-function">(<span class="hljs-params">props: RenderPlaceholderProps</span>) =&gt;</span> JSX.Element
+  style?: <span class="hljs-title class_">React</span>.<span class="hljs-property">CSSProperties</span>
+  renderElement?: <span class="hljs-function">(<span class="hljs-params">props: RenderElementProps</span>) =&gt;</span> <span class="hljs-variable constant_">JSX</span>.<span class="hljs-property">Element</span>
+  renderLeaf?: <span class="hljs-function">(<span class="hljs-params">props: RenderLeafProps</span>) =&gt;</span> <span class="hljs-variable constant_">JSX</span>.<span class="hljs-property">Element</span>
+  renderPlaceholder?: <span class="hljs-function">(<span class="hljs-params">props: RenderPlaceholderProps</span>) =&gt;</span> <span class="hljs-variable constant_">JSX</span>.<span class="hljs-property">Element</span>
   scrollSelectionIntoView?: <span class="hljs-function">(<span class="hljs-params">editor: ReactEditor, domRange: DOMRange</span>) =&gt;</span> <span class="hljs-built_in">void</span>
-  <span class="hljs-keyword">as</span>?: React.ElementType
+  <span class="hljs-keyword">as</span>?: <span class="hljs-title class_">React</span>.<span class="hljs-property">ElementType</span>
   disableDefaultStyles?: <span class="hljs-built_in">boolean</span>
-} &amp; React.TextareaHTMLAttributes&lt;HTMLDivElement&gt;
+} &amp; <span class="hljs-title class_">React</span>.<span class="hljs-property">TextareaHTMLAttributes</span>&lt;<span class="hljs-title class_">HTMLDivElement</span>&gt;
 </code></pre>
-<p><em>NOTE: Detailed breakdown of Props not completed. Refer to the source code at the moment. Under construction.</em></p>
+<p><em>NOTE: Detailed breakdown of Props not completed. Refer to the <a href="https://github.com/ianstormtaylor/slate/blob/main/packages/slate-react/src/components/editable.tsx" target="_blank">source code</a> at the moment. Under construction.</em></p>
+<h4 id="placeholder-string--"><code>placeholder?: string = &quot;&quot;</code></h4>
+<p>The text to display as a placeholder when the Editor is empty. A typical value for <code>placeholder</code> would be &quot;Enter text here...&quot; or &quot;Start typing...&quot;. The placeholder text will not be treated as an actual value and will disappear when the user starts typing in the Editor.</p>
+<h4 id="readonly-boolean--false"><code>readOnly?: boolean = false</code></h4>
+<p>When set to true, renders the editor in a &quot;read-only&quot; state. In this state, user input and interactions will not modify the editor&apos;s content.</p>
+<p>If this prop is omitted or set to false, the editor remains in the default &quot;editable&quot; state, allowing users to interact with and modify the content.</p>
+<p>This prop is particularly useful when you want to display text or rich media content without allowing users to edit it, such as when displaying published content or a preview of the user&apos;s input.</p>
+<h4 id="renderelement-props-renderelementprops--jsxelement"><code>renderElement?: (props: RenderElementProps) =&gt; JSX.Element</code></h4>
+<p>The <code>renderElement</code> prop is a function used to render a custom component for a specific type of Element node in the Slate.js document model.</p>
+<p>Here is the type of the <code>RenderElementProps</code> passed into the function.</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">RenderElementProps</span> {
+  <span class="hljs-attr">children</span>: <span class="hljs-built_in">any</span>
+  <span class="hljs-attr">element</span>: <span class="hljs-title class_">Element</span>
+  <span class="hljs-attr">attributes</span>: {
+    <span class="hljs-string">&apos;data-slate-node&apos;</span>: <span class="hljs-string">&apos;element&apos;</span>
+    <span class="hljs-string">&apos;data-slate-inline&apos;</span>?: <span class="hljs-literal">true</span>
+    <span class="hljs-string">&apos;data-slate-void&apos;</span>?: <span class="hljs-literal">true</span>
+    dir?: <span class="hljs-string">&apos;rtl&apos;</span>
+    <span class="hljs-attr">ref</span>: <span class="hljs-built_in">any</span>
+  }
+}
+</code></pre>
+<p>The <code>attributes</code> must be added to the props of the top level HTML element returned from the function and the <code>children</code> must be rendered somewhere inside the returned JSX.</p>
+<p>Here is a typical usage of <code>renderElement</code> with two types of elements.</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> initialValue = [
+  {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;paragraph&apos;</span>,
+    <span class="hljs-attr">children</span>: [{ <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;A line of text in a paragraph.&apos;</span> }],
+  },
+]
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> [editor] = <span class="hljs-title function_">useState</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">withReact</span>(<span class="hljs-title function_">createEditor</span>()))
+
+  <span class="hljs-comment">// Define a rendering function based on the element passed to `props`. We use</span>
+  <span class="hljs-comment">// `useCallback` here to memoize the function for subsequent renders.</span>
+  <span class="hljs-keyword">const</span> renderElement = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
+    <span class="hljs-keyword">switch</span> (props.<span class="hljs-property">element</span>.<span class="hljs-property">type</span>) {
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;code&apos;</span>:
+        <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">CodeElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
+      <span class="hljs-attr">default</span>:
+        <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">DefaultElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
+    }
+  }, [])
+
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">initialValue</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Editable</span>
+        // <span class="hljs-attr">Pass</span> <span class="hljs-attr">in</span> <span class="hljs-attr">the</span> `<span class="hljs-attr">renderElement</span>` <span class="hljs-attr">function.</span>
+        <span class="hljs-attr">renderElement</span>=<span class="hljs-string">{renderElement}</span>
+      /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Slate</span>&gt;</span></span>
+  )
+}
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">CodeElement</span> = props =&gt; {
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">pre</span> {<span class="hljs-attr">...props.attributes</span>}&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>{props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span></span>
+  )
+}
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">DefaultElement</span> = props =&gt; {
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> {<span class="hljs-attr">...props.attributes</span>}&gt;</span>{props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+}
+</code></pre>
+<h4 id="renderleaf-props-renderleafprops--jsxelement"><code>renderLeaf?: (props: RenderLeafProps) =&gt; JSX.Element</code></h4>
+<p>The <code>renderLeaf</code> prop allows you to customize the rendering of leaf nodes in the document tree of your Slate editor. A &quot;leaf&quot; in Slate is the smallest chunk of text and its associated formatting attributes.</p>
+<p>The <code>renderLeaf</code> function receives an object of type <code>RenderLeafProps</code> as its argument:</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">RenderLeafProps</span> {
+  <span class="hljs-attr">children</span>: <span class="hljs-built_in">any</span>
+  <span class="hljs-attr">leaf</span>: <span class="hljs-title class_">Text</span>
+  <span class="hljs-attr">text</span>: <span class="hljs-title class_">Text</span>
+  <span class="hljs-attr">attributes</span>: {
+    <span class="hljs-string">&apos;data-slate-leaf&apos;</span>: <span class="hljs-literal">true</span>
+  }
+}
+</code></pre>
+<p>Example usage:</p>
+<pre><code class="lang-typescript">&lt;<span class="hljs-title class_">Editor</span>
+  renderLeaf={<span class="hljs-function">(<span class="hljs-params">{ attributes, children, leaf }</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> (
+      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>
+        {<span class="hljs-attr">...attributes</span>}
+        <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">fontWeight:</span> <span class="hljs-attr">leaf.bold</span> ? &apos;<span class="hljs-attr">bold</span>&apos; <span class="hljs-attr">:</span> &apos;<span class="hljs-attr">normal</span>&apos; }}
+      &gt;</span>
+        {children}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span>
+    )
+  }}
+/&gt;
+</code></pre>
+<h4 id="renderplaceholder-props-renderplaceholderprops--jsxelement"><code>renderPlaceholder?: (props: RenderPlaceholderProps) =&gt; JSX.Element</code></h4>
+<p>The <code>renderPlaceholder</code> prop allows you to customize how the placeholder of the Slate.js <code>Editable</code> component is rendered when the editor is empty. The placeholder will only be shown when the editor&apos;s content is empty.</p>
+<p>The <code>RenderPlaceholderProps</code> interface looks like this:</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">RenderPlaceholderProps</span> = {
+  <span class="hljs-attr">children</span>: <span class="hljs-built_in">any</span>
+  <span class="hljs-attr">attributes</span>: {
+    <span class="hljs-string">&apos;data-slate-placeholder&apos;</span>: <span class="hljs-built_in">boolean</span>
+    dir?: <span class="hljs-string">&apos;rtl&apos;</span>
+    <span class="hljs-attr">contentEditable</span>: <span class="hljs-built_in">boolean</span>
+    <span class="hljs-attr">ref</span>: <span class="hljs-title class_">React</span>.<span class="hljs-property">RefCallback</span>&lt;<span class="hljs-built_in">any</span>&gt;
+    <span class="hljs-attr">style</span>: <span class="hljs-title class_">React</span>.<span class="hljs-property">CSSProperties</span>
+  }
+}
+</code></pre>
+<p>An example usage might look like:</p>
+<pre><code class="lang-jsx">&lt;<span class="hljs-title class_">Editable</span>
+  renderPlaceholder={<span class="hljs-function">(<span class="hljs-params">{ attributes, children }</span>) =&gt;</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> {<span class="hljs-attr">...attributes</span>} <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">fontStyle:</span> &apos;<span class="hljs-attr">italic</span>&apos;, <span class="hljs-attr">color:</span> &apos;<span class="hljs-attr">gray</span>&apos; }}&gt;</span>
+      {children}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  )}
+/&gt;
+</code></pre>
 <h4 id="scrollselectionintoview-editor-reacteditor-domrange-domrange--void"><code>scrollSelectionIntoView?: (editor: ReactEditor, domRange: DOMRange) =&gt; void</code></h4>
 <p>Slate has its own default method to scroll a DOM selection into view that works for most cases; however, if the default behavior isn&apos;t working for you, possible due to some complex styling, you may need to override the default behavior by providing a different function here.</p>
+<h4 id="as-reactelementtype--div"><code>as?: React.ElementType = &quot;div&quot;</code></h4>
+<p>The as prop specifies the type of element that will be used to render the Editable component in your React application. By default, this is a <code>div</code>.</p>
+<h4 id="disabledefaultstyles-boolean--false"><code>disableDefaultStyles?: boolean = false</code></h4>
+<p>The <code>disableDefaultStyles</code> prop determines whether the default styles of the Slate.js <code>Editable</code> component are applied or not.</p>
+<p>Please note that with this prop set to <code>true</code>, you will need to ensure that your styles cater to all the functionalities of the editor that rely on specific styles to work properly.</p>
+<p>Here are the default styles:</p>
+<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> defaultStyles = {
+  <span class="hljs-comment">// Allow positioning relative to the editable element.</span>
+  <span class="hljs-attr">position</span>: <span class="hljs-string">&apos;relative&apos;</span>,
+  <span class="hljs-comment">// Preserve adjacent whitespace and new lines.</span>
+  <span class="hljs-attr">whiteSpace</span>: <span class="hljs-string">&apos;pre-wrap&apos;</span>,
+  <span class="hljs-comment">// Allow words to break if they are too long.</span>
+  <span class="hljs-attr">wordWrap</span>: <span class="hljs-string">&apos;break-word&apos;</span>,
+  <span class="hljs-comment">// Make the minimum height that of the placeholder.</span>
+  ...(placeholderHeight ? { <span class="hljs-attr">minHeight</span>: placeholderHeight } : {}),
+}
+</code></pre>
 
                                 
                                 </section>
@@ -1005,7 +1150,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Editable Component","level":"5.1.5","depth":2,"next":{"title":"Event Handling","level":"5.1.6","depth":2,"path":"libraries/slate-react/event-handling.md","ref":"libraries/slate-react/event-handling.md","articles":[]},"previous":{"title":"Slate Component","level":"5.1.4","depth":2,"path":"libraries/slate-react/slate.md","ref":"libraries/slate-react/slate.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"libraries/slate-react/editable.md","mtime":"2023-04-26T08:49:07.659Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Editable Component","level":"5.1.5","depth":2,"next":{"title":"Event Handling","level":"5.1.6","depth":2,"path":"libraries/slate-react/event-handling.md","ref":"libraries/slate-react/event-handling.md","articles":[]},"previous":{"title":"Slate Component","level":"5.1.4","depth":2,"path":"libraries/slate-react/slate.md","ref":"libraries/slate-react/slate.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"libraries/slate-react/editable.md","mtime":"2023-11-11T14:45:37.998Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

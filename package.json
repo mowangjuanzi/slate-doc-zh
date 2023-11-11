@@ -7,7 +7,7 @@
     "build": "honkit build",
     "serve": "honkit serve"
   },
-  "devDependencies": {
-    "honkit": "^4.0.4"
+  "dependencies": {
+    "honkit": "^5.1.1"
   }
 }

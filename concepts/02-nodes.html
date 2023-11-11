@@ -6,7 +6,7 @@
         <title>节点 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../walkthroughs/xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                <a href="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../walkthroughs/xx-using-the-bundled-source.html">
             
                 <a href="../walkthroughs/xx-using-the-bundled-source.html">
             
@@ -974,16 +987,16 @@
 <p>Slate 文档是嵌套递归结构。在文档中，元素有子节点 —— 子节点数量没有限制。嵌套和递归结构能够对简单（比如用户提及或者话题标签）或者复杂（比如表格和带标题的数字）的行为进行建模。</p>
 <h2 id="editor"><code>Editor</code></h2>
 <p>Slate 的顶级节点是 <code>Editor</code> 本身。它概括了文档的所有富文本 “content”。它的接口是：</p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Editor {
-  <span class="hljs-attr">children</span>: Node[]
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Editor</span> {
+  <span class="hljs-attr">children</span>: <span class="hljs-title class_">Node</span>[]
   ...
 }
 </code></pre>
 <p>稍后会介绍它的功能，但对节点而言重要的是包含 <code>Node</code> 对象树的 <code>children</code> 属性。</p>
 <h2 id="element"><code>Element</code></h2>
 <p>元素构成了富文本文档的中间层。它们是域自定义节点。接口是：</p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Element {
-  <span class="hljs-attr">children</span>: Node[]
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Element</span> {
+  <span class="hljs-attr">children</span>: <span class="hljs-title class_">Node</span>[]
 }
 </code></pre>
 <p>可以为所需的任何类型的内容自定义元素。例如，在数据模型可以通过 <code>type</code> 属性来区分段落还是引用：</p>
@@ -1030,7 +1043,7 @@
 <p>可以通过覆盖 <code>editor.isVoid</code> 函数来定义哪些元素被视为无效元素。（默认总返回 <code>false</code>。）参阅<a href="../api/nodes/element.html#rendering-void-elements">渲染 Void 元素</a> 获取更多细节。</p>
 <h2 id="text"><code>Text</code></h2>
 <p>文本节点是树中最低级节点，包含文档的文本内容以及任何格式。接口是：</p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Text {
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Text</span> {
   <span class="hljs-attr">text</span>: <span class="hljs-built_in">string</span>
 }
 </code></pre>
@@ -1085,7 +1098,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"节点","level":"3.2","depth":1,"next":{"title":"位置","level":"3.3","depth":1,"path":"concepts/03-locations.md","ref":"concepts/03-locations.md","articles":[]},"previous":{"title":"接口","level":"3.1","depth":1,"path":"concepts/01-interfaces.md","ref":"concepts/01-interfaces.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/02-nodes.md","mtime":"2023-04-26T08:49:07.651Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"节点","level":"3.2","depth":1,"next":{"title":"位置","level":"3.3","depth":1,"path":"concepts/03-locations.md","ref":"concepts/03-locations.md","articles":[]},"previous":{"title":"接口","level":"3.1","depth":1,"path":"concepts/01-interfaces.md","ref":"concepts/01-interfaces.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/02-nodes.md","mtime":"2023-11-11T14:45:37.990Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -6,7 +6,7 @@
         <title>操作 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../walkthroughs/xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                <a href="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../walkthroughs/xx-using-the-bundled-source.html">
             
                 <a href="../walkthroughs/xx-using-the-bundled-source.html">
             
@@ -942,14 +955,14 @@
                                 <h1 id="操作">操作</h1>
 <p>操作是调用转换时发生的细粒度，低层次操作。单个转换可能会导致多个低层次操作应用于编辑器。</p>
 <p>Slate 的核心定义了所有可能可以在富文本文档上发生的操作。例如：</p>
-<pre><code class="lang-javascript">editor.apply({
+<pre><code class="lang-javascript">editor.<span class="hljs-title function_">apply</span>({
   <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;insert_text&apos;</span>,
   <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
   <span class="hljs-attr">offset</span>: <span class="hljs-number">15</span>,
   <span class="hljs-attr">text</span>: <span class="hljs-string">&apos;A new string of text to be inserted.&apos;</span>,
 })
 
-editor.apply({
+editor.<span class="hljs-title function_">apply</span>({
   <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;remove_node&apos;</span>,
   <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>],
   <span class="hljs-attr">node</span>: {
@@ -957,7 +970,7 @@ editor.apply({
   },
 })
 
-editor.apply({
+editor.<span class="hljs-title function_">apply</span>({
   <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;set_selection&apos;</span>,
   <span class="hljs-attr">properties</span>: {
     <span class="hljs-attr">anchor</span>: { <span class="hljs-attr">path</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>], <span class="hljs-attr">offset</span>: <span class="hljs-number">0</span> },
@@ -1014,7 +1027,7 @@ editor.apply({
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"操作","level":"3.5","depth":1,"next":{"title":"命令","level":"3.6","depth":1,"path":"concepts/06-commands.md","ref":"concepts/06-commands.md","articles":[]},"previous":{"title":"转换","level":"3.4","depth":1,"path":"concepts/04-transforms.md","ref":"concepts/04-transforms.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/05-operations.md","mtime":"2023-04-26T08:49:07.651Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"操作","level":"3.5","depth":1,"next":{"title":"命令","level":"3.6","depth":1,"path":"concepts/06-commands.md","ref":"concepts/06-commands.md","articles":[]},"previous":{"title":"转换","level":"3.4","depth":1,"path":"concepts/04-transforms.md","ref":"concepts/04-transforms.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/05-operations.md","mtime":"2023-11-11T14:45:37.990Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

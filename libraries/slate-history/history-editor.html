@@ -6,7 +6,7 @@
         <title>HistoryEditor · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../../walkthroughs/xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="../../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                <a href="../../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../../walkthroughs/xx-using-the-bundled-source.html">
             
                 <a href="../../walkthroughs/xx-using-the-bundled-source.html">
             
@@ -941,12 +954,12 @@
                                 
                                 <h1 id="history-editor">History Editor</h1>
 <p>The <code>HistoryEditor</code> interface is added to the <code>Editor</code> when it is instantiated using the <code>withHistory</code> method.</p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(withHistory(createEditor())))
+<pre><code class="lang-typescript"><span class="hljs-keyword">const</span> [editor] = <span class="hljs-title function_">useState</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">withReact</span>(<span class="hljs-title function_">withHistory</span>(<span class="hljs-title function_">createEditor</span>())))
 </code></pre>
 <p>This adds properties to <code>editor</code> that enables undo and redo in Slate.</p>
 <p>There are also static methods for working with the Editor&apos;s undo/redo history.</p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> HistoryEditor <span class="hljs-keyword">extends</span> BaseEditor {
-  <span class="hljs-attr">history</span>: History
+<pre><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">HistoryEditor</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">BaseEditor</span> {
+  <span class="hljs-attr">history</span>: <span class="hljs-title class_">History</span>
   <span class="hljs-attr">undo</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">void</span>
   <span class="hljs-attr">redo</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">void</span>
   <span class="hljs-attr">writeHistory</span>: <span class="hljs-function">(<span class="hljs-params">stack: <span class="hljs-string">&apos;undos&apos;</span> | <span class="hljs-string">&apos;redos&apos;</span>, batch: <span class="hljs-built_in">any</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>
@@ -1031,7 +1044,7 @@ their operations into the history.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"HistoryEditor","level":"5.2.2","depth":2,"next":{"title":"History","level":"5.2.3","depth":2,"path":"libraries/slate-history/history.md","ref":"libraries/slate-history/history.md","articles":[]},"previous":{"title":"withHistory","level":"5.2.1","depth":2,"path":"libraries/slate-history/with-history.md","ref":"libraries/slate-history/with-history.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"libraries/slate-history/history-editor.md","mtime":"2023-04-26T08:49:07.659Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"HistoryEditor","level":"5.2.2","depth":2,"next":{"title":"History","level":"5.2.3","depth":2,"path":"libraries/slate-history/history.md","ref":"libraries/slate-history/history.md","articles":[]},"previous":{"title":"withHistory","level":"5.2.1","depth":2,"path":"libraries/slate-history/with-history.md","ref":"libraries/slate-history/with-history.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"libraries/slate-history/history-editor.md","mtime":"2023-11-11T14:45:37.998Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

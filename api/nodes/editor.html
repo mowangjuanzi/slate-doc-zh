@@ -6,7 +6,7 @@
         <title>Editor · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../../walkthroughs/xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="../../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                <a href="../../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../../walkthroughs/xx-using-the-bundled-source.html">
             
                 <a href="../../walkthroughs/xx-using-the-bundled-source.html">
             
@@ -941,11 +954,11 @@
                                 
                                 <h1 id="editor-api">Editor API</h1>
 <p><code>Editor</code> 对象存储 Slate 编辑器的所有状态。可以通过<a href="../../concepts/08-plugins.html">插件</a>扩展以添加助手并实现新的行为。它是 <code>Node</code> 类型，路径是 <code>[]</code>。</p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Editor {
-  <span class="hljs-attr">children</span>: Node[]
-  <span class="hljs-attr">selection</span>: Range | <span class="hljs-literal">null</span>
-  <span class="hljs-attr">operations</span>: Operation[]
-  <span class="hljs-attr">marks</span>: Omit&lt;Text, <span class="hljs-string">&apos;text&apos;</span>&gt; | <span class="hljs-literal">null</span>
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Editor</span> {
+  <span class="hljs-attr">children</span>: <span class="hljs-title class_">Node</span>[]
+  <span class="hljs-attr">selection</span>: <span class="hljs-title class_">Range</span> | <span class="hljs-literal">null</span>
+  <span class="hljs-attr">operations</span>: <span class="hljs-title class_">Operation</span>[]
+  <span class="hljs-attr">marks</span>: <span class="hljs-title class_">Omit</span>&lt;<span class="hljs-title class_">Text</span>, <span class="hljs-string">&apos;text&apos;</span>&gt; | <span class="hljs-literal">null</span>
 
   <span class="hljs-comment">// 适用于 Schema 的节点行为。</span>
   <span class="hljs-attr">isInline</span>: <span class="hljs-function">(<span class="hljs-params">element: Element</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
@@ -1103,15 +1116,15 @@
 <p>Delete the content in the current selection.</p>
 <h4 id="editorinsertbreakeditor-editor--void"><code>Editor.insertBreak(editor: Editor) =&gt; void</code></h4>
 <p>Insert a block break at the current selection.</p>
-<h4 id="editorinsertfragmenteditor-editor-fragment-node--void"><code>Editor.insertFragment(editor: Editor, fragment: Node[]) =&gt; void</code></h4>
-<p>Inserts a fragment <em>at the current selection</em>.</p>
-<p>If the selection is currently expanded, it will be deleted first. To atomically insert nodes (including at the very beginning or end), use <a href="../transforms.html#transformsinsertnodeseditor-editor-nodes-node--node-options">Transforms.insertNodes</a>.</p>
-<h4 id="editorinsertnodeeditor-editor-node-node--void"><code>Editor.insertNode(editor: Editor, node: Node) =&gt; void</code></h4>
-<p>Inserts a node <em>at the current selection</em>.</p>
-<p>If the selection is currently expanded, it will be deleted first. To atomically insert a node (including at the very beginning or end), use <a href="../transforms.html#transformsinsertnodeseditor-editor-nodes-node--node-options">Transforms.insertNodes</a>.</p>
-<h4 id="editorinserttexteditor-editor-text-string--void"><code>Editor.insertText(editor: Editor, text: string) =&gt; void</code></h4>
-<p>Inserts text <em>at the current selection</em>.</p>
-<p>If the selection is currently expanded, it will be deleted first.</p>
+<h4 id="editorinsertfragmenteditor-editor-fragment-node-options--void"><code>Editor.insertFragment(editor: Editor, fragment: Node[], options?) =&gt; void</code></h4>
+<p>Inserts a fragment at the specified location or (if not defined) the current selection or (if not defined) the end of the document.</p>
+<p>Options: <code>{at?: Location, hanging?: boolean, voids?: boolean}</code></p>
+<h4 id="editorinsertnodeeditor-editor-node-node-options--void"><code>Editor.insertNode(editor: Editor, node: Node, options?) =&gt; void</code></h4>
+<p>Atomically insert <code>node</code> at the specified location or (if not defined) the current selection or (if not defined) the end of the document.</p>
+<p>Options supported: <code>NodeOptions &amp; {hanging?: boolean, select?: boolean}</code>.</p>
+<h4 id="editorinserttexteditor-editor-text-string-options--void"><code>Editor.insertText(editor: Editor, text: string, options?) =&gt; void</code></h4>
+<p>Insert a string of text at the specified location or (if not defined) the current selection or (if not defined) the end of the document.</p>
+<p>Options: <code>{at?: Location, voids?: boolean}</code></p>
 <h4 id="editorremovemarkeditor-editor-key-string--void"><code>Editor.removeMark(editor: Editor, key: string) =&gt; void</code></h4>
 <p>Remove a custom property from all of the leaf text nodes within non-void nodes or void nodes that <code>editor.markableVoid()</code> allows in the current selection.</p>
 <p>If the selection is currently collapsed, the removal will be stored on <code>editor.marks</code> and applied to the text inserted next.</p>
@@ -1178,11 +1191,11 @@ See <a href="11-normalizing.md#implications-for-other-code">Normalization - Impl
 <h2 id="实例方法">实例方法</h2>
 <h3 id="重写特定模式实例方法">重写特定模式实例方法</h3>
 <p>Replace these methods to modify the original behavior of the editor when building <a href="../../concepts/08-plugins.html">Plugins</a>. When modifying behavior, call the original method when appropriate. For example, a plugin that marks image nodes as &quot;void&quot;:</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> withImages = <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">withImages</span> = editor =&gt; {
   <span class="hljs-keyword">const</span> { isVoid } = editor
 
-  editor.isVoid = <span class="hljs-function"><span class="hljs-params">element</span> =&gt;</span> {
-    <span class="hljs-keyword">return</span> element.type === <span class="hljs-string">&apos;image&apos;</span> ? <span class="hljs-literal">true</span> : isVoid(element)
+  editor.<span class="hljs-property">isVoid</span> = <span class="hljs-function"><span class="hljs-params">element</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> element.<span class="hljs-property">type</span> === <span class="hljs-string">&apos;image&apos;</span> ? <span class="hljs-literal">true</span> : <span class="hljs-title function_">isVoid</span>(element)
   }
 
   <span class="hljs-keyword">return</span> editor
@@ -1278,7 +1291,7 @@ See <a href="11-normalizing.md#implications-for-other-code">Normalization - Impl
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Editor","level":"4.2.1","depth":2,"next":{"title":"Element","level":"4.2.2","depth":2,"path":"api/nodes/element.md","ref":"api/nodes/element.md","articles":[]},"previous":{"title":"Node 类型","level":"4.2","depth":1,"path":"api/nodes/README.md","ref":"api/nodes/README.md","articles":[{"title":"Editor","level":"4.2.1","depth":2,"path":"api/nodes/editor.md","ref":"api/nodes/editor.md","articles":[]},{"title":"Element","level":"4.2.2","depth":2,"path":"api/nodes/element.md","ref":"api/nodes/element.md","articles":[]},{"title":"Node","level":"4.2.3","depth":2,"path":"api/nodes/node.md","ref":"api/nodes/node.md","articles":[]},{"title":"NodeEntry","level":"4.2.4","depth":2,"path":"api/nodes/node-entry.md","ref":"api/nodes/node-entry.md","articles":[]},{"title":"Text","level":"4.2.5","depth":2,"path":"api/nodes/text.md","ref":"api/nodes/text.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/nodes/editor.md","mtime":"2023-04-26T08:49:07.651Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Editor","level":"4.2.1","depth":2,"next":{"title":"Element","level":"4.2.2","depth":2,"path":"api/nodes/element.md","ref":"api/nodes/element.md","articles":[]},"previous":{"title":"Node 类型","level":"4.2","depth":1,"path":"api/nodes/README.md","ref":"api/nodes/README.md","articles":[{"title":"Editor","level":"4.2.1","depth":2,"path":"api/nodes/editor.md","ref":"api/nodes/editor.md","articles":[]},{"title":"Element","level":"4.2.2","depth":2,"path":"api/nodes/element.md","ref":"api/nodes/element.md","articles":[]},{"title":"Node","level":"4.2.3","depth":2,"path":"api/nodes/node.md","ref":"api/nodes/node.md","articles":[]},{"title":"NodeEntry","level":"4.2.4","depth":2,"path":"api/nodes/node-entry.md","ref":"api/nodes/node-entry.md","articles":[]},{"title":"Text","level":"4.2.5","depth":2,"path":"api/nodes/text.md","ref":"api/nodes/text.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/nodes/editor.md","mtime":"2023-11-11T14:45:37.990Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

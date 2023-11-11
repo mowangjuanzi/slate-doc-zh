@@ -6,7 +6,7 @@
         <title>Operation Types · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../../walkthroughs/xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="../../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                <a href="../../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../../walkthroughs/xx-using-the-bundled-source.html">
             
                 <a href="../../walkthroughs/xx-using-the-bundled-source.html">
             
@@ -957,103 +970,103 @@
 <h3 id="node-operations">Node Operations</h3>
 <p>Node operations operate on <code>Node</code> objects.</p>
 <pre><code class="lang-typescript"><span class="hljs-comment">// insert a new `Node`</span>
-<span class="hljs-keyword">type</span> InsertNodeOperation = {
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">InsertNodeOperation</span> = {
   <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;insert_node&apos;</span>
-  <span class="hljs-attr">path</span>: Path
-  <span class="hljs-attr">node</span>: Node
+  <span class="hljs-attr">path</span>: <span class="hljs-title class_">Path</span>
+  <span class="hljs-attr">node</span>: <span class="hljs-title class_">Node</span>
 }
 
 <span class="hljs-comment">// merge two `Node` objects</span>
-<span class="hljs-keyword">type</span> MergeNodeOperation = {
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">MergeNodeOperation</span> = {
   <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;merge_node&apos;</span>
-  <span class="hljs-attr">path</span>: Path
+  <span class="hljs-attr">path</span>: <span class="hljs-title class_">Path</span>
   <span class="hljs-attr">position</span>: <span class="hljs-built_in">number</span>
-  <span class="hljs-attr">properties</span>: Partial&lt;Node&gt;
+  <span class="hljs-attr">properties</span>: <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">Node</span>&gt;
 }
 
 <span class="hljs-comment">// move `Node` from one path to another</span>
-<span class="hljs-keyword">type</span> MoveNodeOperation = {
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">MoveNodeOperation</span> = {
   <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;move_node&apos;</span>
-  <span class="hljs-attr">path</span>: Path
-  <span class="hljs-attr">newPath</span>: Path
+  <span class="hljs-attr">path</span>: <span class="hljs-title class_">Path</span>
+  <span class="hljs-attr">newPath</span>: <span class="hljs-title class_">Path</span>
 }
 
 <span class="hljs-comment">// Remove a `Node`</span>
-<span class="hljs-keyword">type</span> RemoveNodeOperation = {
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">RemoveNodeOperation</span> = {
   <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;remove_node&apos;</span>
-  <span class="hljs-attr">path</span>: Path
-  <span class="hljs-attr">node</span>: Node
+  <span class="hljs-attr">path</span>: <span class="hljs-title class_">Path</span>
+  <span class="hljs-attr">node</span>: <span class="hljs-title class_">Node</span>
 }
 
 <span class="hljs-comment">// Set properties of a `Node`</span>
-<span class="hljs-keyword">type</span> SetNodeOperation = {
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">SetNodeOperation</span> = {
   <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;set_node&apos;</span>
-  <span class="hljs-attr">path</span>: Path
-  <span class="hljs-attr">properties</span>: Partial&lt;Node&gt;
-  newProperties: Partial&lt;Node&gt;
+  <span class="hljs-attr">path</span>: <span class="hljs-title class_">Path</span>
+  <span class="hljs-attr">properties</span>: <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">Node</span>&gt;
+  <span class="hljs-attr">newProperties</span>: <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">Node</span>&gt;
 }
 
 <span class="hljs-comment">// Split a node into two separate `Node` objects</span>
-<span class="hljs-keyword">type</span> SplitNodeOperation = {
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">SplitNodeOperation</span> = {
   <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;split_node&apos;</span>
-  <span class="hljs-attr">path</span>: Path
+  <span class="hljs-attr">path</span>: <span class="hljs-title class_">Path</span>
   <span class="hljs-attr">position</span>: <span class="hljs-built_in">number</span>
-  <span class="hljs-attr">properties</span>: Partial&lt;Node&gt;
+  <span class="hljs-attr">properties</span>: <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">Node</span>&gt;
 }
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> NodeOperation =
-  | InsertNodeOperation
-  | MergeNodeOperation
-  | MoveNodeOperation
-  | RemoveNodeOperation
-  | SetNodeOperation
-  | SplitNodeOperation
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">NodeOperation</span> =
+  | <span class="hljs-title class_">InsertNodeOperation</span>
+  | <span class="hljs-title class_">MergeNodeOperation</span>
+  | <span class="hljs-title class_">MoveNodeOperation</span>
+  | <span class="hljs-title class_">RemoveNodeOperation</span>
+  | <span class="hljs-title class_">SetNodeOperation</span>
+  | <span class="hljs-title class_">SplitNodeOperation</span>
 </code></pre>
 <h3 id="text-operations">Text Operations</h3>
 <p>Text operations operate on <code>Text</code> objects only.</p>
 <p>Note: <code>Text</code> objects are <code>Node</code> objects so you can use <code>Node</code> operations on <code>Text</code> objects.</p>
 <pre><code class="lang-typescript"><span class="hljs-comment">// insert text into an existing `Text` node</span>
-<span class="hljs-keyword">type</span> InsertTextOperation = {
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">InsertTextOperation</span> = {
   <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;insert_text&apos;</span>
-  <span class="hljs-attr">path</span>: Path
+  <span class="hljs-attr">path</span>: <span class="hljs-title class_">Path</span>
   <span class="hljs-attr">offset</span>: <span class="hljs-built_in">number</span>
   <span class="hljs-attr">text</span>: <span class="hljs-built_in">string</span>
 }
 
 <span class="hljs-comment">// remove text from an existing `Text` node</span>
-<span class="hljs-keyword">type</span> RemoveTextOperation = {
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">RemoveTextOperation</span> = {
   <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;remove_text&apos;</span>
-  <span class="hljs-attr">path</span>: Path
+  <span class="hljs-attr">path</span>: <span class="hljs-title class_">Path</span>
   <span class="hljs-attr">offset</span>: <span class="hljs-built_in">number</span>
   <span class="hljs-attr">text</span>: <span class="hljs-built_in">string</span>
 }
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> TextOperation = InsertTextOperation | RemoveTextOperation
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">TextOperation</span> = <span class="hljs-title class_">InsertTextOperation</span> | <span class="hljs-title class_">RemoveTextOperation</span>
 </code></pre>
 <h3 id="selection-operation">Selection Operation</h3>
 <p>Operation to set or unset a selection <code>Range</code>.</p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> SetSelectionOperation =
+<pre><code class="lang-typescript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">SetSelectionOperation</span> =
   | {
       <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;set_selection&apos;</span>
       <span class="hljs-attr">properties</span>: <span class="hljs-literal">null</span>
-      <span class="hljs-attr">newProperties</span>: Range
+      <span class="hljs-attr">newProperties</span>: <span class="hljs-title class_">Range</span>
     }
   | {
       <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;set_selection&apos;</span>
-      <span class="hljs-attr">properties</span>: Partial&lt;Range&gt;
-      newProperties: Partial&lt;Range&gt;
+      <span class="hljs-attr">properties</span>: <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">Range</span>&gt;
+      <span class="hljs-attr">newProperties</span>: <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">Range</span>&gt;
     }
   | {
       <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;set_selection&apos;</span>
-      <span class="hljs-attr">properties</span>: Range
+      <span class="hljs-attr">properties</span>: <span class="hljs-title class_">Range</span>
       <span class="hljs-attr">newProperties</span>: <span class="hljs-literal">null</span>
     }
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> SelectionOperation = SetSelectionOperation
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">SelectionOperation</span> = <span class="hljs-title class_">SetSelectionOperation</span>
 </code></pre>
 <h3 id="base-operation">Base Operation</h3>
 <p>The combination of all operation types.</p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> BaseOperation = NodeOperation | SelectionOperation | TextOperation
+<pre><code class="lang-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">BaseOperation</span> = <span class="hljs-title class_">NodeOperation</span> | <span class="hljs-title class_">SelectionOperation</span> | <span class="hljs-title class_">TextOperation</span>
 </code></pre>
 
                                 
@@ -1098,7 +1111,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Operation Types","level":"4.4","depth":1,"next":{"title":"Operation","level":"4.4.1","depth":2,"path":"api/operations/operation.md","ref":"api/operations/operation.md","articles":[]},"previous":{"title":"Span","level":"4.3.9","depth":2,"path":"api/locations/span.md","ref":"api/locations/span.md","articles":[]},"articles":[{"title":"Operation","level":"4.4.1","depth":2,"path":"api/operations/operation.md","ref":"api/operations/operation.md","articles":[]}],"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/operations/README.md","mtime":"2023-04-26T08:49:07.651Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Operation Types","level":"4.4","depth":1,"next":{"title":"Operation","level":"4.4.1","depth":2,"path":"api/operations/operation.md","ref":"api/operations/operation.md","articles":[]},"previous":{"title":"Span","level":"4.3.9","depth":2,"path":"api/locations/span.md","ref":"api/locations/span.md","articles":[]},"articles":[{"title":"Operation","level":"4.4.1","depth":2,"path":"api/operations/operation.md","ref":"api/operations/operation.md","articles":[]}],"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"api/operations/README.md","mtime":"2023-11-11T14:45:37.990Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

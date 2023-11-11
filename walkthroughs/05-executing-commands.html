@@ -6,7 +6,7 @@
         <title>执行命令 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="07-enabling-collaborative-editing.html">
+            
+                <a href="07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="xx-using-the-bundled-source.html">
             
                 <a href="xx-using-the-bundled-source.html">
             
@@ -952,24 +965,24 @@
   },
 ]
 
-<span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> [editor] = <span class="hljs-title function_">useState</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">withReact</span>(<span class="hljs-title function_">createEditor</span>()))
 
-  <span class="hljs-keyword">const</span> renderElement = useCallback(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
-    <span class="hljs-keyword">switch</span> (props.element.type) {
+  <span class="hljs-keyword">const</span> renderElement = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
+    <span class="hljs-keyword">switch</span> (props.<span class="hljs-property">element</span>.<span class="hljs-property">type</span>) {
       <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;code&apos;</span>:
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CodeElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
-      <span class="hljs-keyword">default</span>:
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">DefaultElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
+        <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">CodeElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
+      <span class="hljs-attr">default</span>:
+        <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">DefaultElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
     }
   }, [])
 
-  <span class="hljs-keyword">const</span> renderLeaf = useCallback(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
-    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Leaf</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
+  <span class="hljs-keyword">const</span> renderLeaf = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Leaf</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
   }, [])
 
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">initialValue</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">Editable</span>
         <span class="hljs-attr">renderElement</span>=<span class="hljs-string">{renderElement}</span>
         <span class="hljs-attr">renderLeaf</span>=<span class="hljs-string">{renderLeaf}</span>
@@ -994,11 +1007,7 @@
 
             case &apos;b&apos;: {
               event.preventDefault()
-              Transforms.setNodes(
-                editor,
-                { bold: true },
-                { match: n =&gt; Text.isText(n), split: true }
-              )
+              Editor.addMark(editor, &apos;bold&apos;, true)
               break
             }
           }
@@ -1011,39 +1020,35 @@
 <p>它具有“代码块”和“粗体格式”的概念。但这些东西都是在 <code>onKeyDown</code> 处理程序中一次性定义的。如果想在其它地方复用该逻辑，需要对其进行提取。</p>
 <p>可以通过创建自定义助手函数来实现这些特定领域的概念：</p>
 <pre><code class="lang-jsx"><span class="hljs-comment">// 定义一组自定义助手。</span>
-<span class="hljs-keyword">const</span> CustomEditor = {
-  <span class="hljs-function"><span class="hljs-title">isBoldMarkActive</span>(<span class="hljs-params">editor</span>)</span> {
-    <span class="hljs-keyword">const</span> [match] = Editor.nodes(editor, {
-      <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n.bold === <span class="hljs-literal">true</span>,
-      <span class="hljs-attr">universal</span>: <span class="hljs-literal">true</span>,
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">CustomEditor</span> = {
+  <span class="hljs-title function_">isBoldMarkActive</span>(<span class="hljs-params">editor</span>) {
+    <span class="hljs-keyword">const</span> marks = <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">marks</span>(editor)
+    <span class="hljs-keyword">return</span> marks ? marks.<span class="hljs-property">bold</span> === <span class="hljs-literal">true</span> : <span class="hljs-literal">false</span>
+  },
+
+  <span class="hljs-title function_">isCodeBlockActive</span>(<span class="hljs-params">editor</span>) {
+    <span class="hljs-keyword">const</span> [match] = <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">nodes</span>(editor, {
+      <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n.<span class="hljs-property">type</span> === <span class="hljs-string">&apos;code&apos;</span>,
     })
 
     <span class="hljs-keyword">return</span> !!match
   },
 
-  <span class="hljs-function"><span class="hljs-title">isCodeBlockActive</span>(<span class="hljs-params">editor</span>)</span> {
-    <span class="hljs-keyword">const</span> [match] = Editor.nodes(editor, {
-      <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n.type === <span class="hljs-string">&apos;code&apos;</span>,
-    })
-
-    <span class="hljs-keyword">return</span> !!match
+  <span class="hljs-title function_">toggleBoldMark</span>(<span class="hljs-params">editor</span>) {
+    <span class="hljs-keyword">const</span> isActive = <span class="hljs-title class_">CustomEditor</span>.<span class="hljs-title function_">isBoldMarkActive</span>(editor)
+    <span class="hljs-keyword">if</span> (isActive) {
+      <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">removeMark</span>(editor, <span class="hljs-string">&apos;bold&apos;</span>)
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">addMark</span>(editor, <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-literal">true</span>)
+    }
   },
 
-  <span class="hljs-function"><span class="hljs-title">toggleBoldMark</span>(<span class="hljs-params">editor</span>)</span> {
-    <span class="hljs-keyword">const</span> isActive = CustomEditor.isBoldMarkActive(editor)
-    Transforms.setNodes(
-      editor,
-      { <span class="hljs-attr">bold</span>: isActive ? <span class="hljs-literal">null</span> : <span class="hljs-literal">true</span> },
-      { <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> Text.isText(n), <span class="hljs-attr">split</span>: <span class="hljs-literal">true</span> }
-    )
-  },
-
-  <span class="hljs-function"><span class="hljs-title">toggleCodeBlock</span>(<span class="hljs-params">editor</span>)</span> {
-    <span class="hljs-keyword">const</span> isActive = CustomEditor.isCodeBlockActive(editor)
-    Transforms.setNodes(
+  <span class="hljs-title function_">toggleCodeBlock</span>(<span class="hljs-params">editor</span>) {
+    <span class="hljs-keyword">const</span> isActive = <span class="hljs-title class_">CustomEditor</span>.<span class="hljs-title function_">isCodeBlockActive</span>(editor)
+    <span class="hljs-title class_">Transforms</span>.<span class="hljs-title function_">setNodes</span>(
       editor,
       { <span class="hljs-attr">type</span>: isActive ? <span class="hljs-literal">null</span> : <span class="hljs-string">&apos;code&apos;</span> },
-      { <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> Editor.isBlock(editor, n) }
+      { <span class="hljs-attr">match</span>: <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">isBlock</span>(editor, n) }
     )
   },
 }
@@ -1055,24 +1060,24 @@
   },
 ]
 
-<span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> [editor] = <span class="hljs-title function_">useState</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">withReact</span>(<span class="hljs-title function_">createEditor</span>()))
 
-  <span class="hljs-keyword">const</span> renderElement = useCallback(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
-    <span class="hljs-keyword">switch</span> (props.element.type) {
+  <span class="hljs-keyword">const</span> renderElement = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
+    <span class="hljs-keyword">switch</span> (props.<span class="hljs-property">element</span>.<span class="hljs-property">type</span>) {
       <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;code&apos;</span>:
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CodeElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
-      <span class="hljs-keyword">default</span>:
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">DefaultElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
+        <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">CodeElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
+      <span class="hljs-attr">default</span>:
+        <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">DefaultElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
     }
   }, [])
 
-  <span class="hljs-keyword">const</span> renderLeaf = useCallback(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
-    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Leaf</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
+  <span class="hljs-keyword">const</span> renderLeaf = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Leaf</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
   }, [])
 
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">initialValue</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">Editable</span>
         <span class="hljs-attr">renderElement</span>=<span class="hljs-string">{renderElement}</span>
         <span class="hljs-attr">renderLeaf</span>=<span class="hljs-string">{renderLeaf}</span>
@@ -1109,25 +1114,25 @@
   },
 ]
 
-<span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> [editor] = <span class="hljs-title function_">useState</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">withReact</span>(<span class="hljs-title function_">createEditor</span>()))
 
-  <span class="hljs-keyword">const</span> renderElement = useCallback(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
-    <span class="hljs-keyword">switch</span> (props.element.type) {
+  <span class="hljs-keyword">const</span> renderElement = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
+    <span class="hljs-keyword">switch</span> (props.<span class="hljs-property">element</span>.<span class="hljs-property">type</span>) {
       <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;code&apos;</span>:
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CodeElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
-      <span class="hljs-keyword">default</span>:
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">DefaultElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
+        <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">CodeElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
+      <span class="hljs-attr">default</span>:
+        <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">DefaultElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
     }
   }, [])
 
-  <span class="hljs-keyword">const</span> renderLeaf = useCallback(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
-    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Leaf</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
+  <span class="hljs-keyword">const</span> renderLeaf = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Leaf</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
   }, [])
 
   <span class="hljs-keyword">return</span> (
     <span class="hljs-comment">// 添加工具栏，带有调用相同方法的按钮。</span>
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">initialValue</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">button</span>
           <span class="hljs-attr">onMouseDown</span>=<span class="hljs-string">{event</span> =&gt;</span> {
@@ -1219,7 +1224,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"执行命令","level":"2.5","depth":1,"next":{"title":"保存到数据库","level":"2.6","depth":1,"path":"walkthroughs/06-saving-to-a-database.md","ref":"walkthroughs/06-saving-to-a-database.md","articles":[]},"previous":{"title":"应用自定义格式","level":"2.4","depth":1,"path":"walkthroughs/04-applying-custom-formatting.md","ref":"walkthroughs/04-applying-custom-formatting.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/05-executing-commands.md","mtime":"2023-04-26T08:49:07.659Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"执行命令","level":"2.5","depth":1,"next":{"title":"保存到数据库","level":"2.6","depth":1,"path":"walkthroughs/06-saving-to-a-database.md","ref":"walkthroughs/06-saving-to-a-database.md","articles":[]},"previous":{"title":"应用自定义格式","level":"2.4","depth":1,"path":"walkthroughs/04-applying-custom-formatting.md","ref":"walkthroughs/04-applying-custom-formatting.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/05-executing-commands.md","mtime":"2023-11-11T14:45:38.002Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

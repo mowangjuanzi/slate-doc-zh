@@ -6,7 +6,7 @@
         <title>编辑器 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../walkthroughs/xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                <a href="../walkthroughs/07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../walkthroughs/xx-using-the-bundled-source.html">
             
                 <a href="../walkthroughs/xx-using-the-bundled-source.html">
             
@@ -941,12 +954,12 @@
                                 
                                 <h1 id="编辑器">编辑器</h1>
 <p>Slate 编辑器的所有行为、内容、状态都汇总到单个顶级 <code>Editor</code> 对象。接口是：</p>
-<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> Editor {
+<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Editor</span> {
   <span class="hljs-comment">// 当前编辑器状态</span>
-  <span class="hljs-attr">children</span>: Node[]
-  <span class="hljs-attr">selection</span>: Range | <span class="hljs-literal">null</span>
-  <span class="hljs-attr">operations</span>: Operation[]
-  <span class="hljs-attr">marks</span>: Omit&lt;Text, <span class="hljs-string">&apos;text&apos;</span>&gt; | <span class="hljs-literal">null</span>
+  <span class="hljs-attr">children</span>: <span class="hljs-title class_">Node</span>[]
+  <span class="hljs-attr">selection</span>: <span class="hljs-title class_">Range</span> | <span class="hljs-literal">null</span>
+  <span class="hljs-attr">operations</span>: <span class="hljs-title class_">Operation</span>[]
+  <span class="hljs-attr">marks</span>: <span class="hljs-title class_">Omit</span>&lt;<span class="hljs-title class_">Text</span>, <span class="hljs-string">&apos;text&apos;</span>&gt; | <span class="hljs-literal">null</span>
   <span class="hljs-comment">// 特定模式的节点行为。</span>
   <span class="hljs-attr">isInline</span>: <span class="hljs-function">(<span class="hljs-params">element: Element</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
   <span class="hljs-attr">isVoid</span>: <span class="hljs-function">(<span class="hljs-params">element: Element</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
@@ -978,45 +991,45 @@
 <p>例如，如果你想在行内节点定义链接元素：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { isInline } = editor
 
-editor.isInline = <span class="hljs-function"><span class="hljs-params">element</span> =&gt;</span> {
-  <span class="hljs-keyword">return</span> element.type === <span class="hljs-string">&apos;link&apos;</span> ? <span class="hljs-literal">true</span> : isInline(element)
+editor.<span class="hljs-property">isInline</span> = <span class="hljs-function"><span class="hljs-params">element</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> element.<span class="hljs-property">type</span> === <span class="hljs-string">&apos;link&apos;</span> ? <span class="hljs-literal">true</span> : <span class="hljs-title function_">isInline</span>(element)
 }
 </code></pre>
 <p>或者想重写 <code>insertText</code> 行为来“链接” URL：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { insertText } = editor
 
-editor.insertText = <span class="hljs-function"><span class="hljs-params">text</span> =&gt;</span> {
-  <span class="hljs-keyword">if</span> (isUrl(text)) {
+editor.<span class="hljs-property">insertText</span> = <span class="hljs-function"><span class="hljs-params">text</span> =&gt;</span> {
+  <span class="hljs-keyword">if</span> (<span class="hljs-title function_">isUrl</span>(text)) {
     <span class="hljs-comment">// ...</span>
     <span class="hljs-keyword">return</span>
   }
 
-  insertText(text)
+  <span class="hljs-title function_">insertText</span>(text)
 }
 </code></pre>
 <p>如果有可以接受粗体或斜体等标记的 void “mention”元素：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { isVoid, markableVoid } = editor
 
-editor.isVoid = <span class="hljs-function"><span class="hljs-params">element</span> =&gt;</span> {
-  <span class="hljs-keyword">return</span> element.type === <span class="hljs-string">&apos;mention&apos;</span> ? <span class="hljs-literal">true</span> : isVoid(element)
+editor.<span class="hljs-property">isVoid</span> = <span class="hljs-function"><span class="hljs-params">element</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> element.<span class="hljs-property">type</span> === <span class="hljs-string">&apos;mention&apos;</span> ? <span class="hljs-literal">true</span> : <span class="hljs-title function_">isVoid</span>(element)
 }
 
-editor.markableVoid = <span class="hljs-function"><span class="hljs-params">element</span> =&gt;</span> {
-  <span class="hljs-keyword">return</span> element.type === <span class="hljs-string">&apos;mention&apos;</span> || markableVoid(element)
+editor.<span class="hljs-property">markableVoid</span> = <span class="hljs-function"><span class="hljs-params">element</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> element.<span class="hljs-property">type</span> === <span class="hljs-string">&apos;mention&apos;</span> || <span class="hljs-title function_">markableVoid</span>(element)
 }
 </code></pre>
 <p>或者甚至想要定义自定义“标准化”，确保链接遵从某些约束：</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { normalizeNode } = editor
 
-editor.normalizeNode = <span class="hljs-function"><span class="hljs-params">entry</span> =&gt;</span> {
+editor.<span class="hljs-property">normalizeNode</span> = <span class="hljs-function"><span class="hljs-params">entry</span> =&gt;</span> {
   <span class="hljs-keyword">const</span> [node, path] = entry
 
-  <span class="hljs-keyword">if</span> (Element.isElement(node) &amp;&amp; node.type === <span class="hljs-string">&apos;link&apos;</span>) {
+  <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Element</span>.<span class="hljs-title function_">isElement</span>(node) &amp;&amp; node.<span class="hljs-property">type</span> === <span class="hljs-string">&apos;link&apos;</span>) {
     <span class="hljs-comment">// ...</span>
     <span class="hljs-keyword">return</span>
   }
 
-  normalizeNode(entry)
+  <span class="hljs-title function_">normalizeNode</span>(entry)
 }
 </code></pre>
 <p>每当真的要覆盖行为时，请务必调用现有函数作为默认行为的后备机制。除非真的想要完全删除默认行为（这并不是好主意）。</p>
@@ -1026,19 +1039,19 @@ editor.normalizeNode = <span class="hljs-function"><span class="hljs-params">ent
 <h2 id="助手函数">助手函数</h2>
 <p>与所有 Slate 接口一样， <code>Editor</code> 接口公开了在实现某些行为时有用的助手函数。有很多编辑器相关的助手。例如：</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// 在路径中获取指定节点的起点。</span>
-<span class="hljs-keyword">const</span> point = Editor.start(editor, [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>])
+<span class="hljs-keyword">const</span> point = <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">start</span>(editor, [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>])
 
 <span class="hljs-comment">// 在范围中获取片段（文档的一部分）。</span>
-<span class="hljs-keyword">const</span> fragment = Editor.fragment(editor, range)
+<span class="hljs-keyword">const</span> fragment = <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">fragment</span>(editor, range)
 </code></pre>
 <p>还有很多基于迭代器的助手，例如：</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// 遍历范围内的每个节点。</span>
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [node, path] <span class="hljs-keyword">of</span> Editor.nodes(editor, { <span class="hljs-attr">at</span>: range })) {
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [node, path] <span class="hljs-keyword">of</span> <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">nodes</span>(editor, { <span class="hljs-attr">at</span>: range })) {
   <span class="hljs-comment">// ...</span>
 }
 
 <span class="hljs-comment">// 迭代当前选区文本节点中的每个点。</span>
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> point <span class="hljs-keyword">of</span> Editor.positions(editor)) {
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> point <span class="hljs-keyword">of</span> <span class="hljs-title class_">Editor</span>.<span class="hljs-title function_">positions</span>(editor)) {
   <span class="hljs-comment">// ...</span>
 }
 </code></pre>
@@ -1088,7 +1101,7 @@ editor.normalizeNode = <span class="hljs-function"><span class="hljs-params">ent
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"编辑器","level":"3.7","depth":1,"next":{"title":"插件","level":"3.8","depth":1,"path":"concepts/08-plugins.md","ref":"concepts/08-plugins.md","articles":[]},"previous":{"title":"命令","level":"3.6","depth":1,"path":"concepts/06-commands.md","ref":"concepts/06-commands.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/07-editor.md","mtime":"2023-04-26T08:49:07.651Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"编辑器","level":"3.7","depth":1,"next":{"title":"插件","level":"3.8","depth":1,"path":"concepts/08-plugins.md","ref":"concepts/08-plugins.md","articles":[]},"previous":{"title":"命令","level":"3.6","depth":1,"path":"concepts/06-commands.md","ref":"concepts/06-commands.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"concepts/07-editor.md","mtime":"2023-11-11T14:45:37.990Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -6,7 +6,7 @@
         <title>定义自定义元素 · Slate 中文文档</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 4.0.7">
+        <meta name="generator" content="HonKit 5.1.1">
         <meta name="author" content="mowangjuanzi">
         
         
@@ -186,7 +186,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="xx-using-the-bundled-source.html">
+        <li class="chapter " data-level="2.7" data-path="07-enabling-collaborative-editing.html">
+            
+                <a href="07-enabling-collaborative-editing.html">
+            
+                    
+                    启用协作编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="xx-using-the-bundled-source.html">
             
                 <a href="xx-using-the-bundled-source.html">
             
@@ -950,11 +963,11 @@
   },
 ]
 
-<span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> [editor] = <span class="hljs-title function_">useState</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">withReact</span>(<span class="hljs-title function_">createEditor</span>()))
 
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">initialValue</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">Editable</span>
         <span class="hljs-attr">onKeyDown</span>=<span class="hljs-string">{event</span> =&gt;</span> {
           if (event.key === &apos;&amp;&apos;) {
@@ -971,9 +984,9 @@
 <p>有个问题，就是代码块不能只使用普通的段落去渲染，还需要以不同的方式渲染。为了实现这一点，需要为 <code>code</code> 元素节点定义个“渲染器”。</p>
 <p>元素渲染器只是简单的 React 组件，如下所示：</p>
 <pre><code class="lang-jsx"><span class="hljs-comment">// 为代码块定义 React 组件渲染器。</span>
-<span class="hljs-keyword">const</span> CodeElement = <span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">CodeElement</span> = props =&gt; {
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">pre</span> {<span class="hljs-attr">...props.attributes</span>}&gt;</span>
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">pre</span> {<span class="hljs-attr">...props.attributes</span>}&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>{props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span></span>
   )
@@ -983,8 +996,8 @@
 <p>看到 <code>props.attributes</code> 引用了吗？Slate 传递应该在块的最上层元素上渲染的属性，所以不必自己构建它们。<strong>必须</strong>将属性组合到组件中。</p>
 <p>看到 <code>props.children</code> 引用了吧? Slate 会自动渲染块下面的所有子元素，然后像是其它 React 组件一样通过 <code>props.children</code> 传递。这样就不必费心渲染正确的文本节点或者类似的东西。<strong>必须</strong>将组件中的子元素作为最低叶子进行渲染。</p>
 <p>这是 “default” 元素组件：</p>
-<pre><code class="lang-jsx"><span class="hljs-keyword">const</span> DefaultElement = <span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
-  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> {<span class="hljs-attr">...props.attributes</span>}&gt;</span>{props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+<pre><code class="lang-jsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">DefaultElement</span> = props =&gt; {
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> {<span class="hljs-attr">...props.attributes</span>}&gt;</span>{props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
 }
 </code></pre>
 <p>现在，添加渲染器到 <code>Editor</code>：</p>
@@ -995,24 +1008,24 @@
   },
 ]
 
-<span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> [editor] = <span class="hljs-title function_">useState</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">withReact</span>(<span class="hljs-title function_">createEditor</span>()))
 
   <span class="hljs-comment">// 基于传递给 `props` 的元素定义渲染函数。</span>
   <span class="hljs-comment">// 在这里使用 `useCallback` 记住函数以供后续渲染。</span>
-  <span class="hljs-keyword">const</span> renderElement = useCallback(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
-    <span class="hljs-keyword">switch</span> (props.element.type) {
+  <span class="hljs-keyword">const</span> renderElement = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
+    <span class="hljs-keyword">switch</span> (props.<span class="hljs-property">element</span>.<span class="hljs-property">type</span>) {
       <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;code&apos;</span>:
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CodeElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
-      <span class="hljs-keyword">default</span>:
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">DefaultElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
+        <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">CodeElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
+      <span class="hljs-attr">default</span>:
+        <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">DefaultElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
     }
   }, [])
 
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">initialValue</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">Editable</span>
-        // 传入 `<span class="hljs-attr">renderElement</span>` 函数。
+        // <span class="hljs-attr">传入</span> `<span class="hljs-attr">renderElement</span>` <span class="hljs-attr">函数</span>。
         <span class="hljs-attr">renderElement</span>=<span class="hljs-string">{renderElement}</span>
         <span class="hljs-attr">onKeyDown</span>=<span class="hljs-string">{event</span> =&gt;</span> {
           if (event.key === &apos;&amp;&apos;) {
@@ -1025,21 +1038,21 @@
   )
 }
 
-<span class="hljs-keyword">const</span> CodeElement = <span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">CodeElement</span> = props =&gt; {
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">pre</span> {<span class="hljs-attr">...props.attributes</span>}&gt;</span>
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">pre</span> {<span class="hljs-attr">...props.attributes</span>}&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>{props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span></span>
   )
 }
 
-<span class="hljs-keyword">const</span> DefaultElement = <span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
-  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> {<span class="hljs-attr">...props.attributes</span>}&gt;</span>{props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">DefaultElement</span> = props =&gt; {
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> {<span class="hljs-attr">...props.attributes</span>}&gt;</span>{props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
 }
 </code></pre>
 <p>好，但现在需要一种方式让用户真正的将块转化为代码块。所以改变 <code>onKeyDown</code> 函数，添加 <code>Ctrl-` </code> 快捷键来做这件事：</p>
 <pre><code class="lang-jsx"><span class="hljs-comment">// 从 Slate 导入 `Editor` 和 `Transforms` 助手。</span>
-<span class="hljs-keyword">import</span> { Editor, Transforms } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Editor</span>, <span class="hljs-title class_">Transforms</span>, <span class="hljs-title class_">Element</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;slate&apos;</span>
 
 <span class="hljs-keyword">const</span> initialValue = [
   {
@@ -1048,20 +1061,20 @@
   },
 ]
 
-<span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> [editor] = <span class="hljs-title function_">useState</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">withReact</span>(<span class="hljs-title function_">createEditor</span>()))
 
-  <span class="hljs-keyword">const</span> renderElement = useCallback(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
-    <span class="hljs-keyword">switch</span> (props.element.type) {
+  <span class="hljs-keyword">const</span> renderElement = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
+    <span class="hljs-keyword">switch</span> (props.<span class="hljs-property">element</span>.<span class="hljs-property">type</span>) {
       <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;code&apos;</span>:
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CodeElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
-      <span class="hljs-keyword">default</span>:
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">DefaultElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
+        <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">CodeElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
+      <span class="hljs-attr">default</span>:
+        <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">DefaultElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
     }
   }, [])
 
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">initialValue</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">Editable</span>
         <span class="hljs-attr">renderElement</span>=<span class="hljs-string">{renderElement}</span>
         <span class="hljs-attr">onKeyDown</span>=<span class="hljs-string">{event</span> =&gt;</span> {
@@ -1081,16 +1094,16 @@
   )
 }
 
-<span class="hljs-keyword">const</span> CodeElement = <span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">CodeElement</span> = props =&gt; {
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">pre</span> {<span class="hljs-attr">...props.attributes</span>}&gt;</span>
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">pre</span> {<span class="hljs-attr">...props.attributes</span>}&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>{props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span></span>
   )
 }
 
-<span class="hljs-keyword">const</span> DefaultElement = <span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
-  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> {<span class="hljs-attr">...props.attributes</span>}&gt;</span>{props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">DefaultElement</span> = props =&gt; {
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> {<span class="hljs-attr">...props.attributes</span>}&gt;</span>{props.children}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
 }
 </code></pre>
 <p>现在，如果按下 <code>Ctrl-` </code>，现在光标所在的块会变成代码块！神奇吧！</p>
@@ -1102,20 +1115,20 @@
   },
 ]
 
-<span class="hljs-keyword">const</span> App = <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> [editor] = useState(<span class="hljs-function">() =&gt;</span> withReact(createEditor()))
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">const</span> [editor] = <span class="hljs-title function_">useState</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">withReact</span>(<span class="hljs-title function_">createEditor</span>()))
 
-  <span class="hljs-keyword">const</span> renderElement = useCallback(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
-    <span class="hljs-keyword">switch</span> (props.element.type) {
+  <span class="hljs-keyword">const</span> renderElement = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> {
+    <span class="hljs-keyword">switch</span> (props.<span class="hljs-property">element</span>.<span class="hljs-property">type</span>) {
       <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;code&apos;</span>:
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">CodeElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
-      <span class="hljs-keyword">default</span>:
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">DefaultElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
+        <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">CodeElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
+      <span class="hljs-attr">default</span>:
+        <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">DefaultElement</span> {<span class="hljs-attr">...props</span>} /&gt;</span></span>
     }
   }, [])
 
   <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Slate</span> <span class="hljs-attr">editor</span>=<span class="hljs-string">{editor}</span> <span class="hljs-attr">initialValue</span>=<span class="hljs-string">{initialValue}</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">Editable</span>
         <span class="hljs-attr">renderElement</span>=<span class="hljs-string">{renderElement}</span>
         <span class="hljs-attr">onKeyDown</span>=<span class="hljs-string">{event</span> =&gt;</span> {
@@ -1129,7 +1142,7 @@
             Transforms.setNodes(
               editor,
               { type: match ? &apos;paragraph&apos; : &apos;code&apos; },
-              { match: n =&gt; Editor.isBlock(editor, n) }
+              { match: n =&gt; Element.isElement(n) &amp;&amp; Editor.isBlock(editor, n) }
             )
           }
         }}
@@ -1182,7 +1195,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"定义自定义元素","level":"2.3","depth":1,"next":{"title":"应用自定义格式","level":"2.4","depth":1,"path":"walkthroughs/04-applying-custom-formatting.md","ref":"walkthroughs/04-applying-custom-formatting.md","articles":[]},"previous":{"title":"添加事件处理程序","level":"2.2","depth":1,"path":"walkthroughs/02-adding-event-handlers.md","ref":"walkthroughs/02-adding-event-handlers.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/03-defining-custom-elements.md","mtime":"2023-04-26T08:49:07.659Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-04-26T08:49:12.326Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"定义自定义元素","level":"2.3","depth":1,"next":{"title":"应用自定义格式","level":"2.4","depth":1,"path":"walkthroughs/04-applying-custom-formatting.md","ref":"walkthroughs/04-applying-custom-formatting.md","articles":[]},"previous":{"title":"添加事件处理程序","level":"2.2","depth":1,"path":"walkthroughs/02-adding-event-handlers.md","ref":"walkthroughs/02-adding-event-handlers.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"mowangjuanzi","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"Introduction.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Slate 中文文档","language":"zh-hans","gitbook":"*"},"file":{"path":"walkthroughs/03-defining-custom-elements.md","mtime":"2023-11-11T14:45:38.002Z","type":"markdown"},"gitbook":{"version":"5.1.1","time":"2023-11-11T14:45:43.847Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
